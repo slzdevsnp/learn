@@ -66,6 +66,8 @@ dev.off()
 
 
 #course 3 ANOVA
+#####################
+
 #working memory data set
 #condition how many days training lasted
 #iq  gain in iq
@@ -112,7 +114,7 @@ legend("topright", title = "F distribution",
        col = c(1, 2, 3, 4, 5, 6, 7), lty = 1)
 
 
-##computing the F ration
+##computing the F ratio
 #1 compute sum of squaires between group 
 
 # number of subjects in each group 
