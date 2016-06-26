@@ -1,4 +1,4 @@
-#rm(list=ls());  setwd('~/Dropbox/cs/bigdata/datacamp/statistical_modeling/'); source('stats_modeling_practice.R') 
+#rm(list=ls());  setwd('~/Dropbox/cs/bigdata/datacamp/intro_stat_anova/'); source('stats_modeling_practice.R') 
 
 #rm(list=ls());  setwd('C:/Users/zimine/Dropbox/cs/bigdata/datacamp/statistical_modeling'); source('stats_modeling_practice.R') 
 
@@ -224,6 +224,7 @@ aov_ab_2<-aov(ab_2$errors ~ ab_2$conversation)
 
 summary(aov_ab_1)
 summary(aov_ab_2)
+require(lsr)
 #compute the effect size with eta^2
 etaSquared(aov_ab_1,anova=TRUE)
 etaSquared(aov_ab_2,anova=TRUE)
