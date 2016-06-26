@@ -15,8 +15,41 @@ describeBy(wm)
 
 boxplot(wm$iq ~ wm$condition, main="Boxplot", xlab="Training days", ylab="IQ")
 
+#### plot evolution of each subjects across independent variables (feautures)
 library(ggplot2)
-ggplot(data = wm, aes(x = sort(condition), y = iq, group = subject, colour = subject)) + 
-  geom_line() + geom_point()
+ggplot(data = wm, aes(x = condition, y = iq, group = subject, colour = subject)) +  geom_line() + geom_point()
+
+##mauchly's test
+iq <- cbind(wm$iq[wm$condition == "8 days"], 
+            wm$iq[wm$condition == "12 days"], 
+            wm$iq[wm$condition == "17 days"], 
+            wm$iq[wm$condition == "19 days"]) 
+#make a leaner model of response vaiable vs 1
+mlm <- lm(iq ~ 1)
+# Mauchly's test
+mt<-mauchly.test(mlm, x = ~ 1) 
+print(mt)
+## sphericity of variables holds as p > 0.05
+
+### compute F-value for repeated measures
+# upper term
+n<-20
+y_j <- tapply(wm$iq,wm$condition, mean) # group by experiement ( 4 measures)
+y_t <-mean(wm$iq) # grand mean
+ss_cond<-n*sum( (y_j-y_t)^2 )
+df <- 4-1
+ms_cond <- ss_cond/df 
+print(ms_cond)
+##F value lower term
+n<-4 # # of conditions for each subject
+y_j <- tapply(wm$iq, wm$subject,mean) #grouping by subject , 20 measures
+y_t <-mean(wm$iq) # grand mean
+ss_subjects <- n*sum( (y_j -y_t)^2 )
+df<-20-1
+ms_subjects <- ss_subjects/df
+print(ms_subjects)
+
+
+
 
 
