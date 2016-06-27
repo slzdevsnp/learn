@@ -62,5 +62,54 @@ ic2 <- c(10,7,9,8,8,5,6,10,8,11,9,9,10,3,10,12,10,9,5,11,3,6,5,5,1,9,7,11,6,3,4,
 sym2 <-c(0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,26,34,27,22,26,35,43,31,39,25,31,38,14,16,33,13,27,15,19,39)
 impact<-data.frame(subject=subject,condition=factor(condition)
 				  ,vermem1=vermem1,vismem1=vismem1,vms1=vms1,rt1=rt1, ic1=ic1,sym1=sym1
-				  ,vermem2=vermem2,vismem2=vismem2,vms2=vms2,rt2=rt2, ic2=ic2,sym2=sym1)
+				  ,vermem2=vermem2,vismem2=vismem2,vms2=vms2,rt2=rt2, ic2=ic2,sym2=sym2)
+
+
+##manual compute of B_0 and B1 for variables impact$sym2 and impact$ic2
+#Calculate the required means, standard deviations and correlation coefficient
+mean_sym2 <- mean(impact$sym2)
+mean_ic2 <- mean(impact$ic2)
+sd_sym2 <- sd(impact$sym2)
+sd_ic2 <- sd(impact$ic2)
+r <- cor(impact$ic2,impact$sym2)
+
+##we are interested in var2 group of variables
+correlations <-cor(impact[9:14])
+print(correlations)
+
+# Calculate the slope
+B_1 <- r * (sd_sym2 )/( sd_ic2 )
+
+# Calculate the intercept
+B_0 <- mean_sym2 - B_1 * mean_ic2
+
+# Plot of ic2 against sym2
+plot(impact$ic2, impact$sym2, main = "Scatterplot", ylab = "Symptoms", xlab = "Impulse Control", pch=4)
+
+# Add the regression line
+abline(B_0, B_1, col = "red")
+
+###using R lm() function
+model_1 <- lm(impact$sym2 ~ impact$ic2)
+print(summary(model_1))
+
+#making the same plot
+plot(impact$sym2 ~ impact$ic2, main = "Scatterplot", ylab = "Symptoms", xlab = "Impulse Control")
+# Add a regression line
+abline(model_1, col = "red")
+
+
+## order 2 linear regression
+model_2 <- lm(impact$sym2 ~ impact$ic2 + impact$vermem2)
+print(summary(model_2))
+# Extract the predicted values
+predicted <- fitted(model_2)
+# Plotting predicted scores against observed scores
+plot(predicted ~ impact$sym2, main = "Scatterplot", xlab = "Observed Scores", ylab = "Predicted Scores")
+abline(lm(predicted ~impact$sym2),col = "green")
+
+
+
+#end
+
 
