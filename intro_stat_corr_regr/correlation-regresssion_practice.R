@@ -109,6 +109,40 @@ plot(predicted ~ impact$sym2, main = "Scatterplot", xlab = "Observed Scores", yl
 abline(lm(predicted ~impact$sym2),col = "green")
 
 
+##standardized linear regresssion
+model_1_z <- lm(scale(impact$sym2) ~ scale(impact$ic2))
+#Look at the output of this regression model
+print(summary(model_1_z))
+
+plot(scale(impact$sym2) ~ scale(impact$ic2), main = "z-Scatterplot", ylab = "z-Symptoms", xlab = "z-Impulse Control")
+abline(model_1_z, col = "red")
+
+
+##plotting residuals of model_2
+residual <- resid(model_2)
+# Draw a histogram of the residuals
+hist(residual)
+predicted <- fitted(model_2)
+
+# Plot the residuals against the predicted symptom scores
+plot(residual ~ predicted, main = "Scatterplot",xlab="Model 2 Predicted Scores", ylab="Model 2 Residuals" )
+
+abline(lm(residual~predicted),col="red")
+#  by looking at chart homoscedacity is violoated
+
+## do the same of model_1
+residual1 <- resid(model_1)
+# Draw a histogram of the residuals
+hist(residual1)
+predicted1 <- fitted(model_1)
+
+# Plot the residuals against the predicted symptom scores
+plot(residual1 ~ predicted1, main = "Scatterplot",xlab="Model 1 Predicted Scores", ylab="Model 1 Residuals" )
+
+abline(lm(residual1~predicted1),col="red")
+## homoscedacity is better but probably is still violated
+
+
 
 #end
 
