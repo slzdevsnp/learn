@@ -102,6 +102,46 @@ solve(SD)
 #correlation matrix 
 R <- solve(SD) %*% C %*% solve(SD)
 
+## chap 3 dummy coding
+
+#it is a system to code categorial  predictors
+
+#in fs dataset a categorical variable is fs$dept
+print(describeBy(fs, fs$dept))
+
+library(psych)
+# Create the dummy variables
+dept_code <- dummy.code(fs$dept)
+
+# Merge the dataset in an extended dataframe
+extended_fs <- cbind(dept_code, fs)
+
+# Provide summary statistics
+print(summary(extended_fs))
+
+### from now will be using C() contrast function to create dummy variables
+# Create dummies for the categorical variable fs$dept by using the C() function
+dept_code <- C(fs$dept, treatment)
+
+model <- lm(fs$salary ~ fs$years + fs$pubs)
+# Regress salary against years, publications and department 
+model_dummy <- lm(fs$salary ~ fs$years + fs$pubs + dept_code)
+print(summary(model_dummy))
+
+# Compare model 4 with model3
+anova(model,model_dummy) # P-value is significant (small)  sum of residuals smaller
+
+###unweighted effects coding
+dept.f <- factor(fs$dept)
+
+# Assign the 3 levels generated in step 2 to dept.f
+contrasts(dept.f) <-contr.sum(3)
+
+# Regress salary against dept.f
+model_unweighted <- lm(fs$salary ~ dept.f)
+
+# Apply the summary() function
+summary(model_unweighted)
 
 #small commit in master
 
