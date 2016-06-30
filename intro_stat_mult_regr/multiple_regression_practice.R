@@ -1,8 +1,18 @@
 #rm(list=ls());  setwd('~/Dropbox/cs/bigdata/datacamp/intro_stat_mult_regr'); source('multiple_regression_practice.R')
 
-#rm(list=ls());  setwd('C:/Users/zimine/Dropbox/cs/bigdata/datacamp/intro_stat_mult_regr'); source('multiple_regresssion_practice.R') 
+#rm(list=ls());  setwd('C:/Users/zimine/Dropbox/cs/bigdata/datacamp/intro_stat_mult_regr'); source('multiple_regression_practice.R') 
+
+# ### a dataset with professors salaries
+# dependent variable: salary
+# independent variables (features) :
+#  * age - professor's age
+#  * years - number of years of active career after a phd
+#  * pubs - number of publications through a career
+#  * dept - categorical with 3 levels 'H', 'P', 'S'
+
 
 ##create a dataset with  yearly wages of professors
+
 
 # salary<- c(60072,61017,61618,61976,66398,67083,69314,71653,72519,74821,79725,80882,83525,84023,89254,89387,91309,91413,94553,95561,96024,98398,98822,101076,101330,101981,104699,106374,108571,109671,110178,110936,111600,112355,113904,115150,116494,116790,117913,118314,119329,121024,121878,122277,124491,126868,128285,131222,132000,132505,133593,134198,135777,135837,138672,138882,141535,142191,143980,154545,155845,155936,156294,157228,157268,158139,158199,159075,160924,163279,164402,165398,165695,168116,170020,171435,172515,172576,173199,175335,176230,177797,177813,179080,179944,180942,181368,181427,182206,184407,185797,185800,186096,187338,189447,189507,190120,191868,197288,199606)
 # age <-c(38,39,38,31,32,39,32,31,66,66,66,66,66,32,34,32,35,38,32,36,37,55,55,55,55,48,43,43,48,42,49,49,46,47,47,45,48,46,43,49,44,40,47,45,44,45,41,55,55,45,45,52,58,59,53,57,59,58,54,59,53,59,57,57,55,55,58,56,51,44,44,44,44,44,44,44,55,61,66,64,62,60,63,66,34,66,44,66,60,64,63,44,67,60,63,54,44,61,61,62)
@@ -27,6 +37,29 @@ abline(model_years,col="red")
 plot(fs$salary~fs$pubs, main = "plot_pubs", xlab = "pubs", ylab = "salary")
 abline(model_pubs, col="blue")
 
+##compare a model with 1 predictor and 2 predictor variables
+model_1 <- model_years
+model_2 <- lm(fs$salary ~ fs$years + fs$pubs)
+
+print(summary(model_1))
+print(summary(model_2))
+
+r_squared <- c(summary(model_1)$r.squared, summary(model_2)$r.squared )
+print(paste('how r squared evolves: ',paste(r_squared, collapse= ' ')))
+
+#adding more predictors might not be useful
+model_3 <- lm(fs$salary ~ fs$years + fs$pubs + fs$age)
+print(summary(model_3))
+#observe large p-value near age predictor
+#and the r-squared is only marginally increased
+#-> coefficient for age tends to be insignificant
+
+
+#### the most significant predictor is a predictor with the biggest z-scaled coefficient
+z_model_2<-lm(scale(fs$salary) ~ scale(fs$years) + scale(fs$pubs) )
+summary(z_model_2) # it is fs$pus
+
+### chap 2 review of matrix  muliplication
 
 
 #end
