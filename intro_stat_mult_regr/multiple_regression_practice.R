@@ -102,6 +102,9 @@ solve(SD)
 #correlation matrix 
 R <- solve(SD) %*% C %*% solve(SD)
 
+## chap 3 dummy coding
+
+#it is a system to code categorial  predictors
 
 
 
