@@ -60,6 +60,49 @@ z_model_2<-lm(scale(fs$salary) ~ scale(fs$years) + scale(fs$pubs) )
 summary(z_model_2) # it is fs$pus
 
 ### chap 2 review of matrix  muliplication
+r <- matrix(1:24,nrow=3)
+s <- matrix(21:44,nrow=3)
+t <-  t(r) 
+r+s 
+t(r) %*% s # matrix multiplcation
+
+#matrix of deviations (mean - score) mutliped by its transpose gives
+#a matrix of summed squares (diagonal) and cross products 
+#divide it by N an you obtain a variance covariance matrix
+#multiple this by standard deviation matrix and you get a correlation matrix
+
+#example matrix input
+col1<-c(3,3,2,4,4,5,2,3,5)
+col2<-c(2,2,4,3,4,4,5,3,3,5)
+col3<-c(3,3,4,4,3,3,4,2,4,4)
+X <- cbind(col1,col2,col3)
+
+#construct a vector of column sums 
+#identity matrix
+I<-matrix(rep(1,10))
+#sums
+t_mat<-t(I) %*% X #transpose of Id  * X 
+n <- 10 # 10 obesrvations ( n . rows)
+# the row of means 
+M <- t_mat * n^-1
+#10x1 column Id matrix
+J<-matrix(1,10,1)
+# a matrix of mean 
+MM <- J %*% M  
+# a matrix of deviations (each element subsraction)
+D <- X - MM 
+# matrix of sum of squares and sum of cross products 
+S <- t(D) %*% D 
+#variance covariance matrix 
+C <-  S * n^-1 
+#standard deviation diagonal matrix (sd on diagonal, zeros off diagonal)
+SD <- diag( diag(C)^0.5,  nrow=3,ncol=3)
+#an inverse of SD 
+solve(SD)
+#correlation matrix 
+R <- solve(SD) %*% C %*% solve(SD)
 
 
-#end
+
+
+#end+
