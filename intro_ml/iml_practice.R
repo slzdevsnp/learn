@@ -13,6 +13,7 @@ write.csv(titanic_t,file='titanic.csv', row.names=FALSE)
 titanic<-read.csv(file='titanic.csv', header=TRUE)
 set.seed(1)
 # A decision tree classification model is built on the data
+library(rpart)
 tree <- rpart(Survived ~ ., data = titanic, method = "class") #survived response, predictors all others
 pred<-predict(tree, titanic, type='class')
 conf<-table(titanic$Survived, pred) # make a confusion matrix
@@ -30,3 +31,10 @@ precision <- TP/ (TP + FP)
 precision 
 recall <- TP / (TP + FN)
 recall 
+
+seeds <- read.csv(file='seeds.csv', row.names=1, header=T)
+
+km_seeds <- kmeans(seeds, 3)
+plot(length ~ compactness, data = seeds, col=km_seeds$cluster)
+print(km_seeds$tot.withinss / km_seeds$betweenss)
+
