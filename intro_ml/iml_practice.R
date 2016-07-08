@@ -38,3 +38,41 @@ km_seeds <- kmeans(seeds, 3)
 plot(length ~ compactness, data = seeds, col=km_seeds$cluster)
 print(km_seeds$tot.withinss / km_seeds$betweenss)
 
+### titanic example with  a dataset spilt between train and test sets
+set.seed(1)
+n <- nrow(titanic) # number of observations
+shuffled <- titanic[sample(n),] #shuffle the dataset
+pct_split<-0.7
+train_indices <- 1:round(pct_split * n)
+train <- shuffled[train_indices, ]
+test_indices <- (round(pct_split * n) + 1):n
+test <- shuffled[test_indices, ] # the rest of the dataset
+
+#fill the model but on the training set
+tree <- rpart(Survived ~ ., train, method = "class")
+# Predict the outcome on the test set with tree:
+pred<-predict(tree, test, type='class')
+# Calculate the confusion matrix: conf
+conf<-table(test$Survived, pred)
+print(conf)
+print(paste("accuracy:" , sum(diag(conf))/sum(conf) ))
+
+##cross valiation
+# run 6 times with moving train set and data set
+npass <- 6
+accs <- rep(0,6) # a vec of accurencies
+n<- nrow(shuffled)
+for (i in 1:6) {
+  # These indices indicate the interval of the test set
+  indices <- (( (i-1) * round((1/npass)*n)) + 1):((i*round((1/npass) * n)))
+  
+  test <- shuffled[indices,] #indices are indexesof test set
+  train <- shuffled[-indices,] #train is the rest
+  tree <- rpart(Survived ~ ., train, method = "class")
+  pred<-predict(tree, test, type='class')  
+  conf<-table(test$Survived, pred)
+  accs[i] <- sum(diag(conf))/sum(conf)
+}
+
+# Print out the mean of accs
+print(paste("cross validation on 6 runs " ,mean(accs)))
