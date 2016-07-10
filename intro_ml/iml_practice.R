@@ -76,3 +76,56 @@ for (i in 1:6) {
 
 # Print out the mean of accs
 print(paste("cross validation on 6 runs " ,mean(accs)))
+
+
+### check the performance of classifier on two emails data sets
+emails_small <- read.csv(file='emails_small.csv', header=T, row.names=1,colClasses=c('numeric','numeric','factor') )
+emails_small$spam <- factor(emails_small$spam, levels=c("1", "0")) #rearrange factor levels
+spam_classifier <- function(x){
+  prediction <- rep(NA,length(x))
+  prediction[x > 4] <- 1
+  prediction[x >= 3 & x <= 4] <- 0
+  prediction[x >= 2.2 & x < 3] <- 1
+  prediction[x >= 1.4 & x < 2.2] <- 0
+  prediction[x > 1.25 & x < 1.4] <- 1
+  prediction[x <= 1.25] <- 0
+  return(factor(prediction, levels=c("1","0")))
+}
+
+pred_small<-spam_classifier(emails_small$avg_capital_seq) #apply spam classifier
+conf_small<-table(emails_small$spam, pred_small) #confusion matrix
+acc_small <- sum(diag(conf_small))/sum(conf_small)
+print(paste("accuracy for emails_small", acc_small)) #accuracy for emails set
+
+
+### now on much bigger set
+emails_full <- read.csv(file='emails_full.csv', header=T, row.names=1,colClasses=c('numeric', 'numeric', 'factor') )
+emails_full$spam <- factor(emails_full$spam, levels=c("1", "0")) #rearrange factor levels
+
+pred_full<-spam_classifier(emails_full$avg_capital_seq)
+conf_full<-table(emails_full$spam, pred_full)
+acc_full <- sum(diag(conf_full))/sum(conf_full)
+print(paste("accuracy for emails_full",acc_full)) #accuracy for emails_full
+
+
+#### now repeat exercise with indroducing bias to the model 
+spam_classifier <- function(x){
+  prediction <- rep(NA,length(x))
+  prediction[x > 4] <- 1
+  prediction[x <= 4 ] <- 0
+  return(factor(prediction, levels=c("1","0")))
+}
+conf_small <- table(emails_small$spam, spam_classifier(emails_small$avg_capital_seq))
+print(conf_small)
+acc_small <- sum(diag(conf_small)) / sum(conf_small)
+print(acc_small)
+
+conf_full <- table(emails_full$spam, spam_classifier(emails_full$avg_capital_seq))
+print(conf_full)
+acc_full <- sum(diag(conf_full)) / sum(conf_full)
+
+print(acc_full)
+
+
+
+#end
