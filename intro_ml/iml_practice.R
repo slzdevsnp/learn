@@ -1,21 +1,26 @@
-#rm(list=ls());  setwd('~/Dropbox/cs/bigdata/datacamp/intro_ml'); source('iml_practice.R')
+#rm(list=ls());  setwd("~/Dropbox/cs/bigdata/datacamp/intro_ml"); source("iml_practice.R")
 
-#rm(list=ls());  setwd('C:/Users/zimine/Dropbox/cs/bigdata/datacamp/intro_ml'); source('iml_practice.R') 
+#rm(list=ls());  setwd("C:/Users/zimine/Dropbox/cs/bigdata/datacamp/intro_ml"); source("iml_practice.R") 
 
-##create titanic dataset
-survived<-c('0','1','1','1','0','0','0','1','1','1','1','0','0','0','1','0','0','0','1','1','1','0','1','0','0','0','0','0','0','0','1','0','0','1','1','0','0','0','1','1','0','1','0','1','0','0','1','0','0','1','0','1','0','0','0','0','0','1','0','1','1','0','1','0','1','1','0','1','0','0','0','0','0','0','0','1','1','0','0','0','0','0','0','1','0','0','0','0','0','0','0','0','0','0','0','0','0','1','0','1','1','0','0','0','0','1','0','0','1','0','0','0','1','1','0','0','0','1','0','0','0','0','1','0','0','0','1','0','0','1','0','0','0','1','0','0','0','0','1','0','0','0','0','0','0','0','1','1','1','0','0','1','0','1','1','1','1','0','0','0','0','0','1','0','0','1','1','1','0','1','0','0','1','1','0','1','0','1','0','0','1','0','1','0','0','1','0','0','1','0','0','1','0','0','0','0','0','0','0','1','1','0','0','0','0','0','1','1','1','1','1','0','0','0','0','1','1','1','1','1','0','1','0','0','1','0','0','0','1','0','1','0','1','1','1','1','0','0','0','0','0','1','0','1','1','0','1','1','1','0','0','0','1','1','0','1','1','0','0','1','1','1','0','1','1','1','0','0','0','0','1','1','0','1','1','0','0','0','1','1','1','0','0','0','0','0','1','0','0','0','0','0','0','1','1','1','0','0','0','0','1','0','0','0','1','1','0','1','0','0','1','1','1','1','0','1','1','0','0','0','0','1','1','0','0','0','0','0','0','1','0','1','1','1','1','0','0','0','0','0','0','1','1','1','1','1','0','0','1','0','1','0','0','1','0','0','1','1','1','1','1','1','0','0','1','1','0','1','1','0','0','0','0','0','1','0','1','1','0','0','0','0','1','0','0','1','1','1','0','0','1','0','0','0','0','1','0','0','0','0','0','1','0','1','0','1','1','1','1','0','0','1','1','0','1','0','1','0','1','0','0','1','0','0','1','0','1','1','1','0','0','1','0','0','1','0','1','1','0','1','1','0','1','1','1','0','0','0','0','0','1','1','1','1','0','0','1','1','1','1','1','0','0','1','0','1','0','0','1','0','0','0','0','1','1','0','1','0','0','1','1','1','0','0','1','0','0','1','0','0','1','1','0','0','0','0','1','0','1','0','1','0','1','0','0','0','0','1','0','1','1','0','1','1','1','0','0','0','0','0','0','1','0','0','0','1','0','0','0','1','0','0','1','0','0','1','0','1','1','0','0','0','0','0','0','0','1','1','1','0','0','0','0','0','0','1','1','0','0','0','0','1','1','1','1','1','0','0','0','1','1','0','1','0','0','0','1','0','1','0','0','1','0','0','0','0','0','1','0','1','0','1','0','0','1','0','0','1','1','0','0','1','1','0','0','0','1','0','1','1','0','1','0','0','0','0','0','1','0','1','1','1','1','0','0','0','1','0','1','0','0','0','0','1','1','0','0','0','1','1','1','1','0','0','0','0','1','0','0','0','0','0','0','0','0','0','1','1','0','1','0','1','1','1','1','0','0','1','0','1','0','0','1','0','0','0','0','0','0','0','0','1','0','1','1','1','1','0','0','1','0','1','1','0','1','0','1','0','0','1','1','0','0','1','1','0','0','0','0','0','0','1','1','0')
-pclass <-c(3,1,3,1,3,1,3,3,2,3,1,3,3,3,2,3,3,2,2,3,1,3,3,1,1,2,1,1,3,3,3,3,2,2,3,3,3,3,1,2,1,2,3,2,3,3,1,1,3,2,3,3,3,2,3,2,3,3,3,2,3,3,3,1,2,3,3,1,3,3,3,1,3,3,1,1,2,2,3,1,3,3,3,3,3,1,3,3,3,3,3,3,2,1,3,2,2,2,1,3,3,3,3,3,3,2,2,2,1,1,3,1,3,3,3,2,2,3,3,2,2,2,1,3,3,1,3,3,3,2,3,3,3,3,3,3,1,3,3,3,1,3,1,2,3,3,2,3,1,3,3,2,2,3,2,1,1,3,2,3,3,3,3,3,3,3,3,1,3,2,3,2,1,3,2,1,2,3,2,3,1,3,2,3,2,1,3,2,3,2,2,2,2,2,2,3,3,1,3,2,1,2,3,1,3,3,3,1,1,2,3,1,1,2,3,3,1,1,3,2,1,1,3,3,3,3,3,3,3,3,3,3,2,3,1,1,2,3,3,3,1,1,3,1,1,2,1,1,1,2,3,2,3,2,2,1,1,3,3,2,2,1,3,2,3,1,1,1,3,1,1,3,1,2,1,2,2,2,2,2,3,3,3,3,3,3,1,2,3,2,3,3,3,1,1,1,3,3,1,3,3,1,3,3,1,3,3,1,2,3,2,2,1,3,3,1,3,3,3,2,2,2,3,3,3,3,3,2,3,2,3,1,3,2,2,2,3,3,3,3,3,2,2,3,1,2,3,1,1,3,2,1,2,2,3,3,2,1,2,1,3,1,2,1,1,3,1,2,1,3,1,2,3,1,3,3,2,2,3,2,3,3,3,3,3,3,1,1,1,3,3,3,1,1,3,1,1,3,3,3,3,1,1,2,3,3,3,1,1,3,1,2,2,3,1,3,1,3,2,3,2,2,3,3,2,1,1,1,1,3,3,2,1,1,2,3,2,1,2,3,3,1,1,1,3,3,2,3,3,3,3,2,1,1,3,3,2,1,3,2,1,2,1,1,2,1,3,3,1,3,2,3,3,1,2,3,1,3,3,1,2,1,3,3,2,3,3,2,2,3,1,3,3,3,1,2,1,3,1,3,1,3,2,3,2,3,3,1,3,3,1,3,1,3,2,3,3,2,3,2,1,1,3,1,3,3,2,2,3,2,1,2,2,3,3,3,3,1,1,3,3,2,2,3,3,3,1,1,3,3,1,2,3,1,3,1,1,3,3,3,2,2,1,1,1,1,3,2,3,1,2,3,2,3,2,2,1,3,2,2,3,1,3,2,2,3,3,1,1,1,3,3,1,3,2,1,3,2,3,3,3,2,2,3,2,3,1,3,3,1,3,1,3,3,3,3,2,2,3,3,1,3,1,1,3,3,3,3,3,1,2,3,2,1,3,3,3,2,2,1,3,3,3,1,3,2,1,3,3,2,3,3,3,2,3,3,1,3,1,3,3,2,1,3,2,3,3,1,3,3,3,2,1,3,3,3,3,2,3,3,3,1,2,3,1,1,3,3,2,1,2,2,2,1,3,3,1,1,3,2,3,3,3,1,2,3,3,2,3,3,2,1,1,3)
-sex<-c('male','female','female','female','male','male','male','female','female','female','female','male','male','female','female','male','female','male','male','female','male','female','female','male','male','male','male','male','male','female','female','female','female','female','female','female','male','male','female','female','male','female','male','female','male','male','female','male','male','female','male','female','male','male','female','male','male','male','male','male','female','male','male','male','female','female','male','female','male','male','male','male','male','male','male','male','female','male','female','male','male','male','male','female','male','male','female','male','female','female','male','male','male','male','female','male','male','female','male','male','male','male','male','male','female','female','male','male','female','male','male','male','female','female','male','male','male','male','female','male','male','male','female','male','male','male','female','male','male','female','male','male','male','male','female','male','male','male','female','male','male','male','female','male','male','male','male','female','male','male','male','female','male','female','male','female','female','male','female','male','male','male','male','female','male','male','female','male','male','female','male','male','female','female','male','female','male','male','male','male','male','male','male','male','male','female','male','male','female','male','male','female','male','male','male','male','male','male','female','female','male','male','female','male','male','female','female','female','female','female','male','male','male','male','male','male','female','female','male','female','male','female','female','male','female','male','male','male','male','male','male','male','male','female','female','female','male','female','male','male','female','female','male','male','female','male','female','female','female','female','male','male','female','female','male','female','female','male','male','female','female','female','male','female','female','female','male','male','male','male','female','male','male','male','female','male','male','male','female','female','male','male','male','male','male','male','female','female','male','male','female','male','male','female','female','male','male','male','male','female','female','male','male','male','female','female','male','female','male','male','female','female','male','male','male','female','female','male','female','male','male','female','male','male','female','male','female','male','male','male','male','female','male','female','female','male','female','male','male','female','male','female','female','male','male','female','male','male','female','female','female','male','male','female','male','male','female','male','female','male','female','male','male','male','male','male','male','female','male','male','male','male','male','male','female','male','female','female','female','male','male','male','female','male','male','female','male','female','male','male','male','male','male','male','male','female','female','male','male','female','female','female','male','female','male','male','male','male','female','male','male','female','female','male','female','male','female','male','female','male','male','female','male','female','female','male','female','female','female','female','female','male','male','male','female','male','male','male','male','male','female','male','female','female','female','male','male','male','male','female','male','male','female','male','male','male','female','female','male','female','female','male','male','female','male','male','male','male','female','male','male','male','male','male','female','male','male','male','male','male','female','female','female','male','female','male','female','female','male','male','male','male','male','male','male','male','female','male','male','male','male','female','female','male','male','female','male','female','female','female','male','male','male','female','female','male','female','male','female','male','male','male','male','male','male','male','male','male','male','female','male','male','male','male','male','female','female','male','male','male','male','male','male','male','male','male','female','male','female','male','male','male','male','male','male','female','male','female','male','male','male','female','male','female','female','male','male','male','male','female','female','male','female','male','male','male','male','male','female','male','female','female','male','male','male','male','female','male','male','female','male','male','male','male','female','male','male','female','male','male','male','female','male','male','male','male','female','male','male','female','male','female','female','male','male','male','female','female','male','female','female','female','female','male','male','male','female','male','male','male','male','male','male','female','female','male','female','male','female','male','male','male','male','male','female','male','female','male','male','male','female','male','female','male','male','male','female','male','male','female','male','male','female','female','male','male','male','female','male','male','male','male','female','male','male','male','male','male','male','male','female','female','female','female','female','male','female','male','male','female','male','female','female','male','male','male','female','male','male','female','female','male','male','female','female','male','female','male','male','female','male','female','male','male')
-age<-c(22,38,26,35,35,54,2,27,14,4,58,20,39,14,55,2,31,35,34,15,28,8,38,19,40,66,28,42,21,18,14,40,27,3,19,18,7,21,49,29,65,21,28.5,5,11,22,38,45,4,29,19,17,26,32,16,21,26,32,25,0.83,30,22,29,28,17,33,16,23,24,29,20,46,26,59,71,23,34,34,28,21,33,37,28,21,38,47,14.5,22,20,17,21,70.5,29,24,2,21,32.5,32.5,54,12,24,45,33,20,47,29,25,23,19,37,16,24,22,24,19,18,19,27,9,36.5,42,51,22,55.5,40.5,51,16,30,44,40,26,17,1,9,45,28,61,4,1,21,56,18,50,30,36,9,1,4,45,40,36,32,19,19,3,44,58,42,24,28,34,45.5,18,2,32,26,16,40,24,35,22,30,31,27,42,32,30,16,27,51,38,22,19,20.5,18,35,29,59,5,24,44,8,19,33,29,22,30,44,25,24,37,54,29,62,30,41,29,30,35,50,3,52,40,36,16,25,58,35,25,41,37,63,45,7,35,65,28,16,19,33,30,22,42,22,26,19,36,24,24,23.5,2,50,19,0.92,17,30,30,24,18,26,28,43,26,24,54,31,40,22,27,30,22,36,61,36,31,16,45.5,38,16,29,41,45,45,2,24,28,25,36,24,40,3,42,23,15,25,28,22,38,40,29,45,35,30,60,24,25,18,19,22,3,22,27,20,19,42,1,32,35,18,1,36,17,36,21,28,23,24,22,31,46,23,28,39,26,21,28,20,34,51,3,21,33,44,34,18,30,10,21,29,28,18,28,19,32,28,42,17,50,14,21,24,64,31,45,20,25,28,4,13,34,5,52,36,30,49,29,65,50,48,34,47,48,38,56,0.75,38,33,23,22,34,29,22,2,9,50,63,25,35,58,30,9,21,55,71,21,54,25,24,17,21,37,16,18,33,28,26,29,36,54,24,47,34,36,32,30,22,44,40.5,50,39,23,2,17,30,7,45,30,22,36,9,11,32,50,64,19,33,8,17,27,22,22,62,48,39,36,40,28,24,19,29,32,62,53,36,16,19,34,39,32,25,39,54,36,18,47,60,22,35,52,47,37,36,49,49,24,44,35,36,30,27,22,40,39,35,24,34,26,4,26,27,42,20,21,21,61,57,21,26,80,51,32,9,28,32,31,41,20,24,2,0.75,48,19,56,23,18,21,18,24,32,23,58,50,40,47,36,20,32,25,43,40,31,70,31,18,24.5,18,43,36,27,20,14,60,25,14,19,18,15,31,4,25,60,52,44,49,42,18,35,18,25,26,39,45,42,22,24,48,29,52,19,38,27,33,6,17,34,50,27,20,30,25,25,29,11,23,23,28.5,48,35,36,21,24,31,70,16,30,19,31,4,6,33,23,48,0.67,28,18,34,33,41,20,36,16,51,30.5,32,24,48,57,54,18,5,43,13,17,29,25,25,18,8,1,46,16,25,39,49,31,30,30,34,31,11,0.42,27,31,39,18,39,33,26,39,35,6,30.5,23,31,43,10,52,27,38,27,2,1,62,15,0.83,23,18,39,21,32,20,16,30,34.5,17,42,35,28,4,74,9,16,44,18,45,51,24,41,21,48,24,42,27,31,4,26,47,33,47,28,15,20,19,56,25,33,22,28,25,39,27,19,26,32)
+##############################################################
+#  chap. Performance
+##############################################################
 
-titanic_t <- data.frame(Survived=factor(survived), Pclass=pclass,Sex=factor(sex), Age=age)
-write.csv(titanic_t,file='titanic.csv', row.names=FALSE)
-titanic<-read.csv(file='titanic.csv', header=TRUE)
+##read titanic dataset
+# surviced is a response 
+# features is pcClass (passenger glass), sex and age
+
+
+titanic<-read.csv(file="titanic.csv", row.names=1,header=TRUE
+				,colClasses=c("numeric", "factor", "numeric", "factor", "numeric") )
+
+titanic$Survived <- factor(titanic$Survived, levels=c("1", "0")) #arrange factor levels
+
 set.seed(1)
 # A decision tree classification model is built on the data
 library(rpart)
 tree <- rpart(Survived ~ ., data = titanic, method = "class") #survived response, predictors all others
-pred<-predict(tree, titanic, type='class')
+pred<-predict(tree, titanic, type="class")
 conf<-table(titanic$Survived, pred) # make a confusion matrix
 print(conf)
 
@@ -32,7 +37,7 @@ precision
 recall <- TP / (TP + FN)
 recall 
 
-seeds <- read.csv(file='seeds.csv', row.names=1, header=T)
+seeds <- read.csv(file="seeds.csv", row.names=1, header=T)
 
 km_seeds <- kmeans(seeds, 3)
 plot(length ~ compactness, data = seeds, col=km_seeds$cluster)
@@ -51,13 +56,13 @@ test <- shuffled[test_indices, ] # the rest of the dataset
 #fill the model but on the training set
 tree <- rpart(Survived ~ ., train, method = "class")
 # Predict the outcome on the test set with tree:
-pred<-predict(tree, test, type='class')
+pred<-predict(tree, test, type="class")
 # Calculate the confusion matrix: conf
 conf<-table(test$Survived, pred)
 print(conf)
 print(paste("accuracy:" , sum(diag(conf))/sum(conf) ))
 
-##cross valiation
+##cross validation
 # run 6 times with moving train set and data set
 npass <- 6
 accs <- rep(0,6) # a vec of accurencies
@@ -69,7 +74,7 @@ for (i in 1:6) {
   test <- shuffled[indices,] #indices are indexesof test set
   train <- shuffled[-indices,] #train is the rest
   tree <- rpart(Survived ~ ., train, method = "class")
-  pred<-predict(tree, test, type='class')  
+  pred<-predict(tree, test, type="class")  
   conf<-table(test$Survived, pred)
   accs[i] <- sum(diag(conf))/sum(conf)
 }
@@ -79,7 +84,7 @@ print(paste("cross validation on 6 runs " ,mean(accs)))
 
 
 ### check the performance of classifier on two emails data sets
-emails_small <- read.csv(file='emails_small.csv', header=T, row.names=1,colClasses=c('numeric','numeric','factor') )
+emails_small <- read.csv(file="emails_small.csv", header=T, row.names=1,colClasses=c("numeric","numeric","factor") )
 emails_small$spam <- factor(emails_small$spam, levels=c("1", "0")) #rearrange factor levels
 spam_classifier <- function(x){
   prediction <- rep(NA,length(x))
@@ -99,7 +104,7 @@ print(paste("accuracy for emails_small", acc_small)) #accuracy for emails set
 
 
 ### now on much bigger set
-emails_full <- read.csv(file='emails_full.csv', header=T, row.names=1,colClasses=c('numeric', 'numeric', 'factor') )
+emails_full <- read.csv(file="emails_full.csv", header=T, row.names=1,colClasses=c("numeric", "numeric", "factor") )
 emails_full$spam <- factor(emails_full$spam, levels=c("1", "0")) #rearrange factor levels
 
 pred_full<-spam_classifier(emails_full$avg_capital_seq)
@@ -125,6 +130,94 @@ print(conf_full)
 acc_full <- sum(diag(conf_full)) / sum(conf_full)
 
 print(acc_full)
+
+
+##############################################################
+#  chap. Classification
+##############################################################
+
+set.seed(1)
+
+titanic<-read.csv(file="titanic.csv", row.names=1,header=TRUE
+				,colClasses=c("numeric", "factor", "numeric", "factor", "numeric") )
+
+titanic$Survived <- factor(titanic$Survived, levels=c("1", "0")) #arrange factor levels
+titanic$Pclass <- factor(titanic$Pclass, levels=c("1","2","3"))
+
+idx_test <- c(555,147,140,652,290,412,84,176,156,110,179,407,2,420,391,326,385,618,222,703,573,327,427,525,677,536,606,142,486,547,697,414,467,503,22,599,470,517,225,358,70,271,613,455,537,20,670,367,94,632,299,346,671,647,124,61,601,186,129,679,231,283,52,362,544,237,36,673,395,139,487,375,312,14,433,411,510,423,308,642,315,681,86,5,614,54,688,471,587,600,69,648,707,657,135,619,259,588,261,333,546,105,509,208,108,197,302,43,616,466,328,187,711,359,701,682,674,245,492,698,273,603,320,434,393,569,200,195,257,329,73,189,26,133,221,191,534,131,522,482,653,220,235,149,691,668,3,687,46,182,543,256,463,505,548,633,172,97,175,479,672,174,306,32,18,419,167,232,621,83,236,65,164,180,63,709,397,478,11,634,27,493,530,574,297,71,591,145,549,340,661,106,365,91,9,409,443,120,211,641,476,516,440,625,7,284,230,640,59,413,360,241,269,441)
+
+test <- titanic[idx_test,]
+train <- titanic[-idx_test,]
+
+require(rpart)
+#require(rpart.plot)
+#require(rattle)
+#require(RColorBrewer)
+
+tree <- rpart(Survived ~ Pclass+Sex+Age, data=train, method="class")
+
+# Draw the decision tree (in R 2.15 no package  but it is availabe in R 3.2  in jupyter)
+#fancyRpartPlot(tree)
+
+#### k-nn 
+## reuse  train and test  data sets of titanic
+titanic<-read.csv(file="titanic.csv", row.names=1,header=TRUE
+				,colClasses=c("numeric", "factor", "numeric", "factor", "numeric") )
+
+titanic$Survived <- factor(titanic$Survived, levels=c("1", "0")) #arrange factor levels
+idx_test <- c(555,147,140,652,290,412,84,176,156,110,179,407,2,420,391,326,385,618,222,703,573,327,427,525,677,536,606,142,486,547,697,414,467,503,22,599,470,517,225,358,70,271,613,455,537,20,670,367,94,632,299,346,671,647,124,61,601,186,129,679,231,283,52,362,544,237,36,673,395,139,487,375,312,14,433,411,510,423,308,642,315,681,86,5,614,54,688,471,587,600,69,648,707,657,135,619,259,588,261,333,546,105,509,208,108,197,302,43,616,466,328,187,711,359,701,682,674,245,492,698,273,603,320,434,393,569,200,195,257,329,73,189,26,133,221,191,534,131,522,482,653,220,235,149,691,668,3,687,46,182,543,256,463,505,548,633,172,97,175,479,672,174,306,32,18,419,167,232,621,83,236,65,164,180,63,709,397,478,11,634,27,493,530,574,297,71,591,145,549,340,661,106,365,91,9,409,443,120,211,641,476,516,440,625,7,284,230,640,59,413,360,241,269,441)
+
+test <- titanic[idx_test,]
+train <- titanic[-idx_test,]
+
+#convert factor Sex  to a numeric variable
+test$Sex <- as.numeric(test$Sex)-1
+train$Sex <- as.numeric(train$Sex)-1
+
+train_labels <- train$Survived
+test_labels <- test$Survived 
+knn_train <- train 
+knn_test  <- test 
+knn_train[,1] <- NULL # drop the Survived column 
+knn_test[,1] <- NULL 
+
+##normalized Pclass 
+min_class <- min(knn_train$Pclass)
+max_class <- max(knn_train$Pclass)
+knn_train$Pclass <- (knn_train$Pclass - min_class) / (max_class - min_class) # observe min, max from train set used for train
+knn_test$Pclass <- (knn_test$Pclass - min_class) / (max_class - min_class)  # same min, max used for test
+
+
+min_age <- min(knn_train$Age)
+max_age <- max(knn_train$Age)
+knn_train$Age <- (knn_train$Age - min_age) / (max_age - min_age) 
+knn_test$Age <- (knn_test$Age - min_age) / (max_age - min_age) 
+
+## now knn_train, knn_tess  are normalized
+require(class)
+set.seed(1)
+pred <- knn(train = knn_train, test=knn_test, cl=train_labels, k=5)
+conf <- table(test_labels, pred)
+print(conf)
+
+##determine the optimal k in k-nn 
+set.seed(1)
+range <- 1:round(0.2 * nrow(knn_train))  # 1:100
+accs <- rep(0,length(range))
+
+## interate over k from 1 to 100 
+for ( k in range) {
+	pred <- knn(train = knn_train, test=knn_test, cl=train_labels, k=k)
+	conf <- table(test_labels,pred)  #current confusion matrix
+	accs[k] <- sum(diag(conf))/sum(conf) #compute the current accuracy
+}
+#graphical view of accuracy
+plot(range, accs, xlab="k")
+#the best k is found as the one with the highest accuracy
+print(paste("k with highest accurancy:" ,  which(accs == max(accs)) ))
+
+
+
 
 
 
