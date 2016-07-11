@@ -217,7 +217,56 @@ plot(range, accs, xlab="k")
 print(paste("k with highest accurancy:" ,  which(accs == max(accs)) ))
 
 
+##############################################################
+#  chap. Classification
+##############################################################
+## kangaroo nose dataset
+# measures of grey kangaroos nose widht and length
+kang_nose <-read.csv(file="kang_nose.csv", row.names=1, header=T)
 
+plot(kang_nose, xlab="nose width", ylab="nose length", main="Kangaroo noses")
+lm_kang <- lm(nose_length ~ nose_width, data=kang_nose)
+
+print(lm_kang$coefficients)
+
+##add the regression line to the plot 
+abline(lm_kang$coefficients, col="red")
+
+nose_width_value <- c(250, 270)
+predicted <- predict(lm_kang, data.frame(nose_width=nose_width_value))
+print(paste( "predicted nose length:" , paste(predicted, collapse=","))) 
+
+
+##compaute manually RMSE
+nose_length_est <- predict(lm_kang, kang_nose) #predic all (\hat{y})
+res <- kang_nose$nose_length - nose_length_est #a vector of residuals
+rmse <- sqrt( 1 / nrow(kang_nose) * sum(res^2) )
+print(paste("RMSE",rmse))
+
+#compute manually R2
+ss_res  <- sum(res^2) #sum of residuals
+ss_tot <- sum((kang_nose$nose_length - mean(kang_nose$nose_length))^2) #total sum of squares
+r_sq <- 1 - (ss_res)/ss_tot
+print(paste("manually compuated R squared", r_sq))
+#print(summary(lm_kang))
+
+
+world_bank_train <-read.csv(file="worldbank_urb_gdp.csv", row.names=1, header=T)
+plot(world_bank_train)
+lm_wb <- lm(urb_pop ~ cgdp, data=world_bank_train)
+abline(lm_wb$coefficients, col="red")
+print(paste('afganistan' , predict(lm_wb, data.frame(cgdp=413))))
+
+#someties there a log scaling can help
+plot(urb_pop ~ log(cgdp), data = world_bank_train, 
+     xlab = "log(GDP per Capita)", 
+     ylab = "Percentage of urban population")
+
+lm_wb <- lm(urb_pop ~ log(cgdp), data = world_bank_train)
+abline(lm_wb$coefficients, col = "red")
+print(paste('r squared after log transform',summary(lm_wb)$r.squared))
+
+print(paste('afganistan again' , predict(lm_wb, data.frame(cgdp=413))))
 
 
 
