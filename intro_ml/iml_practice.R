@@ -268,6 +268,17 @@ print(paste('r squared after log transform',summary(lm_wb)$r.squared))
 
 print(paste('afganistan again' , predict(lm_wb, data.frame(cgdp=413))))
 
+#### mulivariable linear regression
+shop_data <- read.csv(file='shop_data.csv', row.names=1, header =T)
+par(mfrow=c(3,1))
+ plot(sales ~ sq_ft, shop_data)
+ plot(sales ~ size_dist, shop_data)
+ plot(sales ~ inv, shop_data)
+par()
+
+lm_shop <- lm(sales ~ . , data=shop_data)
+print(summary(lm_shop))
+
 
 
 #end
