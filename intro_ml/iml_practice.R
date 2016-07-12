@@ -274,11 +274,21 @@ par(mfrow=c(3,1))
  plot(sales ~ sq_ft, shop_data)
  plot(sales ~ size_dist, shop_data)
  plot(sales ~ inv, shop_data)
-par()
+par(mfrow=c(1,1))
 
 lm_shop <- lm(sales ~ . , data=shop_data)
 print(summary(lm_shop))
 
-
+### are all predictors relevant
+choco_data <- read.csv(file='choco_data.csv', row.names=1, header =T)
+par(mfrow=c(3,1))
+plot(energy ~ protein, choco_data)
+plot(energy ~ fat, choco_data)
+plot(energy ~ size, choco_data)
+par(mfrow=c(1,1))
+lm_choco <- lm(energy ~ ., data=choco_data)
+plot(lm_choco$fitted.values, lm_choco$residuals  ) #residuals, expect uncorrelated
+qqnorm(lm_choco$residuals) # expect linear fit
+summary(lm_choco)
 
 #end
