@@ -291,4 +291,28 @@ plot(lm_choco$fitted.values, lm_choco$residuals  ) #residuals, expect uncorrelat
 qqnorm(lm_choco$residuals) # expect linear fit
 summary(lm_choco)
 
+#### comparinng rmse of train and test data to check if the model genealizes well
+world_bank_train <- read.csv(file='world_bank_train.csv', row.names=1, header =T)
+world_bank_test <- read.csv(file='world_bank_test.csv', row.names=1, header =T)
+
+lm_wb_log <- lm(urb_pop ~ log(cgdp), data = world_bank_train) # log linear model
+
+ 
+rmse_train <- sqrt(mean(lm_wb_log$residuals ^ 2)) #rmse training set
+
+world_bank_test_truth <- world_bank_test$urb_pop
+world_bank_test_input <- data.frame(cgdp = world_bank_test$cgdp)
+world_bank_test_output <- predict(lm_wb_log, world_bank_test_input)
+# The residuals: the difference between the ground truth and the predictions
+res_test <- world_bank_test_output - world_bank_test_truth
+
+rmse_test <- sqrt(mean(res_test^2)) # explicit formula belo
+#rmse_test <- sqrt ( 1/nrow(world_bank_test) * sum(res_test^2)  )
+
+# Print the ratio of the test RMSE over the training RMSE
+print(paste("rmse ration test/train", rmse_test/ rmse_train)) 
+
+
+
+
 #end
