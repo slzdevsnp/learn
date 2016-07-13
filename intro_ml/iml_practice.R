@@ -310,8 +310,57 @@ rmse_test <- sqrt(mean(res_test^2)) # explicit formula belo
 #rmse_test <- sqrt ( 1/nrow(world_bank_test) * sum(res_test^2)  )
 
 # Print the ratio of the test RMSE over the training RMSE
-print(paste("rmse ration test/train", rmse_test/ rmse_train)) 
+print(paste("rmse rationtest/train", rmse_test/ rmse_train)) #value close to 1 => model generalizes well 
 
+
+## parametric vs non-parametric
+#check Rmse for linear, log linear and knn
+lm_wb <- lm(urb_pop ~ cgdp, data = world_bank_train) # log linear model
+lm_wb_log <- lm(urb_pop ~ log(cgdp), data = world_bank_train) # log linear model
+
+##define the basic knn algorithm function
+my_knn <- function(x_pred, x, y, k){
+  m <- length(x_pred)
+  predict_knn <- rep(0, m)
+  for (i in 1:m) {
+    
+    # Calculate the absolute distance between x_pred[i] and x
+    dist <- abs(x_pred[i] - x)
+    
+    sort_index <- order(dist)   # ordered vector index  dist[order] will be sorted 
+    
+    # Apply mean() to the responses of the k-nearest neighbors
+    predict_knn[i] <- mean(y[sort_index[1:k]])    
+    
+  }
+  return(predict_knn)
+}
+
+ranks <- order(world_bank_test$cgdp) # index for sorint test$cgdp
+
+# Scatter plot of test set
+plot(world_bank_test,
+     xlab = "GDP per Capita", ylab = "Percentage Urban Population")
+
+# Predict with simple linear model and add line
+test_output_lm <- predict(lm_wb, data.frame(cgdp = world_bank_test$cgdp))
+lines(world_bank_test$cgdp[ranks], test_output_lm[ranks], lwd = 2, col = "blue")
+# Predict with log-linear model and add line
+test_output_lm_log <- predict(lm_wb_log, data.frame(cgdp = world_bank_test$cgdp))
+lines(world_bank_test$cgdp[ranks], test_output_lm_log[ranks], lwd = 2, col = "red")
+# Predict with k-NN and add line
+test_output_knn <- my_knn(world_bank_test$cgdp, world_bank_train$cgdp, world_bank_train$urb_pop, 30)
+lines(world_bank_test$cgdp[ranks], test_output_knn[ranks], lwd = 2, col = "green")
+#add legend
+legend('topright', c('linear', 'log linear', 'knn') , 
+   lty=1, col=c('blue', 'red', 'green'), bty='y', cex=.75)
+#compute rmses for 3 models
+rmse_linear<-sqrt(mean( (test_output_lm - world_bank_test$urb_pop) ^ 2))
+print(paste("rmse linear",rmse_linear))
+rmse_log_linear<-sqrt(mean( (test_output_lm_log - world_bank_test$urb_pop) ^ 2))
+print(paste("rmse log linear",rmse_log_linear))
+rmse_knn<-sqrt(mean( (test_output_knn - world_bank_test$urb_pop) ^ 2))
+print(paste("rmse knn non parametric" ,rmse_knn))
 
 
 
