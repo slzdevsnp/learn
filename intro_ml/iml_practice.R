@@ -366,8 +366,44 @@ print(paste("rmse knn non parametric" ,rmse_knn))
 ##############################################################
 #  chap. Clustering
 ##############################################################
-
+set.seed(100)
+##dataset with 3 types of seeds
 seeds <- read.csv(file="seeds.csv", row.names=1, header=T)
+##actual seeds labels loaded
+seeds_type<-c(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3)
+seeds_km <- kmeans(seeds,  centers=3, nstart=20)
+print(str(seeds_km))
+print(table(seeds_type, seeds_km$cluster)) #confusion matirx
+plot(length~width, data=seeds, col=seeds_km$cluster, main="seeds color-labeled with clusters")
+
+
+##check the importance nstart of iterations
+set.seed(100)
+nstrt <-1
+seeds_km_1<-kmeans(seeds,centers=5, nstart=nstrt)
+seeds_km_2<-kmeans(seeds,centers=5, nstart=nstrt)
+# Return the ratio of the within cluster sum of squares
+print(seeds_km_1$tot.withinss / seeds_km_2$tot.withinss)
+print(table(seeds_km_1$cluster,seeds_km_2$cluster ))
+#observe how some cluster match and other splitted
+#now rerun this code with nstrt <- 15
+
+
+
+##make a scree plot
+#school_result has  school level data recording reading and arithmetic scores for each school's 4th and 6th graders
+school_result <- read.csv(file="school_result.csv", row.names=1, header=T)
+nk <- 7
+ratio_ss <- rep(0,nk)
+##loop over different k
+for (k in 1:nk) {
+
+  school_km <- kmeans(school_result, centers=k, nstart=20)
+  ratio_ss[k] <- school_km$tot.withinss / school_km$totss
+}
+plot(1:nk,ratio_ss, type="b", xlab="k")
+
+
 
 
 
