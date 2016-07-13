@@ -363,5 +363,12 @@ rmse_knn<-sqrt(mean( (test_output_knn - world_bank_test$urb_pop) ^ 2))
 print(paste("rmse knn non parametric" ,rmse_knn))
 
 
+##############################################################
+#  chap. Clustering
+##############################################################
+
+seeds <- read.csv(file="seeds.csv", row.names=1, header=T)
+
+
 
 #end
