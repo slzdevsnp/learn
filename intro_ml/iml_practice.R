@@ -404,7 +404,72 @@ for (k in 1:nk) {
 plot(1:nk,ratio_ss, type="b", xlab="k")
 
 
+##standarized vs non-standardized clustering
+run_record <- read.csv(file="run_record.csv", row.names=1, header=T)
+require(clValid)
+#standadize data
+run_record_sc<-as.data.frame(scale(run_record))
+run_km<-kmeans(run_record,centers=5,nstart=20) #unscaled data
+set.seed(1)
+run_km_sc<-kmeans(run_record_sc,centers=5,nstart=20) #scaled data
+plot(run_record$marathon, run_record$X100m, col=run_km_sc$cluster
+     ,xlab="marathon", ylab="100 m" ) #original dataset used but modified clustering
 
+table(run_km$cluster, run_km_sc$cluster)
+
+dunn_km<-dunn(clusters=run_km$cluster, Data=run_record)
+dunn_km_sc<-dunn(clusters=run_km_sc$cluster, Data=run_record_sc)
+print(dunn_km)
+print(dunn_km_sc)
+
+###single hierarchical clustering
+run_dist <- dist(run_record_sc)
+run_single <-hclust(run_dist,method="single")
+memb_single <- cutree(run_single,k=5)
+plot(run_single)
+rect.hclust(run_single, k=5,border=2:6)
+
+##complete hierarchical clustering
+run_dist <- dist(run_record_sc, method = "euclidean")
+run_complete <-hclust(run_dist,method="complete")
+memb_complete <- cutree(run_complete,k=5)
+plot(run_complete)
+rect.hclust(run_complete, k=5,border=2:6)
+
+
+##comparing k-means, single and complete clusterings on dunn index
+dunn_km <- dunn(clusters=run_km_sc$cluster, Data=run_record_sc)
+dunn_single <- dunn(clusters=memb_single, Data=run_record_sc)
+dunn_complete <- dunn(clusters=memb_complete, Data=run_record_sc)
+print(paste("kmeans dunn",dunn_km))
+print(paste("single dunn", dunn_single))
+print(paste("complete dunn", dunn_complete))
+##plotting data with cluster partion with highers dunn, single
+plot(run_record$marathon, run_record$X100m, col=memb_single )
+
+## clustering us states based on criminal activity
+#data for us states on muder assault rrate of urpban population and rape
+crime_data <- read.csv(file="crime_data.csv", row.names=1, header=T)
+
+#scale
+crime_data_sc <- scale(crime_data)
+k<-4
+crime_km <- kmeans(crime_data_sc, centers=k, nstart=20) #kmeans
+
+#hierarchical clustering
+dist_matrix <- dist(crime_data_sc,method="euclidean")
+crime_single <- hclust(dist_matrix,method="single")
+memb_single <- cutree(crime_single,k=k) #partition
+
+dunn_km <- dunn(clusters=crime_km$cluster, Data=crime_data_sc)
+dunn_single <- dunn(clusters=memb_single, Data=crime_data_sc)
+print(paste("kmeans dunn",dunn_km))
+print(paste("single dunn", dunn_single))
+
+plot(crime_single)
+rect.hclust(crime_single, k=k,border=2:5)
+
+plot(assault~murder, data=crime_data, col=memb_single)
 
 
 #end
