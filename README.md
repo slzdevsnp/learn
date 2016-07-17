@@ -3,7 +3,7 @@ this repo contains notebooks ,practice scripts and  readmes for  courses i have 
 
 Courses included are on python, statistics and machine learning. 
 
-Content to be uploaded gradually
+Content to be uploaded gradually.
 
 
 
