@@ -77,4 +77,5 @@ print sf['count_words']
 sf_wc_table =  sf[['count_words']].stack('count_words', new_column_name = ['word','count'])
 print sf_wc_table
 
+#tf-idf compuation
 tfidf = graphlab.text_analytics.tf_idf(sf['count_words'])
