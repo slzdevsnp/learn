@@ -4,6 +4,8 @@
 
 # import os ; os.chdir('c:/Users/zimine/Dropbox/cs/bigdata/coursera/uwash/modul1') ; execfile('pypract.py')
 
+# import os ; os.chdir('/Users/zimine/Dropbox/cs/bigdata/coursera/uwash/modul1') ; execfile('pypract.py')
+
 
 # graphlab doc
 # https://turi.com/learn/translator/   #sfame vs panda
@@ -79,3 +81,34 @@ print sf_wc_table
 
 #tf-idf compuation
 tfidf = graphlab.text_analytics.tf_idf(sf['count_words'])
+
+## how to have unique values in array
+print "unique values of array " +  str(sf['age'].unique())
+
+
+## how to sort sf on specific column
+sf.sort('age', ascending=False)
+
+### m1 w5 specific
+song_data = graphlab.SFrame('song_data.gl/')
+
+users = song_data['user_id'].unique()
+
+# q 1
+l_kw = len(song_data[song_data['artist']=='Kanye West']['user_id'].unique())
+l_ff  = len(song_data[song_data['artist']=='Foo Fighters']['user_id'].unique())
+l_ts  = len(song_data[song_data['artist']=='Taylor Swift']['user_id'].unique())
+l_lg  = len(song_data[song_data['artist']=='Lady GaGa']['user_id'].unique())
+
+# q2
+song_data_gr = song_data.groupby(key_columns='artist', operations={'total_count': graphlab.aggregate.SUM('listen_count')})
+
+#most popular
+song_data_gr.sort('total_count', ascending=False).head()
+
+#least popular
+song_data_gr.sort('total_count', ascending=True).head()
+
+
+
+## end
