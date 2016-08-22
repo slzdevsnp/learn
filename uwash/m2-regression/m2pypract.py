@@ -11,6 +11,7 @@ import numpy as np
 import pandas as pnd 
 
 
+
 ##w1 quiz
 
 sales = graphlab.SFrame('kc_house_data.gl/')
@@ -95,5 +96,34 @@ print 'The test_data RSS of predicting Prices based on n. bedrooms is : ' + str(
 
 rss_prices_on_sqft_t = get_residual_sum_of_squares(test_data['sqft_living'], test_data['price'], sqft_intercept, sqft_slope)
 print 'The test_data RSS of predicting Prices based on Square Feet is : ' + str(rss_prices_on_sqft)
+
+###### week2
+print '####################'
+print 'week2 assign 1'
+print '####################'
+
+#working on the same housing sales dataset
+sales = graphlab.SFrame('kc_house_data.gl/')
+train_data,test_data = sales.random_split(.8,seed=0) #split to train and test
+
+example_features = ['sqft_living', 'bedrooms', 'bathrooms']
+#example model is on train data
+example_model = graphlab.linear_regression.create(train_data
+                                                ,target = 'price'
+                                                ,features = example_features
+                                                ,validation_set = None)
+example_weight_summary = example_model.get("coefficients")
+print example_weight_summary
+
+example_predictions = example_model.predict(train_data)
+print example_predictions[0] # should be 271789.505878
+def get_residual_sum_of_squares(model, data, outcome):
+    outcome_pred = model.predict(data)
+    residual = outcome - outcome_pred
+    RSS=(residual**2).sum()
+    return(RSS)  
+
+rss_example_train = get_residual_sum_of_squares(example_model, test_data, test_data['price'])
+print 'validity of get_residual_sum_of_squares: ' + str(rss_example_train)
 
 #end
