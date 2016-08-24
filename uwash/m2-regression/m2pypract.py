@@ -126,4 +126,70 @@ def get_residual_sum_of_squares(model, data, outcome):
 rss_example_train = get_residual_sum_of_squares(example_model, test_data, test_data['price'])
 print 'validity of get_residual_sum_of_squares: ' + str(rss_example_train)
 
+##create some new features
+
+from math import log
+
+train_data['bedrooms_squared'] = train_data['bedrooms'].apply(lambda x: x**2)
+test_data['bedrooms_squared'] = test_data['bedrooms'].apply(lambda x: x**2)
+
+train_data['bed_bath_rooms'] = train_data['bedrooms']*train_data['bathrooms']
+test_data['bed_bath_rooms'] = test_data['bedrooms']*test_data['bathrooms']
+
+train_data['log_sqft_living'] = train_data['sqft_living'].apply(lambda x: log(x))
+test_data['log_sqft_living'] = test_data['sqft_living'].apply(lambda x: log(x))
+
+train_data['lat_plus_long'] = train_data['lat'] + train_data['long']
+test_data['lat_plus_long'] = test_data['lat'] + test_data['long']
+
+print 'quiz 1 mean of 4 new features on test data'
+print test_data['bedrooms_squared'].mean()
+print test_data['bed_bath_rooms'].mean()
+print test_data['log_sqft_living'].mean()
+print test_data['lat_plus_long'].mean()
+
+### multiple models
+model_1_features = ['sqft_living', 'bedrooms', 'bathrooms', 'lat', 'long']
+model_2_features = model_1_features + ['bed_bath_rooms']
+model_3_features = model_2_features + ['bedrooms_squared', 'log_sqft_living', 'lat_plus_long']
+
+model_1 = graphlab.linear_regression.create(train_data,target = 'price',features = model_1_features,validation_set = None)
+model_2 = graphlab.linear_regression.create(train_data,target = 'price',features = model_2_features,validation_set = None)
+model_3 = graphlab.linear_regression.create(train_data,target = 'price',features = model_3_features,validation_set = None)
+
+model_1_summary = model_1.get("coefficients")
+model_2_summary = model_2.get("coefficients")
+model_3_summary = model_3.get("coefficients")
+
+# quiz What is the sign (positive or negative) for the coefficient/weight for 'bathrooms' in model 1 and in model 2
+print model_1_summary
+print model_2_summary
+print model_3_summary
+
+##comparing mutliple models
+
+rss_train_model_1 = get_residual_sum_of_squares(model_1, train_data, train_data['price'])
+rss_train_model_2 = get_residual_sum_of_squares(model_2, train_data, train_data['price'])
+rss_train_model_3 = get_residual_sum_of_squares(model_3, train_data, train_data['price'])
+
+#quiz rss on test is lowest for model 2 expected
+print 'rss for 3 models on train_data'
+print rss_train_model_1
+print rss_train_model_2
+print rss_train_model_3
+
+
+rss_test_model_1 = get_residual_sum_of_squares(model_1, test_data, test_data['price'])
+rss_test_model_2 = get_residual_sum_of_squares(model_2, test_data, test_data['price'])
+rss_test_model_3 = get_residual_sum_of_squares(model_3, test_data, test_data['price'])
+
+#quiz rss on test is lowest for model 2 expected
+print 'rss for 3 models on test_data'
+print rss_test_model_1
+print rss_test_model_2
+print rss_test_model_3
+
+
+
+
 #end
