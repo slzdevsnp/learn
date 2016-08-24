@@ -2,6 +2,11 @@
 
 #import os ; os.chdir('/Users/zimine/Dropbox/cs/bigdata/coursera/uwash/m2-regression') ; execfile('m2pypract.py')
 
+for name in dir():
+    if not name.startswith('_'):
+        del globals()[name]
+
+import os;
 
 print os.getcwd()
 
