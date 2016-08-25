@@ -2,9 +2,9 @@
 
 #import os ; os.chdir('/Users/zimine/Dropbox/cs/bigdata/coursera/uwash/m2-regression') ; execfile('m2pypract.py')
 
-for name in dir():
-    if not name.startswith('_'):
-        del globals()[name]
+#for name in dir():
+#    if not name.startswith('_'):
+#        del globals()[name]
 
 import os;
 
@@ -194,6 +194,139 @@ print rss_test_model_1
 print rss_test_model_2
 print rss_test_model_3
 
+###################
+print 'w2 asgn 2'
+###################
+
+import numpy as np
+
+sales = graphlab.SFrame('kc_house_data.gl/')
+
+def get_numpy_data(data_sframe, features, output):
+    data_sframe['constant'] = 1 # this is how you add a constant column to an SFrame
+    # add the column 'constant' to the front of the features list so that we can extract it along with the others:
+    features = ['constant'] + features # this is how you combine two lists
+    # select the columns of data_SFrame given by the features list into the SFrame features_sframe (now including constant):
+    features_sframe = data_sframe[features]
+    # the following line will convert the features_SFrame into a numpy matrix:
+    feature_matrix = features_sframe.to_numpy()
+    # assign the column of data_sframe associated with the output to the SArray output_sarray
+    output_sarray = data_sframe[output]
+    # the following will convert the SArray into a numpy array by first converting it to a list
+    output_array = output_sarray.to_numpy()
+    return(feature_matrix, output_array)
+
+(example_features, example_output) = get_numpy_data(sales, ['sqft_living'], 'price') # the [] around 'sqft_living' makes it a list
+print example_features[0,:] # this accesses the first row of the data the ':' indicates 'all columns'
+print example_output[0] # and the corresponding output
+
+my_weights = np.array([1., 1.]) # the example weights
+my_features = example_features[0,] # we'll use the first data point
+predicted_value = np.dot(my_features, my_weights)
+print predicted_value # expected 1181
+
+def predict_output(feature_matrix, weights):
+    # assume feature_matrix is a numpy matrix containing the features as columns and weights is a corresponding numpy array
+    # create the predictions vector by using np.dot()
+    predictions = np.dot(feature_matrix,weights)
+    return(predictions)
+
+p= predict_output(example_features, np.array([1.0,1.0]))
+print p
+
+def feature_derivative(errors, feature):
+    derivative = 2 * np.dot(errors,feature)
+    return(derivative)
+
+##testing
+test_predictions = predict_output(example_features, my_weights) 
+errors = test_predictions - example_output
+feature = example_features[:,0]
+#feature = example_features
+derivative = feature_derivative(errors, feature)
+print derivative
+print -1.0 * np.sum(example_output)*2 #expect to be the same as derivative
+
+#gradient descent
+from math import sqrt
+
+def regression_gradient_descent(feature_matrix, output, initial_weights, step_size, tolerance, debug):
+    converged = False 
+    weights = np.array(initial_weights) # make sure it's a numpy array
+    niter = 0
+    while not converged:
+        # compute the predictions based on feature_matrix and weights using your predict_output() function
+        predictions = predict_output(feature_matrix,weights)
+        # compute the errors as predictions - output
+        errors = predictions - output 
+        gradient_sum_squares = 0 # initialize the gradient sum of squares
+        # while we haven't reached the tolerance yet, update each feature's weight
+        for i in range(len(weights)): # loop over each weight
+            # Recall that feature_matrix[:, i] is the feature column associated with weights[i]
+            # compute the derivative for weight[i]:
+            derivative_i = feature_derivative(errors, feature_matrix[:,i]) 
+            # add the squared value of the derivative to the gradient sum of squares (for assessing convergence)
+            gradient_sum_squares +=  derivative_i**2
+            # subtract the step size times the derivative from the current weight
+            weights[i] = weights[i] - step_size * derivative_i
+        # compute the square-root of the gradient sum of squares to get the gradient matnigude:
+        gradient_magnitude = sqrt(gradient_sum_squares)
+        if gradient_magnitude < tolerance:
+            print 'getting out on gradient < tolerance hit'
+            converged = True
+        niter +=  1
+        if debug: 
+            print 'cur inter: ' + str(niter)
+            print 'cur derivative_i: ' + str(i) + ' ' + str(derivative_i)
+            print 'cur gradient magn: ' + str(gradient_magnitude)
+            print 'weights[0]: ' + str(weights[0]) + ' weights[1]: ' + str(weights[1])
+        if niter > 1000:
+            print 'getting out on max iterations hit'
+            converged = True  
+    return(weights)
+
+
+train_data,test_data = sales.random_split(.8,seed=0)
+
+simple_features = ['sqft_living']
+my_output = 'price'
+(simple_feature_matrix, output) = get_numpy_data(train_data, simple_features, my_output)
+initial_weights = np.array([-47000., 1.])
+step_size = 7e-12
+tolerance = 2.5e7
+debug = False
+
+g_weights = regression_gradient_descent(simple_feature_matrix, output, initial_weights, step_size, tolerance,debug)
+print g_weights
+
+(test_simple_feature_matrix, test_output) = get_numpy_data(test_data, simple_features, my_output)
+
+
+test_simple_predictions = predict_output(test_simple_feature_matrix,g_weights)
+print 'quiz test_simple predict of 1 value ' + str(test_simple_predictions[0])
+
+rss = np.sum( (test_simple_predictions - test_output)**2  )
+print 'rss test_simple ' + str(rss)
+
+
+model_features = ['sqft_living', 'sqft_living15'] # sqft_living15 is the average squarefeet for the nearest 15 neighbors. 
+my_output = 'price'
+(feature_matrix, output) = get_numpy_data(train_data, model_features, my_output)
+initial_weights = np.array([-100000., 1., 1.])
+step_size = 4e-12
+tolerance = 1e9
+debug = False
+
+m_weights = regression_gradient_descent(feature_matrix, output, initial_weights, step_size, tolerance,debug)
+print m_weights
+
+(test_model_feature_matrix, test_output) = get_numpy_data(test_data, model_features, my_output)
+test_model_predictions = predict_output(test_model_feature_matrix,m_weights)
+
+print 'quiz test_model predict of 1st value ' + str(test_model_predictions[0])
+
+rss_m = np.sum( (test_model_predictions - test_output)**2  )
+print 'rss  test_model ' + str(rss_m)
 
 
 
