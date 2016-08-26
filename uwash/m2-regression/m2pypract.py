@@ -2,9 +2,9 @@
 
 #import os ; os.chdir('/Users/zimine/Dropbox/cs/bigdata/coursera/uwash/m2-regression') ; execfile('m2pypract.py')
 
-#for name in dir():
-#    if not name.startswith('_'):
-#        del globals()[name]
+for name in dir():
+    if not name.startswith('_'):
+        del globals()[name]
 
 import os;
 
@@ -328,6 +328,80 @@ print 'quiz test_model predict of 1st value ' + str(test_model_predictions[0])
 rss_m = np.sum( (test_model_predictions - test_output)**2  )
 print 'rss  test_model ' + str(rss_m)
 
+###### week3
+print '####################'
+print 'week3 assign 1'
+print '####################'
+tmp = graphlab.SArray([1., 2., 3.])
+tmp_cubed = tmp.apply(lambda x: x**3)
+ex_sframe = graphlab.SFrame()
+ex_sframe['power_1'] = tmp
+ex_sframe['power_3'] = tmp_cubed
 
+print ex_sframe
+
+def polynomial_sframe(feature, degree):
+    # assume that degree >= 1
+    # initialize the SFrame:
+    poly_sframe = graphlab.SFrame()
+    # and set poly_sframe['power_1'] equal to the passed feature
+    poly_sframe['power_1'] = feature
+    # first check if degree > 1
+    if degree > 1:
+        # then loop over the remaining degrees:
+        # range usually starts at 0 and stops at the endpoint-1. We want it to start at 2 and stop at degree
+        for power in range(2, degree+1): 
+            # first we'll give the column a name:
+            name = 'power_' + str(power)
+            poly_sframe[name] = feature.apply(lambda x: x**power) 
+    return poly_sframe
+
+print polynomial_sframe(tmp, 5)
+
+sales = graphlab.SFrame('kc_house_data.gl/')
+sales = sales.sort(['sqft_living', 'price']) ## sorting
+
+poly1_data = polynomial_sframe(sales['sqft_living'], 1)
+poly1_data['price'] = sales['price']
+
+model1 = graphlab.linear_regression.create(poly1_data, target = 'price',features = ['power_1'], validation_set = None)
+print model1.get("coefficients")
+
+
+import matplotlib.pyplot as plt
+#%matplotlib inline
+
+### works in the notebook
+#plt.plot(poly1_data['power_1'],poly1_data['price'],'.',
+#        poly1_data['power_1'], model1.predict(poly1_data),'-')
+
+
+poly2_data = polynomial_sframe(sales['sqft_living'], 2)
+my_features = poly2_data.column_names() # get the name of the features
+poly2_data['price'] = sales['price'] # add price to the data since it's the target
+model2 = graphlab.linear_regression.create(poly2_data, target = 'price',features = my_features, validation_set = None)
+print model2.get("coefficients")
+
+poly3_data = polynomial_sframe(sales['sqft_living'], 3)
+my_features = poly3_data.column_names() # get the name of the features
+poly3_data['price'] = sales['price'] # add price to the data since it's the target
+model3 = graphlab.linear_regression.create(poly3_data, target = 'price',features = my_features, validation_set = None)
+print model3.get("coefficients")
+
+# poly15_data = polynomial_sframe(sales['sqft_living'], 15)
+# my_features = poly15_data.column_names() # get the name of the features
+# poly15_data['price'] = sales['price'] # add price to the data since it's the target
+# model15 = graphlab.linear_regression.create(poly15_data, target = 'price',features = my_features, validation_set = None)
+
+### splitting data in 4 equal sets
+dh1,dh2 = sales.random_split(.5,seed=0)
+set_1,set_2 = dh1.random_split(.5,seed=0)
+set_3,set_4 = dh2.random_split(.5,seed=0)
+
+poly15_data_1 = polynomial_sframe(set_1['sqft_living'], 15)
+my_features = poly15_data_1.column_names()
+poly15_data_1['price'] = set_1['price']
+model15_s1 = graphlab.linear_regression.create(poly15_data_1, target = 'price',features = my_features, validation_set = None)
+print model15_s1.get("coefficients")
 
 #end
