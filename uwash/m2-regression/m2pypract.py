@@ -263,7 +263,7 @@ def regression_gradient_descent(feature_matrix, output, initial_weights, step_si
         # while we haven't reached the tolerance yet, update each feature's weight
         for i in range(len(weights)): # loop over each weight
             # Recall that feature_matrix[:, i] is the feature column associated with weights[i]
-            # compute the derivative for weight[i]:
+            # compute the derivative for weight[i]:            
             derivative_i = feature_derivative(errors, feature_matrix[:,i]) 
             # add the squared value of the derivative to the gradient sum of squares (for assessing convergence)
             gradient_sum_squares +=  derivative_i**2
@@ -397,11 +397,69 @@ print model3.get("coefficients")
 dh1,dh2 = sales.random_split(.5,seed=0)
 set_1,set_2 = dh1.random_split(.5,seed=0)
 set_3,set_4 = dh2.random_split(.5,seed=0)
-
+## 4 15-polynomials models on 4 different data sets
 poly15_data_1 = polynomial_sframe(set_1['sqft_living'], 15)
 my_features = poly15_data_1.column_names()
 poly15_data_1['price'] = set_1['price']
-model15_s1 = graphlab.linear_regression.create(poly15_data_1, target = 'price',features = my_features, validation_set = None)
-print model15_s1.get("coefficients")
+model15_s_1 = graphlab.linear_regression.create(poly15_data_1, target = 'price',features = my_features, validation_set = None)
+model15_s_1.get("coefficients").print_rows(num_rows=16)
+
+poly15_data_2 = polynomial_sframe(set_2['sqft_living'], 15)
+my_features = poly15_data_2.column_names()
+poly15_data_2['price'] = set_2['price']
+model15_s_2 = graphlab.linear_regression.create(poly15_data_2, target = 'price',features = my_features, validation_set = None)
+# plt.plot(poly15_data_2['power_1'],poly15_data_2['price'],'.',
+#         poly15_data_2['power_1'], model15_s_2.predict(poly15_data_2),'-')
+model15_s_2.get("coefficients").print_rows(num_rows=16)
+
+
+poly15_data_3 = polynomial_sframe(set_3['sqft_living'], 15)
+my_features = poly15_data_3.column_names()
+poly15_data_3['price'] = set_3['price']
+model15_s_3 = graphlab.linear_regression.create(poly15_data_3, target = 'price',features = my_features, validation_set = None)
+# plt.plot(poly15_data_3['power_1'],poly15_data_3['price'],'.',
+#         poly15_data_3['power_1'], model15_s_3.predict(poly15_data_3),'-')
+model15_s_3.get("coefficients").print_rows(num_rows=16)
+
+poly15_data_4 = polynomial_sframe(set_4['sqft_living'], 15)
+my_features = poly15_data_4.column_names()
+poly15_data_4['price'] = set_4['price']
+model15_s_4 = graphlab.linear_regression.create(poly15_data_4, target = 'price',features = my_features, validation_set = None)
+# plt.plot(poly15_data_4['power_1'],poly15_data_4['price'],'.',
+#         poly15_data_4['power_1'], model15_s_4.predict(poly15_data_4),'-')
+model15_s_4.get("coefficients").print_rows(num_rows=16)
+
+##selecting a polynomial degree
+training_and_validation,testing = sales.random_split(.9,seed=1)
+training,validation = training_and_validation.random_split(.5,seed=1)
+
+##loop over 15 models with increasing  number of degrees
+maxdegree=15
+rsses=np.empty(maxdegree)
+models=[]
+for degree in range(1, maxdegree+1): 
+    print 'polynomial degree: ' + str(degree)  
+    cdata_train =  polynomial_sframe( training['sqft_living'],degree)
+    cfeatures = cdata_train.column_names()
+    cdata_train['price'] = training['price']
+
+    cmodel = graphlab.linear_regression.create(cdata_train, target = 'price',features = cfeatures, validation_set = None, verbose=False)
+
+    cdata_valid =  polynomial_sframe( validation['sqft_living'],degree)
+    cdata_valid['price'] = validation['price']
+
+    rss_vld = ((cmodel.predict(cdata_valid) - cdata_valid['price'])**2 ).sum()
+    rsses[degree-1]=rss_vld
+    models=models+[ cmodel ]
+print 'current rsses on validation: ' + str(rsses)
+
+
+
+data_test =  polynomial_sframe( testing['sqft_living'],6)
+features =  data_test.column_names()
+data_test['price'] = testing['price']
+rss_lambda = ((models[5].predict(data_test) - data_test['price'])**2 ).sum()
+print 'rss_lambda_fixed: ' + str(rss_lambda)
+
 
 #end
