@@ -247,7 +247,7 @@ What went wrong? The reason why all of the results were reported as NAs is that 
 Most numerical summary functions allow us to easily exclude `NA`s with the `na.rm` argument. See the help documentation for the `median` function for more information.
 
 ```{r see_help}
-?median
+#?median
 ```
 
 An alternative approach is just to `filter` out the `NA`s first, and then ask for the numerical summaries:
@@ -337,6 +337,41 @@ selected_nzes2011 %>%
 Converting the factor to a character first ensures that the numerical values used in the labels of the levels of the categorical variable are used.
 
 Now that we cleaned up the data in a way that addresses the needs of the research questions we want to explore, we are ready to continue with our analysis.
+
+
+
+The following code snippet shows if people like NZ First more with their age
+
+```{r relationship_between_age_like_nzfirst}
+selected_nzes2011 %>%
+   filter( !is.na(retiredage))  %>%
+   group_by(retiredage) %>% 
+   summarise(median_like=median(numlikenzf,na.rm=T) )
+
+```
+
+Revisiting the first question
+
+Add a new variable to separate voters whoh beleive that vote has an influence
+
+```{r votinflu_derived}
+selected_nzes2011 <- selected_nzes2011 %>%
+mutate(votinflu = factor(ifelse(jdiffvoting %in% 
+     c("Voting can make a big difference to what happens"
+       ,"Voting can make a reasonable amount of difference to what happens"
+       ,"Voting can make some difference to what happens")
+   , "influence", "no influence")) )
+```
+
+Showing the contingency table on voters who belive in vote influence and whether they have voted in their
+favourite party
+
+```{r votinflu_contingency}
+xtabs(~sameparty+votinflu, data=selected_nzes2011)
+```
+As we can see the conlclusion is that  blah...
+
+
 
 ## Appendix: List of fields in example data
 

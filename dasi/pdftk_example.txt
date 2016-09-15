@@ -1,4 +1,3 @@
 # go to the folder with splitted pdfs
 pdftk w4_11_normal_distr_slidesPDF.pdf w4_12_eval_normal_distr_slidesPDF.pdf cat output merged.pdf
 
-db

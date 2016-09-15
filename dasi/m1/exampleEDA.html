@@ -462,9 +462,7 @@ $(document).ready(function () {
 ## 1      NA        NA   NaN     NA     NA</code></pre>
 <p>What went wrong? The reason why all of the results were reported as NAs is that there were some NA entries in the <code>jage</code> variable (people not reporting their age). Since it is not possible to take the average of a series of values that contain <code>NA</code>s, obtaining the numerical summaries requires that we exclude the <code>NA</code>s from the calculation.</p>
 <p>Most numerical summary functions allow us to easily exclude <code>NA</code>s with the <code>na.rm</code> argument. See the help documentation for the <code>median</code> function for more information.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?median</code></pre></div>
-<pre><code>## starting httpd help server ...</code></pre>
-<pre><code>##  done</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#?median</span></code></pre></div>
 <p>An alternative approach is just to <code>filter</code> out the <code>NA</code>s first, and then ask for the numerical summaries:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">selected_nzes2011 %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">filter</span>(!(<span class="kw">is.na</span>(jage))) %&gt;%
@@ -564,6 +562,31 @@ selected_nzes2011 %&gt;%<span class="st"> </span>
 ## 13         NA         NA   133</code></pre>
 <p>Converting the factor to a character first ensures that the numerical values used in the labels of the levels of the categorical variable are used.</p>
 <p>Now that we cleaned up the data in a way that addresses the needs of the research questions we want to explore, we are ready to continue with our analysis.</p>
+<p>The following code snippet shows if people like NZ First more with their age</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">selected_nzes2011 %&gt;%
+<span class="st">   </span><span class="kw">filter</span>( !<span class="kw">is.na</span>(retiredage))  %&gt;%
+<span class="st">   </span><span class="kw">group_by</span>(retiredage) %&gt;%<span class="st"> </span>
+<span class="st">   </span><span class="kw">summarise</span>(<span class="dt">median_like=</span><span class="kw">median</span>(numlikenzf,<span class="dt">na.rm=</span>T) )</code></pre></div>
+<pre><code>## # A tibble: 2 x 2
+##    retiredage median_like
+##         &lt;chr&gt;       &lt;dbl&gt;
+## 1 retired age           4
+## 2 working age           3</code></pre>
+<p>Revisiting the first question</p>
+<p>Add a new variable to separate voters whoh beleive that vote has an influence</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">selected_nzes2011 &lt;-<span class="st"> </span>selected_nzes2011 %&gt;%
+<span class="kw">mutate</span>(<span class="dt">votinflu =</span> <span class="kw">factor</span>(<span class="kw">ifelse</span>(jdiffvoting %in%<span class="st"> </span>
+<span class="st">     </span><span class="kw">c</span>(<span class="st">&quot;Voting can make a big difference to what happens&quot;</span>
+       ,<span class="st">&quot;Voting can make a reasonable amount of difference to what happens&quot;</span>
+       ,<span class="st">&quot;Voting can make some difference to what happens&quot;</span>)
+   , <span class="st">&quot;influence&quot;</span>, <span class="st">&quot;no influence&quot;</span>)) )</code></pre></div>
+<p>Showing the contingency table on voters who belive in vote influence and whether they have voted in their favourite party</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">xtabs</span>(~sameparty+votinflu, <span class="dt">data=</span>selected_nzes2011)</code></pre></div>
+<pre><code>##            votinflu
+## sameparty   influence no influence
+##   different       665           93
+##   same           1873          130</code></pre>
+<p>As we can see the conlclusion is that blah…</p>
 </div>
 </div>
 <div id="appendix-list-of-fields-in-example-data" class="section level2">
