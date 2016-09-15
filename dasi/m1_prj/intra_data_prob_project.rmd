@@ -1,11 +1,16 @@
 ---
-title: "Exploring the BRFSS data"
+title: "Intro to Data & Probability - Exploring the BRFSS data"
 output: 
   html_document: 
     fig_height: 4
     highlight: pygments
     theme: spacelab
 ---
+<div id="intro">
+The purpose of this project is to use an explortory data analysis to study several research questions which are to be formulated.
+</div>
+
+The dataset used in this project comes from the "Behavioral Risk Factor Surveillance System" (BRFSS) 2013 edition. Every year the US Center for Dease Control and Prevention (CDS) asks a conducts a significant questionnaire of health related questions  on a large sample of the US population resizind in all US states and territories. The  BRFSS 2013 edition  contains a dataset of over 491 thousands of residents with over 300 variables.  
 
 ## Setup
 
