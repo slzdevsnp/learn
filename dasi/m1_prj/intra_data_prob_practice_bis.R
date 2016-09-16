@@ -5,20 +5,19 @@
 library(statsr)
 library(dplyr)
 library(ggplot2)
+library(gridExtra)
 library(data.table)
 
 #library(openintro)
 
 
 ##load data
-print('not reloading data')
+#print('not reloading data')
 load("brfss2013.Rdata")
 
 dt13<-data.table(brfss2013)
 
 ##exploring
-
-#plot(dt13$hlthpln1~dt13$genhlth)
 
 #### question 2
 #q if  college educated people in good health with lower income
@@ -37,6 +36,12 @@ dt13<-data.table(brfss2013)
 sel_dt_brs <- dt13[,.(genhlth,X_rfhlth,X_educag,X_incomg,hlthpln1)]
 
 sel_brfss2013 <- brfss2013 %>% select (genhlth,X_rfhlth,X_educag,X_incomg,hlthpln1)
+
+
+#-1 motivating chart
+
+#plot(sel_brfss2013$hlthpln1~dt13$genhlth)
+
 
 # 0
 #create a health plan variable with clear name
