@@ -190,6 +190,7 @@ pct_hlt_poor_given_drinker  <- pct_drinker_hlt_poor / pct_drinker
 #hist(dt13[physhlth < 32 & poorhlth > 0.99 & X_pacat1 %in%c("Highly active", "Active"),]$physhlth)
 
 
+#tt
 
 ## redo with dplyr
 
