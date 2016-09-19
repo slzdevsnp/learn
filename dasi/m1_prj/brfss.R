@@ -1,14 +1,14 @@
-# setwd("C:/dasi/m1prj");source('brfss.R')
+# setwd("c:/Users/zimine/Dropbox/cs/bigdata/coursera/dasi/m1_prj/"); source('brfss.R')
 
-require(data.table, lib.loc = "c:/R/library")
+require(data.table)
 
-#is_reload <-  TRUE
-is_reload <- FALSE
+is_reload <-  TRUE
+#is_reload <- FALSE
 
 if(is_reload){
 	print('data reloaded')
 	rm(list=ls())
-	load(file="c:/temp/brfss2013.Rdata")
+	load(file="brfss2013.Rdata")
     dt13<-data.table(brfss2013)
 }else{
 	print('data not reloaded')
@@ -23,6 +23,11 @@ dt13[, is_sick := factor(ifelse(physhlth >0.99 & physhlth <32, "yes", "no"))]
 dt13[, is_sport_active := factor(ifelse(is.na(X_pacat1),NA
 	                             ,ifelse(X_pacat1 %in%c("Highly active", "Active"), "yes", "no")))]
 #	                             ,ifelse(X_pacat1 %in%c("Highly active"), "yes", "no")))]
+
+
+se1l_brfss2013 <- brfss2013 %>% select (genhlth,X_frutsum,vegesum,str(sel_brfss2013))
+str(sel1_brfss2013)
+
 
 
 print (summary(dt13$ftjuda1_) ) #juice
