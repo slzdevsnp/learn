@@ -1,9 +1,14 @@
 # setwd("c:/Users/zimine/Dropbox/cs/bigdata/coursera/dasi/m1_prj/"); source('brfss.R')
 
+library(statsr)
+library(dplyr)
+library(ggplot2)
+library(gridExtra)
 require(data.table)
 
-is_reload <-  TRUE
-#is_reload <- FALSE
+
+#is_reload <-  TRUE
+is_reload <- FALSE
 
 if(is_reload){
 	print('data reloaded')
@@ -13,6 +18,22 @@ if(is_reload){
 }else{
 	print('data not reloaded')
 }
+
+
+se1l_brfss2013 <- brfss2013 %>% 
+select (X_frutsum  # sum of consumed fruits in 30 days
+	   ,X_vegesum  # sum fo consumed vegatables in 30 days
+	   ,X_pacat1  # sport activity
+	   ,physhlth) # number of days sick in past 30 days
+
+print ( str(se1l_brfss2013) )
+
+## motivating charts
+print (summary(se1l_brfss2013$physhlth) )
+
+p1 <- ggplot(data = se1l_brfss2013 %>% filter(physhlth>0.99 & physhlth < 32) ,  aes(x = physhlth)) +
+  geom_histogram(bins=8)
+print(p1)
 
 print (summary(dt13$physhlth) ) #poor health in last 30 days
 #hist(dt13[physhlth <32 & physhlth>0.99,]$physhlth)  ## bi modal
@@ -25,8 +46,6 @@ dt13[, is_sport_active := factor(ifelse(is.na(X_pacat1),NA
 #	                             ,ifelse(X_pacat1 %in%c("Highly active"), "yes", "no")))]
 
 
-se1l_brfss2013 <- brfss2013 %>% select (genhlth,X_frutsum,vegesum,str(sel_brfss2013))
-str(sel1_brfss2013)
 
 
 
