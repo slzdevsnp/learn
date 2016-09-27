@@ -20,20 +20,28 @@ if(is_reload){
 }
 
 
-se1l_brfss2013 <- brfss2013 %>% 
+sel1_brfss2013 <- brfss2013 %>% 
 select (X_frutsum  # sum of consumed fruits in 30 days
 	   ,X_vegesum  # sum fo consumed vegatables in 30 days
 	   ,X_pacat1  # sport activity
 	   ,physhlth) # number of days sick in past 30 days
 
-print ( str(se1l_brfss2013) )
+print ( str(sel1_brfss2013) )
 
 ## motivating charts
-print (summary(se1l_brfss2013$physhlth) )
+print (summary(sel1_brfss2013$physhlth) )
 
-p1 <- ggplot(data = se1l_brfss2013 %>% filter(physhlth>0.99 & physhlth < 32) ,  aes(x = physhlth)) +
+p1 <- ggplot(data = sel1_brfss2013 %>% filter(physhlth>0.99 & physhlth < 32) ,  aes(x = physhlth)) +
   geom_histogram(bins=8)
 print(p1)
+
+print(
+sel1_brfss2013 %>% filter(physhlth>0.99 & physhlth < 32) %>%
+group_by(X_pacat1) %>% summarize(sickdays_median=median(physhlth)) %>%
+ggplot(aes(x=X_pacat1, y=sickdays_median)) +
+  geom_bar(stat="identity")
+  +ggtitle("Levels of physical activity vs median of sick days")
+)
 
 print (summary(dt13$physhlth) ) #poor health in last 30 days
 #hist(dt13[physhlth <32 & physhlth>0.99,]$physhlth)  ## bi modal
@@ -46,12 +54,17 @@ dt13[, is_sport_active := factor(ifelse(is.na(X_pacat1),NA
 #	                             ,ifelse(X_pacat1 %in%c("Highly active"), "yes", "no")))]
 
 
+# 1.  create a health condition variable 
+sel1_brfss2013 <- sel1_brfss2013  %>%
+mutate(is_sick =factor(ifelse(is.na(genhlth), NA
+                       ,ifelse(physhlth >0.99 & physhlth <32, "yes", "no"))))
 
 
 
-print (summary(dt13$ftjuda1_) ) #juice
-print (summary(dt13$frutda1_) )  #fruits
-print (summary(dt13$vegeda1_) )  #vegetables
+
+# print (summary(dt13$ftjuda1_) ) #juice
+# print (summary(dt13$frutda1_) )  #fruits
+# print (summary(dt13$vegeda1_) )  #vegetables
 
 print('fruit and vegetable sums')
 print (summary(dt13$X_frutsum) )  #fruits sum
