@@ -171,5 +171,18 @@ print(paste('p is sick given healthy food', p_is_sick_given_hlfood))
 
 
 
+#### for notebook variable names
+p_has_sickdays <- nrow(sel1_brfss2013 %>% filter(is_sick=="yes")) /
+                  nrow(sel1_brfss2013 %>% filter(!is.na(is_sick)))
+
+p_is_sport_active <- nrow(sel1_brfss2013 %>% filter(is_sport_active=="yes")) / 
+                     nrow(sel1_brfss2013 %>% filter(!is.na(is_sport_active)))
+
+ms_sick_vs_sport<-xtabs(~is_sick+is_sport_active, data=sel1_brfss2013)
+ms_sick_vs_sport
+p_has_sickdays_and_sport <- ms_sick_vs_sport[2,2]/sum(ms_sick_vs_sport)
+p_has_sickdays_given_sport_artive <- p_has_sickdays_and_sport / p_is_sport_active
+
+
 
 #end
