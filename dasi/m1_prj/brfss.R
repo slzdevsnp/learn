@@ -7,20 +7,23 @@ library(gridExtra)
 require(data.table)
 
 
-#is_reload <-  TRUE
-is_reload <- FALSE
+is_reload <-  TRUE
+#is_reload <- FALSE
 
 if(is_reload){
 	print('data reloaded')
 	rm(list=ls())
 	load(file="brfss2013.Rdata")
-    dt13<-data.table(brfss2013)
 }else{
+	rm(dt13)
+	rm(sel1_brfss2013)
 	print('data not reloaded')
 }
 
 
+dt13<-data.table(brfss2013)
 sel1_brfss2013 <- brfss2013 %>% 
+
 select (X_frutsum  # sum of consumed fruits in 30 days
 	   ,X_vegesum  # sum fo consumed vegatables in 30 days
 	   ,X_pacat1  # sport activity
@@ -39,14 +42,18 @@ print(
 sel1_brfss2013 %>% filter(physhlth>0.99 & physhlth < 32) %>%
 group_by(X_pacat1) %>% summarize(sickdays_median=median(physhlth)) %>%
 ggplot(aes(x=X_pacat1, y=sickdays_median)) +
-  geom_bar(stat="identity")
-  +ggtitle("Levels of physical activity vs median of sick days")
+  geom_bar(stat="identity") +
+  ggtitle("Levels of physical activity vs median of sick days") +
+  labs(x="physical activity")
 )
+
+
 
 print (summary(dt13$physhlth) ) #poor health in last 30 days
 #hist(dt13[physhlth <32 & physhlth>0.99,]$physhlth)  ## bi modal
 #hist(dt13[physhlth <32 & physhlth>0.99,]$physhlth)  ## bi modal
 
+#create variables
 dt13[, is_sick := factor(ifelse(physhlth >0.99 & physhlth <32, "yes", "no"))]
 
 dt13[, is_sport_active := factor(ifelse(is.na(X_pacat1),NA
@@ -54,12 +61,15 @@ dt13[, is_sport_active := factor(ifelse(is.na(X_pacat1),NA
 #	                             ,ifelse(X_pacat1 %in%c("Highly active"), "yes", "no")))]
 
 
-# 1.  create a health condition variable 
+#  create a health condition variable 
 sel1_brfss2013 <- sel1_brfss2013  %>%
-mutate(is_sick =factor(ifelse(is.na(genhlth), NA
+mutate(is_sick =factor(ifelse(is.na(physhlth), NA
                        ,ifelse(physhlth >0.99 & physhlth <32, "yes", "no"))))
 
-
+#create physical condition active variable
+sel1_brfss2013 <- sel1_brfss2013  %>%
+mutate(is_sport_active =factor(ifelse(is.na(X_pacat1), NA
+                       ,ifelse(X_pacat1 %in%c("Highly active", "Active"), "yes", "no"))))
 
 
 # print (summary(dt13$ftjuda1_) ) #juice
@@ -73,9 +83,29 @@ print (summary(dt13$X_vegesum) )  #vegetables sum
 # hist(dt13[X_frutsum <1000,]$X_frutsum)  ## right skewed
 # hist(dt13[X_vegesum<1000]$X_vegesum)  # right skewed
 
+#make a motivating chart for fruis + vegetables
+## creating new variables showing actual number of fruits and vegetables
+sel1_brfss2013 <- sel1_brfss2013  %>%
+mutate(fruit_consum = X_frutsum/100)
+
+sel1_brfss2013 <- sel1_brfss2013  %>%
+mutate(vegetable_consum = X_vegesum/100)
+
+p1<-ggplot(data=sel1_brfss2013 %>% filter(fruit_consum < 10.0)
+	,aes(x=fruit_consum)) + 
+      geom_histogram(bins=20) +
+      ggtitle("Fruits consumed per day") 
+
+p2<-ggplot(data=sel1_brfss2013 %>% filter(vegetable_consum < 10.0)
+	,aes(x=vegetable_consum)) + 
+     geom_histogram(bins=20) +
+      ggtitle("Vegatables consumed per day") 
+
+print(grid.arrange(p1,p2,ncol=2))
+
+
 frsum_med<- median(dt13[X_frutsum <1000,]$X_frutsum)
 sd(dt13[X_frutsum <1000,]$X_frutsum)
-
 
 vegsum_med<-median(dt13[X_vegesum<1000]$X_vegesum)
 sd(dt13[X_vegesum<1000]$X_vegesum)
@@ -84,12 +114,22 @@ dt13[, hlthyfood := factor(ifelse( is.na(X_frutsum) | is.na(X_vegesum), NA
 	                   ,ifelse( X_frutsum > frsum_med & X_vegesum > vegsum_med
 	                   	,"very good", "poor and average"))) ] 
 
+
+fruit_med <- median( (sel1_brfss2013 %>% filter(fruit_consum < 10.0))$fruit_consum )
+vegetable_med <- median( (sel1_brfss2013 %>% filter(vegetable_consum < 10.0))$vegetable_consum )
+
+sel1_brfss2013 <- sel1_brfss2013  %>%
+mutate(hlthyfood =  factor(ifelse( is.na(fruit_consum) | is.na(vegetable_consum), NA 
+	                   ,ifelse( fruit_consum > fruit_med & vegetable_consum > vegetable_med
+	                   	,"very good", "poor and average")))  )
+
+
 # dt13[, hfood := factor(ifelse( X_frutsum > frsum_med & X_vegesum > vegsum_med
 # 	                   	,"very good", "poor and average")) ] 
 
 
 print (summary(dt13$hlthyfood) ) 
-
+summary(sel1_brfss2013$hlthyfood)
 
 
 
@@ -119,7 +159,7 @@ p_is_hlfood_and_sick <- ff[2,2] / sum(ff)
 p_is_sick_given_hlfood <- p_is_hlfood_and_sick / p_is_hlfood 
 ## goood
 print(paste('p is sick', p_is_sick))
-print(paste('p is sick given sport', p_is_sick_given_sport))
+print(paste('p is sick given physical activity', p_is_sick_given_sport))
 print(paste('p is sick given healthy food', p_is_sick_given_hlfood))
 
 
