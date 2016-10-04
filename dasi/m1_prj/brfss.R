@@ -141,9 +141,16 @@ summary(sel1_brfss2013$hlthyfood)
 
 
 fs<-xtabs(~is_sick+is_sport_active, data=dt13)
+ffs<-xtabs(~is_sick+is_sport_active, data=sel1_brfss2013)
 
 p_is_sick <- nrow(dt13[is_sick=="yes",]) / nrow(dt13[!is.na(is_sick),])
 p_is_sport <- nrow(dt13[is_sport_active=="yes",]) / nrow(dt13[!is.na(is_sport_active),])
+
+p_has_sickdays <- nrow(sel1_brfss2013 %>% filter(is_sick=="yes")) / 
+                  nrow(sel1_brfss2013 %>% filter(!is.na(is_sick)))
+
+p_is_sport_active <- nrow(sel1_brfss2013 %>% filter(is_sport_active=="yes")) / 
+                     nrow(sel1_brfss2013 %>% filter(!is.na(is_sport_active)))
 
 p_is_sick_and_sport <- fs[2,2] /sum(fs)
 
