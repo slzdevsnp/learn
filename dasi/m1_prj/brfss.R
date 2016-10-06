@@ -119,9 +119,10 @@ fruit_med <- median( (sel1_brfss2013 %>% filter(fruit_consum < 10.0))$fruit_cons
 vegetable_med <- median( (sel1_brfss2013 %>% filter(vegetable_consum < 10.0))$vegetable_consum )
 
 sel1_brfss2013 <- sel1_brfss2013  %>%
-mutate(hlthyfood =  factor(ifelse( is.na(fruit_consum) | is.na(vegetable_consum), NA 
+mutate(healthyfood =  factor(ifelse( is.na(fruit_consum) | is.na(vegetable_consum), NA 
 	                   ,ifelse( fruit_consum > fruit_med & vegetable_consum > vegetable_med
 	                   	,"very good", "poor and average")))  )
+
 
 
 # dt13[, hfood := factor(ifelse( X_frutsum > frsum_med & X_vegesum > vegsum_med
@@ -179,10 +180,26 @@ p_is_sport_active <- nrow(sel1_brfss2013 %>% filter(is_sport_active=="yes")) /
                      nrow(sel1_brfss2013 %>% filter(!is.na(is_sport_active)))
 
 ms_sick_vs_sport<-xtabs(~is_sick+is_sport_active, data=sel1_brfss2013)
-ms_sick_vs_sport
+print(ms_sick_vs_sport)
 p_has_sickdays_and_sport <- ms_sick_vs_sport[2,2]/sum(ms_sick_vs_sport)
-p_has_sickdays_given_sport_artive <- p_has_sickdays_and_sport / p_is_sport_active
+p_has_sickdays_given_sport_active <- p_has_sickdays_and_sport / p_is_sport_active
 
 
+p_has_healthyfood <- nrow(sel1_brfss2013 %>% filter(healthyfood %in%c("very good"))) / 
+                     nrow(sel1_brfss2013 %>% filter(!is.na(healthyfood)))
+
+ms_sick_vs_healthfood<-xtabs(~is_sick+healthyfood, data=sel1_brfss2013)
+
+p_has_sickdays_and_healthyfood <- ms_sick_vs_healthfood[2,2] / sum(ms_sick_vs_healthfood)
+
+p_has_sickdays_given_healthyfood <- p_has_sickdays_and_healthyfood  / p_has_healthyfood
+
+##final output of probabilities
+print(paste('p to have active physical activity', p_is_sport_active))
+print(paste('p to consume healthy food', p_has_healthyfood))
+
+print(paste('p has sick days', p_has_sickdays))
+print(paste('p has sick days given actived physical activity', p_has_sickdays_given_sport_active))
+print(paste('p has sick days given consuming healthy food', p_has_sickdays_given_healthyfood))
 
 #end
