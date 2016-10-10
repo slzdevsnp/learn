@@ -148,27 +148,30 @@ $(document).ready(function () {
 
 
 <div id="intro">
-<p>The purpose of this project is to use an explortory data analysis to study several research questions which are to be formulated.</p>
+<p>The purpose of this project is to use an exploratory data analysis in an attempt to answer a few research questions from a statistical study.</p>
 </div>
-<p>The dataset used in this project comes from the “Behavioral Risk Factor Surveillance System” (BRFSS) 2013 edition. Every year the US Center for Dease Control and Prevention (CDS) asks a conducts a significant questionnaire of health related questions on a large sample of the US population resizind in all US states and territories. The BRFSS 2013 edition contains a dataset of over 491 thousands of individuals having over 300 variables.</p>
 <div id="setup" class="section level2">
 <h2>Setup</h2>
+<p>In this project we shall user a number o R packages <code>ggplot2</code> and <code>gridExtra</code> for the visualisation of results and <code>dplyr</code> to perform transformative operations on datasets</p>
 <div id="load-packages" class="section level3">
 <h3>Load packages</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)</code></pre></div>
 <pre><code>## Warning: package 'ggplot2' was built under R version 3.3.1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(gridExtra)</code></pre></div>
+<pre><code>## Warning: package 'gridExtra' was built under R version 3.3.1</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)</code></pre></div>
 <pre><code>## Warning: package 'dplyr' was built under R version 3.3.1</code></pre>
 </div>
 <div id="load-data" class="section level3">
 <h3>Load data</h3>
-<p>Make sure your data and R Markdown files are in the same directory. When loaded your data file will be called <code>brfss2013</code>. Delete this note when before you submit your work.</p>
+<p>The BRFSS dataset is loaded from a file <code>brfss2013.rdata</code> which can be read by R directly with the load() function creating a <code>brfss2013</code> data.frame object.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;brfss2013.RData&quot;</span>)</code></pre></div>
 <hr />
 </div>
 </div>
 <div id="part-1-data" class="section level2">
 <h2>Part 1: Data</h2>
+<p>The dataset used in this project comes from the “Behavioral Risk Factor Surveillance System” (BRFSS) 2013 edition. Every year the US Center for Dease Control and Prevention (CDS) asks to conduct a detailed questionnaire of health related questions within a large sample of the US population residing in all US states and territories. The BRFSS conducts landline telephone- and cellular telephone-based surveys. The data is collected uniformly across all states and all days of the edition’s year through a random sampling of US adults. The groups of studied factors include general health status, number of unhealthy days in a past month, health care access, practice of physical activity, alcohol consumption, fruits and vegetables consumption, hypertension awareness, colesterol awareness and chronic health conditions. The BRFSS 2013 edition contains a dataset of over 491 thousands of individuals spanning over several hundreds variables. This is an example of a very large continuous observational study with a generalizability of measured data.</p>
 <hr />
 </div>
 <div id="part-2-research-questions" class="section level2">
@@ -180,10 +183,16 @@ $(document).ready(function () {
 </div>
 <div id="part-3-exploratory-data-analysis" class="section level2">
 <h2>Part 3: Exploratory data analysis</h2>
-<p>NOTE: Insert code chunks as needed by clicking on the “Insert a new code chunk” button (green button with orange arrow) above. Make sure that your code is visible in the project you submit. Delete this note when before you submit your work.</p>
+<p>NOTE: Insert code chunks as needed by clicking on the “Insert a new code chunk” button (green button with orange arrow) above. Make sure that your code is visible in the project you submit. Delete this note when before you submit your work. Blah blah <span class="citation">(see Çetinkaya-Rundel, n.d., 137–39)</span>.</p>
 <p><strong>Research quesion 1:</strong></p>
 <p><strong>Research quesion 2:</strong></p>
 <p><strong>Research quesion 3:</strong></p>
+<p><strong>References</strong></p>
+<div id="refs" class="references">
+<div id="ref-ois2015">
+<p>Çetinkaya-Rundel, Mine. n.d. “OpenIntro Statistics. Third Edition.” <a href="https://www.openintro.org/stat/textbook.php" class="uri">https://www.openintro.org/stat/textbook.php</a>.</p>
+</div>
+</div>
 </div>
 
 

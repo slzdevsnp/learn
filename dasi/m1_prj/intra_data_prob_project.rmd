@@ -7,35 +7,35 @@ output:
     theme: spacelab
 ---
 <div id="intro">
-The purpose of this project is to use an explortory data analysis to study several research questions which are to be formulated.
+The purpose of this project is to use an exploratory data analysis in an attempt to answer a few research questions from  a statistical study.
 </div>
 
-The dataset used in this project comes from the "Behavioral Risk Factor Surveillance System" (BRFSS) 2013 edition. Every year the US Center for Dease Control and Prevention (CDS) asks a conducts a significant questionnaire of health related questions  on a large sample of the US population resizind in all US states and territories. The  BRFSS 2013 edition  contains a dataset of over 491 thousands of individuals having over 300 variables.  
 
 ## Setup
+In this project we shall user a number o R packages `ggplot2` and `gridExtra` for the visualisation of results and `dplyr` to perform transformative operations on datasets 
 
 ### Load packages
 
 ```{r load-packages, message = FALSE}
 library(ggplot2)
+library(gridExtra)
 library(dplyr)
 ```
 
 ### Load data
-
-Make sure your data and R Markdown files are in the same directory. When loaded
-your data file will be called `brfss2013`. Delete this note when before you submit 
-your work. 
+The BRFSS dataset is loaded from a file `brfss2013.rdata` which can be read by R directly with the load() function creating a `brfss2013` data.frame object. 
 
 ```{r load-data}
 load("brfss2013.RData")
 ```
 
 
-
 * * *
 
 ## Part 1: Data
+The dataset used in this project comes from the "Behavioral Risk Factor Surveillance System" (BRFSS) 2013 edition. Every year the US Center for Dease Control and Prevention (CDS) asks to conduct a detailed questionnaire of health related questions within a large sample of the US population residing in all US states and territories. The BRFSS conducts landline telephone- and cellular telephone-based surveys. The data is collected uniformly across all states and all days of the edition's year through a random sampling of US adults. 
+The groups of studied factors include general health status, number of unhealthy days in a past month, health care access, practice of physical activity, alcohol consumption, fruits and vegetables consumption, hypertension awareness, colesterol awareness and chronic health conditions.
+The  BRFSS 2013 edition  contains a dataset of over 491 thousands of individuals spanning over several hundreds variables. This is an example of a very large continuous observational study with a generalizability of measured data.
 
 
 * * *
@@ -56,9 +56,9 @@ load("brfss2013.RData")
 NOTE: Insert code chunks as needed by clicking on the "Insert a new code chunk" 
 button (green button with orange arrow) above. Make sure that your code is visible
 in the project you submit. Delete this note when before you submit your work.
+Blah blah [see @ois2015, pp. 137-139].
 
 **Research quesion 1:**
-
 ```{r}
 
 ```
@@ -79,3 +79,19 @@ in the project you submit. Delete this note when before you submit your work.
 
 ```
 
+**References**
+
+---
+references:
+- id: ois2015
+  title: OpenIntro Statistics. Third edition
+  author: 
+  - family: Diez
+    given: David M
+    family: Barr
+    given: Cristopher D
+    family: Çetinkaya-Rundel
+    given: Mine
+  URL: https://www.openintro.org/stat/textbook.php
+
+---
