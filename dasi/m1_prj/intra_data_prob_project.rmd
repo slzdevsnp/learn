@@ -35,19 +35,21 @@ load("brfss2013.RData")
 ## Part 1: Data
 The dataset used in this project comes from the "Behavioral Risk Factor Surveillance System" (BRFSS) 2013 edition. Every year the US Center for Dease Control and Prevention (CDS) asks to conduct a detailed questionnaire of health related questions within a large sample of the US population residing in all US states and territories. The BRFSS conducts landline telephone- and cellular telephone-based surveys. The data is collected uniformly across all states and all days of the edition's year through a random sampling of US adults. 
 The groups of studied factors include general health status, number of unhealthy days in a past month, health care access, practice of physical activity, alcohol consumption, fruits and vegetables consumption, hypertension awareness, colesterol awareness and chronic health conditions.
-The  BRFSS 2013 edition  contains a dataset of over 491 thousands of individuals spanning over several hundreds variables. This is an example of a very large continuous observational study with a generalizability of measured data.
+The  BRFSS 2013 edition  contains a dataset of over 491 thousands of individuals spanning over several hundreds variables. This is an example of a very large continuous observational study with a generalizability of the measured data.
 
 
 * * *
 
 ## Part 2: Research questions
 
-**Research quesion 1:**
+**Research question 1:**
+Does the level of education plays a role when deciding about taking or forgoing the health insurance plan? 
+More precisely we shall try to answer a question if college educated people with lower income but in good health are more likely to make an economic decision to forgo a health insurance when compared to people with a precollege education from the same income category.  
 
-**Research quesion 2:**
+**Research question 2:**
 
-**Research quesion 3:**
-
+**Research question 3:**
+Are the studied population heights normally distributed ? 
 
 * * *
 
@@ -58,14 +60,14 @@ button (green button with orange arrow) above. Make sure that your code is visib
 in the project you submit. Delete this note when before you submit your work.
 Blah blah [see @ois2015, pp. 137-139].
 
-**Research quesion 1:**
+**Research question 1:**
 ```{r}
 
 ```
 
 
 
-**Research quesion 2:**
+**Research question 2:**
 
 ```{r}
 
@@ -73,7 +75,7 @@ Blah blah [see @ois2015, pp. 137-139].
 
 
 
-**Research quesion 3:**
+**Research question 3:**
 
 ```{r}
 
@@ -90,7 +92,7 @@ references:
     given: David M
     family: Barr
     given: Cristopher D
-    family: Çetinkaya-Rundel
+    family: Ã‡etinkaya-Rundel
     given: Mine
   URL: https://www.openintro.org/stat/textbook.php
 
