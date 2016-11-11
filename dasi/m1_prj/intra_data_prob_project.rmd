@@ -5,6 +5,7 @@ output:
     fig_height: 4
     highlight: pygments
     theme: spacelab
+bibliography: references.bib
 ---
 <div id="intro">
 The purpose of this project is to use an exploratory data analysis in an attempt to answer a few research questions from  a statistical study.
@@ -53,7 +54,7 @@ Thus does a physical activity, a consumption of a healthy food impact the number
 
 **Research question 3:**
 In this section we are interested in checking the normality of a distribution of human height.
-Thus Are the studied population heights normally distributed ? 
+Thus Are the studied population heights normally distributed? Our interest is driven to verify similar claims [see @ois2015, pp. 137-139]. Taller people have higher risks of health [@adu2013] and if a human height is normally distributed the frequency of very tall humans is rare and under 'thin tails' of the normal distribution.
 
 * * *
 
@@ -62,7 +63,7 @@ Thus Are the studied population heights normally distributed ?
 NOTE: Insert code chunks as needed by clicking on the "Insert a new code chunk" 
 button (green button with orange arrow) above. Make sure that your code is visible
 in the project you submit. Delete this note when before you submit your work.
-Blah blah [see @ois2015, pp. 137-139].
+
 
 **Research question 1:**
 ```{r}
@@ -84,20 +85,5 @@ Blah blah [see @ois2015, pp. 137-139].
 ```{r}
 
 ```
+#References
 
-**References**
-
----
-references:
-- id: ois2015
-  title: OpenIntro Statistics. Third edition
-  author: 
-  - family: Diez
-    given: David M
-    family: Barr
-    given: Cristopher D
-    family: Çetinkaya-Rundel
-    given: Mine
-  URL: https://www.openintro.org/stat/textbook.php
-
----
