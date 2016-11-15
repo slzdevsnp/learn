@@ -49,12 +49,12 @@ Does the level of education plays a role when deciding about taking or forgoing 
 More precisely we shall try to answer a question if college educated people with lower income but in a good health are more likely to make an economic decision to forgo a health insurance when compared to people with a precollege education from the same income category and the same physical condition.
 
 **Research question 2:**
-In this section we shall study a variable which represents a number of days with a poor physical health  in last 30 days. The dataset has  a variable on General health. But agruably the latter is more qualitative an  the former is more quantitative. Studying numbers of sick days that people take  has a direct economic interest reflecting a net expense of wealth rather than its generation by the employed population. We are interested to study factors which can potentially reduced the nubmer of sick days taken. Among various factors we concentrate on  a physical activity levels and  on healthy food consumption. The healthy food is computed for 2 underlying variables. 
+In this section we shall study a variable which represents a number of days with a poor physical health  in last 30 days. The dataset has  a variable on General health. But arguably the latter is more qualitative an  the former is more quantitative. Studying numbers of sick days that people take  has a direct economic interest reflecting a net expense of wealth rather than its generation by the employed population. We are interested to study factors which can potentially reduced the number of sick days taken. Among various factors we concentrate on  a physical activity levels and  on healthy food consumption. The healthy food is computed for 2 underlying variables. 
 Thus does a physical activity, a consumption of a healthy food impact the number of sick days taken? if yes, which factor has a greater influence in reducing the number of sick days?
 
 **Research question 3:**
 In this section we are interested in checking the normality of a distribution of human height.
-Thus Are the studied population heights normally distributed? Our interest is driven to verify similar claims [see @ois2015, pp. 137-139]. Taller people have higher risks of health [@adu2013] and if a human height is normally distributed the frequency of very tall humans is rare and under 'thin tails' of the normal distribution.
+Thus Are the studied population heights normally distributed? Our interest is driven to verify similar claims [see @ois2015, pp. 137-139]. Taller people have higher risks of health [@adu2013], [@ken2011, pp. 400] and if a human height is normally distributed the frequency of very tall humans is rare and under the 'thin tails' of the normal distribution.
 
 * * *
 
@@ -66,8 +66,13 @@ in the project you submit. Delete this note when before you submit your work.
 
 
 **Research question 1:**
-```{r}
 
+We start with  extracting variables from a general relevant for the subjet 1. 
+`genhlth,X` is a general health status, `X_educag` contains levels of education, `X_incomg` represents various income categories and  `hlthpln1` indicates if a subject has a health insurance plan.
+
+```{r eval=TRUE}
+sel_brfss2013 <- brfss2013 %>% select (genhlth,X_rfhlth,X_educag,X_incomg,hlthpln1)
+str(sel_brfss2013)
 ```
 
 
