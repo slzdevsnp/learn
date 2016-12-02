@@ -44,7 +44,7 @@ The  BRFSS 2013 edition  contains a dataset of over 491 thousands of individuals
 ## Part 2: Research questions
 
 **Research question 1:**
-Having a health insurance increases the quality of life. We are interested to study how people decide about a health insurance coverage if they have limited means to afford it. 
+Having a health insurance increases the quality of life. We are interested to study how people make decisions whether to get a health insurance coverage if they have limited means to afford it. 
 Does the level of education plays a role when deciding about taking or forgoing the health insurance plan? 
 More precisely we shall try to answer a question if college educated people with lower income but in a good health are more likely to make an economic decision to forgo a health insurance when compared to people with a precollege education from the same income category and the same physical condition.
 
@@ -75,6 +75,60 @@ sel_brfss2013 <- brfss2013 %>% select (genhlth,X_rfhlth,X_educag,X_incomg,hlthpl
 str(sel_brfss2013)
 ```
 
+To distinguish individuals with college vs pre-college education a new variable `edu_cat` is created
+F
+```{r eval=TRUE}
+
+#2. create a variable on education level
+sel_brfss2013 <- sel_brfss2013  %>%
+mutate(edu_cat = factor( ifelse( is.na(X_educag),NA
+								,ifelse(X_educag %in% c("Attended college or technical school"
+													   ,"Graduated from college or technical school")
+														,"college education","pre-college education"))) )
+
+```
+
+To have a first idea about the research problem it is useful to plot relationships between studied variables
+
+```{r eval=TRUE}
+sel_brfss2013$health_condition<-sel_brfss2013$genhlth
+sel_brfss2013$has_plan<-sel_brfss2013$hlthpln1
+sel_brfss2013$education <-sel_brfss2013$edu_cat
+sel_brfss2013$income <-sel_brfss2013$X_incomg
+
+p1 <- ggplot(sel_brfss2013, aes(x=health_condition, fill =has_plan )) +
+  geom_bar() +
+  ggtitle("Health plans for different health conditions") 
+
+p2 <- ggplot(sel_brfss2013, aes(x=health_condition, fill =education )) +
+  geom_bar() +
+  ggtitle("Education level for different health conditions") 
+
+p3 <- ggplot(sel_brfss2013, aes(x=education, fill = income )) +
+  geom_bar() +
+  ggtitle("Education income levels vs education") 
+
+grid.arrange(p1,p2,p3,nrow=3,heights=c(0.80, 0.99, 0.99) )
+
+```
+
+For the health condition we also create a new variable with 2 categorical values and for the income a variable with 3 values. 
+
+```{r eval=TRUE}
+# create a health condition variable 
+sel_brfss2013 <- sel_brfss2013  %>%
+mutate(g_health =factor(ifelse(is.na(genhlth), NA
+                       ,ifelse(genhlth %in% c("Excellent", "Very good", "Good"),
+                        "excellent or good", "poor or fair"))) )
+
+# create a variable on income category  low middle upper
+sel_brfss2013 <- sel_brfss2013  %>%
+mutate(incom_cat = factor(ifelse(is.na(X_incomg),NA
+						,ifelse(X_incomg %in% 
+                        c("Less than $15,000","$15,000 to less than $25,000"),"low"
+                        ,ifelse(X_incomg %in% c("$25,000 to less than $35,000","$35,000 to less than $50,000")
+						,"middle","upper")))) )
+```
 
 
 **Research question 2:**
