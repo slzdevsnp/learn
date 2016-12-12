@@ -133,6 +133,31 @@ mutate(incom_cat = factor(ifelse(is.na(X_incomg),NA
 						,"middle","upper")))) )
 ```
 
+Now lets see the summary statistics for subjects who do not have health insurance plan and who are not in bad health: 
+
+```{r eval=TRUE}
+## show summary statistics 
+sel_brfss2013  %>%
+filter( !is.na(edu_cat) 
+		& g_health =="excellent or good"  
+		& incom_cat %in%c("low") 
+		& has_plan == "No" ) %>%
+group_by(has_plan,g_health,edu_cat,incom_cat) %>%
+summarize(count=n()) %>% 
+arrange(edu_cat)
+```
+
+The same summary statistics using xtabs function: 
+
+```{r eval=TRUE}
+# using xtabs
+xtabs(~edu_cat+incom_cat
+	  ,data=sel_brfss2013 %>% filter(!is.na(edu_cat) 
+								   & g_health =="excellent or good" 
+								   & !is.na(incom_cat)
+								   & has_plan == "No") )
+```
+
 
 **Research question 2:**
 

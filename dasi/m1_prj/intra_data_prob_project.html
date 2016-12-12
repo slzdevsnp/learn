@@ -238,6 +238,34 @@ sel_brfss2013 &lt;-<span class="st"> </span>sel_brfss2013  %&gt;%
 <span class="st">                        </span><span class="kw">c</span>(<span class="st">&quot;Less than $15,000&quot;</span>,<span class="st">&quot;$15,000 to less than $25,000&quot;</span>),<span class="st">&quot;low&quot;</span>
                         ,<span class="kw">ifelse</span>(X_incomg %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;$25,000 to less than $35,000&quot;</span>,<span class="st">&quot;$35,000 to less than $50,000&quot;</span>)
                         ,<span class="st">&quot;middle&quot;</span>,<span class="st">&quot;upper&quot;</span>)))) )</code></pre></div>
+<p>Now lets see the summary statistics for subjects who do not have health insurance plan:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## show summary statistics 
+sel_brfss2013  %&gt;%
+<span class="kw">filter</span>( !<span class="kw">is.na</span>(edu_cat) 
+        &amp;<span class="st"> </span>g_health ==<span class="st">&quot;excellent or good&quot;</span>  
+        &amp;<span class="st"> </span>incom_cat %in%<span class="kw">c</span>(<span class="st">&quot;low&quot;</span>) 
+        &amp;<span class="st"> </span>has_plan ==<span class="st"> &quot;No&quot;</span> ) %&gt;%
+<span class="kw">group_by</span>(has_plan,g_health,edu_cat,incom_cat) %&gt;%
+<span class="kw">summarize</span>(<span class="dt">count=</span><span class="kw">n</span>()) %&gt;%<span class="st"> </span>
+<span class="kw">arrange</span>(edu_cat)</code></pre></div>
+<pre><code>## Source: local data frame [2 x 5]
+## Groups: has_plan, g_health, edu_cat [2]
+## 
+##   has_plan          g_health               edu_cat incom_cat count
+##     &lt;fctr&gt;            &lt;fctr&gt;                &lt;fctr&gt;    &lt;fctr&gt; &lt;int&gt;
+## 1       No excellent or good     college education       low  8599
+## 2       No excellent or good pre-college education       low 11136</code></pre>
+<p>The same summary statistics using xtabs function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># using xtabs</span>
+<span class="kw">xtabs</span>(~edu_cat+incom_cat
+      ,<span class="dt">data=</span>sel_brfss2013 %&gt;%<span class="st"> </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(edu_cat) 
+                                   &amp;<span class="st"> </span>g_health ==<span class="st">&quot;excellent or good&quot;</span> 
+                                   &amp;<span class="st"> </span>!<span class="kw">is.na</span>(incom_cat)
+                                   &amp;<span class="st"> </span>has_plan ==<span class="st"> &quot;No&quot;</span>) )</code></pre></div>
+<pre><code>##                        incom_cat
+## edu_cat                   low middle upper
+##   college education      8599   5633  3710
+##   pre-college education 11136   5040  1879</code></pre>
 <p><strong>Research question 2:</strong></p>
 <p><strong>Research question 3:</strong></p>
 </div>
