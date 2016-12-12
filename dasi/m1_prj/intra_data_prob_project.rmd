@@ -98,21 +98,24 @@ sel_brfss2013$income <-sel_brfss2013$X_incomg
 
 p1 <- ggplot(sel_brfss2013, aes(x=health_condition, fill =has_plan )) +
   geom_bar() +
-  ggtitle("Health plans for different health conditions") 
+  ggtitle("Health plans for different health conditions")  + 
+  theme(plot.title = element_text(size = 11))
 
 p2 <- ggplot(sel_brfss2013, aes(x=health_condition, fill =education )) +
   geom_bar() +
-  ggtitle("Education level for different health conditions") 
+  ggtitle("Education level for different health conditions")  + 
+  theme(plot.title = element_text(size = 11))
 
 p3 <- ggplot(sel_brfss2013, aes(x=education, fill = income )) +
   geom_bar() +
-  ggtitle("Education income levels vs education") 
+  ggtitle("Education income levels vs education") + 
+  theme(plot.title = element_text(size = 11))
 
 grid.arrange(p1,p2,p3,nrow=3,heights=c(0.80, 0.99, 0.99) )
 
 ```
 
-For the health condition we also create a new variable with 2 categorical values and for the income a variable with 3 values. 
+For studied factors we create new variables with less categories, 2 for health and 3 for income. We shall concentrate on individuals in the "low" income category with people making up to 25000 USD.
 
 ```{r eval=TRUE}
 # create a health condition variable 
