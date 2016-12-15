@@ -60,11 +60,6 @@ Thus Are the studied population heights normally distributed? Our interest is dr
 
 ## Part 3: Exploratory data analysis
 
-NOTE: Insert code chunks as needed by clicking on the "Insert a new code chunk" 
-button (green button with orange arrow) above. Make sure that your code is visible
-in the project you submit. Delete this note when before you submit your work.
-
-
 **Research question 1:**
 
 We start with  extracting variables from a general relevant for the subjet 1. 
@@ -133,7 +128,7 @@ mutate(incom_cat = factor(ifelse(is.na(X_incomg),NA
 						,"middle","upper")))) )
 ```
 
-Now lets see the summary statistics for subjects of interest to our research question. Those are the individuals who do not have a health insurance plan and who are not in bad health.  
+Now lets see the summary statistics for subjects of interest to our research question. Those are the individuals from a 'low' income category who do not have a health insurance plan and who are not in bad health.  
 
 ```{r eval=TRUE}
 ## show summary statistics 
@@ -159,13 +154,21 @@ xt<-xtabs(~edu_cat+incom_cat
 print(xt)
 ```
 
-Relative frequency : 
+A Relative frequency of such individuals with 'college education'
 
 ```{r eval=TRUE}
 xt[1,1] / sum(xt[,1])  # 8599 / (8599+11136) = 0.43572
 
 ```
 
+A Relative frequency of individuals with 'pre-college education'
+
+```{r eval=TRUE}
+xt[2,1] / sum(xt[,1])  # 11136 / (8599+11136) = 0.5642
+
+```
+
+Thus healthy people with low income and college degree are still more likely to take the health coverage plan compared to those with pre-college degree. 
 
 
 **Research question 2:**

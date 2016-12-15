@@ -238,7 +238,7 @@ sel_brfss2013 &lt;-<span class="st"> </span>sel_brfss2013  %&gt;%
 <span class="st">                        </span><span class="kw">c</span>(<span class="st">&quot;Less than $15,000&quot;</span>,<span class="st">&quot;$15,000 to less than $25,000&quot;</span>),<span class="st">&quot;low&quot;</span>
                         ,<span class="kw">ifelse</span>(X_incomg %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;$25,000 to less than $35,000&quot;</span>,<span class="st">&quot;$35,000 to less than $50,000&quot;</span>)
                         ,<span class="st">&quot;middle&quot;</span>,<span class="st">&quot;upper&quot;</span>)))) )</code></pre></div>
-<p>Now lets see the summary statistics for subjects who do not have health insurance plan and who are not in bad health:</p>
+<p>Now lets see the summary statistics for subjects of interest to our research question. Those are the individuals from a ‘low’ income category who do not have a health insurance plan and who are not in bad health.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## show summary statistics 
 sel_brfss2013  %&gt;%
 <span class="kw">filter</span>( !<span class="kw">is.na</span>(edu_cat) 
@@ -267,9 +267,13 @@ xt&lt;-<span class="kw">xtabs</span>(~edu_cat+incom_cat
 ## edu_cat                   low middle upper
 ##   college education      8599   5633  3710
 ##   pre-college education 11136   5040  1879</code></pre>
-<p>Relative frequency :</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">xt[<span class="dv">1</span>,<span class="dv">1</span>] /<span class="st"> </span><span class="kw">sum</span>(xt[,<span class="dv">1</span>])  <span class="co"># 8599 / (8599+11136)</span></code></pre></div>
+<p>A Relative frequency of such individuals with ‘college education’</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">xt[<span class="dv">1</span>,<span class="dv">1</span>] /<span class="st"> </span><span class="kw">sum</span>(xt[,<span class="dv">1</span>])  <span class="co"># 8599 / (8599+11136) = 0.43572</span></code></pre></div>
 <pre><code>## [1] 0.4357233</code></pre>
+<p>A Relative frequency of individuals with ‘pre-college education’</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">xt[<span class="dv">2</span>,<span class="dv">1</span>] /<span class="st"> </span><span class="kw">sum</span>(xt[,<span class="dv">1</span>])  <span class="co"># 11136 / (8599+11136) = 0.5642</span></code></pre></div>
+<pre><code>## [1] 0.5642767</code></pre>
+<p>Thus healthy people with low income and college degree are still more likely to take the health coverage plan compared to those with pre-college degree.</p>
 <p><strong>Research question 2:</strong></p>
 <p><strong>Research question 3:</strong></p>
 </div>
