@@ -49,7 +49,7 @@ Does the level of education plays a role when deciding about taking or forgoing 
 More precisely we shall try to answer a question if college educated people with lower income but in a good health are more likely to make an economic decision to forgo a health insurance when compared to people with a precollege education from the same income category and the same physical condition.
 
 **Research question 2:**
-In this section we shall study a variable which represents a number of days with a poor physical health  in last 30 days. The dataset has  a variable on General health. But arguably the latter is more qualitative an  the former is more quantitative. Studying numbers of sick days that people take  has a direct economic interest reflecting a net expense of wealth rather than its generation by the employed population. We are interested to study factors which can potentially reduced the number of sick days taken. Among various factors we concentrate on  a physical activity levels and  on healthy food consumption. The healthy food is computed for 2 underlying variables. 
+In this section we shall study a variable which represents for people a number of days with a poor physical health  in last 30 days. The dataset has  a variable on General health. But arguably the latter is more qualitative and  the former is more quantitative. Studying numbers of sick days that people take  has a direct economic interest reflecting a wealth expense rather than its generation by the employed population. We are interested to study factors which can potentially reduce the number of sick days taken. Among various factors we concentrate on  a physical activity levels and  on healthy food consumption. 
 Thus does a physical activity, a consumption of a healthy food impact the number of sick days taken? if yes, which factor has a greater influence in reducing the number of sick days?
 
 **Research question 3:**
@@ -62,7 +62,7 @@ Thus Are the studied population heights normally distributed? Our interest is dr
 
 **Research question 1:**
 
-We start with  extracting variables from a general relevant for the subjet 1. 
+We start with  extracting variables from a general dataset relevant for the subject 1. 
 `genhlth,X` is a general health status, `X_educag` contains levels of education, `X_incomg` represents various income categories and  `hlthpln1` indicates if a subject has a health insurance plan.
 
 ```{r eval=TRUE}
@@ -168,15 +168,40 @@ xt[2,1] / sum(xt[,1])  # 11136 / (8599+11136) = 0.5642
 
 ```
 
-Thus healthy people with low income and college degree are still more likely to take the health coverage plan compared to those with pre-college degree. 
+Thus we conclude that healthy people with low income and college degree are still more likely to take the health coverage plan compared to those with a pre-college degree. 
 
 
 **Research question 2:**
 
-```{r}
+As with the previous question lets extract variables from a general dataset relevant to our current research question. The variable `X_frutsum` for a total of consumed fruits in a past month, `X_vegesum` a total of consumed vegetables in a past month, `X_pacat` a variable for a sport activity with 4 factor levels and `physhlth` is a number of days with bad physical health in a past 30 days. 
+
+```{r eval=TRUE}
+# selection of variables for question 2
+sel1_brfss2013 <- brfss2013 %>% 
+select (X_frutsum  # sum of consumed fruits in 30 days
+	   ,X_vegesum  # sum of consumed vegatables in 30 days
+	   ,X_pacat1  # sport activity
+	   ,physhlth) # number of days sick in past 30 days
+print ( str(sel1_brfss2013) )
 
 ```
 
+For an initial view of the data we plot a histogram of a number of sick days for individuals who had reported at least one sick day within a past month. 
+
+```{r eval=TRUE}
+# motivating charts  (subjects with at least 1 sick day in past 30 days)
+print (summary(sel1_brfss2013$physhlth) )
+
+p1 <- ggplot(data = sel1_brfss2013 %>% filter(physhlth>=1 & physhlth <= 30) ,  aes(x = physhlth)) +
+  geom_histogram(bins=8) +
+  labs(x="number of days with bad health  in past 30 days") +
+  ggtitle("Distribution of a number of sick days in a past month")
+print(p1) 
+```
+We observe a bimodal distribution with peaks for 1 or 2 days  and 30 days. 
+
+
+The healthy food is computed for 2 underlying variables. 
 
 
 **Research question 3:**
