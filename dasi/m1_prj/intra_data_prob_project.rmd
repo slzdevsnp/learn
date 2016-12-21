@@ -365,7 +365,80 @@ Actual lower and upper cutoff values come from Wikipedia [@wikishort], [@wikital
 cbrfss2013<-brfss2013 %>% filter(!is.na(htm4) & htm4 > 50 & htm4 < 280)
 ```
 
-```{r}
+For initial check of the distribution of heights let us plot its histogram addint the distribution's mean and median lines on top of it.
+
+```{r eval=TRUE}
+print(
+ggplot(data = cbrfss2013,  aes(x = htm4)) +
+  geom_histogram(bins=30)
+  + ggtitle("BRFSS 2013 height of subjects") 
+  + labs(x="height [cm]",y="number of subjects") 
+  + geom_vline(aes(xintercept=mean(cbrfss2013$htm4),color="Mean"))
+  + geom_vline(aes(xintercept=median(cbrfss2013$htm4),color="Median"))
+)
+```
+
+We observe that the distribution is in fact unimodal and seemingly symmetric with the mean and median lines relatively close to each other. We can use a boxplot chat for a further check of symmetry
+
+```{r eval=TRUE}
+print(
+ggplot(data=cbrfss2013, aes(x=0, y=htm4))
+  + geom_boxplot() + coord_flip() 
+  + ggtitle("BFRSS 2013 subject heights") 
+ + labs(y="height [cm]", x="" ) 
+ + theme(axis.title.y=element_blank(), axis.ticks.y=element_blank(), axis.text.y=element_blank(), aspect.ratio=0.3 )
+)
+```
+
+On the box-and-whisker plot we observe that the median is slightly skewed towards the first quartile. Our next check is to verify the share of probability falling within one, two and 3 standard deviations of the mean of the distribution. For a normal distribution those probabilities are 68,95 and 99.7 % known as "68-95-99.7%" rule.
+
+```{r eval=TRUE}
+#mean and a standard deviation of htm4 variable
+ssd<-sd(cbrfss2013$htm4)
+smu <-mean(cbrfss2013$htm4)
+
+#create 3 binary variables to check being within 1,2,3 standard deviations
+cbrfss2013 <- cbrfss2013 %>%
+mutate(in_1sd = ifelse(abs(htm4 -smu) < 1*ssd, 1, 0)
+      ,in_2sd = ifelse(abs(htm4 -smu) < 2*ssd, 1, 0)
+      ,in_3sd = ifelse(abs(htm4 -smu) < 3*ssd, 1, 0))
+
+#number and percentage of subjects having a height within 1 standard deviation from the mean
+cbrfss2013 %>% filter(in_1sd ==1) %>% summarize(count=n(), pct=n()/nrow(cbrfss2013))
+#number and percentage of subjects having a height  within 2 standard deviation from the mean
+cbrfss2013 %>% filter(in_2sd ==1) %>% summarize(count=n(), pct=n()/nrow(cbrfss2013))
+#number and percentage of subjects having a height  within 3 standard deviation from the mean
+cbrfss2013 %>% filter(in_3sd ==1) %>% summarize(count=n(), pct=n()/nrow(cbrfss2013))
+
+```
+
+We observe a good match of the probability percentile within 3 standard deviations from the mean and an approximate match for probabilities within 1 and 2 standard deviations  from the mean. The most sensitive measure of 'normality' is a normal probability plot. 
+
+
+```{r eval=TRUE}
+## normal probaility plot
+qqplot.qq <- function (vec, titlestr) # argument: vector of numbers
+{
+  # following four lines from base R's qqline()
+  y <- quantile(vec[!is.na(vec)], c(0.25, 0.75))
+  x <- qnorm(c(0.25, 0.75))
+  slope <- diff(y)/diff(x)
+  int <- y[1L] - slope * x[1L]
+
+  d <- data.frame(resids = vec)
+
+  ggplot(d, aes(sample = resids)) + stat_qq() + geom_abline(slope = slope, intercept = int) + ggtitle(titlestr)
+}
+
+qqplot.qq(cbrfss2013$htm4, 'Normal probability plot for BRFSS 2013 heights')
+```
+
+The plotted chart suggests a good linear approximation within 3 standard deviations from the mean. Further than 3 standard deviations the chart shows a presence of more data points in the distribution's tails compared to the theoretical normal distribution. 
+
+Thus we can  conclude that human height from the BRFSS dataset is distributed only nearly normally. 
+
+
+```{r }
 
 ```
 #References
