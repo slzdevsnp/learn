@@ -8,7 +8,7 @@ output:
 bibliography: references.bib
 ---
 <div id="intro">
-The purpose of this project is to use an exploratory data analysis in an attempt to answer a few research questions from  a statistical study.
+The purpose of this project is to use an exploratory data analysis in an attempt to answer a few research questions from  a large size statistical study.
 </div>
 
 
@@ -34,7 +34,7 @@ load("brfss2013.RData")
 * * *
 
 ## Part 1: Data
-The dataset used in this project comes from the "Behavioral Risk Factor Surveillance System" (BRFSS) 2013 edition. Every year the US Center for Dease Control and Prevention (CDS) asks to conduct a detailed questionnaire of health related questions within a large sample of the US population residing in all US states and territories. The BRFSS conducts landline telephone- and cellular telephone-based surveys. The data is collected uniformly across all states and all days of the edition's year through a random sampling of US adults. 
+The dataset used in this project comes from the "Behavioral Risk Factor Surveillance System" (BRFSS) 2013 edition [@bfrss]. Every year the US Center for Dease Control and Prevention (CDS) asks to conduct a detailed questionnaire of health related questions within a large sample of the US population residing in all US states and territories. The BRFSS conducts landline telephone- and cellular telephone-based surveys. The data is collected uniformly across all states and all days of the edition's year through a random sampling of US adults. 
 The groups of studied factors include general health status, number of unhealthy days in a past month, health care access, practice of physical activity, alcohol consumption, fruits and vegetables consumption, hypertension awareness, colesterol awareness and chronic health conditions.
 The  BRFSS 2013 edition  contains a dataset of over 491 thousands of individuals spanning over several hundreds variables. This is an example of a very large continuous observational study with a generalizability of the measured data.
 
@@ -416,15 +416,13 @@ We observe a good match of the probability percentile within 3 standard deviatio
 
 
 ```{r eval=TRUE}
-## normal probaility plot
+# normal probaility plot
 qqplot.qq <- function (vec, titlestr) # argument: vector of numbers
 {
-  # following four lines from base R's qqline()
   y <- quantile(vec[!is.na(vec)], c(0.25, 0.75))
   x <- qnorm(c(0.25, 0.75))
   slope <- diff(y)/diff(x)
   int <- y[1L] - slope * x[1L]
-
   d <- data.frame(resids = vec)
 
   ggplot(d, aes(sample = resids)) + stat_qq() + geom_abline(slope = slope, intercept = int) + ggtitle(titlestr)
@@ -438,8 +436,23 @@ The plotted chart suggests a good linear approximation within 3 standard deviati
 Thus we can  conclude that human height from the BRFSS dataset is distributed only nearly normally. 
 
 
-```{r }
+## Appendix: List of used fields in the BFRSS dataset
 
-```
+The following list is extracted from [@bfrsscbook].
+
+|Variable    | Question                                                                                |Datatype|
+|:-----------|:----------------------------------------------------------------------------------------|:--------|
+| `htm4`     |2184-2186: Height in meters [2 implied decimal places]                                   |int      |   
+| `genhlth`  |80: Would you say that in general your health is                                         |factor   |   
+| `X_rfhlth` |2101: Adults with good or better health                                                  |factor   |  
+| `X_educag` |2199: Level of education completed                                                       |factor   |   
+| `X_incomg` |2200: Income categories                                                                  |factor   |  
+| `hlthpln1` |87: Health Care Access                                                                   |factor   | 
+| `X_frutsum`|2247-2252: Number of Fruits consumed per day (two implied decimal places)                |int      |
+| `X_vegesum`|2253-2258: Number of Vegetables consumed per day (two implied decimal places)            |int      |
+| `X_pacat1` |2348: Physical Activity Categories                                                       |factor   |
+| `physhlth` |81-82: For how many days during the past 30 days was your physical health not good?      |int      | 
+
+
 #References
 
