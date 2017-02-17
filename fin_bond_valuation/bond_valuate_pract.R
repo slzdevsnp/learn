@@ -97,5 +97,17 @@ apx_price(par,r,ttm,y, dy)
 apx_price(par,r,ttm,y, -dy)
 
 ### chap 4 comprehensive example
-
+aaa <- Quandl("MOODY/DBAAYLD")
+aaa_yield <- subset(aaa, aaa$DATE == as.Date("2016-09-30"))
+aaa_yield <- 0.01 * as.numeric(aaa_yield$VALUE)                    
+                    
+cttm<-8
+par<-100
+cr<-0.03
+#cash flows
+cf <- c( rep(par*cr,cttm-1), par*(1+cr)  )
+cf <- data.frame(cf)
+cf$t <- seq(1,nrow(cf),1)
+cf$pv_factor <- 1 / (1+aaa_yield)^cf$t
+cf$pv <- cf$cf * cf$pv_factor
 
