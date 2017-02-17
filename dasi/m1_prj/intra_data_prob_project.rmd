@@ -34,9 +34,9 @@ load("brfss2013.RData")
 * * *
 
 ## Part 1: Data
-The dataset used in this project comes from the "Behavioral Risk Factor Surveillance System" (BRFSS) 2013 edition [@bfrss]. Every year the US Center for Dease Control and Prevention (CDS) asks to conduct a detailed questionnaire of health related questions within a large sample of the US population residing in all US states and territories. The BRFSS conducts landline telephone- and cellular telephone-based surveys. The data is collected uniformly across all states and all days of the edition's year through a random sampling of US adults. 
-The groups of studied factors include general health status, number of unhealthy days in a past month, health care access, practice of physical activity, alcohol consumption, fruits and vegetables consumption, hypertension awareness, colesterol awareness and chronic health conditions.
-The  BRFSS 2013 edition  contains a dataset of over 491 thousands of individuals spanning over several hundreds variables. This is an example of a very large continuous observational study with a generalizability of the measured data.
+The dataset used in this project comes from the [@bfrss] (BRFSS) 2013 edition. Every year the US Center for Disease Control and Prevention (CDS) asks to conduct a detailed questionnaire of health related questions within a large sample of the US population residing in all US states and territories. The BRFSS conducts land-line telephone and cellular telephone-based surveys. The data is collected uniformly across all states and all days of the edition's year through a random sampling of US adults. 
+Groups of studied factors include general health status, number of unhealthy days in a past month, health care access, practice of a physical activity, alcohol consumption, fruits and vegetables consumption, hypertension awareness, cholesterol awareness and chronic health conditions.
+The  BRFSS 2013 edition  contains a dataset of over 491 thousands of individuals spanning over several hundreds of variables. This is an example of a very large continuous observational statistical study with a generalizability of the measured data.
 
 
 * * *
@@ -46,15 +46,15 @@ The  BRFSS 2013 edition  contains a dataset of over 491 thousands of individuals
 **Research question 1:**
 Having a health insurance increases the quality of life. We are interested to study how people make decisions whether to get a health insurance coverage if they have limited means to afford it. 
 Does the level of education plays a role when deciding about taking or forgoing the health insurance plan? 
-More precisely we shall try to answer a question if college educated people with lower income but in a good health are more likely to make an economic decision to forgo a health insurance when compared to people with a precollege education from the same income category and the same physical condition.
+More precisely we shall try to answer a question if college educated people with low income but in a good health are more likely to make an economic decision to forgo a health insurance when compared to people with a precollege education from the same income category and the same physical condition.
 
 **Research question 2:**
-In this section we shall study a variable which represents for people a number of days with a poor physical health  in last 30 days. The dataset has  a variable on General health. But arguably the latter is more qualitative and  the former is more quantitative. Studying numbers of sick days that people take  has a direct economic interest reflecting a wealth expense rather than its generation by the employed population. We are interested to study factors which can potentially reduce the number of sick days taken. Among various factors we concentrate on  a physical activity levels and  on healthy food consumption. 
-Thus does a physical activity, a consumption of a healthy food impact the number of sick days taken? if yes, which factor has a greater influence in reducing the number of sick days?
+In this section we shall study a variable which represents a number of days int last 30 days people felt to be in a poor physical health. The dataset has a variable on general health. But arguably the latter is more qualitative and  the former is more quantitative. Studying numbers of sick days that people take  has a direct economic interest reflecting a net wealth expense rather than generation by the employed population. We are interested to study factors which can potentially reduce the number of sick days taken. Among various factors we concentrate on a physical activity levels as well as on a consumption of healthy food. 
+Thus does a physical activity, a consumption of a healthy food  negatively correlate with the number of sick days taken? if yes, which factor is more negatively correlated with  the number of sick days?
 
 **Research question 3:**
 In this section we are interested in checking the normality of a distribution of human height.
-Thus Are the studied population heights normally distributed? Our interest is driven to verify similar claims [see @ois2015, pp. 137-139]. Taller people have higher risks of health [@adu2013], [@ken2011, pp. 400] and if a human height is normally distributed the frequency of very tall humans is rare and under the 'thin tails' of the normal distribution.
+Thus are the studied population heights normally distributed? Our interest is driven to verify similar claims [see @ois2015, pp. 137-139]. Taller people have higher risks of health [@adu2013], [@ken2011, pp. 400] and if a human height is normally distributed the frequency of very tall humans is rare and under the 'thin tails' of the normal distribution.
 
 * * *
 
@@ -70,8 +70,7 @@ sel_brfss2013 <- brfss2013 %>% select (genhlth,X_rfhlth,X_educag,X_incomg,hlthpl
 str(sel_brfss2013)
 ```
 
-To distinguish individuals with college vs pre-college education a new variable `edu_cat` is created
-F
+To distinguish individuals with college vs pre-college education a new variable `edu_cat` is created.
 ```{r eval=TRUE}
 
 #2. create a variable on education level
@@ -83,7 +82,7 @@ mutate(edu_cat = factor( ifelse( is.na(X_educag),NA
 
 ```
 
-To have a first idea about the research problem it is useful to plot relationships between studied variables
+To have a first idea about the research problem it is useful to plot relationships between studied variables.
 
 ```{r eval=TRUE}
 sel_brfss2013$health_condition<-sel_brfss2013$genhlth
@@ -131,7 +130,7 @@ mutate(incom_cat = factor(ifelse(is.na(X_incomg),NA
 						,"middle","upper")))) )
 ```
 
-Now lets see the summary statistics for subjects of interest to our research question. Those are the individuals from a 'low' income category who do not have a health insurance plan and who are in good health. Because they are in good health they can theoretically afford  to bypass taking a health coverage plan.  
+Now lets see the summary statistics for subjects of interest to our research question. Those are the individuals from a 'low' income category who do not have a health insurance plan and who are in good health. Because they are in good health theoretically they can afford to avoid taking a health coverage plan.  
 
 ```{r eval=TRUE}
 ## show summary statistics 
@@ -176,7 +175,7 @@ Thus we conclude that healthy people with low income and college degree are stil
 
 **Research question 2:**
 
-As with the previous question lets extract variables from a general dataset relevant to our current research question. The variable `X_frutsum` for a total of consumed fruits in a past month, `X_vegesum` a total of consumed vegetables in a past month, `X_pacat` a variable for a sport activity with 4 factor levels and `physhlth` is a number of days with bad physical health in a past 30 days. 
+As with the previous question lets extract variables from a general dataset relevant to our current research question. The variable `X_frutsum` for a total of consumed fruits in a past month, `X_vegesum` a total of consumed vegetables in a past month, `X_pacat` a variable for a physical activity with 4 factor levels and `physhlth` is a number of days with bad physical health in a past 30 days. 
 
 ```{r eval=TRUE}
 # selection of variables for question 2
@@ -202,10 +201,10 @@ print(p1)
 ```
 
 A filter of less or equal of thirty sick days in past 30 days is used to cut off cases with bad data. 
-We observe a bimodal distribution with peaks for 1, 2 sick days  and 30 days. 
+We observe a bimodal distribution with peaks for 1, 2 sick days  and 30 days. It is interesting to observe a high peak for 30 sick days.  
 
 
-We can a median of sick days for different levels of physical activity 
+We can also plot a median of sick days for different levels of physical activity. 
 
 ```{r eval=TRUE}
 sel1_brfss2013 %>% filter(physhlth>0.99 & physhlth < 32) %>%
@@ -216,7 +215,7 @@ ggplot(aes(x=X_pacat1, y=sickdays_median)) +
     labs(x="physical activity")
 ```
 
-The chart suggests   a dependency between the number of sick days and especially  an 'Inactive' level of physical activity.  It is interesting to observe a relatively high value of the median of sick days for people who did not reported their level of physical activity (NA category).  
+The chart suggests a dependency between the number of sick days and especially  an 'Inactive' level of physical activity. It is interesting to observe a relatively high value of the median of sick days for people who did not report their level of physical activity (NA category).  
 
 
 To study a possible relation between a type of food consumed and a number of sick days 
@@ -251,7 +250,7 @@ p2<-ggplot(data=sel1_brfss2013 %>% filter(vegetable_consum < 10.0)
 grid.arrange(p1,p2,nrow=2)
 ```
 
-The chart allow us to determine  a meaning cutoff of a variable (10 fruits or vegetables per day) to exclude bad data. For both food factors we observe  a unimodal right skewed distributions.
+The chart allow us to determine a meaning cutoff of a variable (10 fruits or vegetables per day) to exclude bad data. For both food factors we observe an unimodal right skewed distribution.
 
 We create a `healthyfood` variable with 2 categories. A 'very good' value reflects a simultaneous consumption of vegetables and fruits above their medians. 
 
@@ -285,14 +284,14 @@ summary(sel1_brfss2013$is_sick)
 summary(sel1_brfss2013$is_sport_active)
 
 ```
-A contingency table for `is_sick` versus `is_sport_active` variables will help us to compute conditional probabilitiis such as a probability  to have at least one sick day given to maintain an active physical activity or to eat a healthy food. 
+A contingency table for `is_sick` versus `is_sport_active` variables will help us to compute conditional probabilities such as a probability  to have at least one sick day given an active physical activity.
 
 ```{r eval=TRUE}
 ms_sick_vs_sport<-xtabs(~is_sick+is_sport_active, data=sel1_brfss2013)
 print(ms_sick_vs_sport)
 ```
 
-A probability to have at least 1 sick day and to have an active physical activitiy is
+A joint probability to have at least 1 sick day and to have an active physical activitiy is:
 
 ```{r eval=TRUE}
 p_has_sickdays_and_sport <- ms_sick_vs_sport[2,2]/sum(ms_sick_vs_sport)
@@ -323,7 +322,7 @@ ms_sick_vs_healthfood<-xtabs(~is_sick+healthyfood, data=sel1_brfss2013)
 print(ms_sick_vs_healthfood)
 ```
 
-The join probability to have sick days and consume healthy food and a conditional probability to have sick days given a consumption of healthy food : 
+A joint probability to have sick days and consume healthy food and a conditional probability to have sick days given a consumption of healthy food : 
 
 ```{r eval=TRUE}
 #joint probability
@@ -348,24 +347,24 @@ sprintf(fmt, p_has_sickdays_given_sport_active)
 sprintf(fmt, p_has_sickdays_given_healthyfood)
 ```
 
-Thus we first observe that both factors of healthy food and of active physical activity have a positive impact in reducing   the number of sick days.  It is also clear that the factor of active physical activity has a stronger positive impact in reducing the number of sick days compared to factor of healthy food. 
+Thus we first observe that both factors of healthy food and of active physical activity seems to be negatively correlated with the number of sick days.  It is also clear that the factor of active physical activity has a stronger correlation with the number sick days. 
 
 **Research question 3:**
 
 This question concentrates on a single variable `htm4` representing a height of humans in [cm]. 
 To check the 'normalness' of the distribution of this variable we will check its unimodality, symmetry, percentiles for multiples of standard deviations and  its normal probability plot. 
-The summary of this variables provides hints to eliminate 'NA' and extreme values. 
+First the summary of this variable provides hints to eliminate 'NA' and extreme values. 
 
 ```{r eval=TRUE}
 summary(brfss2013$htm4)
 ```
-Actual lower and upper cutoff values come from Wikipedia [@wikishort], [@wikitall].
+The actual lower and upper cutoff values come from Wikipedia [@wikishort] and [@wikitall].
 
 ```{r eval=TRUE}
 cbrfss2013<-brfss2013 %>% filter(!is.na(htm4) & htm4 > 50 & htm4 < 280)
 ```
 
-For initial check of the distribution of heights let us plot its histogram addint the distribution's mean and median lines on top of it.
+For an initial check of the distribution of heights let us plot its histogram adding the distribution's mean and median on top of it.
 
 ```{r eval=TRUE}
 print(
@@ -378,7 +377,7 @@ ggplot(data = cbrfss2013,  aes(x = htm4)) +
 )
 ```
 
-We observe that the distribution is in fact unimodal and seemingly symmetric with the mean and median lines relatively close to each other. We can use a boxplot chat for a further check of symmetry
+We observe that the distribution is in fact unimodal and seemingly symmetric with the mean and median lines relatively very close to each other. We can use a boxplot chat for a further check of symmetry.
 
 ```{r eval=TRUE}
 print(
@@ -390,7 +389,7 @@ ggplot(data=cbrfss2013, aes(x=0, y=htm4))
 )
 ```
 
-On the box-and-whisker plot we observe that the median is slightly skewed towards the first quartile. Our next check is to verify the share of probability falling within one, two and 3 standard deviations of the mean of the distribution. For a normal distribution those probabilities are 68,95 and 99.7 % known as "68-95-99.7%" rule.
+On the box-and-whisker plot we observe that the median is slightly skewed towards the first quartile. Our next check is to verify the share of probability falling within one, two and 3 standard deviations of the mean of the distribution. For a normal distribution those probabilities are 68, 95 and 99.7 % known as "68-95-99.7%" rule.
 
 ```{r eval=TRUE}
 #mean and a standard deviation of htm4 variable
@@ -412,7 +411,9 @@ cbrfss2013 %>% filter(in_3sd ==1) %>% summarize(count=n(), pct=n()/nrow(cbrfss20
 
 ```
 
-We observe a good match of the probability percentile within 3 standard deviations from the mean and an approximate match for probabilities within 1 and 2 standard deviations  from the mean. The most sensitive measure of 'normality' is a normal probability plot. 
+We observe a good match of the probability percentile within 3 standard deviations from the mean and an approximate match for probabilities within 1 and 2 standard deviations  from the mean.
+
+The most sensitive measure of 'normality' is a normal probability plot. 
 
 
 ```{r eval=TRUE}
@@ -431,7 +432,7 @@ qqplot.qq <- function (vec, titlestr) # argument: vector of numbers
 qqplot.qq(cbrfss2013$htm4, 'Normal probability plot for BRFSS 2013 heights')
 ```
 
-The plotted chart suggests a good linear approximation within 3 standard deviations from the mean. Further than 3 standard deviations the chart shows a presence of more data points in the distribution's tails compared to the theoretical normal distribution. 
+The plotted chart suggests a good linear approximation within 3 standard deviations from the mean. Further than 3 standard deviations the chart shows a large presence of data points in the distribution's tails compared to the theoretical normal distribution. 
 
 Thus we can  conclude that human height from the BRFSS dataset is distributed only nearly normally. 
 
