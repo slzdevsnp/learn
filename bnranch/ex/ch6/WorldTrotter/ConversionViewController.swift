@@ -81,9 +81,26 @@ class ConversionViewController : UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("ConversionViewCotroller loaded its view")
+        
         updateCelsiusLabel()
     }
+    
+     var isDark = false
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("ConvertViewController is about to load")
+        if !isDark{
+            self.view.backgroundColor = UIColor.darkGray
+            isDark = true
+        }else {
+            self.view.backgroundColor = UIColor.white
+            isDark = false
+        }
+    }
+    
     //using a delegate to prevent putting more then 1 decimal point in input
     //implementing a method from UITextFieldDelegate protocol
     func textField(_ textField: UITextField
