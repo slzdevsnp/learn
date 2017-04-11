@@ -22,3 +22,9 @@ if let a = i1 , let b = i2 {
 }
 
 
+let i = 10;
+
+let ist = String(i)
+
+print("ist: \(ist)")
+
