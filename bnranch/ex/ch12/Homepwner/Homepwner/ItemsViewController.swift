@@ -51,6 +51,9 @@ class ItemsViewController : UITableViewController {
         let insets = UIEdgeInsets(top: statusBarHeight, left:0,bottom:0,right:0)
         tableView.contentInset = insets
         tableView.scrollIndicatorInsets = insets
+    
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 65
     }
     
     
@@ -69,18 +72,20 @@ class ItemsViewController : UITableViewController {
         
 
         //get a cell from a reusable pool
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell",
+                                                for: indexPath) as! ItemCell
         
-        if (indexPath.row == itemStore.allitems.count - 1 ){
-            let item = itemStore.allitems[indexPath.row]
-            cell.textLabel?.text = item.name
-            cell.detailTextLabel?.text = ""
-        }else{
-        
-            let item = itemStore.allitems[indexPath.row]
-            cell.textLabel?.text = item.name
-            cell.detailTextLabel?.text = "$\(item.valueInDollars)"
+        let item = itemStore.allitems[indexPath.row]
+        //configure the cell with the item
+        cell.nameLabel.text = item.name
+        cell.serialNumberLabel.text = item.serialNumber
+        cell.valueLabel.text = "$\(item.valueInDollars)"
+        if (item.valueInDollars < 50 ) {
+         cell.valueLabel.textColor = UIColor.green
+        } else {
+        cell.valueLabel.textColor = UIColor.red
         }
+         //cell.valueLabel.textColor = UIColor.green
         return cell
     }
     
@@ -114,27 +119,13 @@ class ItemsViewController : UITableViewController {
     override func tableView(_ tableView: UITableView,
                             moveRowAt sourceIndexPath: IndexPath,
                             to destinationIndexPath: IndexPath){
-        
-            //update the model
-            itemStore.moveItem(from: sourceIndexPath.row,
+        //update the model
+        itemStore.moveItem(from: sourceIndexPath.row,
                            to: destinationIndexPath.row)
-        
-    
     }
     
-    //prevent last row to be moved
     
-    override func tableView(_ tableView: UITableView,
-                            targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath,
-                            toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
-        if (sourceIndexPath.row == itemStore.allitems.count - 1 ){
-            return sourceIndexPath
-        }else {
-            return proposedDestinationIndexPath
-        }
-    }
- 
     
-
+    
     
 }
