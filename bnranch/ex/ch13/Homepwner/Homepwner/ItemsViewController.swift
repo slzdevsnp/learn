@@ -125,7 +125,22 @@ class ItemsViewController : UITableViewController {
     }
     
     
-    
-    
+    //function to configure the segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        //if the trigger segue is the "showItem" segue
+        switch segue.identifier{
+        case "showItem"?:
+            //figure out which rowwas just tapped
+            if let row = tableView.indexPathForSelectedRow?.row {
+                //get its item 
+                let item = itemStore.allitems[row]
+                let detailViewController = segue.destination as! DetailViewController
+                detailViewController.item = item
+            }
+        default:
+            preconditionFailure("Unexpected segue identifier")
+        }
+        
+    }
     
 }
