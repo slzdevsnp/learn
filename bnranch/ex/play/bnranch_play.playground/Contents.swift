@@ -28,3 +28,21 @@ let ist = String(i)
 
 print("ist: \(ist)")
 
+//MARK: - enums with values
+
+
+enum OvenState {
+    case on(Double)
+    case off(String)
+}
+
+///uncomment each version 
+//let ovenState = OvenState.on(350)
+let ovenState = OvenState.off("switched offf")
+
+switch ovenState {
+    case let .on(temperature):
+        print("oven is on and its temp: \(temperature)")
+    case let .off(label):
+        print("oven is off and its label \(label)")
+}
