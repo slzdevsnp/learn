@@ -46,3 +46,20 @@ switch ovenState {
     case let .off(label):
         print("oven is off and its label \(label)")
 }
+
+
+//MARK: - functions with completions
+
+func hardProcessingWithStrings(_ input: String, completion: (String) -> Void) {
+    let  tempstr = input.capitalized
+    print("transform of \(input): \(tempstr)")
+    
+    completion("we are done processing!")
+}
+
+hardProcessingWithStrings("mama") {
+    (result: String ) in
+    print("got back: \(result)")
+}
+
+
