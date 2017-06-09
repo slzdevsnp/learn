@@ -193,8 +193,9 @@ plot(predict(lmfit143), rstudent(lmfit143),main ="studentized residuals after")
 
 dev.off()
 dev.off() 
-
+#############
 #ex 15
+###############
 library(MASS)
 print(?Boston)
 str(Boston)
@@ -307,6 +308,23 @@ plot(coef_x, coef_y, main = "coefficients")
 
 lm_nox_q <- lm(crim~nox+I(nox^2)+I(nox^3),data=Boston)
 print(summary(lm_nox_q)) ## all t3 degrees of predictors have low p-values
+
+#zz<-42
+#eval(as.name("zz"))
+
+print("###########")
+print( paste( names(Boston)[-1], collapse=" ") )
+for (p in names(Boston)[-1]) {
+  print(p)
+  #pval <- eval(as.name(p))
+  lm_p_q <- lm(crim~eval(as.name(p))+I(eval(as.name(p))^2) + I(eval(as.name(p))^3), data=Boston  )
+  print(summary(lm_p_q))
+}	
+
+## zn - lin,  indus - non-lin,  chas - lin, nox  non-lin  , rm lin low r2, age - non-lin, dis - non-lin , 
+# rad  high p-val, tax, high p-val, ptratio - non-lin , black high p-val, lstat high p-val, medv non -lin
+
+
 
 ### end
 #dev.off()
