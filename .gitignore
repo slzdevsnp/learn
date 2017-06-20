@@ -6,6 +6,9 @@
 build/
 DerivedData/
 
+## pdfs
+bnranch/ref/
+
 ## Various settings
 *.pbxuser
 !default.pbxuser
@@ -21,3 +24,5 @@ xcuserdata/
 *.moved-aside
 *.xccheckout
 *.xcscmblueprint
+
+
