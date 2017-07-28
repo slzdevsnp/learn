@@ -65,10 +65,21 @@ let ss = "bonzai"
 //ss.append(" Road") //# fails as ss is unmutable
 
 
+let empts = ""
+empts.isEmpty
 
 
+var phrases = "ABCED\nKJMLN\n"
+print(phrases)
+
+let replaced = phrases.replacingOccurrences(of: "KJMLN"+"\n", with: "")
+print(replaced)
+
+print(String(format:"%@\n",arguments:["mama"]))
+print("toto")
 
 
+var words
 
 
 
