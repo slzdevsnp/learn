@@ -1,5 +1,6 @@
 #rm(list=ls());setwd("~/Dropbox/cs/bigdata/lagunita/tibshirani/ch3-LinearRegression/");source("ch3ex_pract.R")
-rm(list=ls());setwd("c:/users/zimine/Dropbox/cs/bigdata/lagunita/tibshirani/ch3-LinearRegression/");source("ch3ex_pract.R")
+
+#rm(list=ls());setwd("c:/users/zimine/Dropbox/cs/bigdata/lagunita/tibshirani/ch3-LinearRegression/");source("ch3ex_pract.R")
 
 
 
