@@ -1,5 +1,5 @@
 #rm(list=ls());setwd("c:/users/zimine/Dropbox/cs/bigdata/lagunita/tibshirani/ch4-Classification/");source("ch4-pract.R")
-#rm(list=ls());setwd("~/Dropbox/cs/bigdata/lagunita/tibshirani/ch4-Classification/");source("ch4-pract.R")
+# rm(list=ls());setwd("~/Dropbox/cs/bigdata/lagunita/tibshirani/ch4-Classification/");source("ch4-pract.R")
 
 ##### ch4 lab
 
@@ -36,6 +36,53 @@ glm.probs <- predict(glm.fit, type="response")
 
 print(glm.pred[1:10])
 
-print( 
-table(glm.pred, Direction)
-)
+cfu_m <- table(glm.pred,Direction)
+print(cfu_m)
+
+#model is correct  this percentage
+(cfu_m[1,1]+cfu_m[2,2] )/ sum(cfu_m)
+#this also equals
+print(paste("percengate that model is correct:",mean(glm.pred == Direction)))
+print(paste("training error rate:", 1 - mean(glm.pred == Direction)))
+
+#lets obtain a more realistic error rate on a subset of data used as training set 
+#and check it on a test dataset
+train_idx <- Smarket$Year<2005
+train<- Smarket[train_idx,]
+Smarket.2005<-Smarket[!train_idx,]
+test<-Smarket.2005
+print(dim(train))
+print(dim(test))
+
+#model on a train dataset
+glm.fit_tr <- glm(Direction~Lag1+Lag2+Lag3+Lag4+Lag5+Volume
+	             ,data=train,family=binomial)
+glm.probs_tst <- predict(glm.fit_tr, test, type="response")
+
+glm.pred_tst<-rep("Down",length(glm.probs_tst))
+glm.pred_tst[glm.probs_tst > .5] <- "Up"
+
+cfu_m_tst <- table(glm.pred_tst,test$Direction)
+print(cfu_m_tst)
+
+print(paste("percengate model is correct on test data:",mean(glm.pred_tst == test$Direction)))
+print(paste("training error rate on test data:", 1 - mean(glm.pred_tst == test$Direction)))
+
+
+#lets refit the model using only 2 predictors with lowest  p-value
+
+glm.fit_tr <- glm(Direction~Lag1+Lag2
+	             ,data=train,family=binomial)
+glm.probs_tst <- predict(glm.fit_tr, test, type="response")
+
+glm.pred_tst<-rep("Down",length(glm.probs_tst))
+glm.pred_tst[glm.probs_tst > .5] <- "Up"
+
+cfu_m_tst <- table(glm.pred_tst,test$Direction)
+print(cfu_m_tst)
+
+print(paste("percengate model is correct on test data:",mean(glm.pred_tst == test$Direction)))
+print(paste("training error rate on test data:", 1 - mean(glm.pred_tst == test$Direction)))
+
+#LDA
+
