@@ -81,8 +81,28 @@ glm.pred_tst[glm.probs_tst > .5] <- "Up"
 cfu_m_tst <- table(glm.pred_tst,test$Direction)
 print(cfu_m_tst)
 
-print(paste("percengate model is correct on test data:",mean(glm.pred_tst == test$Direction)))
+print(paste("percentage, model is correct on test data:",mean(glm.pred_tst == test$Direction)))
 print(paste("training error rate on test data:", 1 - mean(glm.pred_tst == test$Direction)))
 
 #LDA
+require(MASS)
+
+lda.fit <- lda(Direction~Lag1+Lag2,data = Smarket, subset = train_idx)
+print(lda.fit)
+
+lda.pred <- predict(lda.fit, Smarket.2005) # on test data 
+lda.class <- lda.pred$class 
+cfu_m_lda <- table(lda.class , test$Direction)
+print(cfu_m_lda)
+print(paste("lda model is correct on stet data: ", mean(lda.class == test$Direction)))
+
+##QDA
+qda.fit <- qda(Direction~Lag1+Lag2,data = Smarket, subset = train_idx)
+print(qda.fit)
+
+qda.pred <- predict(qda.fit, Smarket.2005) # on test data 
+qda.pred.class <- qda.pred$class 
+cfu_qda_tst <- table (qda.pred.class, Smarket.2005$Direction)
+print(cfu_qda_tst)
+print(paste("qda model is correct on stet data: ", mean(qda.pred.class == Smarket.2005$Direction)))
 
