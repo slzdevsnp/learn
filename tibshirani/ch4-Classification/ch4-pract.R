@@ -106,3 +106,31 @@ cfu_qda_tst <- table (qda.pred.class, Smarket.2005$Direction)
 print(cfu_qda_tst)
 print(paste("qda model is correct on stet data: ", mean(qda.pred.class == Smarket.2005$Direction)))
 
+#KNN
+library(class)
+
+train<- Smarket[train_idx,]
+Smarket.2005<-Smarket[!train_idx,]
+
+train.X <- cbind(train$Lag1, train$Lag2)
+test.X <- cbind(Smarket.2005$Lag1, Smarket.2005$Lag2)
+
+getKnnPrediction <- function(train, test, train_y, test_y, k=1){ 
+	set.seed (1)
+	knn.pred <- knn(train,test,train_y, k=k)
+	cfm_knn <- table(knn.pred, test_y)
+	print(cfm_knn) 
+#	print(paste("knn model percentage of correct prediction for k =",k,":",
+#	            (cfm_knn[1,1] + cfm_knn[2,2])/sum(cfm_knn) ))
+    print(paste("knn model percentage of correct prediction for k =",k,":",
+	      mean(knn.pred == test_y)))
+}
+
+getKnnPrediction(train=train.X, test=test.X,
+	             train_y=train$Direction, test_y=Smarket.2005$Direction,k=3)
+
+
+### Caravan Insurance Data
+
+
+
