@@ -124,13 +124,80 @@ getKnnPrediction <- function(train, test, train_y, test_y, k=1){
 #	            (cfm_knn[1,1] + cfm_knn[2,2])/sum(cfm_knn) ))
     print(paste("knn model percentage of correct prediction for k =",k,":",
 	      mean(knn.pred == test_y)))
+
+    print(paste("knn rate of response fist value for k=",k,":",
+    	  sum(cfm_knn[1,1]/sum(cfm_knn[1,]))))
+
+    print(paste("knn rate of response second value for k=",k,":",
+    	  sum(cfm_knn[2,2]/sum(cfm_knn[2,]))))
+
 }
+
+getKnnPrediction(train=train.X, test=test.X,
+	             train_y=train$Direction, test_y=Smarket.2005$Direction,k=1)
+
 
 getKnnPrediction(train=train.X, test=test.X,
 	             train_y=train$Direction, test_y=Smarket.2005$Direction,k=3)
 
 
 ### Caravan Insurance Data
+print("Caravan dataset (Insurace buyers")
+print(names(Caravan))
+print(dim(Caravan))
+print(summary(Caravan$Purchase))
+
+print(paste("purchase = yes prior probability:", sum(Caravan$Purchase == "Yes")/nrow(Caravan) ))
+
+## scale all numeric predictors to have  a standardized variance
+standardized.X = scale(Caravan[,-86]) # all but the factor column , all cols have var = 1
+
+#split DS  to test (first 1000 data points ) and train the other 4822  
+test_idx <- 1:1000
+test.X <- standardized.X[test_idx,]
+train.X <- standardized.X[-test_idx,]
+
+test.Y <- Caravan[test_idx,]$Purchase
+train.Y <- Caravan[-test_idx,]$Purchase
+
+##run knn prediction
+set.seed(1)
+k <- 1
+#knn.pred <- knn(train.X, test.X, train.Y, k=k)
+#print(paste("erorr rate for knn model with k=",k,":",mean(test.Y != knn.pred) ))
+#print( mean(test.Y != "No") )
+#cfm_knn<- table(knn.pred, test.Y)
+#print(cfm_knn)
+getKnnPrediction(train=train.X, test=test.X,
+	             train_y=train.Y, test_y=test.Y,k=1)
+
+
+# getKnnPrediction(train=train.X, test=test.X,
+# 	             train_y=train.Y, test_y=test.Y,k=3)
+
+# getKnnPrediction(train=train.X, test=test.X,
+# 	             train_y=train.Y, test_y=test.Y,k=5)
 
 
 
+
+##for comparison fit a logistic regression on Caravan 
+glm.fit <- glm(Purchase~., data=Caravan,subset=-test_idx,family=binomial)
+glm.probs <- predict(glm.fit, Caravan[test_idx,], type="response")
+
+glm.predicted<-rep("No",length(test_idx))
+glm.predicted[glm.probs > .5] <- "Yes"
+
+cfm_glm <- table(glm.predicted, test.Y)
+print("glm with probability threshold of 0.5")
+print(cfm_glm)  # not a single one preicted
+
+
+glm.predicted_bis<-rep("No",length(test_idx))
+glm.predicted_bis[glm.probs > .25] <- "Yes"
+
+cfm_glm_bis <- table(glm.predicted_bis, test.Y)
+print("glm with probability threshold of 0.25")
+print(cfm_glm_bis)  # not a single one preicted
+print(paste("logistic model rate of response 2nd value ",  
+	sum(cfm_glm_bis[2,2])/sum(cfm_glm_bis[2,]) ))
