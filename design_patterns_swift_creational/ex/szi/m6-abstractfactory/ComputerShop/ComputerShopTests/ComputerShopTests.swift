@@ -25,8 +25,8 @@ class ComputerShopTests: XCTestCase {
         print("\n*************************************************")
         print("*  \(label)")
         print("**************************************************\n")
-
     }
+    
     func testCreateComputerConfigsWithNoFactory() {
        printXCTestHeader("testCreateComputerConfigsWithNoFactory")
         
