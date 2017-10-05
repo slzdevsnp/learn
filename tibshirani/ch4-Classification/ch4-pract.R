@@ -133,6 +133,8 @@ getKnnPrediction <- function(train, test, train_y, test_y, k=1){
 
 }
 
+browser()
+
 getKnnPrediction(train=train.X, test=test.X,
 	             train_y=train$Direction, test_y=Smarket.2005$Direction,k=1)
 
@@ -201,3 +203,22 @@ print("glm with probability threshold of 0.25")
 print(cfm_glm_bis)  # not a single one preicted
 print(paste("logistic model rate of response 2nd value ",  
 	sum(cfm_glm_bis[2,2])/sum(cfm_glm_bis[2,]) ))
+
+
+### exercices
+
+ppd <- 0.8
+ppnd <- 0.2 
+mud <- 10 
+mund <- 0
+x <- 4 
+sigma <- 6
+p <- ppd * exp(-1/(2*sigma^2)*(x-mud)^2) / 
+(  ppd * exp(-1/(2*sigma^2)*(x-mud)^2) + ppnd * exp(-1/(2*sigma^2)*(x-mund)^2) )
+
+print(paste("ex 7 proba p:",p))
+
+
+
+
+
