@@ -112,3 +112,72 @@ print( boot(Auto,boot.fn,1000))
 #compare this with a standard lm call
 lm.fit<-lm(mpg~horsepower,data=Auto)
 print(summary(lm.fit)$coef)
+
+
+##exercices ch5
+#ex 2
+
+print("ex2 (g)")
+n<-seq(1,1000)
+plot(n, 1-(1-1/n)^n,cex=0.3,col=2)
+
+print("ex2 (h)")
+
+#lets jth value = 4
+n<-10000
+store<-rep(NA,n)
+for (i in 1:n) {
+	store[i] = sum(sample(1:100,rep=T) == 4 ) > 0
+}
+print(paste("mean store:",mean(store)))
+
+# NB! we  observe that the mean = 0.64 correponsed to the plotted probabiltuy in 2.(g)
+
+
+print("#####################################################")
+print ("# chap 5 resampling quiz")
+print("####################################################")
+
+load("5.R.RData")
+
+lm.fit<-lm(y~X1+X2,data=Xy)
+print(summary(lm.fit) )
+
+boot.fn<-function(data,index){
+	coefs <- coef( lm(y~X1+X2,data=data,subset=index) )
+    return(coefs)
+}
+
+print(boot.fn(Xy,1:nrow(Xy)))
+
+btstrap<-boot(Xy,boot.fn,1000)
+print("lm coefs by bootstrap")
+print(btstrap)
+
+
+bootblock.fn<-function(data,index){
+	nobs<-nrow(data)
+	nfolds <- 10
+	lfold <-nobs / nfolds #100
+	idx <- c()
+	fsmpl <- sample(0:(nfolds-1),nfolds,replace=T)
+	for( i in 1:nfolds){
+       fold_idx <- seq(from = 1+lfold*fsmpl[i], to = lfold*(fsmpl[i]+1) )
+       idx <- c(idx,fold_idx)
+	}
+	#print("debug fsmpl:")
+    #print(fsmpl)
+    #print("debug idx:")
+    #print(idx)
+	coefs <- coef( lm(y~X1+X2,data=data,subset=idx) )
+    return(coefs)
+}
+
+#print(bootblock.fn(Xy,1:nrow(Xy)))
+#print(bootblock.fn(Xy,1:nrow(Xy)))
+
+
+btstrapblock<-boot(Xy,bootblock.fn,1000)
+print("lm coefs by bootstrap block")
+print(btstrapblock)
+
