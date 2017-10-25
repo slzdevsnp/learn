@@ -1,0 +1,64 @@
+---
+title: "ISLR Chapter 6. Lecture ModelSelect"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Model Selection
+===================
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown 
+
+Hitters is a dataset with baseball statisitcs.
+
+
+```{r hitteres}
+library(ISLR)
+dim(Hitters)
+summary(Hitters)
+```
+
+Checking if dta has  missing values. If yes get rid of NAs.
+```{r omit}
+dim(Hitters)
+with(Hitters,sum(is.na(Salary)))  # we have some missing values
+Hitters <- na.omit(Hitters)  #remove rows with NA data
+with(Hitters,sum(is.na(Salary)))  # check after na removal
+dim(Hitters)
+```
+
+
+Best Subset regression
+----------------------
+
+We will use the package `leaps`  to evaluation all the best-subset models
+
+```{r bsubs}
+library(leaps)
+regfit.full<-regsubsets(Salary~.,data=Hitters)
+summary(regfit.full)
+```
+It gives the default beset-subsdt upt to size 8 : lets increase that to 19 i.e. al the variables 
+```{r bsubsb}
+regfit.full<-regsubsets(Salary~.,data=Hitters,nvmax=19)
+reg.summary<-summary(regfit.full)
+names(reg.summary)
+plot(reg.summary$cp,xlab="Number of Variables", ylab="Cp",main="Cp statistics vs model complexity")
+## lets colorcode the curve minimum point
+minimum_point_idx<-which.min(reg.summary$cp) # 10
+points(minimum_point_idx,reg.summary$cp[minimum_point_idx],pch=20,col="red")
+```
+There exist a plot method for `regsubsets` object
+```{r rsubs plot}
+plot(regfit.full,scale="Cp")
+coef(regfit.full,10) #coefficients for model indexed 10
+````
+
+
+Forward Stepwise Selection
+--------------------------
+
+xx

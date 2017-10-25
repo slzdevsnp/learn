@@ -160,11 +160,16 @@ bootblock.fn<-function(data,index){
 	nfolds <- 10
 	lfold <-nobs / nfolds #100
 	idx <- c()
-	fsmpl <- sample(0:(nfolds-1),nfolds,replace=T)
+	fsmpl <- sample(0:(nfolds-1),nfolds,replace=T) #sample of lenght 10
 	for( i in 1:nfolds){
+	   #this line creates a vector of lenght 100 starting from a number
+	   # in fsmpl vector
        fold_idx <- seq(from = 1+lfold*fsmpl[i], to = lfold*(fsmpl[i]+1) )
+       #append 100 -lenght vector to the current bootstrap run index
+       #of length 1000
        idx <- c(idx,fold_idx)
 	}
+	##uncomment the below for debugging
 	#print("debug fsmpl:")
     #print(fsmpl)
     #print("debug idx:")
@@ -173,7 +178,7 @@ bootblock.fn<-function(data,index){
     return(coefs)
 }
 
-#print(bootblock.fn(Xy,1:nrow(Xy)))
+#print(bootblock.fn(Xy,1:nrow(Xy)))  #debugging with uncommented debug lines in  function
 #print(bootblock.fn(Xy,1:nrow(Xy)))
 
 
