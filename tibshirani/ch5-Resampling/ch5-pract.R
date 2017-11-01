@@ -1,4 +1,5 @@
-##ch5-prat
+##ch5-pract
+
 
 # rm(list=ls());setwd("~/Dropbox/cs/bigdata/lagunita/tibshirani/ch5-Resampling/");source("ch5-pract.R")
 
