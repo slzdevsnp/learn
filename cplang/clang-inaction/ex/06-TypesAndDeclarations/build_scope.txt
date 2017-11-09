@@ -1,0 +1,1 @@
+rm scope; gcc scope.c -Wall -std=c99  -Wextra -o scope

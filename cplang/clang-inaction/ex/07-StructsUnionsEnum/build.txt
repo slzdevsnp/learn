@@ -1,0 +1,1 @@
+fn=structs_enums; rm structs_enums ; gcc structs_enums.c -Wall -std=c99 -Wextra -o structs_enums
