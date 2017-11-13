@@ -81,7 +81,7 @@ plot(fit.ridge,xvar="lambda",label=TRUE)
 cv.ridge<-cv.glmnet(x,y,alpha=0)
 plot(cv.ridge)
 
-## now we fit a loass model: for this we use the default alpha=1
+## now we fit a lasso model: for this we use the default alpha=1
 fit.lasso<-glmnet(x,y)
 plot(fit.lasso,xvar="lambda", label=TRUE)
 cv.lasso <- cv.glmnet(x,y)

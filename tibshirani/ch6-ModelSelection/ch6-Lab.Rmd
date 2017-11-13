@@ -1,0 +1,113 @@
+---
+title: "ISLR Chapter 6 Labs on Model Selection and Regularization"
+author: "S Zimine"
+date: "11/13/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Lab 1: Subset Selection Methods
+================================
+
+```{r cars}
+library(ISLR)
+data(Hitters)
+names(Hitters)
+```
+We use the dataset Hitters containing features about baseball players and wish  to predict the player's `Salary`.
+
+## Data Cleaning
+
+We first need to check if we should clean the data.  Checking for NA occurencies in data.
+```{r}
+dim(Hitters)
+sum(is.na(Hitters$Salary))
+```
+We do have  missing `Salary` points. So lets clean the dataset.
+```{r}
+Hitters <- na.omit(Hitters)
+dim(Hitters)
+sum(is.na(Hitters))
+```
+
+## Best Subset Selection
+Use `regsubsets()` func from `leaps` package to perform  best Subsets selection. We can do since our number of features is `r -1+dim(Hitters)[2]`.
+
+Doing best subset selection on the full dataset.
+```{r}
+library(leaps)
+p<-1+dim(Hitters)[2]
+regfit.full<-regsubsets(Salary~., data=Hitters, nvmax=p)
+reg.summary<-summary(regfit.full)
+reg.summary
+names(reg.summary)
+```
+Asteriks show the best selected features for a given `k`.
+
+Lets explore $R^2$. Then plot RSS, adusted $R^2$, $C_p$ and $BIC$.
+```{r}
+reg.summary$rsq
+
+par(mfrow=c(1,2))
+plot(reg.summary$rss ,xlab="Number of Variables ",ylab="RSS",
+type="l", main="Best subset select")
+plot(reg.summary$adjr2 ,xlab="Number of Variables ",
+ylab="Adjusted RSq",type="l", main="Best subset select")
+
+idx_max<- which.max(reg.summary$adjr2)
+paste("R-squared is at max with  number of features:",idx_max)
+points(idx_max,reg.summary$adjr2[idx_max],col="red", cex=2, pch=20)
+```
+
+In similar fashion lets plot $C_p$ and $BIC$ statitstics.
+```{r}
+par(mfrow=c(1,2))
+plot(reg.summary$cp, xlab="Number of Variables", ylab="Cp",type="l", main="subset select")
+cp_idx <- which.min(reg.summary$cp)
+points(cp_idx,reg.summary$cp[cp_idx],col="red", cex=2, pch=20)
+
+plot(reg.summary$bic, xlab="Number of Variables", ylab="BIC",type="l", main="subset select")
+b_idx <- which.min(reg.summary$bic)
+points(b_idx,reg.summary$bic[b_idx],col="red", cex=2, pch=20)
+
+```
+
+The `regsubsets()` has a built-in `plot()`.
+```{r}
+plot(regfit.full,scale="r2")
+plot(regfit.full,scale="adjr2")
+plot(regfit.full,scale="Cp")
+plot(regfit.full,scale="bic")
+```
+
+Smallest BIC is for a model with 6 predictors. Print their coeffs
+```{r}
+coef(regfit.full,6)
+```
+
+### Forward and Backward Stepwise selection
+
+`resubsets()` acn be also used to do forward and backwards stepwise selection
+
+```{r}
+p<-1+dim(Hitters)[2]
+regfit.fwd<-regsubsets(Salary~., data=Hitters, nvmax=p,method="forward")
+reg_f.summary<-summary(regfit.fwd)
+reg_f.summary
+regfit.bwd<-regsubsets(Salary~., data=Hitters, nvmax=p,method="backward")
+reg_b.summary<-summary(regfit.bwd)
+reg_b.summary
+```
+For the model with 7 predictors the coeffs are different by the best subset, forward-step and backward step selections
+```{r}
+coef(regfit.full,7)
+coef(regfit.fwd,7)
+coef(regfit.bwd,7)
+```
+
+
+## Choosing Among Models using Validation Set approach and Cross-Validation
+
