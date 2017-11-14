@@ -39,8 +39,8 @@ Use `regsubsets()` func from `leaps` package to perform  best Subsets selection.
 Doing best subset selection on the full dataset.
 ```{r}
 library(leaps)
-p<-1+dim(Hitters)[2]
-regfit.full<-regsubsets(Salary~., data=Hitters, nvmax=p)
+p_features<- dim(Hitters)[2] -1
+regfit.full<-regsubsets(Salary~., data=Hitters, nvmax=p_features)
 reg.summary<-summary(regfit.full)
 reg.summary
 names(reg.summary)
@@ -93,11 +93,11 @@ coef(regfit.full,6)
 `resubsets()` acn be also used to do forward and backwards stepwise selection
 
 ```{r}
-p<-1+dim(Hitters)[2]
-regfit.fwd<-regsubsets(Salary~., data=Hitters, nvmax=p,method="forward")
+p_features<- dim(Hitters)[2] -1
+regfit.fwd<-regsubsets(Salary~., data=Hitters, nvmax=p_features,method="forward")
 reg_f.summary<-summary(regfit.fwd)
 reg_f.summary
-regfit.bwd<-regsubsets(Salary~., data=Hitters, nvmax=p,method="backward")
+regfit.bwd<-regsubsets(Salary~., data=Hitters, nvmax=p_features,method="backward")
 reg_b.summary<-summary(regfit.bwd)
 reg_b.summary
 ```
@@ -108,6 +108,49 @@ coef(regfit.fwd,7)
 coef(regfit.bwd,7)
 ```
 
-
 ## Choosing Among Models using Validation Set approach and Cross-Validation
 
+We will be fitting all models using only observations from **training dataset**.
+### Validation Set Approach
+We first divide the dataset into a training set and a test set. A training set is determined by an index vector or boolean values. **TRUE** means an observation is in a training set, **FALSE** is a test set
+
+```{r}
+set.seed(1) #for repoducibility of results
+#split the dataset roguhly in half
+train <- sample( c(TRUE,FALSE), nrow(Hitters), rep=TRUE)
+length(train)
+sum(train)  # how main elmements in train
+
+#test is the opposite of train
+test <- !train
+sum(test) #how many elements in test
+```
+Aplying `regsubsets()` for best subset selection only `train` dataset.
+```{r}
+regfit.best=regsubsets(Salary~.,data=Hitters[train,], nvmax =p_features)
+```
+
+Now lets compute explicitly the validation test error
+```{r}
+test.mat<-model.matrix(Salary~. ,data=Hitters[test,])
+dim(test.mat)
+
+val.errors <- rep(NA,p_features)
+#loop over models of all sizes between 1 and 19
+for (i in 1:p_features){
+	coefi <- coef(regfit.best,id=i) #best model of size k=i
+    pred  <- test.mat[,names(coefi)]%*%coefi
+    val.errors[i] <- mean( (Hitters$Salary[test]-pred)^2 )
+}
+val.errors
+```
+Lets plot the validation test error curve and the coefficients of the best model:
+```{r}
+plot(val.errors, ylab="test error", xlab="number of parametrs", type="l")
+ve_min <- which.min(val.errors)
+points(ve_min,val.errors[ve_min],col="red", cex=2, pch=20)
+ve_min
+coef(regfit.best,id=ve_min)
+
+This was a little tedious
+```
