@@ -62,9 +62,10 @@ chap 09-expressions
   basic-converions.c //how the automatic conversion between numeric types happens
 
 chap 10-pointersAndArrays
-
-
-
+    pointer-on-int  basic refrencing dereferencing a pointer
+    array_no_ptr shows array without using pointer
+    array_with_ptr shows array with pointers
+    swap_with_ptr  swap func implementation with pointer parameters so the changes are persisted outside the func
 chap 11-memoryManagement
 
 chap 12-inputOutput

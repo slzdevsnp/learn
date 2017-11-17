@@ -7,9 +7,9 @@ int main()
 	    int size = sizeof(numbers) / sizeof(numbers[0]); // this is how size of array can be determined
 	    
 
-	int * p = numbers ; //point tto th efirst element of th earray
+	int *p = numbers ; //point tto th efirst element of th earray
 
-	int * end =p + size ;  //point to end of the array
+	int *end =p + size ;  //point to end of the array
 
 	for (; p != end; ++p){  //a pointer is incremented
 		printf("el through ptr %d\n", *p);		

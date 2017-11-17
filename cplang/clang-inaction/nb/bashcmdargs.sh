@@ -14,5 +14,5 @@ do
 shift
 done
 
-#echo $opt1
-#echo $opt2
+echo $opt1
+echo $opt2

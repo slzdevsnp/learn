@@ -1,1 +1,2 @@
-fn=filename; rm unions ; gcc unions.c -Wall -std=c99 -Wextra -o unions; ./unions
+fn=filename; rm $fn ; gcc $fn.c -Wall -std=c99 -Wextra -o $fn ; ./$fn
+
