@@ -139,7 +139,7 @@ val.errors <- rep(NA,p_features)
 #loop over models of all sizes between 1 and 19
 for (i in 1:p_features){
 	coefi <- coef(regfit.best,id=i) #best model of size k=i
-    pred  <- test.mat[,names(coefi)]%*%coefi
+    pred  <- test.mat[,names(coefi)]%*%coefi #matrix vector multiplication
     val.errors[i] <- mean( (Hitters$Salary[test]-pred)^2 )
 }
 val.errors
@@ -151,6 +151,77 @@ ve_min <- which.min(val.errors)
 points(ve_min,val.errors[ve_min],col="red", cex=2, pch=20)
 ve_min
 coef(regfit.best,id=ve_min)
+```
+Lets write a function for `predict.regsubsets` 
+```{r}
+#syntax is complex
+predict.regsubsets<-function(object,newdata,id,...){
+    form<-as.formula(object$call[[2]])
+    mat<-model.matrix(form,newdata)
+    coefi<-coef(object,id=id)
+    mat[,names(coefi)]%*%coefi
+}
+```
+Lets use it in the k-fold validation . 
+```{r}
+k<-10
+set.seed(1)
+folds<-sample(1:k, nrow(Hitters), replace=TRUE)
+table(folds) # to see the frequency of echh element of a sequence 1:10
+#prepare a matrix to store  cross validation errors
+cv.errors <- matrix(NA,k,p_features, dimnames=list(NULL,paste(1:19)))
 
-This was a little tedious
+#looping on  k folds
+for(j in 1:k ){
+  #method best model selection (cpu consuming)
+	best.fit <- regsubsets(Salary~.,data=Hitters[folds!=j,] ,nvmax=p_features)
+	   #loop through possible model sizes on test data
+   	for(i in 1:19){
+   		pred<-predict.regsubsets(best.fit, Hitters[folds==j,], id=i)
+   		cv.errors[j,i]<-mean( (Hitters$Salary[folds==j]-pred)^2)
+   }	
+}
+#obtain a mean cv error
+mean.cv.errors <- apply(cv.errors, 2, mean) #apply func mean on index 2 (columns)
+str(mean.cv.errors)
+print(paste("mean cv error:", paste(mean.cv.errors, collapse=",")))
+```
+Lets make a plot of cv curve and determinte the minumum  CVE.
+
+```{r}
+plot(mean.cv.errors, type='b', main="cross-validation curve for best subset selection", xlab="Number of Variables")
+min_cve_idx <- which.min(as.numeric(mean.cv.errors))
+paste("min CVE found for model size", min_cve_idx)
+points(min_cve_idx, mean.cv.errors[min_cve_idx],col="red", cex=2, pch=20)
+```
+
+## Lab 2: Ridge Regression and Lasso
+`glmnet` package will be used fro Ridge and Lasso.   `model.matrix` will be used to transfor model in a matrix form. This function also transforms any qualitataive variables into dummy variables 
+```{r}
+x <- model.matrix(Salary~. ,data=Hitters)[,-1]
+y <- Hitters$Salary 
+```
+
+#### Ridge Regresssion
+```{r}
+library(glmnet)
+grid <- 10^seq(10,-2,length=100) # array of 100 values from 10^10 to 10^-2 for lambda
+ridge.mod <- glmnet(x,y, alpha=0, lambda=grid) # alpha = 0  is ridge
+print("model coeff for the lambda in the middle of the grid")
+ridge.mod$lambda[50]
+coef(ridge.mod)[,50]
+```
+We can also get coefficients using `predict`  e.g. for $\lambda=50$
+```{r}
+predict(ridge.mod, s=50,type="coefficients")[1:20,]
+```
+
+We now split data into a training set and a test set
+
+```{r}
+set.seed(1)
+#split in half
+train <- sample(1:nrow(x), nrow(x)/2)
+test <- !train 
+y.test <- y[test]
 ```
