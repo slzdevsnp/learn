@@ -171,3 +171,42 @@ out <- glmnet(x,y, alpha=1, lambda=grid)
 lasso.coef <- predict(out, type="coefficients", s=bestlam)[1:20,]
 print(lasso.coef)
 print(lasso.coef[lasso.coef != 0])
+
+##LAB 3 PCR  and PLS
+
+#PCR
+library(pls)
+set.seed(2)
+pcr.fit=pcr(Salary~., data=Hitters ,scale=TRUE,validation ="CV")
+print(summary(pcr.fit))
+validationplot(pcr.fit, val.type="MSEP") #MSEP - cross-validation MSE to be plotted
+
+#perform pcr on the training data and evaluate its test MSE 
+set.seed(1)
+pcr.fit=pcr(Salary~., data=Hitters,subset=train,scale=TRUE,validation ="CV")
+validationplot(pcr.fit,val.type="MSEP")
+#from plot the min of v is when n of componenets =7
+#find lowes CVE
+pcr.pred <- predict(pcr.fit, x[test,], ncomp=7) 
+mse_test_min <- mean((pcr.pred-y.test)^2)
+print(mse_test_min)
+
+#compare PCR test mse with those of Ridge and LASSO
+
+pcr.fit <- pcr(y~x, scale=TRUE, ncomp=7) #on all dataset on 7 componentts
+print(summary(pcr.fit))
+
+### PLS
+set.seed (1)
+pls.fit=plsr(Salary~., data=Hitters, subset=train, scale=TRUE, validation="CV")
+print(summary(pls.fit))
+validationplot(pls.fit,val.type="MSEP")
+
+pls.pred <- predict(pls.fit, x[test,], ncomp=2) 
+mse_test_min <- mean((pls.pred-y.test)^2)
+print(mse_test_min)
+
+# a pls fit on all data using ncomponents = 2
+pls.fit <- plsr(Salary~., data=Hitters, scale=TRUE, ncomp=2)
+print(summary(pls.fit))
+

@@ -319,3 +319,65 @@ print(lasso.coef[lasso.coef != 0])
 We observe that for the best $\lambda$ the model has only 7 variables (out of 19).
 
 ##Lab 3: PCR and PLS Regression
+#### PCR: Principal Components Regression
+Package `pls` is used forPCR and PLS Rgressions.
+Lets make the pcr fit on all daa and observe it summary
+```{r}
+library(pls)
+set.seed(2)
+pcr.fit=pcr(Salary~., data=Hitters ,scale=TRUE,validation ="CV")
+print(summary(pcr.fit))
+```
+Observe that `pcr()` reports the root mean squared error; in order to obtain the usual MSE, we must square this quantity. 
+
+In the variance exmplined section the  `X` is the amount of information about the model predictors captured by  components. `Salary` shows the variance explained for the model response variable.
+
+We can plot the cross-validation scores.
+```{r}
+validationplot(pcr.fit, val.type="MSEP") #MSEP - cross-validation MSE to be plotted
+```
+
+Now we perform pcr on the training data and evaluate its test MSE.
+```{r}
+set.seed(1)
+pcr.fit=pcr(Salary~., data=Hitters,subset=train,scale=TRUE,validation ="CV")
+validationplot(pcr.fit,val.type="MSEP")
+```
+
+We observe from the plot the min of CV error is when the number of componenets  equals 7.
+Lets find the correspoinding test MSE.
+```{r}
+pcr.pred <- predict(pcr.fit, x[test,], ncomp=7) 
+mse_test_min <- mean((pcr.pred-y.test)^2)
+mse_test_min
+```
+
+We fit PCR on the full data set, using M = 7, the number of components identified by cross-validation.
+```{r}
+pcr.fit <- pcr(y~x, scale=TRUE, ncomp=7) #on all dataset on 7 componentts
+print(summary(pcr.fit))
+```
+
+#### PLS: Partial Least Squares Regression
+Partial least squares is available in the same `pls` package and uses the same syntax.
+```{r}
+set.seed (1)
+pls.fit=plsr(Salary~., data=Hitters, subset=train, scale=TRUE, validation="CV")
+print(summary(pls.fit))
+validationplot(pls.fit,val.type="MSEP")
+```
+
+We see that minimum of MSE happens for number of components M=2.
+Lets compute the corresponding test MSE. 
+```{r}
+pls.pred <- predict(pls.fit, x[test,], ncomp=2) 
+mse_test_min <- mean((pls.pred-y.test)^2)
+print(mse_test_min)
+```
+This test MSE is comparable but slightly higher that, the test MSE of ridge, lasso and PCR.
+Lets do a pls fit on the whole data using a found number of components M=2
+```{r}
+pls.fit <- plsr(Salary~., data=Hitters, scale=TRUE, ncomp=2)
+print(summary(pls.fit))
+```
+In PLS with 2 components almost the same amount of variance is exaplained was with 7 components of PCR.
