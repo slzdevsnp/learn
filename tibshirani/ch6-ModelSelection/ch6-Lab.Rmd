@@ -198,22 +198,24 @@ points(min_cve_idx, mean.cv.errors[min_cve_idx],col="red", cex=2, pch=20)
 ## Lab 2: Ridge Regression and Lasso
 `glmnet` package will be used fro Ridge and Lasso.   `model.matrix` will be used to transfor model in a matrix form. This function also transforms any qualitataive variables into dummy variables 
 ```{r}
-x <- model.matrix(Salary~. ,data=Hitters)[,-1]
+x <- model.matrix(Salary~. ,data=Hitters)[,-1] #syntax different in lecture
 y <- Hitters$Salary 
 ```
 
-#### Ridge Regresssion
+### Ridge Regresssion
 ```{r}
 library(glmnet)
 grid <- 10^seq(10,-2,length=100) # array of 100 values from 10^10 to 10^-2 for lambda
+# by default glmnet standardize variables
 ridge.mod <- glmnet(x,y, alpha=0, lambda=grid) # alpha = 0  is ridge
-print("model coeff for the lambda in the middle of the grid")
-ridge.mod$lambda[50]
-coef(ridge.mod)[,50]
+plot(ridge.mod)
+ridge.mod$lambda[50] #lambda from the middle of the grid
+coef(ridge.mod)[,50] #model coefficients for lambda from the middle of the grid
+dim(coef(ridge.mod))
 ```
 We can also get coefficients using `predict`  e.g. for $\lambda=50$
 ```{r}
-predict(ridge.mod, s=50,type="coefficients")[1:20,]
+predict(ridge.mod, s=11497.57,type="coefficients")[1:20,]
 ```
 
 We now split data into a training set and a test set
@@ -221,7 +223,99 @@ We now split data into a training set and a test set
 ```{r}
 set.seed(1)
 #split in half
-train <- sample(1:nrow(x), nrow(x)/2)
-test <- !train 
+full_idx <- 1:nrow(x)
+train <- sample(full_idx, length(full_idx)/2 )
+test <- full_idx[-train] 
 y.test <- y[test]
+#observe train and test set (indexes)
+sort(train)
+sort(test)
 ```
+Then we fit a ridge on the training set and evaluate its MSE on the test set using $\lambda = 4$
+
+```{r}
+#fit ridge on train
+ridge.mod <- glmnet(x[train,], y[train], alpha=0, lambda = grid, thresh=1e-12 ) #alpha=0 is ridge
+ridge.pred <- predict(ridge.mod, s=4, newx=x[test,]) #make predictions for lambda = 4
+mse_lambda_4 <- mean((ridge.pred-y.test)^2) #mse on test for lambda = 4
+mse_lambda_4
+```
+Lets compapre this MSE of $\lambda=4$ to cases with null model (only intercept) and to MSE of $\lambda=0$
+
+```{r}
+#compute mse of the null model (only intercept as param)
+mse_nullmodel <- mean( (mean(y[train])-y.test)^2 )
+#predict for lambda = 10^10
+ridge.pred <- predict(ridge.mod, s=1e10, newx=x[test,])
+mse_lambda_inf <- mean((ridge.pred-y.test)^2)
+
+#predict mse  for lambda = 0
+ridge.pred <- predict(ridge.mod, s=0, newx=x[test,])
+mse_lambda_zero <- mean((ridge.pred-y.test)^2)
+
+#lets compare mses
+paste("mse of null model:",mse_nullmodel
+      ,"mse of lambda very large:",mse_lambda_inf
+      ,"mse of lambda 0:", mse_lambda_zero
+      ,"mse of lambda 4:",mse_lambda_4)
+```
+We observe that the case of lambda 4 has a much lower MSE compared to full collapse of parameters ($\lambda -> \infty$) and no collapse of parameters ($\lambda =0$).
+
+Lets verify that coefficients of ridge with $\lambda=0$ correspond to a classical linear  regression. It is still advised to use `lm()` for linear regression as this function generates also p-values.
+
+```{r}
+lm.reg<-lm(y~x, subset=train)
+print(lm.reg)
+#note exact=TRUE param
+print(predict(ridge.mod, s=0, exact=TRUE, type="coefficients")[1:20,] )
+```
+
+Now lets find a minimal test MSE using a cross validation using `cv.glmnet()`.
+```{r}
+set.seed(1)
+cv.out <- cv.glmnet(x[train,], y[train], alpha=0)
+bestlam<-cv.out$lambda.min
+bestlam
+plot(cv.out)
+#the test MSE for best lambda
+ridge.pred <- predict(ridge.mod, s=bestlam, newx=x[test,])
+bestlam_mse <- mean((ridge.pred-y.test)^2)
+bestlam_mse
+```
+If we print model coefficients with best determined lamba, we see that none of them is zero. Thus the ridge regularisation does not shrink the model.
+```{r}
+out=glmnet(x,y,alpha=0)
+coefs<-predict(out,type="coefficients",s=bestlam)[1:20,]
+coefs
+```
+### The Lasso Regression
+
+Same fuctions are uses as with Ridge except the paramere `alpha=1`
+```{r}
+lasso.mod=glmnet(x[train ,],y[train],alpha=1,lambda=grid)
+plot(lasso.mod)
+```
+Lets compute the best lambda and MSE usng the cross validation as for the Ridge. 
+```{r}
+set.seed (1)
+cv.out <- cv.glmnet(x[train,], y[train],alpha=1)
+plot(cv.out)
+bestlam=cv.out$lambda.min
+print(bestlam)
+lasso.pred=predict(lasso.mod,s=bestlam ,newx=x[test,])
+mse_bestlam_lasso <- mean((lasso.pred-y.test)^2)
+print(mse_bestlam_lasso)
+```
+We see that the best Lasso MSE is very similar as best Ridge MSE.
+
+Now lets see how lasso shrinks the model,
+
+```{r}
+out <- glmnet(x,y, alpha=1, lambda=grid)
+lasso.coef <- predict(out, type="coefficients", s=bestlam)[1:20,]
+print(lasso.coef)
+print(lasso.coef[lasso.coef != 0])
+```
+We observe that for the best $\lambda$ the model has only 7 variables (out of 19).
+
+##Lab 3: PCR and PLS Regression

@@ -90,13 +90,15 @@ points(min_cve_idx, mean.cv.errors[min_cve_idx],col="red", cex=2, pch=20)
 
 ### lab 2 Ridge and Lasso 
 library(glmnet)
-x <- model.matrix(Salary~. ,data=Hitters)[,-1]
+x <- model.matrix(Salary~. ,data=Hitters)[,-1] #syntax different in lecture
 #x <- model.matrix(Salary~.-1 ,data=Hitters)
 y <- Hitters$Salary 
 
 #ridge regression
 grid <- 10^seq(10,-2,length=100) # array of 100 values from 10^10 to 10^-2 for lambda
 ridge.mod <- glmnet(x,y, alpha=0, lambda=grid) # alpha = 0  is ridge
+plot(ridge.mod)
+
 print("model coeff for the lambda in the middle of the grid")
 print(coef(ridge.mod)[,50])
 
@@ -106,8 +108,66 @@ print(predict(ridge.mod, s=50,type="coefficients")[1:20,])
 ##split data
 set.seed(1)
 #split in half
-train <- sample(1:nrow(x), nrow(x)/2)
-test <- !train 
+full_idx <- 1:nrow(x)
+train <- sample(full_idx, length(full_idx)/2 )
+test <- full_idx[-train] 
 y.test <- y[test]
 
+#fit ridge on train
+ridge.mod <- glmnet(x[train,], y[train], alpha=0, lambda = grid, thresh=1e-12 ) #alpha=0 is ridge
+ridge.pred <- predict(ridge.mod, s=4, newx=x[test,]) #make predictions for lambda = 4
+print(mean((ridge.pred-y.test)^2)) #mse on test for lambda = 4
 
+#compute mse of the null model (only intercept as param)
+print( mean( (mean(y[train])-y.test)^2 ))
+
+#compute mse of the  for a very large lambda
+ridge.pred <- predict(ridge.mod, s=1e10, newx=x[test,]) #make predictions for lambda  large
+print(mean((ridge.pred-y.test)^2)) #mse on test for lambda = 1e10
+
+#compute mse of the  for lambda = 0 , i.e. plain linear regression
+ridge.pred <- predict(ridge.mod, s=0, newx=x[test,]) #make predictions for lambda = 4
+print(mean((ridge.pred-y.test)^2)) #mse on test for lambda = 1e10
+
+
+lm.reg<-lm(y~x, subset=train)
+print(lm.reg)
+
+print(predict(ridge.mod, s=0, exact=TRUE, type="coefficients")[1:20,] )
+
+
+
+#lets find the lambda with lowest cv 
+set.seed(1)
+cv.out <- cv.glmnet(x[train,], y[train], alpha=0)
+plot(cv.out)
+bestlam<-cv.out$lambda.min
+print(bestlam)
+
+#check test MSE for min lambda
+ridge.pred <- predict(ridge.mod, s=bestlam, newx=x[test,]) #make predictions for lambda  large
+print(mean((ridge.pred-y.test)^2))
+
+##see coeefs for best lamada from the model refit on the all data
+out=glmnet(x,y,alpha=0)
+coefs<-predict(out,type="coefficients",s=bestlam)[1:20,]
+print(coefs)
+
+#### LASSo
+lasso.mod=glmnet(x[train ,],y[train],alpha=1,lambda=grid)
+plot(lasso.mod)
+
+set.seed (1)
+cv.out <- cv.glmnet(x[train,], y[train],alpha=1)
+plot(cv.out)
+bestlam=cv.out$lambda.min
+print(bestlam)
+lasso.pred=predict(lasso.mod,s=bestlam ,newx=x[test,])
+mse_bestlam_lasso <- mean((lasso.pred-y.test)^2)
+print(mse_bestlam_lasso)
+
+## see how lasso shrinks the model 
+out <- glmnet(x,y, alpha=1, lambda=grid)
+lasso.coef <- predict(out, type="coefficients", s=bestlam)[1:20,]
+print(lasso.coef)
+print(lasso.coef[lasso.coef != 0])
