@@ -424,7 +424,7 @@ A better fit of true coefficients as measured here doesn't mean the model will h
 a lower test MSE.
 
 
-Ex 10 (Applied )
+Ex 11 (Applied )
 ===============
 ```{r}
 rm(list=ls())
