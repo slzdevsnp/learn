@@ -12,6 +12,13 @@ let lambdaDbl :  (Int) -> Double = { Double($0) } // defined a type without a fu
 
 lambdaDbl(-1)
 
+let powerTwo : (Double) -> Double = {$0 * $0 }
+
+powerTwo(2)
+powerTwo(-3)
+
+
+
 //implemnenting a sorting  on array
 var names = [ "Fred", "Wilma", "Barney", "Betty"]
 
@@ -136,5 +143,7 @@ print( append("") ) // prints access of a current state of buffer
 //        buffer += suffix + delimiter
 //        return buffer
 //}
+
+
 
 

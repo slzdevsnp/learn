@@ -24,14 +24,22 @@ struct Point { var x=0, y = 0}
 
 var z = Point()
 var y = z // making a copy of z
+
 y.x = 10
 func f(var a: Point){
         a.x = -1
 }
 
 f(z)
-z
+z // z is not changed because it was copied into the function scope
 y
+func pf(var a: Point, xValue: Int) -> Point {
+    a.x = xValue
+    return a
+}
+
+let w = pf(z, xValue: 100)
+
 /// -> structs are value objects  but classes are reference objects
 
 class CPoint { var x=0, y=0 }
@@ -169,17 +177,16 @@ enum Postalcode {
     case CA(code:String)
 }
 
-var somewhere = Postalcode.US(94707, 2624)
+var someLocation = Postalcode.US(94707, 2624)
 
-var someotherwhere = Postalcode.UK("SW1A 1AA")
+var someOtherLocation = Postalcode.UK("SW1A 1AA")
 
+var someThirdLocation = Postalcode.CA(code: "V5K 0A1")
 
-var somehere = Postalcode.CA(code: "V5K 0A1")
-
-switch somewhere {
+switch someLocation {
     case .UK (let s): print("\(s)")
     case .US (let loc, var route): print("\(loc)-\(route)")
-    case .CA: break;
+    case .CA (let cac) : print("\(cac)")
 }
 
 

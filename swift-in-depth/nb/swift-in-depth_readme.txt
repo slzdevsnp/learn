@@ -37,7 +37,7 @@ ch2 Operators, Tuypes, Collections
 
 
 ############################################
-ch3 Classes Structs basics
+ch3 Classes Structs basics,  tuples, enums
 ############################################
 
 Struct is value type
