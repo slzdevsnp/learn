@@ -5,7 +5,7 @@ script runs under system user
 
 CREATE USER slava IDENTIFIED BY "mypwd";
 
-GRANT CONNECT, RESOURCE, DBA to slava;
+GRANT CONNECT, RESOURCE to slava;
 
 GRANT CREATE SESSION to slava;
 GRANT CREATE TABLE to slava;
