@@ -748,7 +748,7 @@ DECLARE
 BEGIN 
    FOR n IN c_customers LOOP 
       counter := counter + 1; 
-      name_list.extend; 
+      name_list.extend; --alocate memory for next element  ? 
       name_list(counter)  := n.name; -- n is an element from the cursor
       dbms_output.put_line('Customer('||counter ||'):'||name_list(counter)); 
    END LOOP; 
@@ -847,6 +847,7 @@ BEGIN
    dbms_output.put_line(' Square of (23): ' || a); 
 END; 
 /
+
 
 ----------------
 -- Functions
@@ -1165,5 +1166,574 @@ BEGIN
     dbms_output.put_line('#################');
 END; 
 /   
-   
+/*
+exceptions are error handling in blocks
 
+    system exceptions
+    user exceptions
+
+gen syntax for using exception
+DECLARE 
+   <declarations section> 
+BEGIN 
+   <executable command(s)> 
+EXCEPTION 
+   <exception handling goes here > 
+   WHEN exception1 THEN  
+      exception1-handling-statements  
+   WHEN exception2  THEN  
+      exception2-handling-statements  
+   WHEN exception3 THEN  
+      exception3-handling-statements 
+   ........ 
+   WHEN others THEN 
+      exception3-handling-statements 
+END;
+
+declare a user defined exception
+DECLARE 
+   my-exception EXCEPTION; 
+*/
+
+DECLARE 
+   c_id customers.id%type := 8; -- there is no rowid = 8
+   c_name customers.name%type; 
+   c_addr customers.address%type; 
+BEGIN 
+   SELECT  name, address INTO  c_name, c_addr 
+   FROM customers 
+   WHERE id = c_id;  
+   DBMS_OUTPUT.PUT_LINE ('Name: '||  c_name); 
+   DBMS_OUTPUT.PUT_LINE ('Address: ' || c_addr); 
+
+EXCEPTION 
+   WHEN no_data_found THEN   -- no_data_found is a system exception
+      dbms_output.put_line('No such customer with id: ' || c_id ); 
+   WHEN others THEN   -- fall through with generic exception
+      dbms_output.put_line('Error!'); 
+END; 
+/
+
+/*  example with user-defined exception */
+
+
+DECLARE 
+   c_id customers.id%type := &cc_id;  -- the &cc_id opens gui dialogue 
+   c_name customers.name%type; 
+   c_addr customers.address%type;  
+   
+   ex_invalid_id  EXCEPTION;  -- user defined exception 
+BEGIN 
+   IF c_id <= 0 THEN 
+      RAISE ex_invalid_id;  --throw a user-defined exception
+   ELSE 
+      SELECT  name, address INTO  c_name, c_addr 
+      FROM customers 
+      WHERE id = c_id;
+      DBMS_OUTPUT.PUT_LINE ('Name: '||  c_name);  
+      DBMS_OUTPUT.PUT_LINE ('Address: ' || c_addr); 
+   END IF; 
+
+EXCEPTION 
+   WHEN ex_invalid_id THEN 
+      dbms_output.put_line('ID must be greater than zero!'); 
+   WHEN no_data_found THEN 
+      dbms_output.put_line('No such customer with id: ' || c_id); 
+   WHEN others THEN 
+      dbms_output.put_line('Error!');  
+END; 
+/
+
+/*
+some system exceptions:
+ACCESS_INTO_NULL, CASE_NOT_FOUND, COLLECTION_IS_NULL, DUP_VAL_ON_INDEX,
+INVALID_CURSOR, INVALID_NUMBER, LOGIN_DENIED,NO_DATA_FOUND, NOT_LOGGED_ON, 
+PROGRAM_ERROR, ROWTYPE_MISMATCH, SELF_IS_NULL, STORAGE_ERROR, TOO_MANY_ROWS, 
+VALUE_ERROR, ZERO_DIVIDE
+*/
+/* zero divide exception */
+DECLARE
+    num1 number;
+    num2 number;
+    num3 number;
+BEGIN
+    num1 := 10;
+    num2 := 0.0;
+    num3 := num1 / num2;
+    dbms_output.put_line('result of division: ' || num3);
+EXCEPTION
+    WHEN ZERO_DIVIDE THEN
+        dbms_output.put_line('Encountered division by zero'); 
+    WHEN others THEN 
+      dbms_output.put_line('Error!');       
+END;
+/
+
+ 
+----------------
+-- triggers
+----------------
+DECLARE 
+   message  varchar2(100):= 'Triggers'; 
+BEGIN 
+   dbms_output.put_line('#################');
+    dbms_output.put_line(message);
+    dbms_output.put_line('#################');
+END; 
+/   
+
+/*
+triggers are stored procedures which 
+get executed on event occuring
+
+triggers usually fired on:
+ --- DML  statement (delete, insert, update), 
+ -- DDL statement CREATE,ALTER, DROP
+ --  a db operation (servererror, logon, logoff, startup, shutdown
+ 
+ triggers can be defined on able, view, schema, or database  level
+ 
+ common usage patterns:
+ -- generate some derived columns automatically
+ -- enforcing referential integrity
+ -- event logging and storing information on table access
+ -- auditing
+ -- synchronous  replication of tables 
+ -- imposing security authorizations
+ -- preventing invalid  transactions
+*/
+
+/*
+gen syntax:
+CREATE [OR REPLACE ] TRIGGER trigger_name  
+{BEFORE | AFTER | INSTEAD OF }    -- when the trigger will be exe executed
+{INSERT [OR] | UPDATE [OR] | DELETE}  -- event DML operation
+[OF col_name]  
+ON table_name             -- name of the table where the trigger will run on
+[REFERENCING OLD AS o NEW AS n]  
+[FOR EACH ROW]            -- with this option the trigger will execute on each row
+WHEN (condition)          -- filter to select rows on which the trigger will fire
+DECLARE 
+   Declaration-statements 
+BEGIN  
+   Executable-statements 
+EXCEPTION 
+   Exception-handling-statements 
+END; 
+
+*/
+
+
+/*  example row-level trigger on customers
+that would fire on insert, update., delete 
+it will display  the salary difference between the old values and new values */
+
+CREATE OR REPLACE TRIGGER display_salary_changes 
+BEFORE DELETE OR INSERT OR UPDATE ON customers 
+FOR EACH ROW 
+WHEN (NEW.ID > 0) 
+DECLARE 
+   sal_diff number; 
+BEGIN 
+   sal_diff := :NEW.salary  - :OLD.salary;     --- NEW, OLD references for record-level trig
+   dbms_output.put_line('Old salary: ' || :OLD.salary); 
+   dbms_output.put_line('New salary: ' || :NEW.salary); 
+   dbms_output.put_line('Salary difference: ' || sal_diff); 
+END; 
+/
+
+/* triggering a trigger */
+INSERT INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY) 
+VALUES (7, 'Kriti', 21, 'HP', 7500.00 ); 
+
+delete from CUSTOMERS where ID = 7;
+
+UPDATE customers 
+SET salary = salary + 500 
+WHERE id = 2; 
+
+
+----------------
+-- packages
+----------------
+DECLARE 
+   message  varchar2(100):= 'Packages'; 
+BEGIN 
+   dbms_output.put_line('#################');
+    dbms_output.put_line(message);
+    dbms_output.put_line('#################');
+END; 
+/ 
+/*
+Packages are schema objects that groups logically
+related PL/SQL types, variables, and subprograms.
+
+The specification is the interface to the package.
+It just DECLARES the types, variables, constants, exceptions,
+cursors, and subprograms that can be referenced from outsid
+
+All objects placed in the specification are called public objects. 
+
+all other objects are private objects
+
+
+*/
+
+--DROP PACKAGE cust_sal;
+
+/* the spec of the package with 1 proc */    -- like a C header file
+CREATE PACKAGE cust_sal AS 
+   PROCEDURE find_sal(c_id customers.id%type); 
+END cust_sal; 
+/
+/* the package body   */
+CREATE OR REPLACE PACKAGE BODY cust_sal AS  
+   
+   PROCEDURE find_sal(c_id customers.id%TYPE) IS 
+   c_sal customers.salary%TYPE; 
+   BEGIN 
+      SELECT salary INTO c_sal 
+      FROM customers 
+      WHERE id = c_id; 
+      dbms_output.put_line('Salary: '|| c_sal || ' for customer id: '|| c_id ); 
+   END find_sal;   --specify name of proc
+END cust_sal;    -- specify name of a package
+/
+
+/* 
+using package
+gen syntax
+package_name.element_name;
+*/
+
+DECLARE 
+   code customers.id%type := &cc_id; 
+BEGIN 
+   cust_sal.find_sal(code); 
+END; 
+/
+
+
+/* a more complte package on CUSTOMERS table  with 3 procs */
+CREATE OR REPLACE PACKAGE c_package AS 
+   -- Adds a customer 
+   PROCEDURE addCustomer(c_id   customers.id%type, 
+   c_name  customers.name%type, 
+   c_age  customers.age%type, 
+   c_addr customers.address%type,  
+   c_sal  customers.salary%type); 
+   
+   -- Removes a customer 
+   PROCEDURE delCustomer(c_id  customers.id%TYPE); 
+   --Lists all customers 
+   PROCEDURE listCustomer; 
+  
+END c_package; 
+/
+CREATE OR REPLACE PACKAGE BODY c_package AS 
+   PROCEDURE addCustomer(c_id  customers.id%type, 
+      c_name customers.name%type, 
+      c_age  customers.age%type, 
+      c_addr  customers.address%type,  
+      c_sal   customers.salary%type) 
+   IS 
+   BEGIN 
+      INSERT INTO customers (id,name,age,address,salary) 
+         VALUES(c_id, c_name, c_age, c_addr, c_sal); 
+   END addCustomer; 
+   
+   PROCEDURE delCustomer(c_id   customers.id%type) IS 
+   BEGIN 
+      DELETE FROM customers 
+      WHERE id = c_id; 
+   END delCustomer;  
+   
+   PROCEDURE listCustomer IS 
+   CURSOR c_customers is 
+      SELECT  name FROM customers; 
+   TYPE c_list is TABLE OF customers.name%type; 
+   name_list c_list := c_list(); 
+   counter integer :=0; 
+   BEGIN 
+      FOR n IN c_customers LOOP 
+      counter := counter +1; 
+      name_list.extend; 
+      name_list(counter) := n.name; 
+      dbms_output.put_line('Customer(' ||counter|| ')'||name_list(counter)); 
+      END LOOP; 
+   END listCustomer;
+END c_package; 
+/
+
+/*   using the more complex package */
+DECLARE 
+   code customers.id%type:= 8; 
+BEGIN 
+   c_package.addcustomer(7, 'Rajnish', 25, 'Chennai', 3500); 
+   c_package.addcustomer(8, 'Subham', 32, 'Delhi', 7500); 
+   c_package.listcustomer; 
+    dbms_output.put_line('**********');
+   c_package.delcustomer(code); 
+   c_package.listcustomer; 
+END; 
+/ 
+
+
+----------------
+-- collections
+----------------
+DECLARE 
+   message  varchar2(100):= 'Collections'; 
+BEGIN 
+   dbms_output.put_line('#################');
+    dbms_output.put_line(message);
+    dbms_output.put_line('#################');
+END; 
+/
+
+/*
+collection = ordered group of elements having gthe same data type
+
+3 collection types
+-- index-by tables or associative array (dictionary)  unbouned length
+-- nested table    unbounded length
+-- variable size array or varray  bounded length
+
+
+*/
+
+/* example  index-by table */
+
+DECLARE 
+   TYPE salary IS TABLE OF NUMBER INDEX BY VARCHAR2(20); --dictionary with string keys
+   salary_list salary;   -- no specification of array lenght
+   name   VARCHAR2(20); 
+BEGIN 
+   -- adding elements to the table 
+   salary_list('Rajnish') := 62000; 
+   salary_list('Minakshi') := 75000; 
+   salary_list('Martin') := 100000; 
+   salary_list('James') := 78000;  
+   
+   -- printing the table 
+   name := salary_list.FIRST; 
+   WHILE name IS NOT null LOOP 
+      dbms_output.put_line 
+      ('Salary of ' || name || ' is ' || TO_CHAR(salary_list(name))); 
+      name := salary_list.NEXT(name);  -- fetch next elemenet from the list
+   END LOOP; 
+END; 
+/
+
+/*
+Elements of an index-by table could also be a %ROWTYPE of
+any database table or %TYPE of any database table field
+
+example with customers table
+*/
+
+DECLARE 
+   CURSOR c_customers is 
+      select name from customers; 
+
+   TYPE c_list IS TABLE of customers.name%type INDEX BY binary_integer; 
+   name_list c_list; 
+   counter integer :=0; 
+BEGIN 
+   FOR n IN c_customers LOOP 
+      counter := counter +1; 
+      name_list(counter) := n.name; 
+      dbms_output.put_line('Customer('||counter||'):'||name_lis t(counter)); 
+   END LOOP; 
+END; 
+/ 
+
+/*
+nested tables
+
+nested table does now hae a declared number of elements, so it can grow
+
+this array sis always dense, i.e. hs consecutive subscripts
+*/
+
+/* example of nested table  */
+DECLARE 
+   TYPE names_table IS TABLE OF VARCHAR2(10); 
+   TYPE grades IS TABLE OF INTEGER;  
+   names names_table; 
+   marks grades; 
+   total integer; 
+BEGIN 
+   names := names_table('Kavita', 'Pritam', 'Ayan', 'Rishav', 'Aziz'); 
+   marks:= grades(98, 97, 78, 87, 92); 
+   total := names.count; 
+   dbms_output.put_line('Total '|| total || ' Students'); 
+   FOR i IN 1 .. total LOOP 
+      dbms_output.put_line('Student:'||names(i)||', Marks:' || marks(i)); 
+   end loop; 
+END; 
+/
+
+/* example of nested table on customers table */
+DECLARE 
+   CURSOR c_customers is  
+      SELECT  name FROM customers;  
+   TYPE c_list IS TABLE of customers.name%type; 
+   name_list c_list := c_list(); 
+   counter integer :=0; 
+BEGIN 
+   FOR n IN c_customers LOOP 
+      counter := counter +1; 
+      name_list.extend; 
+      name_list(counter)  := n.name; 
+      dbms_output.put_line('Customer('||counter||'):'||name_list(counter)); 
+   END LOOP; 
+END; 
+/
+
+/* 
+collections methods
+exists(n), count, limit, first, last, prior(n), next(n), extend, extend(n),
+extend(n,i), trim, trim(n), delete, delete(n), delete(m,n)
+*/
+
+----------------
+-- transactions
+----------------
+DECLARE 
+   message  varchar2(100):= 'transactions'; 
+BEGIN 
+   dbms_output.put_line('#################');
+    dbms_output.put_line(message);
+    dbms_output.put_line('#################');
+END; 
+/
+
+/*
+a tx is tompic unit of work
+
+differentiated a successfull sql statement and a commited transaction
+
+tx ends with:
+    -- commit or rollback
+    -- a ddl statment  e.g. create table
+    -- a dcl statement, such as grant
+    -- user disconnects from db
+    -- user exits from sqlplus by issuing exit command
+    -- a dml statemenet fails
+    
+gen syntax:
+COMMIT;
+ROLLBACK [TO SAVEPOINT < savepoint_name>]; 
+
+Savepoints are sort of markers that help in
+splitting a long transaction into small    
+    
+*/
+-- bring customers to initial state
+delete from CUSTOMERS  where ID > 6;
+
+/* example of transaction with savepoints */
+INSERT INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY) 
+VALUES (7, 'Rajnish', 27, 'HP', 9500.00 ); 
+
+INSERT INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY) 
+VALUES (8, 'Riddhi', 21, 'WB', 4500.00 ); 
+SAVEPOINT sav1;
+  
+UPDATE CUSTOMERS 
+SET SALARY = SALARY + 1000; 
+ROLLBACK TO sav1;
+
+--select * from CUSTOMERS;
+  
+UPDATE CUSTOMERS 
+SET SALARY = SALARY + 1000 
+WHERE ID = 7; 
+UPDATE CUSTOMERS 
+SET SALARY = SALARY + 1000 
+WHERE ID = 8; 
+
+COMMIT;
+
+/*
+to execute commit automatical on any DML
+SET AUTOCOMMIT ON;
+SET AUTOCOMMIT OFF;
+*/
+
+----------------
+-- date & time
+----------------
+DECLARE 
+   message  varchar2(100):= 'Date & Time'; 
+BEGIN 
+   dbms_output.put_line('#################');
+    dbms_output.put_line(message);
+    dbms_output.put_line('#################');
+END; 
+/
+
+/*
+pl/sql treats
+    datetime data types
+    interval data types
+    
+datetime types:
+    date
+    timestamp
+    timestamp with time zone
+    timestamp with local time zone
+    
+interval types:
+    inteval year to month
+    interval day to second
+
+
+datetime functions:
+
+ADD_MONTHS(x,y);
+LAST_DAY(x);  -- returns last day of month
+MONTSH_BETWEEN(x,y);
+NEXT_DAY(x,day);
+NEW_TIME;
+ROUND(x,[,unit]);
+SYSDATE();
+TRUNC(x,[,unit]);
+
+timestamp functions
+CURRENT_TIMESTAMP();
+EXTRACT({YEAR | MONTH | DAY | HOUR | MINUTE | SECOND } 
+| { TIMEZONE_HOUR | TIMEZONE_MINUTE } | { TIMEZONE_REGION | TIMZEONE_ABBR) from x )
+
+FROM_TZ(x,time_zone);
+LOCALTIMESTAMP();
+SYSTEMSTAMP();
+SYS_EXTRACT_UTC(x);
+TO_TIMESTAMP(x, [format]); -- string to timestamp
+TO_TIMESTAMP_TZ(x, [format]);
+*/
+
+select sysdate from dual;
+SELECT TO_CHAR(CURRENT_DATE, 'DD-MM-YYYY HH:MI:SS') FROM DUAL; 
+SELECT ADD_MONTHS(SYSDATE, 5) FROM DUAL;
+SELECT LOCALTIMESTAMP FROM DUAL; 
+
+
+/*
+interval data type
+ 
+ INTERVAL YEAR TO MONTH  (stores a period of time using year and month
+ INTERVAL DAY TO SECOND  ( stored a period of time in terms of days, hours, minutes, seconds)
+ 
+ funcs:
+ 
+ NUMTODSINTERVAL(x, interval_unit);  -- converts number x to interval day to second
+ NUMTOYMINTERVAL(x, interval_unit);  --  smae bu to interval year to month
+ 
+ TO_DSINTERVAL(x);  -- string to day second interval
+ TO_YMINTERVAL(x);   -- string to year month inteval
+ 
+ 
+
+*/

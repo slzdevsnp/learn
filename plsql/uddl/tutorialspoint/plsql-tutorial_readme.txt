@@ -3,7 +3,9 @@ plsql tutorial readme / questions
 Questions
 
 subject: data types
+
 numerical types
+
 1. difference between   PLS_INTEGER and BINARY_INTEGER (some size in memory, same range)
 
 2. fixed-point  vs  floating type  i.e. number(p,s)  vs number  ? 
@@ -26,9 +28,17 @@ BEGIN
    null; 
 END; 
 
-char types
+CHAR types
+
 1.  ROWID;  -- physical row identify, the address of a row in an ordinary table Q: What is this type ? 
 2.  CHAR vs NCHAR data type?  what is the difference ? 
+
+
+Arrays
+
+line: 751
+what does the line  name_list.extend;  ? 
+
 
 Procedures topic
 
@@ -44,5 +54,37 @@ when executed as  a group of statements OK
 when full script is ran  - compilation error.
 PLS-00103: Encountered the symbol "DECLARE" 
  why? 
+
+Cursors 
+
+often used in  pl/sql  programs behind screens ?
+
+
+Exceptions
+
+line: 1219
+DECLARE 
+   c_id customers.id%type := &cc_id;  -- the &cc_id opens gui
+   c_name customers.name%type; 
+   c_addr customers.address%type;  
+   ex_invalid_id  EXCEPTION;  -- user defined exception 
+BEGIN 
+....
+
+Q: what is this syntax &cc_id ? 
+
+
+
+Dates and times 
+
+EXTRACT(HOUR from x)  vs EXTRACT(TIMEZONE_HOUR from x) ? 
+
+
+Object orented pl/sql  
+
+1.   are objects  often used in  pl/sql programming ? 
+
+
+
 
 
