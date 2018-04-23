@@ -29,3 +29,20 @@ END;
 char types
 1.  ROWID;  -- physical row identify, the address of a row in an ordinary table Q: What is this type ? 
 2.  CHAR vs NCHAR data type?  what is the difference ? 
+
+Procedures topic
+
+1.  procedure definition  IS  vs AS    ? 
+    AS creates a proc as a persistd db object
+    IS creates a  proc visible only inside its block ? 
+
+2.
+/* in out example 1 */
+line 814
+when executed as  a group of statements OK
+
+when full script is ran  - compilation error.
+PLS-00103: Encountered the symbol "DECLARE" 
+ why? 
+
+

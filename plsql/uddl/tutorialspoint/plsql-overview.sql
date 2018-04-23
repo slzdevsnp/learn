@@ -591,3 +591,579 @@ BEGIN
    END loop outer_loop; 
 END; 
 /
+
+
+----------------
+-- Strings
+----------------
+DECLARE 
+   message  varchar2(100):= 'Strings'; 
+BEGIN 
+   dbms_output.put_line('#################');
+   dbms_output.put_line(message);
+    dbms_output.put_line('#################');
+END; 
+/
+
+/*
+fixed lenght strings
+varible lenght strings  up to 32767 bytes
+character large objects (clobs)  variable up to 128 TB
+
+*/
+DECLARE 
+   name varchar2(20); 
+   company varchar2(30); 
+   introduction clob; 
+   choice char(1); 
+BEGIN 
+   name := 'John Smith'; 
+   company := 'Infotech'; 
+   introduction := ' Hello! I''m John Smith from Infotech.'; 
+   choice := 'y'; 
+   IF choice = 'y' THEN 
+      dbms_output.put_line(name); 
+      dbms_output.put_line(company); 
+      dbms_output.put_line(introduction); 
+   END IF; 
+END; 
+/
+
+/*
+string functions
+ascii(x);
+chr(x);
+concat(x,y);
+initcap(x); -- convert intial letter of each word in uppercase
+instr(x, find_string [,star], [,occcurence] );  -- search a substring in find_string
+length(x) ;  -- lenght of string
+lengthb(x) ;  -- lenght of string in bytes
+lower(x);
+lpad(x, width [,pad_string]); 
+ltrim(x, [,trim_string]);
+NANVL(x, value);  -- Returns value if x matches the NaN special value (not a number),
+                  -- otherwise x is returned.
+
+NLS_INITCAP(x);   -- same as initcap but uses differnt sort method as specified in NLSSORT
+NLSSORT(x);
+NVL(x,value); returns value if x is null, othervise x is return
+replace(x, search_ptrn, replace_ptrn);
+rpad(x);
+rtrim(x);
+soundex(x); 
+SUBSTR(x, start[,length]);
+TRIM([trim_char FROM x);  trim char from both sides
+UPPER(x);
+*/
+
+DECLARE
+    sstr_posit int;
+    mynum int := NULL;
+    greeting varchar2(20); 
+BEGIN
+    greeting := 'aprivet mama i papa';
+    sstr_posit := INSTR('ma', 'privet papa i mama');
+    dbms_output.put_line('nvl output: '|| NVL(mynum, -1)); 
+    dbms_output.put_line('trim output: '|| TRIM('a' FROM greeting) ); 
+    
+END;
+/
+
+DECLARE 
+   greetings varchar2(11) := 'hello world'; 
+BEGIN 
+   dbms_output.put_line(UPPER(greetings)); 
+   dbms_output.put_line(LOWER(greetings)); 
+   dbms_output.put_line(INITCAP(greetings)); 
+   /* retrieve the first character in the string */ 
+   dbms_output.put_line ( SUBSTR (greetings, 1, 1)); 
+   /* retrieve the last character in the string */ 
+   dbms_output.put_line ( SUBSTR (greetings, -1, 1)); 
+   /* retrieve five characters,  
+      starting from the seventh position. */ 
+   dbms_output.put_line ( SUBSTR (greetings, 7, 5)); 
+   /* retrieve the remainder of the string,
+      starting from the second position. */ 
+   dbms_output.put_line ( SUBSTR (greetings, 2));    
+   /* find the location of the first "e" */ 
+   dbms_output.put_line ( INSTR (greetings, 'e')); 
+END; 
+/ 
+/* trim examples */
+DECLARE 
+   greetings varchar2(30) := '......Hello World.....'; 
+BEGIN 
+   dbms_output.put_line(RTRIM(greetings,'.')); 
+   dbms_output.put_line(LTRIM(greetings, '.')); 
+   dbms_output.put_line(TRIM( '.' from greetings)); 
+END; 
+/
+
+----------------
+-- Arrays
+----------------
+DECLARE 
+   message  varchar2(100):= 'Arrays'; 
+BEGIN 
+   dbms_output.put_line('#################');
+   dbms_output.put_line(message);
+    dbms_output.put_line('#################');
+END; 
+/
+
+/*
+VARRAY type  fixe-size  collectio of items of the same type , continious in memory
+
+def in block:
+TYPE varray_type_name IS VARRAY(n) of <element_type>
+e.g.
+TYPE namearray IS VARRAY(5) OF VARCHAR2(10); 
+Type grades IS VARRAY(5) OF INTEGER;
+*/
+/*  varray example 1  */
+DECLARE 
+   type namesarray IS VARRAY(5) OF VARCHAR2(10); 
+   type grades IS VARRAY(5) OF INTEGER; 
+   names namesarray; 
+   marks grades; 
+   total integer; 
+BEGIN 
+   names := namesarray('Kavita', 'Pritam', 'Ayan', 'Rishav', 'Aziz'); 
+   marks:= grades(98, 97, 78, 87, 92); -- if add another element, compile error
+   total := names.count; 
+   dbms_output.put_line('Total '|| total || ' Students'); 
+   FOR i in 1 .. total LOOP   -- array index starts from 1
+      dbms_output.put_line('Student: ' || names(i) || ' 
+      Marks: ' || marks(i)); 
+   END LOOP; 
+END; 
+/
+/*  varray example 2  */
+DECLARE 
+   CURSOR c_customers is   
+   SELECT  name FROM customers; 
+   type c_list is varray (6) of customers.name%type; 
+   name_list c_list := c_list(); -- memory allocated for empty error of fixed length
+   counter integer :=0; --initilize loop index
+BEGIN 
+   FOR n IN c_customers LOOP 
+      counter := counter + 1; 
+      name_list.extend; 
+      name_list(counter)  := n.name; -- n is an element from the cursor
+      dbms_output.put_line('Customer('||counter ||'):'||name_list(counter)); 
+   END LOOP; 
+END; 
+/ 
+----------------
+-- Procedures
+----------------
+DECLARE 
+   message  varchar2(100):= 'Procedures'; 
+BEGIN 
+   dbms_output.put_line('#################');
+   dbms_output.put_line(message);
+    dbms_output.put_line('#################');
+END; 
+/
+
+/*
+procs calling other procs ==  modular design
+
+create procedure
+drop procedure
+create function
+drop function
+
+these  are db objects
+a subprogram created inside a package is a apackaged subprogram
+
+a proc has  { declarative part (optional), executable part (mandatory), exception handling (mandatory) }
+gen syntax:
+
+CREATE [OR REPLACE] PROCEDURE procedure_name 
+[(parameter_name [IN | OUT | IN OUT] type [, ...])] 
+{IS | AS} 
+BEGIN 
+  < procedure_body > 
+END procedure_name; 
+
+or replace  allows the modif of an existing procedure
+param IN  will be passed inside  (read-only param) this is a adefault mode for params
+parm OUT will e passed out used to return a value ouside the proc. param should be variable
+
+*/
+/*  dummy  example */
+CREATE OR REPLACE PROCEDURE greetings 
+AS 
+BEGIN 
+   dbms_output.put_line('Hello World!'); 
+END; 
+/
+-- call in the script
+--exec greetings;
+-- call in the block
+
+BEGIN
+    greetings;
+END;
+
+-- drop procedure greetings;
+
+/* IN & OUT Mode Example   */
+
+DECLARE 
+   a number; 
+   b number; 
+   c number;
+PROCEDURE findMin(x IN number, y IN number, z OUT number) IS 
+BEGIN 
+   IF x < y THEN 
+      z:= x; 
+   ELSE 
+      z:= y; 
+   END IF; 
+END; 
+BEGIN 
+   a:= 23; 
+   b:= 45; 
+   findMin(a, b, c); -- positional notation
+   findMin(x => a, y => b, z => c);  -- named notation
+   dbms_output.put_line(' Minimum of (23, 45) : ' || c); 
+END; 
+/
+
+
+/*  in out example 2 */
+DECLARE 
+   a number; 
+   b number;
+PROCEDURE squareNum(x IN OUT number) IS 
+BEGIN 
+  x := x * x; 
+END;  
+BEGIN 
+   a:= 23; 
+   squareNum(a); 
+   dbms_output.put_line(' Square of (23): ' || a); 
+END; 
+/
+
+----------------
+-- Functions
+----------------
+DECLARE 
+   message  varchar2(100):= 'Functions'; 
+BEGIN 
+   dbms_output.put_line('#################');
+   dbms_output.put_line(message);
+    dbms_output.put_line('#################');
+END; 
+/
+
+/*
+general syn
+CREATE [OR REPLACE] FUNCTION function_name 
+[(parameter_name [IN | OUT | IN OUT] type [, ...])] 
+RETURN return_datatype 
+{IS | AS} 
+BEGIN 
+   < function_body > 
+END [function_name];
+
+a function reuturns a computed value rather than modifies data in tables
+
+*/
+
+/*  simple example  define func with no params */
+CREATE OR REPLACE FUNCTION totalCustomers 
+RETURN number IS 
+   total number(2) := 0; 
+BEGIN 
+   SELECT count(*) into total 
+   FROM customers; 
+    
+   RETURN total; 
+END; 
+/ 
+-- call the func in the block
+DECLARE 
+   c number(2); 
+BEGIN 
+   c := totalCustomers(); 
+   dbms_output.put_line('Total no. of Customers: ' || c); 
+END; 
+/
+/* definein  the block a func to find a max of two numbers */
+DECLARE 
+   a number; 
+   b number; 
+   c number; 
+FUNCTION findMax(x IN number, y IN number)  
+RETURN number 
+IS 
+    z number; 
+BEGIN 
+   IF x > y THEN 
+      z:= x; 
+   ELSE 
+      Z:= y; 
+   END IF;  
+   RETURN z; 
+END;
+BEGIN 
+   a:= 49; 
+   b:= 48;  
+   c := findMax(a, b); 
+   dbms_output.put_line(' Maximum of ' || a || ' and ' || b || ' : ' || c); 
+END;
+/
+
+/*
+recursive functions
+
+*/
+
+/* example with canonical factorial recursive function defined in the block */
+DECLARE 
+   num number; 
+   factorial number;  
+   
+FUNCTION fact(x number) 
+RETURN number  
+IS 
+   f number; 
+BEGIN 
+   IF x=0 THEN 
+      f := 1; 
+   ELSE 
+      f := x * fact(x-1); 
+   END IF; 
+RETURN f; 
+END;  
+
+BEGIN 
+   num:= 6; 
+   factorial := fact(num); 
+   dbms_output.put_line(' Factorial '|| num || ' is ' || factorial); 
+END; 
+/
+
+----------------
+-- Cursors
+----------------
+DECLARE 
+   message  varchar2(100):= 'Cursors'; 
+BEGIN 
+   dbms_output.put_line('#################');
+   dbms_output.put_line(message);
+    dbms_output.put_line('#################');
+END; 
+/
+
+/*
+a cursor is a pointer  in the memory area called context area
+a set of rows the cursor holds is aclled active set
+
+implicit cursors
+    automatically created in oracle whenever a sql statement is executed
+    programer has no control on implicit cursor
+    
+    implicit cursor has also attributes such as %FOUND, %ISOPEN  %NOTFOUND %ROWCOUNT
+    sql%attribute_name  the way to access attributes    
+*/
+
+/*  the followin will update every row in customers sql%rowcount shows num of affected roes */
+DECLARE  
+   total_rows number(2); 
+BEGIN 
+   UPDATE customers 
+   SET salary = salary + 500; 
+   IF sql%notfound THEN 
+      dbms_output.put_line('no customers selected'); 
+   ELSIF sql%found THEN 
+      total_rows := sql%rowcount;
+      dbms_output.put_line( total_rows || ' customers affected '); 
+   END IF;  
+END; 
+/   
+
+/*
+explicit cursors   
+    programmer defined cursors
+
+gen syntax
+CURSOR cursor_name IS select_statement; 
+
+steps:
+declar a cursor to initialize the memory
+open cursor  to allocate memory 
+fetch the cursor to ge data
+close curser to release allocated memory
+
+*/
+
+/*  example of explicit cursor  on customers  */
+
+DECLARE 
+   c_id customers.id%type; 
+   c_name customers.name%type; 
+   c_addr customers.address%type; 
+   CURSOR c_customers is 
+      SELECT id, name, address FROM customers; 
+BEGIN 
+   OPEN c_customers;  -- memory allocated
+   LOOP 
+   FETCH c_customers into c_id, c_name, c_addr; -- put data from a cursor row into vars 
+      EXIT WHEN c_customers%notfound;   -- exit condition with cursor attribute
+      dbms_output.put_line(c_id || ' ' || c_name || ' ' || c_addr); 
+   END LOOP; 
+   CLOSE c_customers; 
+END; 
+/
+
+----------------
+-- Records
+----------------
+DECLARE 
+   message  varchar2(100):= 'Records'; 
+BEGIN 
+   dbms_output.put_line('#################');
+   dbms_output.put_line(message);
+    dbms_output.put_line('#################');
+END; 
+/
+
+/*
+a recod is a data structure holding data items of different knid
+equivalent of  c struct ? 
+
+types of records:
+    table-based
+    cursor-based
+    user-defined records
+
+create table-based or cursor-based records with %ROWTYPE
+
+*/
+
+/*  basic table-based record example  */
+
+
+DECLARE 
+   customer_rec customers%rowtype; 
+BEGIN 
+   SELECT * into customer_rec 
+   FROM customers 
+   WHERE id = 5;  
+   dbms_output.put_line('Customer ID: ' || customer_rec.id); 
+   dbms_output.put_line('Customer Name: ' || customer_rec.name); 
+   dbms_output.put_line('Customer Address: ' || customer_rec.address); 
+   dbms_output.put_line('Customer Salary: ' || customer_rec.salary); 
+END; 
+/
+
+/* cursor based record example */
+DECLARE 
+   CURSOR customer_cur is 
+      SELECT id, name, address  
+      FROM customers; 
+   customer_rec customer_cur%rowtype; 
+BEGIN 
+   OPEN customer_cur; 
+   LOOP 
+      FETCH customer_cur into customer_rec; -- customer_rec is a record
+      EXIT WHEN customer_cur%notfound; 
+      DBMS_OUTPUT.put_line(customer_rec.id || ' ' || customer_rec.name ||
+                        ' lives in ' || customer_rec.address); 
+   END LOOP; 
+END; 
+/
+
+/* user defined records */
+DECLARE 
+   type books is record 
+      (title varchar(50), 
+      author varchar(50), 
+      subject varchar(100), 
+      book_id number); 
+   book1 books; 
+   book2 books; 
+BEGIN 
+   -- Book 1 specification 
+   book1.title  := 'C Programming'; 
+   book1.author := 'Nuha Ali ';  
+   book1.subject := 'C Programming Tutorial'; 
+   book1.book_id := 6495407;  
+   -- Book 2 specification 
+   book2.title := 'Telecom Billing'; 
+   book2.author := 'Zara Ali'; 
+   book2.subject := 'Telecom Billing Tutorial'; 
+   book2.book_id := 6495700;  
+  
+  -- Print book 1 record 
+   dbms_output.put_line('Book 1 title : '|| book1.title); 
+   dbms_output.put_line('Book 1 author : '|| book1.author); 
+   dbms_output.put_line('Book 1 subject : '|| book1.subject); 
+   dbms_output.put_line('Book 1 book_id : ' || book1.book_id); 
+   
+   -- Print book 2 record 
+   dbms_output.put_line('Book 2 title : '|| book2.title); 
+   dbms_output.put_line('Book 2 author : '|| book2.author); 
+   dbms_output.put_line('Book 2 subject : '|| book2.subject); 
+   dbms_output.put_line('Book 2 book_id : '|| book2.book_id); 
+END; 
+/
+
+/* records as a param for proc
+   you can pass a record as a subprogram param 
+*/
+DECLARE 
+   type books is record 
+      (title  varchar(50), 
+      author  varchar(50), 
+      subject varchar(100), 
+      book_id   number); 
+   book1 books; 
+   book2 books;  
+PROCEDURE printbook (book books) IS 
+BEGIN 
+   dbms_output.put_line ('*** pretty book printing ***');    
+   dbms_output.put_line ('Book  title :  ' || book.title); 
+   dbms_output.put_line('Book  author : ' || book.author); 
+   dbms_output.put_line( 'Book  subject : ' || book.subject); 
+   dbms_output.put_line( 'Book book_id : ' || book.book_id); 
+END; 
+   
+BEGIN 
+   -- Book 1 specification 
+   book1.title  := 'C Programming'; 
+   book1.author := 'Nuha Ali ';  
+   book1.subject := 'C Programming Tutorial'; 
+   book1.book_id := 6495407;
+   
+   -- Book 2 specification 
+   book2.title := 'Telecom Billing'; 
+   book2.author := 'Zara Ali'; 
+   book2.subject := 'Telecom Billing Tutorial'; 
+   book2.book_id := 6495700;  
+   
+   -- Use procedure to print book info 
+   printbook(book1); 
+   printbook(book2); 
+END; 
+/     
+ 
+ 
+----------------
+-- Exceptinos
+----------------
+DECLARE 
+   message  varchar2(100):= 'Exceptions'; 
+BEGIN 
+   dbms_output.put_line('#################');
+   dbms_output.put_line(message);
+    dbms_output.put_line('#################');
+END; 
+/   
+   
+
