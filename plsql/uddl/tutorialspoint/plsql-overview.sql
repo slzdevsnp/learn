@@ -5,6 +5,7 @@
 -- ddl for this tutorial
 -------
 DROP TABLE CUSTOMERS;
+DROP TABLE DURATION;
 
 ----------------
 -- Overview
@@ -1666,7 +1667,7 @@ SET AUTOCOMMIT OFF;
 -- date & time
 ----------------
 DECLARE 
-   message  varchar2(100):= 'Date & Time'; 
+   message  varchar2(100):= 'Date and  Time'; 
 BEGIN 
    dbms_output.put_line('#################');
     dbms_output.put_line(message);
@@ -1734,6 +1735,278 @@ interval data type
  TO_DSINTERVAL(x);  -- string to day second interval
  TO_YMINTERVAL(x);   -- string to year month inteval
  
- 
+*/
+
+/* example table  with interval year to month field */
+CREATE TABLE DURATION (
+id          INTEGER,
+duration    INTERVAL YEAR(3) TO MONTH
+); 
+
+INSERT INTO DURATION(id, duration)VALUES(1, INTERVAL '1' YEAR); 
+INSERT INTO DURATION(id, duration)VALUES(2, INTERVAL '1' MONTH); 
+INSERT INTO DURATION(id, duration)VALUES(3, INTERVAL '99' MONTH); 
+INSERT INTO DURATION(id, duration)VALUES(4, INTERVAL '1-2' YEAR TO MONTH); 
+INSERT INTO DURATION(id, duration)VALUES(5, INTERVAL '0-1' YEAR TO MONTH); 
+INSERT INTO DURATION(id, duration)VALUES(6, INTERVAL '999' YEAR(3)); 
+
+select * from DURATION;
+
+----------------
+-- dbms output
+----------------
+DECLARE 
+   message  varchar2(100):= 'DBMS Output'; 
+BEGIN 
+   dbms_output.put_line('#################');
+    dbms_output.put_line(message);
+    dbms_output.put_line('#################');
+END; 
+/
+
+/*
+DBMS_OUTPUT is a  a built-in packge to display output, debugging info
+and send messages from pl/sql blocks, procs, packages, triggers
 
 */
+
+/* example  show all user tables */
+BEGIN 
+   dbms_output.put_line  (user || ' Tables in the database:'); 
+   FOR t IN (SELECT table_name FROM user_tables) 
+   LOOP 
+      dbms_output.put_line(t.table_name); 
+   END LOOP; 
+END; 
+/
+
+/* another example with dbms_output */
+DECLARE 
+   lines dbms_output.chararr; 
+   num_lines number; 
+BEGIN 
+   -- enable the buffer with default size 20000 
+   dbms_output.enable; 
+   
+   dbms_output.put_line('Hello Reader!'); 
+   dbms_output.put_line('Hope you have enjoyed the tutorials!'); 
+   dbms_output.put_line('Have a great time exploring pl/sql!'); 
+  
+   num_lines := 3; -- change this value to 2 to print only 2 lines 
+  
+   dbms_output.get_lines(lines, num_lines); 
+  
+   FOR i IN 1..num_lines LOOP 
+      dbms_output.put_line(lines(i)); 
+   END LOOP; 
+END; 
+/  
+
+
+----------------
+-- Object Oriented
+----------------
+DECLARE 
+   message  varchar2(100):= 'Object Oriented'; 
+BEGIN 
+   dbms_output.put_line('#################');
+    dbms_output.put_line(message);
+    dbms_output.put_line('#################');
+END; 
+/
+
+/*
+PL/SQL allows defining an object type
+this helps in designing object-oriented database
+
+object type = composite type
+
+objects will have specific structure of data and methods for oeprating on it
+object have attributes and methods
+
+gen syntax
+CREATE OR REPLACE TYPE type_name AS OBJECT 
+
+*/
+
+/* eg customer object which references another object type address */
+CREATE OR REPLACE TYPE address AS OBJECT 
+(house_no varchar2(10), 
+ street varchar2(30), 
+ city varchar2(20), 
+ state varchar2(10), 
+ pincode varchar2(10) 
+); 
+/ 
+CREATE OR REPLACE TYPE customer AS OBJECT 
+(code number(5), 
+ name varchar2(30), 
+ contact_no varchar2(12), 
+ addr address, 
+ member procedure display 
+); 
+/ 
+
+/* instantiate an object here the adrress */
+DECLARE 
+   residence address; 
+BEGIN 
+   residence := address('103A', 'M.G.Road', 'Jaipur', 'Rajasthan','201301'); --constructor
+   dbms_output.put_line('House No: '|| residence.house_no);   -- accessing obj attributes
+   dbms_output.put_line('Street: '|| residence.street); 
+   dbms_output.put_line('City: '|| residence.city); 
+   dbms_output.put_line('State: '|| residence.state); 
+   dbms_output.put_line('Pincode: '|| residence.pincode); 
+END; 
+/ 
+
+/* object with declaration and body */
+
+CREATE OR REPLACE TYPE rectangle AS OBJECT 
+(length number, 
+ width number, 
+ member function enlarge( inc number) return rectangle, 
+ member procedure display, 
+ map member function measure return number -- measure func used to compare 2 objects
+); 
+/ 
+CREATE OR REPLACE TYPE BODY rectangle AS 
+   MEMBER FUNCTION enlarge(inc number) return rectangle IS 
+   BEGIN 
+      return rectangle(self.length + inc, self.width + inc); 
+   END enlarge;  
+   MEMBER PROCEDURE display IS 
+   BEGIN  
+      dbms_output.put_line('Length: '|| length); 
+      dbms_output.put_line('Width: '|| width); 
+   END display;  
+   MAP MEMBER FUNCTION measure return number IS 
+   BEGIN 
+      return (sqrt(length*length + width*width)); 
+   END measure; 
+END; 
+/ 
+
+/* usage of rectangle type */
+
+DECLARE 
+   r1 rectangle; 
+   r2 rectangle; 
+   r3 rectangle; 
+   inc_factor number := 5; 
+BEGIN 
+   r1 := rectangle(3, 4); 
+   r2 := rectangle(5, 7); 
+   r3 := r1.enlarge(inc_factor); 
+   r3.display;  
+   -- we can compare two objects
+   IF (r1 > r2) THEN -- calling measure function 
+      r1.display; 
+   ELSE 
+      r2.display; 
+   END IF; 
+END; 
+/
+
+/* using order method  for 2 instances comparisons */
+CREATE OR REPLACE TYPE rectangle AS OBJECT 
+(length number, 
+ width number, 
+ member procedure display, 
+ order member function measure(r rectangle) return number 
+); 
+/ 
+CREATE OR REPLACE TYPE BODY rectangle AS 
+   MEMBER PROCEDURE display IS 
+   BEGIN 
+      dbms_output.put_line('Length: '|| length); 
+      dbms_output.put_line('Width: '|| width); 
+   END display;  
+   ORDER MEMBER FUNCTION measure(r rectangle) return number IS --equaivalent of equals() method
+   BEGIN 
+      IF(sqrt(self.length*self.length + self.width*self.width) > 
+         sqrt(r.length*r.length + r.width*r.width)) then 
+         return(1); 
+      ELSE 
+         return(-1); 
+      END IF; 
+   END measure; 
+END; 
+/ 
+/* compare two rectangle instances */
+DECLARE 
+   r1 rectangle; 
+   r2 rectangle; 
+BEGIN 
+   r1 := rectangle(23, 44); 
+   r2 := rectangle(15, 17); 
+   r1.display; 
+   r2.display; 
+   IF (r1 > r2) THEN -- calling measure function 
+      r1.display; 
+   ELSE 
+      r2.display; 
+   END IF; 
+END; 
+/
+
+/* inheritance in pl/sql objects */
+/* not final  means it has derived objects  */
+CREATE OR REPLACE TYPE rectangle AS OBJECT 
+(length number, 
+ width number, 
+ member function enlarge( inc number) return rectangle, 
+ NOT FINAL member procedure display) NOT FINAL 
+/
+CREATE OR REPLACE TYPE BODY rectangle AS 
+   MEMBER FUNCTION enlarge(inc number) return rectangle IS 
+   BEGIN 
+      return rectangle(self.length + inc, self.width + inc); 
+   END enlarge;  
+   MEMBER PROCEDURE display IS 
+   BEGIN 
+      dbms_output.put_line('Length: '|| length); 
+      dbms_output.put_line('Width: '|| width); 
+   END display; 
+END; 
+/
+/* derived object */
+CREATE OR REPLACE TYPE tabletop UNDER rectangle  -- extends
+(   
+   material varchar2(20), 
+   OVERRIDING member procedure display 
+) 
+/
+
+CREATE OR REPLACE TYPE BODY tabletop AS 
+OVERRIDING MEMBER PROCEDURE display IS 
+BEGIN 
+   dbms_output.put_line('Length: '|| length); 
+   dbms_output.put_line('Width: '|| width); 
+   dbms_output.put_line('Material: '|| material); 
+END display;
+END;
+/
+
+/* usage of derived object */
+DECLARE 
+   t1 tabletop; 
+   t2 tabletop; 
+BEGIN 
+   t1:= tabletop(20, 10, 'Wood'); 
+   t2 := tabletop(50, 30, 'Steel'); 
+   t1.display; 
+   t2.display; 
+END;
+/
+
+/* abstract object == non instantiable */
+CREATE OR REPLACE TYPE abstract_rectangle AS OBJECT 
+(length number, 
+ width number, 
+ NOT INSTANTIABLE NOT FINAL MEMBER PROCEDURE display)  
+ NOT INSTANTIABLE NOT FINAL 
+/
+
+
+
