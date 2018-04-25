@@ -6,6 +6,7 @@
 -------
 DROP TABLE CUSTOMERS;
 DROP TABLE DURATION;
+DROP TABLE RAWETABLE;
 
 ----------------
 -- Overview
@@ -199,6 +200,124 @@ BEGIN
    null; 
 END; 
 / 
+
+/* example to see how a fixed-point type can loose a precison on a number */
+DECLARE
+    num1 NUMBER(5,2);
+    num2 NUMBER(4,1);
+    num3 NUMBER(4,-2);
+BEGIN
+    num1 := 123.456;
+    num2 := 123.55;  -- if avlue is 1234.5  this produces value_error excdeption
+                     -- 1234.55 makes a rounding 1234.6  
+                      
+    num3 := 1234;    -- transforms number into 1200 
+    
+    dbms_output.put_line(num1);
+    dbms_output.put_line(num2);
+    dbms_output.put_line(num3);   --rounded to 2 zeros to the left of dec point
+
+    dbms_output.put_line('round(): '|| round(num1, 1));  -- round to 1 digit of dec point
+    dbms_output.put_line('round(): '|| round(num2, -1)); --round to the left of dec point
+
+EXCEPTION 
+   WHEN VALUE_ERROR THEN
+      dbms_output.put_line('value error exception');     
+   WHEN others THEN   -- fall through with generic exception
+      dbms_output.put_line('Error!');     
+END;
+/
+
+	DECLARE
+	  t VARCHAR2(4000);
+	   --valid types declarations 
+	  num0 BINARY_INTEGER; -- 32 bit storage
+	  num1 INTEGER;   -- 128 bit
+	  num2 REAL;   -- 64 bit
+	  num3 DOUBLE PRECISION; --128 bit
+	  num4 NUMBER(15,5); --128 bit
+	  num5 NUMBER;      -- 128 bit
+	  num6 DECIMAL(15,3);  --128 bit
+	BEGIN 
+	  num0 := 1023456789;
+	  num1 := 10234567891023456789102345678910234567;
+	  num2 := 10234567891023456789102345678910234567891023456789102345678910234567891023456789;
+	  num3 := 10234567891023456789102345678910234567891023456789102345678910234567891023456789;
+	  num4 := 1023456789;
+	  num5 := 10234567891023456789102345678910234567891023456789102345678910234567891023456789;
+	  num6 := 102345678912;
+	  
+	  dbms_output.enable;
+	  SELECT dump(num0) INTO t from dual;
+	  dbms_output.put_line('num0: ' || t);
+	  SELECT dump(num1) INTO t from dual;
+	  dbms_output.put_line('num1: ' || t);
+	  SELECT dump(num2) INTO t from dual;
+	  dbms_output.put_line('num2: ' || t);
+	  SELECT dump(num3) INTO t from dual;
+	  dbms_output.put_line('num3: ' || t);
+	  SELECT dump(num4) INTO t from dual;
+	  dbms_output.put_line('num4: ' || t);
+	  SELECT dump(num5) INTO t from dual;
+	  dbms_output.put_line('num5: ' || t);
+	  SELECT dump(num6) INTO t from dual;
+	  dbms_output.put_line('num6: ' || t);
+END;
+/
+
+
+/* rowid  select query example rawid  is a volatile, non-persisted data type */
+CREATE TABLE RAWETABLE(MyRow INTEGER, MyDesc VARCHAR2(50));
+INSERT INTO RAWETABLE VALUES(10, 'mama');
+INSERT INTO RAWETABLE VALUES(20, 'papa');
+
+ DECLARE
+        v_CursorID  NUMBER;
+        v_SelectRecords  VARCHAR2(500);
+        v_NUMRows  INTEGER;
+        v_MyNum INTEGER;
+        v_MyText VARCHAR2(50);
+        v_MyROWID ROWID;
+        v_TotRow INTEGER;
+ 
+   BEGIN
+        v_CursorID := DBMS_SQL.OPEN_CURSOR;
+        v_SelectRecords := 'SELECT * from RAWETABLE FOR UPDATE';
+ 
+ 
+        DBMS_SQL.PARSE(v_CursorID,v_SelectRecords,DBMS_SQL.V7);
+        DBMS_SQL.DEFINE_COLUMN(v_CursorID,1,v_MyNum);
+        DBMS_SQL.DEFINE_COLUMN(v_CursorID,2,v_MyText,50);
+ 
+        v_NumRows := DBMS_SQL.EXECUTE(v_CursorID);
+       LOOP
+            IF DBMS_SQL.FETCH_ROWS(v_CursorID) = 0 THEN
+                 EXIT;
+            END IF;
+ 
+            v_TOTROW := DBMS_SQL.LAST_ROW_COUNT;
+            v_MyROWID := DBMS_SQL.LAST_ROW_ID;
+            DBMS_OUTPUT.PUT_LINE('The last row count is: ' || v_TOTROW || ' The last ROWID is: ' || v_MyROWID);
+ 
+            DBMS_SQL.COLUMN_VALUE(v_CursorId,1,v_MyNum);
+            DBMS_SQL.COLUMN_VALUE(v_CursorId,2,v_MyText);
+ 
+            DBMS_OUTPUT.PUT_LINE(v_MyNum || ' ' || v_MyText);
+ 
+       END LOOP;
+ 
+   EXCEPTION
+        WHEN OTHERS THEN
+                  RAISE;
+ 
+        DBMS_SQL.CLOSE_CURSOR(v_CursorID); -- Close the cursor
+ 
+   END;
+/
+
+
+
+
  
 /* CHAR family
 
@@ -221,7 +340,7 @@ BEGIN
    s4 := 'a';
    s4 := 'abvgd'; 
    s5 := 'aaaaaaaaaaaaa';  -- do not need to specify lenght
-   
+   s7 := 'reoq733423sfdaf3r3r'; 
    null; 
 END; 
 / 
@@ -359,6 +478,9 @@ INSERT INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY) VALUES (5, 'Hardik', 27, 'Bho
 INSERT INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY) VALUES (6, 'Komal', 22, 'MP', 4500.00 ); 
 
 select * from CUSTOMERS;
+
+
+
 /*  the block assignes values from the table to variables  */
 DECLARE 
    c_id customers.id%type := 1; 
@@ -630,6 +752,8 @@ BEGIN
 END; 
 /
 
+
+
 /*
 string functions
 ascii(x);
@@ -807,7 +931,7 @@ END;
 BEGIN
     greetings;
 END;
-
+/
 -- drop procedure greetings;
 
 /* IN & OUT Mode Example   */
@@ -1022,6 +1146,30 @@ BEGIN
    CLOSE c_customers; 
 END; 
 /
+
+/* dima example of cursor  */
+DECLARE
+	  CURSOR c_customers IS
+		SELECT id, NAME, address FROM customers;
+	  TYPE arr_customers_t IS TABLE OF c_customers%ROWTYPE INDEX BY BINARY_INTEGER;  
+
+	  arr_customers arr_customers_t;
+      elem int;
+BEGIN
+	  OPEN c_customers;
+	  FETCH c_customers BULK COLLECT
+		INTO arr_customers;
+	  CLOSE c_customers;
+      -- see what's in the array  internal rowids.  q: how to get access to table fields? 
+      elem := arr_customers.first;
+      WHILE elem is NOT NULL LOOP
+        dbms_output.put_line(arr_customers(elem).name);
+        elem := arr_customers.next(elem);
+      END LOOP;  
+END;
+/
+
+
 
 ----------------
 -- Records
