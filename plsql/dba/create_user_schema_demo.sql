@@ -1,0 +1,22 @@
+/*
+script to create a user with schema  
+script runs under system user
+*/
+
+CREATE USER demo IDENTIFIED BY "demo";
+
+GRANT CONNECT, RESOURCE to demo;
+
+GRANT CREATE SESSION to demo;
+GRANT CREATE TABLE to demo;
+GRANT CREATE VIEW to demo;
+GRANT CREATE ANY TRIGGER to demo;
+GRANT CREATE ANY PROCEDURE to demo;
+GRANT CREATE SEQUENCE to demo;
+GRANT CREATE SYNONYM to demo;
+
+GRANT UNLIMITED TABLESPACE to demo;
+
+GRANT SELECT_CATALOG_ROLE to demo;
+GRANT SELECT ANY DICTIONARY to demo;
+
