@@ -1,4 +1,5 @@
-rm(list=ls());  setwd('~/Dropbox/cs/bigdata/datacamp/fin_intro_portfolio_analysis/'); source('prtf_ana_practice.R')
+#rm(list=ls());  setwd('~/Dropbox/cs/bigdata/datacamp/fin_intro_portfolio_analysis/'); source('prtf_ana_practice.R', echo=TRUE)
+rm(list=ls());
 
 require(xts)
 require(quantmod)
@@ -19,7 +20,7 @@ returns<-returns[-1,] #remove first NA line
 
 getSymbols("^GSPC", env=tkr, src = "yahoo", from = as.Date("1985-12-31") )
 sp500d <- Ad(tkr$GSPC)
-sp500_monthly<-Cl(to.monthly(sp500d)) #convert daily to monthy
+sp500_monthly<-Cl(to.monthly(sp500d)) #convert daily to monthly
 sp500_returns <- Return.calculate(sp500_monthly)
 
 
@@ -27,7 +28,7 @@ sp500_returns <- Return.calculate(sp500_monthly)
 options(download.file.method="wget")
 getSymbols('DGS1MO', env=tkr,src='FRED', from=as.Date("1986-01-01"))
 trf<-tkr$DGS1MO
-rf<-to.monthy(trf*0.01) # convert to pct
+rf<-to.monthly(trf*0.01) # convert to pct
 
 
 ##Driver 2: The choice of portfolio weights

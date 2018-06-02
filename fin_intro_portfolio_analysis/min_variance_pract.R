@@ -1,4 +1,4 @@
-#rm(list=ls()); setwd("~/Dropbox/cs/bigdata/datacamp/fin_intro_portfolio_analysis");source("min_variance_pract.R")
+#rm(list=ls()); setwd("~/Dropbox/cs/bigdata/datacamp/fin_intro_portfolio_analysis");source("min_variance_pract.R", echo=T)
 
 require(xts)
 require(PerformanceAnalytics)
@@ -9,7 +9,7 @@ require(dygraphs)
 #reading monthly prices of djii  from 1990-12  to 2016-12
 # two tickers GS and V  did not have a value at 1990-12 so they are purged  so
 
-djii<-c("MMM", "AXP", "AAPL", "BA", "CAT", "CVX", "CSCO", "KO", "DIS", "DD", "XOM", "GE"
+djii<-c("MMM", "AXP", "AAPL", "BA", "CAT", "CVX", "CSCO", "KO", "DIS", "DWDP", "XOM", "GE"
         ,"HD", "IBM", "INTC","JNJ", "JPM", "MCD", "MRK", "MSFT", "NKE", "PFE", "PG"
         ,"TRV", "UTX", "UNH", "VZ", "WMT")
 
