@@ -52,19 +52,20 @@ grid <- seq(from = 0.01, to = max(stockmu)-0.0001, length.out = grid_size)
 vpm <- vpsd <- rep(NA, length=grid_size )
 mweights <- matrix(NA, grid_size, prtf_size)
 
+#### this loop creates an efficient frontier
 for(i in 1:length(grid)) {
   print(paste("iterating  ith step:", i))
   opt <- portfolio.optim(x = dj_returns, pm = grid[i]) # return target grows monotonically
-  vpm[i] <- opt$pm
-  vpsd[i] <- opt$ps
+  vpm[i] <- opt$pm  #mu
+  vpsd[i] <- opt$ps  #vola
   mweights[i, ] <- opt$pw
 }
 
 #plot(vpsd, vpm)
-df<-data.frame(vpsd, vpm)
+df2<-data.frame(vpsd, vpm)
 
 print(
-  ggplot(df, aes(x=vpsd, y=vpm)) + 
+  ggplot(df2, aes(x=vpsd, y=vpm)) + 
     geom_point() +
     ggtitle("Efficient frontier") +
     labs(y="return", x="vola")
