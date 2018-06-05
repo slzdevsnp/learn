@@ -19,4 +19,5 @@ DT[,.(V2,V3)]
 
 DT[,sum(V1)]
 
-
+DT[,V1]
+diff(DT[,V1])
