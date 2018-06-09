@@ -1,0 +1,94 @@
+theory for relational database design
+
+
+chap Overview
+--------------
+Functional dependencies => boyce-codd normal form BCNF
+Multivalued dependencies => Fourth Normal Form 4NF
+
+
+Apply(SSN, sNamee)  123 -> Ann
+BCNF if A -> B then A is a key
+
+Multivalued dependencies
+SSN ->> cName 
+
+e.g.
+apply(ssn, sname)
+apply(ssn, highSchool)
+
+
+Design by decomposition
+=======================
+1. "mega" relations + properties of data
+system decomposes based on properties
+final set of relations satisfies normal form
+    (no anomalies, no lost information)
+functional dependencies => Boyce-codd normal form
+multivaled dependencies => Fourth Normal Form
+
+chap Functional dependencies
+----------------------------
+
+basic functional dependency definition:
+for any t,u belonging to R (relationship)
+t.A = u.A => t.B = u.B 
+ then A -> B  (B is functionally dependent on A)
+
+ Armstrong's axioms (to check)
+
+
+chap Boyce-Codd Normal Form
+----------------------------
+
+a Relation R wth FDs is in BCNF if:
+    for each \bar{A} -> B, \bar{A} is a key
+
+
+a BCNF violation example (duplication of columns A, B)
+
+| \Bar{A} |  B  | rest |
+-----------------------
+| a       |  b  |  r1  |
+| a       |  b  |  r2  |
+
+
+BCNF decomposition  algorithm
+
+input : relation R + FDS for R 
+output: decomposition of R into BCFNF relantionsh with lossless join 
+
+algo:
+    Compute keys for R using FDs
+    Repeat until all relations in BCNF
+    Decompose R' into R1(A,B) and R2(A,rest)
+    Compute FDs for R1 and R2
+    Compute keys for R1 and R2
+
+Informally the Boyce-Codd normal form is expressed as “Each attribute must represent a fact about the key, the whole key, and nothing but the key.”
+
+
+chap  Multivalued Dependencies and 4th Normal Form
+--------------------------------------------------
+
+4th normal form is stricter then BCNF (a subset of BCNF)
+
+with no functional dependencies in the relation the key
+is all attributes of the relation
+
+4NF is a separation of independent attributes
+
+multi-value dependencies = tuple generating dependencies
+
+A multidetermines B
+
+4NF def:
+Relation R with MVDs is i 4NF if:
+    for each nontrivial A ->> B, A is a key
+
+
+
+
+
+
+in a  design we need a good decomposition

@@ -1,0 +1,2 @@
+-- selected queries , exercises in oracle  from lagunit  widom's databases lectures
+-- run ddl  from college-schema_orcl.sql  in slava schema

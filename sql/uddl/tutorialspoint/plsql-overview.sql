@@ -1,6 +1,8 @@
 -- oracle version
 --select * from V$VERSION;
 
+-- to be run under demo  user
+
 -----
 -- ddl for this tutorial
 -------
@@ -267,9 +269,11 @@ END;
 
 
 /* rowid  select query example rawid  is a volatile, non-persisted data type */
+DROP TABLE RAWETABLE;
 CREATE TABLE RAWETABLE(MyRow INTEGER, MyDesc VARCHAR2(50));
 INSERT INTO RAWETABLE VALUES(10, 'mama');
 INSERT INTO RAWETABLE VALUES(20, 'papa');
+INSERT INTO RAWETABLE VALUES(30, 'doch');
 
  DECLARE
         v_CursorID  NUMBER;
@@ -289,9 +293,9 @@ INSERT INTO RAWETABLE VALUES(20, 'papa');
         DBMS_SQL.DEFINE_COLUMN(v_CursorID,1,v_MyNum);
         DBMS_SQL.DEFINE_COLUMN(v_CursorID,2,v_MyText,50);
  
-        v_NumRows := DBMS_SQL.EXECUTE(v_CursorID);
+        v_NumRows := DBMS_SQL.EXECUTE(v_CursorID); -- execution
        LOOP
-            IF DBMS_SQL.FETCH_ROWS(v_CursorID) = 0 THEN
+            IF DBMS_SQL.FETCH_ROWS(v_CursorID) = 0 THEN  --exit from the loop
                  EXIT;
             END IF;
  
@@ -314,7 +318,6 @@ INSERT INTO RAWETABLE VALUES(20, 'papa');
  
    END;
 /
-
 
 
 
@@ -429,7 +432,7 @@ DECLARE
     customer varchar2(30) DEFAULT 'Average Joe';
     address varchar2(100);
 BEGIN
-    sales := 999.15;
+    sales := 999.153;
     sales := sales + 0.70;
     dbms_output.put_line('incremeented sales: ' || sales); 
     null;
@@ -483,7 +486,7 @@ select * from CUSTOMERS;
 
 /*  the block assignes values from the table to variables  */
 DECLARE 
-   c_id customers.id%type := 1; 
+   c_id customers.id%type := 1; --selecting a row
    c_name  customers.name%type; 
    c_addr customers.address%type; 
    c_sal  customers.salary%type; 
@@ -837,7 +840,7 @@ END;
 /
 
 /*
-VARRAY type  fixe-size  collectio of items of the same type , continious in memory
+VARRAY type  fixed-sized  collection of items of the same type , continious in memory
 
 def in block:
 TYPE varray_type_name IS VARRAY(n) of <element_type>
@@ -879,6 +882,8 @@ BEGIN
    END LOOP; 
 END; 
 / 
+
+
 ----------------
 -- Procedures
 ----------------
@@ -928,6 +933,7 @@ END;
 --exec greetings;
 -- call in the block
 
+--DECLARE -- can be omitted if nothing to declare
 BEGIN
     greetings;
 END;
@@ -940,12 +946,13 @@ DECLARE
    a number; 
    b number; 
    c number;
+--proc is defined in DECLARE part of block
 PROCEDURE findMin(x IN number, y IN number, z OUT number) IS 
 BEGIN 
    IF x < y THEN 
-      z:= x; 
+      z := x; 
    ELSE 
-      z:= y; 
+      z := y; 
    END IF; 
 END; 
 BEGIN 
@@ -1000,20 +1007,20 @@ a function reuturns a computed value rather than modifies data in tables
 
 */
 
-/*  simple example  define func with no params */
+/*  simple example  define func with no params outside of block*/
 CREATE OR REPLACE FUNCTION totalCustomers 
 RETURN number IS 
-   total number(2) := 0; 
+   total number(10) := 0; 
 BEGIN 
    SELECT count(*) into total 
    FROM customers; 
     
    RETURN total; 
 END; 
-/ 
--- call the func in the block
-DECLARE 
-   c number(2); 
+/
+--call the func inside a block
+DECLARE
+    c number(2); 
 BEGIN 
    c := totalCustomers(); 
    dbms_output.put_line('Total no. of Customers: ' || c); 
@@ -1030,9 +1037,9 @@ IS
     z number; 
 BEGIN 
    IF x > y THEN 
-      z:= x; 
+      z := x; 
    ELSE 
-      Z:= y; 
+      z := y; 
    END IF;  
    RETURN z; 
 END;
@@ -1147,7 +1154,7 @@ BEGIN
 END; 
 /
 
-/* dima example of cursor  */
+/* dima example of cursor  with bulk operation */
 DECLARE
 	  CURSOR c_customers IS
 		SELECT id, NAME, address FROM customers;
@@ -1345,7 +1352,7 @@ DECLARE
 */
 
 DECLARE 
-   c_id customers.id%type := 8; -- there is no rowid = 8
+   c_id customers.id%type := 10; -- there is no rowid = 10
    c_name customers.name%type; 
    c_addr customers.address%type; 
 BEGIN 
@@ -1440,7 +1447,7 @@ triggers usually fired on:
  -- DDL statement CREATE,ALTER, DROP
  --  a db operation (servererror, logon, logoff, startup, shutdown
  
- triggers can be defined on able, view, schema, or database  level
+ triggers can be defined on table, view, schema, or database  level
  
  common usage patterns:
  -- generate some derived columns automatically
@@ -1495,11 +1502,18 @@ END;
 INSERT INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY) 
 VALUES (7, 'Kriti', 21, 'HP', 7500.00 ); 
 
+INSERT INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY) 
+VALUES (9, 'Misha', 29, 'DELL', 9500.00 ); 
+
+
 delete from CUSTOMERS where ID = 7;
 
 UPDATE customers 
 SET salary = salary + 500 
 WHERE id = 2; 
+
+
+select * from customers;
 
 
 ----------------
@@ -1519,7 +1533,7 @@ related PL/SQL types, variables, and subprograms.
 
 The specification is the interface to the package.
 It just DECLARES the types, variables, constants, exceptions,
-cursors, and subprograms that can be referenced from outsid
+cursors, and subprograms that can be referenced from outside
 
 All objects placed in the specification are called public objects. 
 
@@ -1531,7 +1545,7 @@ all other objects are private objects
 --DROP PACKAGE cust_sal;
 
 /* the spec of the package with 1 proc */    -- like a C header file
-CREATE PACKAGE cust_sal AS 
+CREATE OR REPLACE PACKAGE cust_sal AS 
    PROCEDURE find_sal(c_id customers.id%type); 
 END cust_sal; 
 /
@@ -1544,7 +1558,7 @@ CREATE OR REPLACE PACKAGE BODY cust_sal AS
       SELECT salary INTO c_sal 
       FROM customers 
       WHERE id = c_id; 
-      dbms_output.put_line('Salary: '|| c_sal || ' for customer id: '|| c_id ); 
+      dbms_output.put_line('Packaged Salary: '|| c_sal || ' for customer id: '|| c_id ); 
    END find_sal;   --specify name of proc
 END cust_sal;    -- specify name of a package
 /
@@ -1556,21 +1570,23 @@ package_name.element_name;
 */
 
 DECLARE 
-   code customers.id%type := &cc_id; 
+   code customers.id%type := 2; -- &cc_id
 BEGIN 
    cust_sal.find_sal(code); 
 END; 
 /
 
 
-/* a more complte package on CUSTOMERS table  with 3 procs */
+/* a more complete package on CUSTOMERS table  with 3 procs */
 CREATE OR REPLACE PACKAGE c_package AS 
    -- Adds a customer 
-   PROCEDURE addCustomer(c_id   customers.id%type, 
+   PROCEDURE addCustomer(
+   c_id   customers.id%type, 
    c_name  customers.name%type, 
    c_age  customers.age%type, 
    c_addr customers.address%type,  
-   c_sal  customers.salary%type); 
+   c_sal  customers.salary%type
+   );
    
    -- Removes a customer 
    PROCEDURE delCustomer(c_id  customers.id%TYPE); 
@@ -1614,16 +1630,25 @@ CREATE OR REPLACE PACKAGE BODY c_package AS
 END c_package; 
 /
 
+
+/*
+delete from customers where id = 7;
+delete from customers where id = 8;
+select * from customers;
+*/
+
 /*   using the more complex package */
 DECLARE 
-   code customers.id%type:= 8; 
+   code customers.id%type:= 7; 
+   code2 customers.id%type:= 8; 
 BEGIN 
-   c_package.addcustomer(7, 'Rajnish', 25, 'Chennai', 3500); 
-   c_package.addcustomer(8, 'Subham', 32, 'Delhi', 7500); 
+   c_package.addcustomer(code, 'Rajnish', 25, 'Chennai', 3500); 
+   c_package.addcustomer(code2, 'Subham', 32, 'Delhi', 7500); 
    c_package.listcustomer; 
-    dbms_output.put_line('**********');
+    dbms_output.put_line('******## ## ## ****');
    c_package.delcustomer(code); 
    c_package.listcustomer; 
+   c_package.delcustomer(code2); 
 END; 
 / 
 
@@ -1687,12 +1712,12 @@ DECLARE
 
    TYPE c_list IS TABLE of customers.name%type INDEX BY binary_integer; 
    name_list c_list; 
-   counter integer :=0; 
+   counter integer := 0; 
 BEGIN 
    FOR n IN c_customers LOOP 
       counter := counter +1; 
       name_list(counter) := n.name; 
-      dbms_output.put_line('Customer('||counter||'):'||name_lis t(counter)); 
+      dbms_output.put_line('Customer('||counter||'):'||name_list(counter)); 
    END LOOP; 
 END; 
 / 
@@ -1700,7 +1725,7 @@ END;
 /*
 nested tables
 
-nested table does now hae a declared number of elements, so it can grow
+nested table does now have a declared number of elements, so it can grow
 
 this array sis always dense, i.e. hs consecutive subscripts
 */
@@ -1718,7 +1743,7 @@ BEGIN
    total := names.count; 
    dbms_output.put_line('Total '|| total || ' Students'); 
    FOR i IN 1 .. total LOOP 
-      dbms_output.put_line('Student:'||names(i)||', Marks:' || marks(i)); 
+      dbms_output.put_line('Student:'||names(i)||', Mark:' || marks(i)); 
    end loop; 
 END; 
 /
@@ -1759,7 +1784,7 @@ END;
 /
 
 /*
-a tx is tompic unit of work
+a tx is atompic unit of work
 
 differentiated a successfull sql statement and a commited transaction
 
@@ -1793,9 +1818,10 @@ SAVEPOINT sav1;
 UPDATE CUSTOMERS 
 SET SALARY = SALARY + 1000; 
 ROLLBACK TO sav1;
+/*
+select * from CUSTOMERS;
+*/
 
---select * from CUSTOMERS;
-  
 UPDATE CUSTOMERS 
 SET SALARY = SALARY + 1000 
 WHERE ID = 7; 
@@ -2010,14 +2036,15 @@ END;
 
 /* object with declaration and body */
 
-CREATE OR REPLACE TYPE rectangle AS OBJECT 
+CREATE OR REPLACE TYPE rectangle FORCE AS OBJECT 
 (length number, 
  width number, 
  member function enlarge( inc number) return rectangle, 
  member procedure display, 
- map member function measure return number -- measure func used to compare 2 objects
+ MAP MEMBER function measure return number 
 ); 
-/ 
+/
+
 CREATE OR REPLACE TYPE BODY rectangle AS 
    MEMBER FUNCTION enlarge(inc number) return rectangle IS 
    BEGIN 
@@ -2057,7 +2084,8 @@ END;
 /
 
 /* using order method  for 2 instances comparisons */
-CREATE OR REPLACE TYPE rectangle AS OBJECT 
+
+CREATE OR REPLACE TYPE rectangle FORCE AS OBJECT 
 (length number, 
  width number, 
  member procedure display, 
@@ -2091,8 +2119,10 @@ BEGIN
    r1.display; 
    r2.display; 
    IF (r1 > r2) THEN -- calling measure function 
+      dbms_output.put_line('rect1 is larger than rect2'); 
       r1.display; 
    ELSE 
+      dbms_output.put_line('rect1 is smaller than rect2'); 
       r2.display; 
    END IF; 
 END; 

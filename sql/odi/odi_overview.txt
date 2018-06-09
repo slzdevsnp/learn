@@ -1,0 +1,41 @@
+odi_overview
+
+security -> topology -> model -> mapping -> procedure -> package -> scenario -> load plan -> agent
+
+
+
+ODI  is  in target staging area
+ODI has a repository 
+
+dynamic views on source, dynamic tables 
+
+load knowledge module (LKM) in java 
+Check knowledge model (CKM)
+integration knowledge model (IKM)
+
+UI: ODI studio
+
+odi repository:
+MASTER: topology, security,  
+WORK: models,data mapping, procedure, functions, packages), scenario, load plans, operation log
+
+
+odi agents: standalon, jee, collocated
+
+docs ora ODI GS guide
+https://docs.oracle.com/middleware/1221/odi/getting-started/index.html
+
+
+in  odi studio  vallet password: welcome1
+
+
+first project  section5
+
+
+mapping requires
+    source metadata 
+    target metadata
+
+use procedures if you do not want to specify metadata
+oracle recommends using methods over procedures whenever possible 
+

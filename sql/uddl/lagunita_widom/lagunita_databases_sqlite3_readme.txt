@@ -73,8 +73,10 @@ Drinker \union Drinker ;  // the same Drinker set
 Drinker \diff Drinker ; //empty set
 Drinker \intersect Drinker; // the same Drinker set
 
-
+/*#######################################################
 DB5 SQL course
+#######################################################*/
+-- using sqlite3
 sqlite3 ~/Documents/dbsqlite/college.db
 
 #############################################

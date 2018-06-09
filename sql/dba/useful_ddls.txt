@@ -1,0 +1,6 @@
+--dropping objects
+
+
+-- drop table deletes referenced foreing keys in referred tables;
+drop <<table_name>> cascade constraints; 
+
