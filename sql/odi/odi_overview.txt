@@ -26,16 +26,138 @@ docs ora ODI GS guide
 https://docs.oracle.com/middleware/1221/odi/getting-started/index.html
 
 
-in  odi studio  vallet password: welcome1
+in  odi studio  wallet password: welcome1
 
+## section 5   16 - 21 ###   project 1
+###########################
 
-first project  section5
+first project  section5  flat files imports in odi
 
+topology : file  configure path   ~/udemy/sec5  for two text files 
 
+in  designer 
+  projects: demo -> sales administrator -> mappings -> create new  load trg customer
+  
+   mapping to be saved load trg customer!!!
+
+  in designer
+  models:  ODI_DEMO  -> Orders Appliction  SRC_CUSTOMER,
+                     -> Sales Administration TRG_CUSTOMER
+                     -> Parameters :  SRC_SALES_PERSON
 mapping requires
-    source metadata 
-    target metadata
+    source metadata   (source tables)
+    target metadata   (target tables )
 
-use procedures if you do not want to specify metadata
-oracle recommends using methods over procedures whenever possible 
+17.   
+   from components table  drag drop lookup  
+       connect to age fields
+       in properties    do:
+       SRC_CUSTOMER.AGE BETWEEN SRC_AGE_GROUP.AGE_MIN  AND SRC_AGE_GROUP.AGE_MAX
+
+18.  make a join in a mapping 
+     drop a join from components
+     in properties:
+     SRC_CUSTOMER.SALES_PERS_ID = SRC_SALES_PERSON.SALES_PERS_ID    (inner join)
+   
+     connect join to a target table: TRG_CUSTOMER
+
+
+19.  target expresson 
+     under  TRG_Customer. Dear 
+
+     expression:
+        case
+        when SRC_CUSTOMER.DEAR = 0 Then 'Mr'
+        when SRC_CUSTOMER.DEAR = 1 Then 'Mrs'
+        else 'Ms'
+        end
+    
+     expression TRG_Customer.sales_pers
+     SRC_SALES_PERSON.FIRST_NAME||' '||SRC_SALES_PERSON.LAST_NAM
+
+     expr:  TRG_Customer.CUST_NAME
+     SRC_CUSTOMER.FIRST_NAME||' '||SRC_CUSTOMER.LAST_NAME
+
+20 .  project event based target expression
+
+      TRG_CUSTOMER.CRE_DATE  
+      expr.  SYSDATE
+      checkbox for update and for insert
+
+21. project knowledge modules
+    dynamic tables c$ named
+    IKM (integration knowledge module)
+
+    properties of TRG_CUSTOMER -> target
+          Integration Type : = Oracle Incremental Update
+
+    mapping physical view   
+    TRG_Customer properties:
+    Integration Knowledge Module : IKM SQL Incrmental update
+
+    close load trg customer mapping, time to run it.
+
+    select load trg cusomer mapping, click on RUN icon
+
+    monitor progress in Operator -> Date -> Today  to check if the job was done
+
+    now revew data in target  TRG_CUSTOMER (expect some data)
+    models : sales administration TRG_CUSTOMER -> view data
+
+
+section 6  22 - 25  Sales data integration   project 2
+###########################################
+
+filtering and aggregating orders 
+
+create new mapping load TRG_Sales 
+drag 3 tables : SRC_ORDERS, SRC_ORDER_LINES,  TRG_SALES
+
+24. aggregate. 
+    creating aggregate component
+        target : trg_sales
+        create expressions for first, order_id, last_order_id summing qty, amount, prod _avg_price
+
+25. 
+     load knowledge module LKM (loads)
+     integration knowledge module  aggregates (IKM)
+     check knowledge module (CKM) validates
+
+    in TRG_SALES  target table  properties -> target -> integration_type : = Incremental Update
+    INcr update is often used when target table contains primary key
+
+    physical view shows a separation of operations between source group and target group
+    physical -> Aggregate -> properties -> loading knowledge module : LKM SQL to SQL (built-in) !
+    physical -> trg_sales -> properties -> integration knowledge module : IKM Oracle Incremental 
+
+
+section 7  26 - 27  data quality control project 3
+###########################################
+26. data quality control
+        static control
+            on demand check
+        flow control
+            check in process flow
+            checked before data is integrated in target system
+        constraints
+            on primary key
+            foreign key
+
+    make a data check constraint  customer_age > 21        
+    on mapping  load trg customer
+    tbl SRC_Customer -> Constraints -> new condition
+    named  age > 21
+    type  oracle data integrator condition
+    
+    constraint: new condition FK_SRC_CUSTOMER_SRC_CITY
+
+    select tbl SRC_CUSTOMER  right menu -> control -> check  ## runs checks
+    select tbl SRC_CUSTOMER  right menu -> control -> errors ## examine check violations
+
+section 8  26 - 27  Package and Scenario  project 4
+###########################################
+we will create a package 
+
+designer: demo  sales administration packages -> new package 
+
 

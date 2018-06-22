@@ -23,16 +23,22 @@ END pretty_chapter;
 --------------------
 exec pretty_chapter('p 175 combine two tables  ');
 --------------------
+/*
+Write a SQL query for a report that provides the following information for each person
+in the Person table, regardless if there is an address for each of those people:
+*/
+
+
 drop table Person;
 drop table  Address;
 /
 Create table Person (PersonId int not null primary key,
-                    FirstName varchar(255),
-                    LastName varchar(255));
+                    FirstName varchar(20),
+                    LastName varchar(20));
 Create table Address (AddressId int not null primary key,
                     PersonId int,
-                    City varchar(255),
-                    State varchar(255));
+                    City varchar(25),
+                    State varchar(25));
 
 Truncate table Person;
 insert into Person (PersonId, LastName, FirstName) values ('1', 'Wang', 'Allen');
@@ -46,6 +52,7 @@ delete from Address where AddressId = 2;
 select * from Person;
 select * from Address;
 
+--works
 select 
     p.FirstName, p.LastName, a.city, a.State
 from Person p 
@@ -53,6 +60,33 @@ left outer join Address a
 on p.PersonId = a.PersonId;
 
 
+
+
+
+--------------------
+exec pretty_chapter('p 620  ');
+--------------------
+/*
+write a SQL query to output movies with an odd numbered ID and a description
+that is not 'boring'. Order the result by rating.
+*/
+
+drop table cinema;
+Create table  cinema (id int, movie varchar(25), description varchar(20), rating number(2, 1));
+
+insert into cinema (id, movie, description, rating) values ('1', 'War', 'great 3D', '8.9');
+insert into cinema (id, movie, description, rating) values ('2', 'Science', 'fiction', '8.5');
+insert into cinema (id, movie, description, rating) values ('3', 'Irish', 'boring', '6.2');
+insert into cinema (id, movie, description, rating) values ('4', 'Ice song', 'Fantasy', '8.6');
+insert into cinema (id, movie, description, rating) values ('5', 'House card', 'Interesting', '9.1');
+
+select * from cinema;
+
+--works
+
+select id,  movie, description, rating 
+from cinema 
+where MOD(id, 2) != 0 AND description != 'boring'  order by rating desc;
 
 --------------------
 exec pretty_chapter('p 176 2nd max salary  ');
@@ -104,39 +138,7 @@ on e.managerid = m.id
 where e.Salary > m.Salary;
 
 
---------------------
-exec pretty_chapter('p 178 Rank scores  ');
---------------------
 
-drop table scores;
-
-Create table Scores (Id int, Score Number(4,2));
-
-
-insert into Scores (Id, Score) values ('1', '3.5');
-insert into Scores (Id, Score) values ('2', '3.65');
-insert into Scores (Id, Score) values ('3', '4.0');
-insert into Scores (Id, Score) values ('4', '3.85');
-insert into Scores (Id, Score) values ('5', '4.0');
-insert into Scores (Id, Score) values ('6', '3.65');
-
-
---select distinct Score from Scores order by Score desc;
-
-select * from scores order by score desc;
-
-SELECT
-  Score,
-  (SELECT count( distinct s2.score) FROM Scores s2 WHERE s2.Score >= s1.Score) as Rank
-FROM Scores s1
-ORDER BY s1.Score desc;
-
---using analytic func
-select 
-    score,
-    dense_rank() over ( order by score desc )  rnk
-from scores
-order by score desc;
 
 
 --------------------
@@ -293,7 +295,7 @@ exec pretty_chapter('p 596. Classes with More Than 5 Students ');
 
 drop table courses cascade constraints;
 
-Create table  courses (student varchar(255), class varchar(255));
+Create table  courses (student varchar(10), class varchar(15));
 
 insert into courses (student, class) values ('A', 'Math');
 insert into courses (student, class) values ('B', 'English');
@@ -313,6 +315,12 @@ from courses cu join (select class , count(class) as cnt
                         from courses group by class) cg
 on cu.class = cg.class
 where cg.cnt >= 5;
+
+-- also works
+select class from 
+(select class, count(distinct student) as cnt from courses group by class) cg -- count(distinct student) important
+where cg.cnt >= 5;
+
 
 
 
@@ -827,6 +835,7 @@ insert into dup(id, v1, v2) values( 2, 'd', 'e');
 insert into dup(id, v1, v2) values( 3, 'c', 'f');
 insert into dup(id, v1, v2) values( 4, 'c', 'g');
 insert into dup(id, v1, v2) values( 5, 'c', 'g');
+insert into dup(id, v1, v2) values( 6, 'c', 'g');
 
 select * from dup;
 
