@@ -454,4 +454,134 @@ select first_name||' '||last_name, department_id, hire_date,
       avg(salary) over (order by hire_date, department_id) avg_dept_hire_dt
       from employee
      order by department_id, hire_date, first_name||' '||last_name;
+
+
+
+/************************************************
+**************** useful queries *****************
+*************************************************/
+
+drop table employee cascade constraints;
+
+create table  Employee(
+    Id int not null primary key,
+    Name varchar(12),
+    Salary int,
+    ManagerId int);
+    
+Truncate table Employee;
+
+insert into Employee (Id, Name, Salary, ManagerId) values ('1', 'Joe', '70000', '2');
+insert into Employee (Id, Name, Salary, ManagerId) values ('2', 'Henry', '80000', '3');
+insert into Employee (Id, Name, Salary, ManagerId) values ('3', 'Sam', '60000', NULL);
+
+select * from employee;
+
+
+/******* full cartesian product *****/
+--using cross join
+select e1.id, e2.id from employee e1 cross join employee e2
+order by e1.id, e2.id;
+
+-- explicit on indexes full cartesion product
+select  e1.id , e2.id  from employee e1 join employee e2
+on e1.id != e2.id OR e1.id = e2.id
+order by e1.id;
+
+
+/******* self inner join *****/
+select e1.id, e1.name  from employee e1  join employee e2 
+on e1.id = e2.id;
+
+/******* self join on different ids*****/
+-- employee manager problem in the same table
+select * from employee;
+
+select e1.id, e1.name , e2.name as manager 
+from employee e1  left join employee e2 
+on e1.managerId = e2.id;
+
+
+
+/*
+joins, inner, outer with null values
+*/
+
+drop table a;
+create table a(id int, av varchar2(10));
+
+drop table b;
+create table b(id int, bv varchar2(10));
+
+insert into a(id,av) values(1, 'aa');
+insert into a(id,av) values(2, 'bb');
+insert into a(id,av) values(NULL, 'cc');
+
+
+insert into b(id,bv) values(1, 'aaa');
+insert into b(id,bv) values(2, 'bbbb');
+insert into b(id,bv) values(3, 'ccc');
+
+
+select * from a;
+select * from b;
+
+select a.* , b.*
+from a  join b 
+on a.id = b.id;
+
+select a.*, b.*
+from a  inner join b 
+on a.id = b.id;
+
+select a.*, b.*
+from a  left outer join b 
+on a.id = b.id;
+
+select a.*, b.*
+from a  right outer join b 
+on a.id = b.id;
+
+select a.*, b.*
+from a full outer join b 
+on a.id = b.id;
+
+
+--cartesian product
+select  a.id, av, b.id, bv
+from a cross join b;
+
+
+
+--left outer self join on a null key value
+select a1.*, a2.*
+from a a1 left outer join a a2 
+on a1.id = a2.id;
+
+
+select * from a;
+select * from b;
+
+---------------------
+--delete duplicates
+--------------------
+drop table dup;
+create table dup(id int, v1 varchar(12), v2 varchar(12));
+insert into dup(id, v1, v2) values( 1, 'a', 'b');
+insert into dup(id, v1, v2) values( 2, 'd', 'e');
+insert into dup(id, v1, v2) values( 3, 'c', 'f');
+insert into dup(id, v1, v2) values( 4, 'c', 'g');
+insert into dup(id, v1, v2) values( 5, 'c', 'g');
+insert into dup(id, v1, v2) values( 6, 'c', 'g');
+
+select * from dup;
+
+--working query
+delete from dup d1
+where  rowid < ( select max(rowid) from dup d2
+    where d1.v1 = d2.v1
+    and  d1.v2 = d2.v2)
+;
+
+select * from dup;
    

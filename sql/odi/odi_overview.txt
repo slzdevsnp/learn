@@ -154,10 +154,15 @@ section 7  26 - 27  data quality control project 3
     select tbl SRC_CUSTOMER  right menu -> control -> check  ## runs checks
     select tbl SRC_CUSTOMER  right menu -> control -> errors ## examine check violations
 
-section 8  26 - 27  Package and Scenario  project 4
+section 8  28 - 29  Package and Scenario  project 4
 ###########################################
 we will create a package 
 
-designer: demo  sales administration packages -> new package 
+designer: demo  sales administration packages -> new package  Load Sales Administration
+
+
+29 scenario
+
+click on load sales administratoinr context menu, generate scenario
 
 
