@@ -371,8 +371,152 @@ abline(v = ES99, col = "green")
 ##### UK portfolio  30% ftse, 40% S&P 30% SMI
 data("USD_GBP")
 data("CHF_GBP")
+data("FTSE")
+data("SMI")
 riskfactors<-merge(FTSE,SP500,SMI,USD_GBP,CHF_GBP, all=FALSE) # rmoves NAs
-riskfactors <- riskfactors["2000::2015",]
+riskfactors <- riskfactors["2000::2012",]
 plot.zoo(riskfactors)
-#empirical estimates of var and ES
-losses <- rnorm()
+#empirical estimates of var and ES of normal distribution
+losses <- rnorm(100)
+losses_o <- sort(losses, decreasing = TRUE)
+quantile(losses,0.95)
+qnorm(0.95)
+
+mean(losses[losses > quantile(losses,0.95)])
+ESnorm(0.95) #we can see the expected shortfall is close to theoretical one
+
+##### examining risk factors for international equity portfolio
+returns <- diff(log(riskfactors))[-1,]
+plot.zoo(returns)
+
+## jarq.test
+apply(returns, FUN=jarque.test, MARGIN=2)
+
+##check the normality of returns
+qqnorm(returns[,5])
+qqline(returns[,5],col=2)
+
+## picture of hte acfs of returns and abs returns
+acf(returns)
+acf(abs(returns))
+
+
+###historical simulation
+
+## loss operator for a portfolio of weights 0.3, 0.4 0.3
+### normally custom written for any specific portfolio
+
+lossop<-function(xseries,wts=c(0.3,0.4,0.3)){
+  if (is.xts(xseries))
+    x <- coredata(xseries)
+  else if (is.matrix(xseries))
+    x <- xseries
+  else
+    x <- matrix(xseries,nrow=1)
+  ## apply a function on matrix rows
+  ll <- apply(x,1,
+              function(x,wts){
+                1-(wts[1]*exp(x[1]) + wts[2]*exp(x[2]+x[4]) + wts[3]*exp(x[3]+x[5]))
+              },wts=wts)
+  
+  if (is.xts(xseries))
+    ll <- xts(ll,time(xseries))
+  return(ll)
+}
+
+lossop(rep(-0.1,5))
+
+##### estimating VaR and ES 
+
+## non parametric estimations of quantiles from the data for 1% and 99% quantiles
+quantile(hslosses, c(0.01,0.99))
+
+# Estimate the 99% ES
+mean(hslosses[hslosses >= quantile(hslosses, 0.99)])
+
+##compute means from the data
+mu<-mean(hslosses)
+sigma <- sd(hslosses)
+
+#compute 0.99 var assuming  hslosses is normally distributed
+qnorm(0.99, mean=mu, sd=sigma)
+ESnorm(0.99,mu=mu, sd=sigma)
+
+############################
+### portfolio with options
+#### Compute Black-Scholes price of an option
+# r prog switch  construction
+tf <- function(type=c("call", "put")){
+  res <- "nan"
+  switch(type, 
+        call = { res <- "c"},
+        put =  {res <-"p"},
+        stop("wrong type"))  # or res <- "nan")  # default value
+  return(res)
+}
+
+require(qrmtools)
+K<-100 # strike
+r<-0.01 #annualized free-risk interest rate
+sigma<-0.20 #annualized vola
+
+paste("Price a European call option that matures in one year if the current stock price is 80,
+      T=1 i.e. option expiry is in 1 year")
+Black_Scholes(t=0, S=80, r=r, sigma=sigma, K=K, T=1, type="call")
+# Price a European call option that matures in one year if the current stock price is 120
+Black_Scholes(0, 120, r, sigma, K, 1, "call")
+
+paste("pricing puts")
+# Price a European put option that matures in one year if the current stock price is 80
+Black_Scholes(0, 80, r, sigma, K, 1, "put")
+
+# Price a European put option that matures in one year if the current stock price is 120
+Black_Scholes(0, 120, r, sigma, K, 1, "put")
+         
+####### equity and implied volatility risk factors  
+data("SP500")
+data("VIX")
+
+riskfactors <- merge(SP500,VIX, all=FALSE)["1990::2010"]
+returns<-diff(log(riskfactors))[-1,]  
+plot.zoo(riskfactors)
+
+## basic form of pairs plot
+plot(as.matrix(returns), cex=0.1)
+
+## jarq.test
+apply(returns, FUN=jarque.test, MARGIN=2)
+qqnorm(returns[,2], main="QQ-plot for VIX")
+qqline(returns[,2],col=2)
+
+
+acf(returns)
+acf(abs(returns))
+
+cor(returns)
+         
+####### Historical simulation of a single option portfolio ####
+
+##lossop op for option portfolio
+lossop <- function(xseries,r=0.01, K=100, T=1, sigma=0.2,S=100){
+  if (is.xts(xseries))
+    x <- coredata(xseries)
+  else if (is.matrix(xseries))
+    x <- xseries
+  else
+    x <- matrix(xseries,nrow=1)
+  ll <- apply(x,MARGIN=1,
+            function(x,r,K,T,sigma,S){
+              deltat <- 1/250
+              V_t0 <- Black_Scholes(t=0, S=S, r=r, sigma=sigma, K=K, T=T, type="call")
+              V_t1 = Black_Scholes(t=deltat, S=exp(log(S)+x[1]), r=r, sigma=exp(log(sigma)+x[2]), K=K, T=T, type="call")
+              return(- (V_t1 - V_t0)/V_t0)
+            },
+            r=r,K=K,T=T,sigma=sigma,S=S)
+  if (is.xts(xseries))
+    ll <- xts(ll,time(xseries))
+  return(ll)
+}
+
+
+
