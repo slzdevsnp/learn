@@ -37,7 +37,7 @@ test.mat<-model.matrix(Salary~. ,data=Hitters[test,])
 val.errors <- rep(NA,p_features)
 
 for (i in 1:p_features){
-	coefi <- coef(regfit.best,id=i) #best model of size k=i
+	  coefi <- coef(regfit.best,id=i) #best model of size k=i
     pred  <- test.mat[,names(coefi)]%*%coefi
     val.errors[i] <- mean( (Hitters$Salary[test]-pred)^2 )
 }
@@ -48,13 +48,13 @@ points(ve_min,val.errors[ve_min],col="red", cex=2, pch=20)
 print(paste("test err min:",ve_min))
 print(coef(regfit.best,id=ve_min))
 
-## lets write the function
+## lets write the function for regsubsets
 
 predict.regsubsets<-function(object,newdata,id,...){
     form<-as.formula(object$call[[2]])
     mat<-model.matrix(form,newdata)
     coefi<-coef(object,id=id)
-    mat[,names(coefi)]%*%coefi
+    return( mat[,names(coefi)]%*%coefi ) #returns predictions
 }
 
 #lets use this function 
@@ -87,8 +87,9 @@ plot(mean.cv.errors, type='b', main="cross-validation curve for best subset sele
 min_cve_idx <- which.min(as.numeric(mean.cv.errors))
 points(min_cve_idx, mean.cv.errors[min_cve_idx],col="red", cex=2, pch=20)
 
-
+###############################
 ### lab 2 Ridge and Lasso 
+###############################
 library(glmnet)
 x <- model.matrix(Salary~. ,data=Hitters)[,-1] #syntax different in lecture
 #x <- model.matrix(Salary~.-1 ,data=Hitters)
@@ -126,14 +127,15 @@ ridge.pred <- predict(ridge.mod, s=1e10, newx=x[test,]) #make predictions for la
 print(mean((ridge.pred-y.test)^2)) #mse on test for lambda = 1e10
 
 #compute mse of the  for lambda = 0 , i.e. plain linear regression
-ridge.pred <- predict(ridge.mod, s=0, newx=x[test,]) #make predictions for lambda = 4
+ridge.pred <- predict(ridge.mod, s=0, newx=x[test,]) #make predictions for lambda = 0
 print(mean((ridge.pred-y.test)^2)) #mse on test for lambda = 1e10
 
 
 lm.reg<-lm(y~x, subset=train)
 print(lm.reg)
 
-print(predict(ridge.mod, s=0, exact=TRUE, type="coefficients")[1:20,] )
+#print(predict(ridge.mod, s=0, exact=TRUE, type="coefficients")[1:20,] )
+print(predict(ridge.mod, s=0, type="coefficients")[1:20,] )
 
 
 

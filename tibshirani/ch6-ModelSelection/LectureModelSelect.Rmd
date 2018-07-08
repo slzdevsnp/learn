@@ -12,7 +12,6 @@ knitr::opts_chunk$set(echo = TRUE)
 Model Selection
 ===================
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown 
 
 Hitters is a dataset with baseball statisitcs.
 
@@ -23,7 +22,7 @@ dim(Hitters)
 summary(Hitters)
 ```
 
-Checking if dta has  missing values. If yes get rid of NAs.
+Checking if data has  missing values. If yes get rid of NAs.
 ```{r omit}
 dim(Hitters)
 with(Hitters,sum(is.na(Salary)))  # we have some missing values

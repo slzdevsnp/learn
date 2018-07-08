@@ -118,7 +118,7 @@ ch7lect <- function(){
 
 }
 
-#ch7lab <- function(){
+ch7lab <- function(){
 
 if ( length(dev.list()) > 0 ) { graphics.off() }
 
@@ -219,9 +219,13 @@ plot(age.grid, preds, lwd=2,col="blue", lty=1,ylim=c(70,130))
 require(splines)
 
 library(splines)
+data(Wage)
+age <- Wage$age 
+wage <- Wage$wage 
+
 fit <- lm(wage~bs(age,knots=c(25,40,60)),data=Wage)
 pred <- predict(fit,newdata=list(age=age.grid),se=T)
-plot(age,wage,data=Wage,col="gray", main="wages vs age")
+plot(age,wage,col="gray", main="wages vs age")
 lines(age.grid,pred$fit,lwd=2,col="blue")
 lines(age.grid,pred$fit+2*pred$se ,lty="dashed")
 lines(age.grid,pred$fit-2*pred$se ,lty="dashed")
@@ -273,14 +277,12 @@ gam.m2=gam(wage~year+s(age ,5)+education ,data=Wage)
 anova(gam.m1,gam.m2,gam.m3,test="F")
 
 
-#}
+}
 
-  
-
-
+ 
 
 ###### main  ######
 #prhead(label="ch7 lecture")
 #ch7lect()
 prhead(label="ch7 lab")
-#ch7lab()
+ch7lab()

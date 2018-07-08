@@ -267,9 +267,9 @@ library(pls)
 
 pcr.fit <- pcr(Apps~. ,data=College,subset=train,scale=TRUE, validation="CV")
 validationplot(pcr.fit, val.type="MSEP")
-pcr.pred <- predict(pcr.fit, College[test,], ncomp=9)
+pcr.pred <- predict(pcr.fit, College[test,], ncomp=10)
 mse_pcr <- mean( (pcr.pred - y.test)^2 )
-print(paste("test MSE  PCR ncomp=9: ",mse_pcr))
+print(paste("test MSE  PCR ncomp=10: ",mse_pcr))
 
 ```
 
@@ -279,9 +279,9 @@ print(paste("test MSE  PCR ncomp=9: ",mse_pcr))
 pls.fit <- plsr(Apps~. ,data=College,subset=train
 	           ,scale=TRUE, validation="CV")
 validationplot(pls.fit, val.type="MSEP")
-pls.pred <- predict(pls.fit, College[test,], ncomp=7)
+pls.pred <- predict(pls.fit, College[test,], ncomp=10)
 mse_pls <- mean( (pls.pred - y.test)^2 )
-print(paste("test MSE  PLS ncomp=7: ",mse_pls))
+print(paste("test MSE  PLS ncomp=10: ",mse_pls))
 ```
 
 ### g)

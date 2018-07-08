@@ -13,7 +13,7 @@ require(leaps)
 data(Hitters)
 Hitters <- na.omit(Hitters)
 
-
+#### model selection using a validation set
 set.seed(1)
 nrows <- dim(Hitters)[1] #263
 sample_size <- floor(2/3 * nrows) + 5  # training sample of size 180
@@ -27,7 +27,7 @@ x.test <- model.matrix(Salary~. , data=Hitters[-train,]) #
 
 for(i in 1:19){
    coefi <- coef(regfit.fwd,id=i)
-   pred  <- x.test[,names(coefi)]%*%coefi #varieables * model coefficients
+   pred  <- x.test[,names(coefi)]%*%coefi #variables * model coefficients
    val.errors[i] <- mean((Hitters$Salary[-train]-pred)^2)
 }
 plot(sqrt(val.errors), ylab="Root MSE", ylim=c(300,400), pch=19,type="b")

@@ -40,6 +40,7 @@ Doing best subset selection on the full dataset.
 ```{r}
 library(leaps)
 p_features<- dim(Hitters)[2] -1
+p_features
 regfit.full<-regsubsets(Salary~., data=Hitters, nvmax=p_features)
 reg.summary<-summary(regfit.full)
 reg.summary
@@ -60,6 +61,7 @@ ylab="Adjusted RSq",type="l", main="Best subset select")
 idx_max<- which.max(reg.summary$adjr2)
 paste("R-squared is at max with  number of features:",idx_max)
 points(idx_max,reg.summary$adjr2[idx_max],col="red", cex=2, pch=20)
+
 ```
 
 In similar fashion lets plot $C_p$ and $BIC$ statitstics.
@@ -116,12 +118,12 @@ We first divide the dataset into a training set and a test set. A training set i
 
 ```{r}
 set.seed(1) #for repoducibility of results
-#split the dataset roguhly in half
+#split the dataset roughly in half
 train <- sample( c(TRUE,FALSE), nrow(Hitters), rep=TRUE)
 length(train)
 sum(train)  # how main elmements in train
 
-#test is the opposite of train
+#test is the complement of train
 test <- !train
 sum(test) #how many elements in test
 ```
@@ -182,7 +184,7 @@ for(j in 1:k ){
    }	
 }
 #obtain a mean cv error
-mean.cv.errors <- apply(cv.errors, 2, mean) #apply func mean on index 2 (columns)
+mean.cv.errors <- apply(cv.errors, MARGIN=2, mean) #apply func mean on index 2 (columns)
 str(mean.cv.errors)
 print(paste("mean cv error:", paste(mean.cv.errors, collapse=",")))
 ```
@@ -211,11 +213,14 @@ ridge.mod <- glmnet(x,y, alpha=0, lambda=grid) # alpha = 0  is ridge
 plot(ridge.mod)
 ridge.mod$lambda[50] #lambda from the middle of the grid
 coef(ridge.mod)[,50] #model coefficients for lambda from the middle of the grid
+#compute the l2 norm
+sqrt(sum(coef(ridge.mod)[-1,50]^2))
+
 dim(coef(ridge.mod))
 ```
 We can also get coefficients using `predict`  e.g. for $\lambda=50$
 ```{r}
-predict(ridge.mod, s=11497.57,type="coefficients")[1:20,]
+predict(ridge.mod, s=50,type="coefficients")[1:20,]
 ```
 
 We now split data into a training set and a test set
@@ -228,8 +233,8 @@ train <- sample(full_idx, length(full_idx)/2 )
 test <- full_idx[-train] 
 y.test <- y[test]
 #observe train and test set (indexes)
-sort(train)
-sort(test)
+#sort(train)
+#sort(test)
 ```
 Then we fit a ridge on the training set and evaluate its MSE on the test set using $\lambda = 4$
 
@@ -267,8 +272,10 @@ Lets verify that coefficients of ridge with $\lambda=0$ correspond to a classica
 lm.reg<-lm(y~x, subset=train)
 print(lm.reg)
 #note exact=TRUE param
-print(predict(ridge.mod, s=0, exact=TRUE, type="coefficients")[1:20,] )
+#print(predict(ridge.mod, s=0, exact=TRUE, type="coefficients")[1:20,] ) #produces error
+print(predict(ridge.mod, s=0, type="coefficients")[1:20,] )
 ```
+We observe that coefficients are very similar. 
 
 Now lets find a minimal test MSE using a cross validation using `cv.glmnet()`.
 ```{r}
@@ -290,7 +297,7 @@ coefs
 ```
 ### The Lasso Regression
 
-Same fuctions are uses as with Ridge except the paramere `alpha=1`
+Same fuctions are uses as with Ridge except the parameter `alpha=1`
 ```{r}
 lasso.mod=glmnet(x[train ,],y[train],alpha=1,lambda=grid)
 plot(lasso.mod)
@@ -318,6 +325,7 @@ print(lasso.coef[lasso.coef != 0])
 ```
 We observe that for the best $\lambda$ the model has only 7 variables (out of 19).
 
+
 ##Lab 3: PCR and PLS Regression
 #### PCR: Principal Components Regression
 Package `pls` is used forPCR and PLS Rgressions.
@@ -325,7 +333,7 @@ Lets make the pcr fit on all daa and observe it summary
 ```{r}
 library(pls)
 set.seed(2)
-pcr.fit=pcr(Salary~., data=Hitters ,scale=TRUE,validation ="CV")
+pcr.fit=pcr(Salary~., data=Hitters ,scale=TRUE,validation ="CV") #scale=T normalizes predictors
 print(summary(pcr.fit))
 ```
 Observe that `pcr()` reports the root mean squared error; in order to obtain the usual MSE, we must square this quantity. 
