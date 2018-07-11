@@ -110,7 +110,7 @@ pprint("Boosting")
 
 require(gbm)
 boost.boston <- gbm(medv~., data=Boston[train,], distribution="gaussian", n.trees=1000, shrinkage=0.01, interaction.depth=4) #interaction.depth = # of splits
-print( summary(boost.boston) ) #this produces the plot of relative importance of features to reduce variance
+print( summary(boost.boston) )1 #this produces the plot of relative importance of features to reduce variance
 par(mfrow=c(1,2))
 plot(boost.boston, i="lstat")
 plot(boost.boston, i="rm")

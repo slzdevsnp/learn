@@ -158,7 +158,7 @@ print(ols.test_r2)
 pprint("exercise 11")
 dev.off()
 #a), b)
-ns<-100
+ns<-1000
 x1<-rnorm(ns)
 x2<-rnorm(ns)
 eps<-rnorm(ns)
@@ -182,7 +182,7 @@ beta1_v <- rep(NA,nsim)
 beta2_v <- rep(NA,nsim)
 beta0_v <-rep(NA,nsim)
 
-beta1<-2.0 #initial value
+beta1<-2.0 #initial value 
 for (i in 1:nsim){
     a<- y-beta1*x1
     cfit <- lm(a~x2)

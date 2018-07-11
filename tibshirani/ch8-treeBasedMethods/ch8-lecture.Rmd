@@ -164,6 +164,3 @@ Boosting if tweeked often outpeforms of random forests.
 For boosting you have genuine tuning params: the number of trees, the shrinkage param, and the depth
 
 Both are very powerful methods  
-
-
-
