@@ -129,6 +129,8 @@ nsam  <- dim(Caravan)[1]
 train <- 1:1000
 test <- (1:nsam)[-train]
 Caravan$Purchase = ifelse(Caravan$Purchase == "Yes", 1, 0)
-
-
+X.train <- Caravan[train,-86]
+X.test <- Caravan[test,-86]
+Y.train <- Caravan[train,86]
+Y.test <- Caravan[test,86]
 
