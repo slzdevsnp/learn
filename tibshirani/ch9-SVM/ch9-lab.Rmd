@@ -152,6 +152,18 @@ summary(svmfit)
 ```
 
 
+Lets see the svm fit with polynomial kernel
+
+```{r}
+cst <- 1
+svmfit.po <- svm(y~., data=dat[train,], kernel="polynomial", degree=10, cost=cst) 
+
+plot(svmfit.po,dat[train,])
+summary(svmfit.po)
+```
+
+We see the polynomial kernel does not do the job 
+
 If you reduce margin, the decision boundary becomes more irregular
 ```{r}
 cst <- 1e5
