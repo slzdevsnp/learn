@@ -1,0 +1,52 @@
+
+step 1 Python Introduction
+    python programming beginner
+    python intermediate
+
+step 2 Data Analysis and Visualization
+    Pandas and NumPy Fundamentals
+    Exploratory Data Visualization
+    Storytelling Through Data Visualization
+    Data Cleaning
+
+
+step 3 The Command Line
+    Command Line: Beginner
+    Command Line: Intermediate
+    Git and Version Control
+
+step 4 Working with Data Sources
+    SQL Fundamentals
+    SQL Intermediate: Table Relations and Joins
+    SQL and Databases: Advanced
+    APIs and Web Scraping
+
+step 5 Probability and Statistics
+    Statistics Fundamentals 
+    Statistics Intermediate: Averages and Variability
+    Probability and Statistics in Python: Intermediate
+
+step 6 Machine Learning
+    Machine Learning Fundamentals
+    Calculus For Machine Learning
+    Linear Algebra For Machine Learning
+    Linear Regression For Machine Learning
+    Machine Learning in Python: Intermediate
+    Decision Trees
+    Machine Learning Project
+
+step 7 Advanced Python and Computer Science
+    Data Structures and Algorithms
+    Python Programming: Advanced
+
+
+step 8 Advanced Topics in Data Science
+    Kaggle Fundamentals
+    Exploring Topics in Data Science
+    Natural Language Processing
+
+
+step 9 Working With Large Datasets
+    Spark and Map-Reduce
+
+
