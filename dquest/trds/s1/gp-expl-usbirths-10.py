@@ -74,8 +74,3 @@ ssa_list = read_csv("US_births_2000-2014_SSA.csv")
 pp(cdc_list[-1])
 pp(ssa_list[0])
 
-merged_list = []
-for r1 in cdc_list:
-
-
-
