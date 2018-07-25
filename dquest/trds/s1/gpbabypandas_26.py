@@ -150,8 +150,6 @@ class BabyPandas:
             i += 1
         pp(summ)
 
-import csv
-
 
 
 
