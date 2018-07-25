@@ -1,4 +1,4 @@
-from banners import *
+
 
 cat =True
 dog = False

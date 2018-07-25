@@ -11,10 +11,7 @@ music = list(data)
 starprint("contents of music list of list")
 pp(music[:2])
 
-from datetime import time
-from datetime import  date
 from datetime import datetime
-from datetime import timedelta
 
 jan_27_1965 = datetime(1965, 1, 27, 12, 43)
 aug_3_1972 = datetime(1972, 8, 3, 1, 43)

@@ -1,6 +1,3 @@
-from banners import *
-from pprint import pprint as pp
-
 class MusicArtist():
     pass
 

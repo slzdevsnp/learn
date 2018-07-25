@@ -1,7 +1,6 @@
 from banners import *
 
 from pprint import pprint as pp
-from subprocess import call
 
 import csv
 fn="top100.csv"
