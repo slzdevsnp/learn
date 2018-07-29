@@ -1,7 +1,7 @@
 from pprint import pprint as pp
 
 import pandas as pd
-import numpy as np
+
 
 """
 the data cleansing plan:
