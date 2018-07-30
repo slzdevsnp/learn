@@ -1,7 +1,4 @@
 import pandas as pd
-
-from pprint import pprint as pp
-
 import matplotlib.pyplot as plt
 
 unrate = pd.read_csv('unrate.csv')
@@ -77,5 +74,6 @@ plt.xlabel("Month, Integer")
 plt.ylabel("Unemployment Rate, Percent")
 plt.title("Monthly Unemployment Trends, 1948-1952")
 plt.show()
+
 
 
