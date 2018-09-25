@@ -27,3 +27,5 @@ microsoft BI stack install
 	download a standalone installer 
 
 	NB: you can install SSDT in the VS 2017 community or into a new VS instance
+
+	EOF
