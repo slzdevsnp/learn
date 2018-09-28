@@ -1,0 +1,33 @@
+cocoapods_readme
+
+1. install cocoapods from instructions on https://cocoapods.org/
+
+2. create your project in xcode.
+
+
+3. exit xcode , cd to the project directory
+
+4. run $ pod init
+
+5. or use a skeleton PodFile in project root foler
+
+# Uncomment the next line to define a global platform for your project
+#platform :ios, '9.0'
+use_frameworks!
+
+target 'MyApp' do
+  pod 'AFNetworking', '~> 2.6'
+  pod 'ORStackView', '~> 3.0'
+  pod 'SwiftyJSON', '~> 2.3'
+end
+
+6. run $pod install  ## downloads dependencies
+
+
+7. Make sure to always open the Xcode workspace instead of the project file when building your project:
+
+$ open MyApp.xcworkspace
+
+8. Now you can import your dependencies e.g.:
+
+#import <Reachability/Reachability.h>

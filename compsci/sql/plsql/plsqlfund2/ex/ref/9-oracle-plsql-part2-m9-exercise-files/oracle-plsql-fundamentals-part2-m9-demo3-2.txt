@@ -1,0 +1,19 @@
+﻿--test session
+-- Use this to drop the procedure we created in Demo 1
+DROP PROCEDURE update_emp;
+CREATE OR REPLACE FUNCTION update_emp(p_dept_id NUMBER, 
+                                                                                               p_location VARCHAR2) RETURN NUMBER AUTHID CURRENT_USER  AS
+    l_count NUMBER;
+ BEGIN
+    UPDATE demo.employee
+        SET emp_loc = p_location
+    WHERE emp_dept_id = p_dept_id;
+    COMMIT;
+     l_count := demo.get_emp_count(p_dept_id);
+     RETURN l_count;
+  EXCEPTION
+      WHEN OTHERS THEN           
+         DBMS_OUTPUT.PUT_LINE(DBMS_UTILITY.FORMAT_ERROR_BACKTRACE);
+         ROLLBACK;
+         RAISE;
+  END update_emp;

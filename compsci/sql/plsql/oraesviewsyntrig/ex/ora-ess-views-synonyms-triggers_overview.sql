@@ -1,0 +1,399 @@
+--run by student 
+
+-------
+DECLARE 
+   message  varchar2(100):= 'Views'; 
+BEGIN 
+   dbms_output.put_line('#################');
+   dbms_output.put_line(message);
+    dbms_output.put_line('#################');
+END; 
+/
+/* example of creating a view on multiple joins */
+/* usefullness to put meaningful explicit names */
+CREATE OR REPLACE VIEW degree_course_requirements AS 
+SELECT
+  d.department_code as degree_department_code,
+  dd.department_name as degree_department_name,
+  d.degree_type_code, d.degree_name,
+  cs.class_standing_code , cs.class_standing_name,
+  s.session_code, s.session_name,
+  d.department_code, c.course_number,
+  c.course_title, c.course_description, c.credits
+FROM  degrees d
+INNER JOIN degree_requirements r 
+    ON d.degree_id = r.degree_id
+INNER JOIN courses c
+    on  r.department_code = c.department_code
+    AND r.course_number = c.course_number
+INNER JOIN sessions s 
+    on r.session_code = s.session_code
+INNER JOIN departments dd   
+    ON d.department_code = dd.department_code
+INNER JOIN class_standings cs 
+    on r.class_standing_code = cs.class_standing_code
+;
+
+
+
+
+
+
+---query the view to get all courses to obtain a cs degree
+select  class_standing_name, session_name, department_code, course_number, course_title, credits
+from degree_course_requirements
+where degree_department_code = 'CS'
+and degree_type_code = 'BS'
+ORDER BY class_standing_code, department_code, course_number;
+
+
+/* example of a view on a subset of colums.  security rationale */
+
+    CREATE OR REPLACE VIEW current_compsci_students AS
+    SELECT student_id, first_name, middle_name, last_name, gender, email, d.degree_name 
+    FROM students s 
+    INNER JOIN degrees d 
+        ON d.degree_id = s.degree_pursued
+    WHERE  
+        d.department_code = 'CS'
+        AND s.student_status = 'E'; -- enrolled
+
+  /* see the subset of students the cs majors */
+  select * from current_compsci_students where rownum < 10; --subset is big
+  
+  /* common use of views, grant them to less privileged users */
+  GRANT SELECT on current_compsci_students TO student_web;
+  
+/* == view with a join for DML  */
+CREATE or REPLACE VIEW department_degrees AS 
+SELECT d.degree_id, d.department_code, dd.department_name,
+    d.degree_type_code, d.degree_name
+FROM degrees d 
+INNER JOIN departments dd 
+    ON dd.department_code = d.department_code;
+
+select * from department_degrees order by degree_id desc;
+
+-- insert into this view  (works)
+INSERT INTO department_degrees (department_code, degree_type_code, degree_name)
+    VALUES ('CS', 'MS', 'Master of Science in Software Engineering Bis');
+
+
+-- update (works) because modifying data in key preserved table)
+UPDATE department_degrees
+    SET degree_name = 'Masters of Science in Systems Engineering'
+    WHERE degree_id = 16 ;
+
+
+  
+-- a help to see which columns are updatable in the view
+SELECT * FROM USER_UPDATABLE_COLUMNS WHERE TABLE_NAME = 'DEPARTMENT_DEGREES';
+
+-- with check option
+CREATE OR REPLACE VIEW computer_science_courses AS 
+SELECT 
+    c.department_code, c.course_number,
+    c.course_title, c.course_description, c.credits
+FROM courses c 
+WHERE c.department_code = 'CS'
+WITH CHECK OPTION;
+
+--- cannot insert data for non 'CS' course
+
+-------
+DECLARE 
+   message  varchar2(100):= 'Triggers'; 
+BEGIN 
+   dbms_output.put_line('#################');
+   dbms_output.put_line(message);
+    dbms_output.put_line('#################');
+END; 
+/
+
+/* NB! do not put applicaiton logic into triggers */
+/*  trigger basic syntaxt
+        CREATE [OR REPLACE] TRIGGER <<trigger_name>>
+        [BEFORE | AFTER ] [INSERT | UPDATE | DELETE]
+        [OF <<col_name>>]
+        ON <<table_name>>
+        [FOR EACH ROW]
+    DECLARE --plsql block from here
+        --variable , procs declarations 
+    BEGIN 
+        --trigger code 
+
+    EXCEPTION
+        WHEN ...
+            -- exception handling 
+    END;
+    
+    -- triggers can have conditional predicates 
+    CREATE [OR REPLACE] TRIGGER <<trigger_name>>
+    ....
+    BEGIN 
+        CASE 
+            WHEN INSERTING THEN
+                -- insert logic 
+            WHEN UPDATING(<<col_name>>) THEN
+                -- column spec logic 
+            WHEN UPDATING THEN 
+                --update spec logic 
+            WHEN DELETING  THEN 
+                -- delete specific logic    
+        END CASE ;
+    END;    
+    
+*/
+    
+--triggers cannot have commit or rollback statments in their body
+--they are part of the transaction for which they fire 
+
+--firing order of triggers 
+-- before statmenet -> before each row -> statement ex -> after each row ->after statement
+-- triggers can follow or precede each other if fired for the same operation [FOLLOWS | PRECEDES]
+
+/*********************************/
+/* demo updating admin colums */
+/*********************************/
+drop table ZE_PUPILS;
+
+CREATE TABLE ZE_PUPILS
+   (pupil_id NUMBER(10,0) GENERATED BY DEFAULT ON NULL AS IDENTITY   NOT NULL ENABLE, 
+    first_name VARCHAR2(40 BYTE) NOT NULL ENABLE, 
+    last_name VARCHAR2(40 BYTE) NOT NULL ENABLE, 
+    gender VARCHAR2(1 BYTE) NOT NULL ENABLE, 
+    email VARCHAR2(50 BYTE) NOT NULL ENABLE, 
+    create_date DATE DEFAULT sysdate,
+    modified_date DATE DEFAULT sysdate,
+    CONSTRAINT pk_ze_pupils PRIMARY KEY(pupil_id)
+);
+
+INSERT INTO ZE_PUPILS(first_name, last_name, gender, email)VALUES
+('Ivan', 'Poddubnyj', 'M', 'ivanpod@gmail.com');
+
+INSERT INTO ZE_PUPILS(first_name, last_name, gender, email)VALUES
+('Vasilisa', 'Premudraya', 'F', 'maria@lancome.com');
+
+select * from ZE_PUPILS;
+
+--drop trigger tr_ze_pupils_cre_mod_date;
+--define trigger to update  dates 
+CREATE OR REPLACE TRIGGER tr_ze_pupils_cre_mod_date
+BEFORE INSERT OR UPDATE 
+ON ze_pupils
+FOR EACH ROW
+BEGIN 
+    CASE 
+        WHEN INSERTING THEN
+            :new.create_date := sysdate;
+            :new.modified_date := sysdate;
+        WHEN UPDATING THEN 
+            :new.create_date := :old.create_date; -- increment create date 
+            :new.modified_date := sysdate;
+    END CASE;         
+END;
+/
+
+INSERT INTO ze_PUPILS(first_name, last_name, gender, email)VALUES
+('Alesha', 'Popopvich', 'M', 'alesha.p@bogatyr.ru');
+
+-- now insert a new row and check values
+
+SELECT pupil_id, first_name, last_name, email, 
+       to_char(create_date, 'YYYY-MM-DD HH24:MI:SS') as create_date,
+       to_char(modified_date, 'YYYY-MM-DD HH24:MI:SS') as modified_date 
+FROM ze_pupils;
+
+-- now lets do some updates 
+UPDATE ze_pupils
+    set email = 'ivan.poddubnyj@wrestling.com'
+WHERE pupil_id = 1;
+
+UPDATE ze_pupils
+    set email = 'maria.premudraya@chanel.com',
+    create_date = DATE '2012-01-01' -- this value expected to be ignored
+WHERE pupil_id = 2;
+
+--observe changes in create_date ,modified date
+SELECT pupil_id, first_name, last_name, email, 
+       to_char(create_date, 'YYYY-MM-DD HH24:MI:SS') as create_date,
+       to_char(modified_date, 'YYYY-MM-DD HH24:MI:SS') as modified_date 
+FROM ze_pupils;
+
+/*********************************/
+/* demo archive a rows with trigger 
+/*********************************/
+drop table ze_pupils_archive;
+
+CREATE TABLE ze_pupils_archive
+   (pupil_id NUMBER NOT NULL ENABLE, 
+    first_name VARCHAR2(40 BYTE) NOT NULL ENABLE, 
+    last_name VARCHAR2(40 BYTE) NOT NULL ENABLE, 
+    gender VARCHAR2(1 BYTE) NOT NULL ENABLE, 
+    email VARCHAR2(50 BYTE) NOT NULL ENABLE, 
+    create_date DATE,
+    active_start_time DATE, 
+    active_end_time DATE,
+    operation_type VARCHAR2(1 byte)
+    CONSTRAINT OP_CK 
+        CHECK (operation_type IN ('U', 'D')) -- not necessary as values inserted by trigger
+);
+
+/*trigger for copying into archive table */
+CREATE OR REPLACE TRIGGER tr_ze_pupils_archive_row
+AFTER UPDATE OR DELETE 
+ON ze_pupils
+FOR EACH ROW
+DECLARE
+    op_type VARCHAR2(1);
+BEGIN 
+    CASE 
+        WHEN UPDATING THEN
+            op_type := 'U';
+        WHEN DELETING THEN 
+            op_type := 'D';
+    END CASE;        
+    INSERT INTO ze_pupils_archive(pupil_id, first_name, last_name,gender,email,
+                                create_date,active_start_time, active_end_time, operation_type)
+    VALUES( :old.pupil_id,
+            :old.first_name,
+            :old.last_name,
+            :old.gender,
+            :old.email,
+            :old.create_date,
+            :old.modified_date,
+            sysdate,
+            op_type);
+END;
+/
+
+--lets do some updates
+UPDATE ze_pupils
+    set email = 'alesha.po@bogary.com'
+where pupil_id = 3;
+
+-- see the difference
+SELECT pupil_id, first_name, last_name, email, 
+       to_char(create_date, 'YYYY-MM-DD HH24:MI:SS') as create_date,
+       to_char(modified_date, 'YYYY-MM-DD HH24:MI:SS') as modified_date 
+FROM ze_pupils;
+-- see the old values in archive table 
+select pupil_id, first_name, last_name, email, 
+       to_char(create_date, 'YYYY-MM-DD HH24:MI:SS') as create_date,
+       to_char(active_start_time, 'YYYY-MM-DD HH24:MI:SS') as active_start_time,
+       to_char(active_end_time, 'YYYY-MM-DD HH24:MI:SS') as active_end_time,  
+       operation_type
+from ze_pupils_archive;
+
+--delete
+delete from ze_pupils
+where pupil_id = 3;
+
+select pupil_id, first_name, last_name, email, 
+       to_char(create_date, 'YYYY-MM-DD HH24:MI:SS') as create_date,
+       to_char(active_start_time, 'YYYY-MM-DD HH24:MI:SS') as active_start_time,
+       to_char(active_end_time, 'YYYY-MM-DD HH24:MI:SS') as active_end_time,  
+       operation_type
+from ze_pupils_archive;
+
+
+
+/*********************************
+demo create an auto incrementing 
+value for identity with trigger 
+/*********************************/
+drop table ze_folks;
+
+CREATE TABLE ze_folks(
+    folk_id NUMBER(10) NOT NULL, 
+    name VARCHAR2(40), 
+    create_date DATE DEFAULT sysdate,
+    modified_date DATE DEFAULT sysdate
+    
+);
+
+DROP SEQUENCE seq_folk_id_sequence;
+
+CREATE  SEQUENCE seq_folk_id_sequence START with 10;
+
+CREATE OR REPLACE TRIGGER tr_folks_assign_id
+BEFORE INSERT 
+ON ze_folks
+FOR EACH ROW 
+BEGIN 
+    :new.folk_id := seq_folk_id_sequence.nextval;
+END;
+/
+--now lets do some inserts
+INSERT INTO ze_folks(name) values('papa');
+INSERT INTO ze_folks(name) values('mama');
+INSERT INTO ze_folks(name) values('baba');
+INSERT INTO ze_folks(name) values('deda');
+-- see the autoincrementation by trigger working 
+select * from ze_folks;
+
+
+
+/*********************************
+demo compound trigger
+fired on bulk update of ze_pupils
+/*********************************/
+CREATE OR REPLACE TRIGGER tr_ze_pupils_archive_data_bulk
+    FOR UPDATE on ze_pupils 
+        COMPOUND TRIGGER 
+    --declarations
+    TYPE pupils_archive_t IS TABLE OF ze_pupils_archive%ROWTYPE INDEX BY SIMPLE_INTEGER;
+    modified_pupils     pupils_archive_t;
+    idx                 NUMBER(4)           := 0;
+    j                   NUMBER(4)           := 0;
+    modify_date         DATE                := sysdate;
+    chunk_size          CONSTANT NUMBER(4)  := 100;
+
+    --declare a trigger proc 
+    PROCEDURE insert_archive_records IS 
+        record_count CONSTANT NUMBER(4) := modified_pupils.count();
+        BEGIN 
+            FORALL j IN 1 .. record_count
+                INSERT INTO ze_pupils_archive(pupil_id, first_name, last_name, gender, email,
+                                create_date, active_start_time, active_end_time, operation_type)
+                VALUES
+                (modified_pupils(j).pupil_id,
+                 modified_pupils(j).first_name,
+                 modified_pupils(j).last_name,
+                 modified_pupils(j).gender,
+                 modified_pupils(j).email,
+                 modified_pupils(j).create_date,
+                 modified_pupils(j).active_start_time,
+                 modified_pupils(j).active_end_time,
+                 modified_pupils(j).operation_type);
+
+            modified_pupils.delete();  --reset the table array and get next block processing
+            idx := 0;
+        END insert_archive_records;
+
+    AFTER EACH ROW IS 
+        BEGIN 
+            idx := idx + 1;
+            modified_pupils(idx).pupil_id           := :old.pupil_id;
+            modified_pupils(j).first_name           := :old.first_name;
+            modified_pupils(j).last_name            := :old.last_name;
+            modified_pupils(j).email                := :old.email;
+            modified_pupils(j).create_date          := :old.create_date;
+            modified_pupils(j).active_start_time    := :old.modified_date; --!!
+            modified_pupils(j).active_end_time      := modify_date;
+            modified_pupils(j).operation_type      := 'U';
+            IF idx >= chunk_size THEN  -- attained chunk size of 100
+                insert_archive_records(); -- call trigger proc which actually copies into the archive table
+            END IF;
+        END AFTER EACH ROW;    
+END;
+/
+--make the bulk update on ze_pupils
+-- this triggers the bulk update on ze_pupils_archive
+update ze_pupils
+    set email = first_name || '.' || last_name || '@pluralsight-engineering.edu';
+
+select * from ze_pupils;
+select * from ze_pupils_archive;
+
+

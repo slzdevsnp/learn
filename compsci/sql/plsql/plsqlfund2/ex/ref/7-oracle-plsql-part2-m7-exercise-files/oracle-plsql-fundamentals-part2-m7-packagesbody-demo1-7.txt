@@ -1,0 +1,17 @@
+﻿CREATE OR REPLACE PACKAGE hr_mgmt AS
+
+
+   dept_not_found_ex EXCEPTION;
+
+
+   TYPE g_rec IS RECORD(p_profit NUMBER, p_dept_name departments.dept_name%TYPE);
+
+
+   FUNCTION  calc_bonus(p_profit NUMBER, p_dept_id NUMBER) RETURN NUMBER;
+   FUNCTION  calc_bonus(p_profit NUMBER, p_dept_name VARCHAR2) RETURN NUMBER;
+   FUNCTION  calc_bonus(p_rec g_rec) RETURN NUMBER;
+   PROCEDURE update_emp(p_emp_id NUMBER, p_dept_name VARCHAR2);
+
+
+END hr_mgmt;
+/

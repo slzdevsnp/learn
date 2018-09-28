@@ -1,0 +1,6 @@
+﻿--dev user
+DECLARE
+    l_count NUMBER;
+BEGIN
+   l_count := test.update_emp(1,'WA');
+END;

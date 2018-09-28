@@ -1,0 +1,26 @@
+﻿CREATE OR REPLACE PACKAGE hr_mgmt AS
+
+
+   g_active_status  CONSTANT  VARCHAR2(1)  := 'A';
+   g_inactive_status CONSTANT VARCHAR2(1)  := 'I';
+   g_bonus_pct NUMBER := 0;        
+
+
+   dept_not_found_ex EXCEPTION;
+
+
+   TYPE g_rec IS RECORD(p_profit NUMBER, p_dept_name departments.dept_name%TYPE);
+
+
+   CURSOR gcur_get_deptid(p_dept_name VARCHAR2) IS
+     SELECT dept_id
+       FROM departments
+      WHERE dept_name = p_dept_name; 
+
+
+   FUNCTION  calc_bonus(p_profit NUMBER, p_dept_id NUMBER) RETURN NUMBER;
+   PROCEDURE update_emp(p_emp_id NUMBER, p_dept_name VARCHAR2);
+
+
+END hr_mgmt;
+/

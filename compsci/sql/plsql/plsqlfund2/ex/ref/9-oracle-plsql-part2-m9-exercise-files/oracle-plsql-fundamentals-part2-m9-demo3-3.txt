@@ -1,0 +1,5 @@
+﻿--DBA User
+GRANT select, update, insert, delete on demo.employee to test;
+
+
+GRANT execute on demo.get_emp_count to test;

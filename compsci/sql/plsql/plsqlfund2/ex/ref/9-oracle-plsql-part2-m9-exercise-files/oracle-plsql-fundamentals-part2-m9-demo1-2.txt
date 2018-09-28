@@ -1,0 +1,16 @@
+﻿--demo session
+CREATE OR REPLACE PACKAGE hr_mgmt IS
+  PROCEDURE update_emp;
+END hr_mgmt;
+/
+CREATE OR REPLACE PACKAGE BODY hr_mgmt IS
+  PROCEDURE update_emp IS
+  BEGIN
+    DBMS_OUTPUT.PUT_LINE('Inside Packaged Procedure update_emp in demo schema');
+  END update_emp;
+END hr_mgmt;
+/
+
+
+exec update_emp;
+exec hr_mgmt.update_emp;

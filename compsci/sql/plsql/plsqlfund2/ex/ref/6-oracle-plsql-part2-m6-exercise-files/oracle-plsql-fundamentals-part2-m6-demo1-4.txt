@@ -1,0 +1,1 @@
+﻿DROP PACKAGE hr_mgmt;

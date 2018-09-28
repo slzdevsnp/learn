@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ScappleDocument Version="1.1" ID="D608E385-75A3-41E2-BABB-6E80E5366B94">
+    <Notes>
+        <Note ID="0" FontSize="12.0" Position="337.335938,117.476562" Width="86.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="2"></Border>
+            </Appearance>
+            <String>ViewController</String>
+            <ConnectedNoteIDs>4-5, 14</ConnectedNoteIDs>
+        </Note>
+        <Note ID="4" FontSize="12.0" Position="320.21875,58.179688" Width="121.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="2"></Border>
+            </Appearance>
+            <String>Navigation Controller</String>
+            <ConnectedNoteIDs>0</ConnectedNoteIDs>
+        </Note>
+        <Note ID="5" FontSize="12.0" Position="316.003906,178.824219" Width="149.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="2"></Border>
+            </Appearance>
+            <String>ProfileTableViewController</String>
+            <ConnectedNoteIDs>0, 7-8</ConnectedNoteIDs>
+        </Note>
+        <Note ID="7" FontSize="12.0" Position="233.335938,247.207031" Width="130.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>SettingsViewController</String>
+            <ConnectedNoteIDs>5</ConnectedNoteIDs>
+        </Note>
+        <Note ID="8" FontSize="12.0" Position="438.835938,244.722656" Width="112.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="2"></Border>
+            </Appearance>
+            <String>ChatViewController</String>
+            <ConnectedNoteIDs>5</ConnectedNoteIDs>
+        </Note>
+        <Note ID="9" FontSize="12.0" Position="708.386719,45.742188" Width="104.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="2"></Border>
+            </Appearance>
+            <String>FireBaseManager</String>
+            <ConnectedNoteIDs>13</ConnectedNoteIDs>
+        </Note>
+        <Note ID="10" FontSize="12.0" Position="608.222656,365.957031" Width="80.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>PostManager</String>
+            <ConnectedNoteIDs>15</ConnectedNoteIDs>
+        </Note>
+        <Note ID="13" FontSize="12.0" Position="613.519531,58.660156" Width="46.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="2" Style="Square"></Border>
+            </Appearance>
+            <String>Login()</String>
+            <ConnectedNoteIDs>9, 14</ConnectedNoteIDs>
+        </Note>
+        <Note ID="14" FontSize="12.0" Position="459.488281,117.199219" Width="111.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="2" Style="Square"></Border>
+            </Appearance>
+            <String>LoginButton_click()</String>
+            <ConnectedNoteIDs>0, 13</ConnectedNoteIDs>
+        </Note>
+        <Note ID="15" FontSize="12.0" Position="723.0,366.0" Width="58.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1" Style="Square"></Border>
+            </Appearance>
+            <String>fillPosts()</String>
+            <ConnectedNoteIDs>10</ConnectedNoteIDs>
+        </Note>
+    </Notes>
+    <BackgroundShapes></BackgroundShapes>
+    <AutoFit>0, 4-5, 7-10, 13-15</AutoFit>
+    <NoteStyles>
+        <Style Name="Bubble (Blue)" ID="DBD53170-8C5D-4369-9D71-B231151DF669" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectFade="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.561855 0.71062 0.779401</BorderColor>
+            <FillColor>0.702319 0.888276 0.974252</FillColor>
+        </Style>
+        <Style Name="Bubble (Green)" ID="1FDF88A9-D673-4139-B93F-E30552C61CB3" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectFade="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.572684 0.758969 0.558154</BorderColor>
+            <FillColor>0.715855 0.948712 0.697692</FillColor>
+        </Style>
+        <Style Name="Bubble (Pink)" ID="1617EB88-3733-45ED-ACBA-4CD5114E3C60" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectFade="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.794796 0.560965 0.58607</BorderColor>
+            <FillColor>0.957566 0.766747 0.999616</FillColor>
+        </Style>
+        <Style Name="Bubble (Red)" ID="01222FA9-0629-4075-A114-19754FFE81BF" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectFade="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.794796 0.560965 0.58607</BorderColor>
+            <FillColor>0.993495 0.701207 0.732587</FillColor>
+        </Style>
+        <Style Name="Bubble (Yellow)" ID="1CB2726A-F25B-47DC-B627-E141663272E7" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectFade="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.798177 0.714184 0.522055</BorderColor>
+            <FillColor>0.997722 0.89273 0.652569</FillColor>
+        </Style>
+        <Style Name="Red Text" ID="FCF1E82A-0DAB-4169-B8E7-B58BCF524DC7" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="Yes" AffectNoteBody="No" AffectFade="No">
+            <TextColor>1.0 0.0 0.0</TextColor>
+        </Style>
+        <Style Name="Title Text" ID="8BCB87D0-45C8-4EB5-89B5-D90121F900C6" AffectFontStyle="Yes" AffectAlignment="Yes" AffectTextColor="No" AffectNoteBody="No" AffectFade="No">
+            <FontSize>28.0</FontSize>
+            <IsBold>Yes</IsBold>
+        </Style>
+    </NoteStyles>
+    <UISettings>
+        <BackgroundColor>0.999767 0.98837 0.949907</BackgroundColor>
+        <DefaultFont>Helvetica</DefaultFont>
+        <DefaultTextColor>0.0 0.0 0.0</DefaultTextColor>
+    </UISettings>
+    <PrintSettings PaperSize="595.0,842.0" LeftMargin="72.0" RightMargin="72.0" TopMargin="90.0" BottomMargin="90.0" PaperType="iso-a4" Orientation="Portrait" HorizontalPagination="Clip" VerticalPagination="Auto" ScaleFactor="1.0" HorizontallyCentered="Yes" VerticallyCentered="Yes" Collates="Yes" PagesAcross="1" PagesDown="1"></PrintSettings>
+</ScappleDocument>

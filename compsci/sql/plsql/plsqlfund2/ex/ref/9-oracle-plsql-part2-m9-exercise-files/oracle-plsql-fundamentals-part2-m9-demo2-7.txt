@@ -1,0 +1,8 @@
+﻿--test session
+DECLARE
+    l_count NUMBER;
+BEGIN
+   l_count := demo.update_emp(1,'WA');
+   DBMS_OUTPUT.PUT_LINE('Rows in dept_id 1 is '||l_count);
+END;
+/

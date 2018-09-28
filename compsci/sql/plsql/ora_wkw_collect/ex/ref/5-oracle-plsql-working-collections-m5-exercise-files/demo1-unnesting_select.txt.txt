@@ -1,0 +1,35 @@
+
+SELECT * FROM account_orders;
+
+SELECT a.act_id, 
+       b.COLUMN_VALUE itemname
+  FROM account_orders  a,
+       TABLE(a.itemslist) b;
+       
+SELECT a.act_id, 
+       b.order_id,
+       b.order_item_id 
+  FROM account_orders  a, 
+       TABLE(a.orderslist) b;
+       
+SELECT a.act_id, 
+       b.order_id,
+       b.order_item_id 
+  FROM account_orders  a, 
+       TABLE(a.orderslist)(+) b;
+
+
+DECLARE
+  CURSOR get_info_cur IS
+  SELECT a.act_id, 
+       b.order_id,
+       b.order_item_id 
+  FROM account_orders  a, 
+       TABLE(a.orderslist)(+) b;
+BEGIN
+  FOR get_info_var IN get_info_cur LOOP
+    DBMS_OUTPUT.PUT_LINE('Act Id: '||get_info_var.act_id||' Order Id: '||get_info_var.order_id||' '||
+    ' Item Id: '||get_info_var.order_item_id);
+  END LOOP;
+END;
+/

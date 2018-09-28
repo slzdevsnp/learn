@@ -1,0 +1,759 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<workbook version='8.1' xml:base='http://localhost' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <!-- build 8000.13.1001.1930                -->
+  <repository-location id='SalesbyCustSegment' path='/workbooks' revision='1.0' />
+  <preferences>
+  </preferences>
+  <datasources>
+    <datasource hasconnection='false' inline='true' name='Parameters' version='8.1'>
+      <aliases enabled='yes' />
+      <column caption='Profit Bin Size' datatype='real' default-format='c&quot;$&quot;#,##0;(&quot;$&quot;#,##0)' name='[Parameter 1]' param-domain-type='range' role='measure' type='quantitative' value='1000.0000000000000'>
+        <calculation class='tableau' formula='1000.0' />
+        <range granularity='500.00000000000000' max='2500.0000000000000' min='500.00000000000000' />
+      </column>
+      <column caption='Top Customers' datatype='integer' name='[Parameter 2]' param-domain-type='range' role='measure' type='quantitative' value='25'>
+        <calculation class='tableau' formula='25' />
+        <range granularity='5' max='40' min='5' />
+      </column>
+    </datasource>
+    <datasource inline='true' name='Sample - Superstore Sales (Excel)' version='8.1'>
+      <connection auto-extract='yes' class='excel' driver='' filename='\\vmware-host\Shared Folders\Documents\Tableau\Datasources\Sample - Superstore Sales (Excel).xls' header='yes' imex='1' workgroup-auth-mode='as-is'>
+        <relation name='Orders$' table='[Orders$]' type='table' />
+      </connection>
+      <aliases enabled='yes' />
+      <column aggregation='Sum' caption='Last N days' datatype='integer' name='[Calculation1]' role='dimension' type='ordinal'>
+        <calculation class='tableau' formula='// this calculates the number of days that have elapsed since the order was placed&#13;&#10;datediff(&apos;day&apos;,[Order Date],now())' />
+        <desc>
+          <formatted-text>
+            <run>The number of days that have elapsed since the order was placed.</run>
+          </formatted-text>
+        </desc>
+      </column>
+      <column caption='Profit Ratio' datatype='real' default-format='p0.00%' name='[Calculation2]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='// this calculates the weighted average profit ratio&#13;&#10;&#13;&#10;sum([Profit])/sum([Sales])' />
+        <desc>
+          <formatted-text>
+            <run>The weighted average profit ratio.</run>
+          </formatted-text>
+        </desc>
+      </column>
+      <column aggregation='Max' caption='Time to Ship' datatype='integer' name='[Calculation3]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='// this is the number of days between the order and shipment&#13;&#10;&#13;&#10;datediff(&apos;day&apos;,[Order Date],[Ship Date])' />
+        <desc>
+          <formatted-text>
+            <run>The number of days between the order and shipment.</run>
+          </formatted-text>
+        </desc>
+      </column>
+      <column datatype='string' name='[City]' role='dimension' semantic-role='[City].[Name]' type='nominal'>
+      </column>
+      <column caption='Customer' datatype='string' name='[Customer Name]' role='dimension' type='nominal'>
+      </column>
+      <column aggregation='Avg' datatype='real' default-format='p0.0%' name='[Discount]' role='measure' type='quantitative'>
+      </column>
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column aggregation='Sum' datatype='real' name='[Order ID]' role='dimension' type='ordinal'>
+      </column>
+      <column datatype='string' name='[Order Priority]' role='dimension' type='nominal'>
+      </column>
+      <column datatype='real' default-format='n#,##0;-#,##0' name='[Order Quantity]' role='measure' type='quantitative'>
+      </column>
+      <column caption='Category' datatype='string' name='[Product Category]' role='dimension' type='nominal'>
+      </column>
+      <column caption='Container' datatype='string' name='[Product Container]' role='dimension' type='nominal'>
+      </column>
+      <column datatype='string' name='[Product Name]' role='dimension' type='nominal'>
+      </column>
+      <column caption='Sub-Category' datatype='string' name='[Product Sub-Category]' role='dimension' type='nominal'>
+      </column>
+      <column datatype='integer' name='[Profit (bin)]' role='dimension' type='ordinal'>
+        <calculation class='bin' decimals='0' formula='[Profit]' peg='0' size-parameter='[Parameters].[Parameter 1]' />
+        <desc>
+          <formatted-text>
+            <run>Profit divided into $1,000 bins.</run>
+          </formatted-text>
+        </desc>
+      </column>
+      <column datatype='real' default-format='c&quot;$&quot;#,##0;(&quot;$&quot;#,##0)' name='[Profit]' role='measure' type='quantitative'>
+      </column>
+      <column datatype='real' default-format='c&quot;$&quot;#,##0;(&quot;$&quot;#,##0)' name='[Sales]' role='measure' type='quantitative'>
+      </column>
+      <column datatype='real' default-format='c&quot;$&quot;#,##0;(&quot;$&quot;#,##0)' name='[Shipping Cost]' role='measure' type='quantitative'>
+      </column>
+      <column datatype='string' name='[State]' role='dimension' semantic-role='[State].[Name]' type='nominal'>
+      </column>
+      <column datatype='string' name='[Supplier]' role='dimension' type='nominal'>
+        <calculation class='categorical-bin' column='[Product Name]' default='&quot;Zoom V.92 V.44 PCI Internal Controllerless FaxModem&quot;'>
+          <bin value='&quot;*Staples* Highlighting Markers&quot;'>
+            <value>&quot;*Staples* Highlighting Markers&quot;</value>
+            <value>&quot;*Staples* Letter Opener&quot;</value>
+            <value>&quot;*Staples* Packaging Labels&quot;</value>
+            <value>&quot;*Staples* vLetter Openers, 2/Pack&quot;</value>
+          </bin>
+          <bin value='&quot;3M Hangers With Command Adhesive&quot;'>
+            <value>&quot;3M Hangers With Command Adhesive&quot;</value>
+            <value>&quot;3M Office Air Cleaner&quot;</value>
+            <value>&quot;3M Organizer Strips&quot;</value>
+            <value>&quot;3M Polarizing Light Filter Sleeves&quot;</value>
+            <value>&quot;3M Polarizing Task Lamp with Clamp Arm, Light Gray&quot;</value>
+          </bin>
+          <bin value='&quot;Acco 3-Hole Punch&quot;'>
+            <value>&quot;Acco 3-Hole Punch&quot;</value>
+            <value>&quot;Acco 6 Outlet Guardian Premium Surge Suppressor&quot;</value>
+            <value>&quot;Acco Clips to Go™ Binder Clips, 24 Clips in Two Sizes&quot;</value>
+            <value>&quot;Acco D-Ring Binder w/DublLock®&quot;</value>
+            <value>&quot;Acco Four Pocket Poly Ring Binder with Label Holder, Smoke, 1\&quot;&quot;</value>
+            <value>&quot;Acco Keyboard-In-A-Box®&quot;</value>
+            <value>&quot;Acco Perma® 2700 Stacking Storage Drawers&quot;</value>
+            <value>&quot;Acco Perma® 3000 Stacking Storage Drawers&quot;</value>
+            <value>&quot;Acco Pressboard Covers with Storage Hooks, 14 7/8\&quot; x 11\&quot;, Dark Blue&quot;</value>
+            <value>&quot;Acco Pressboard Covers with Storage Hooks, 14 7/8\&quot; x 11\&quot;, Executive Red&quot;</value>
+            <value>&quot;Acco Pressboard Covers with Storage Hooks, 14 7/8\&quot; x 11\&quot;, Light Blue&quot;</value>
+            <value>&quot;Acco PRESSTEX® Data Binder with Storage Hooks, Dark Blue, 14 7/8\&quot; X 11\&quot;&quot;</value>
+            <value>&quot;Acco PRESSTEX® Data Binder with Storage Hooks, Dark Blue, 9 1/2\&quot; X 11\&quot;&quot;</value>
+            <value>&quot;Acco Recycled 2\&quot; Capacity Laser Printer Hanging Data Binders&quot;</value>
+            <value>&quot;Acco Six-Outlet Power Strip, 4&apos; Cord Length&quot;</value>
+            <value>&quot;Acco Smartsocket® Color-Coded Six-Outlet AC Adapter Model Surge Protectors&quot;</value>
+            <value>&quot;Acco Smartsocket™ Table Surge Protector, 6 Color-Coded Adapter Outlets&quot;</value>
+            <value>&quot;Acco Suede Grain Vinyl Round Ring Binder&quot;</value>
+            <value>&quot;Acco® Hot Clips™ Clips to Go&quot;</value>
+            <value>&quot;Accohide Poly Flexible Ring Binders&quot;</value>
+            <value>&quot;ACCOHIDE® 3-Ring Binder, Blue, 1\&quot;&quot;</value>
+            <value>&quot;ACCOHIDE® Binder by Acco&quot;</value>
+          </bin>
+          <bin value='&quot;Acme Design Line 8\&quot; Stainless Steel Bent Scissors w/Champagne Handles, 3-1/8\&quot; Cut&quot;'>
+            <value>&quot;Acme Design Line 8\&quot; Stainless Steel Bent Scissors w/Champagne Handles, 3-1/8\&quot; Cut&quot;</value>
+            <value>&quot;Acme Galleria® Hot Forged Steel Scissors with Colored Handles&quot;</value>
+            <value>&quot;Acme Hot Forged Carbon Steel Scissors with Nickel-Plated Handles, 3 7/8\&quot; Cut, 8\&quot;L&quot;</value>
+            <value>&quot;Acme Kleencut® Forged Steel Scissors&quot;</value>
+            <value>&quot;Acme® 8\&quot; Straight Scissors&quot;</value>
+            <value>&quot;Acme® Box Cutter Scissors&quot;</value>
+            <value>&quot;Acme® Design Stainless Steel Bent Scissors&quot;</value>
+            <value>&quot;Acme® Elite Stainless Steel Scissors&quot;</value>
+            <value>&quot;Acme® Forged Steel Scissors with Black Enamel Handles&quot;</value>
+            <value>&quot;Acme® Office Executive Series Stainless Steel Trimmers&quot;</value>
+            <value>&quot;Acme® Preferred Stainless Steel Scissors&quot;</value>
+          </bin>
+          <bin value='&quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;'>
+            <value>&quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;</value>
+            <value>&quot;Avery 4027 File Folder Labels for Dot Matrix Printers, 5000 Labels per Box, White&quot;</value>
+            <value>&quot;Avery 474&quot;</value>
+            <value>&quot;Avery 478&quot;</value>
+            <value>&quot;Avery 479&quot;</value>
+            <value>&quot;Avery 48&quot;</value>
+            <value>&quot;Avery 481&quot;</value>
+            <value>&quot;Avery 482&quot;</value>
+            <value>&quot;Avery 484&quot;</value>
+            <value>&quot;Avery 485&quot;</value>
+            <value>&quot;Avery 487&quot;</value>
+            <value>&quot;Avery 49&quot;</value>
+            <value>&quot;Avery 491&quot;</value>
+            <value>&quot;Avery 492&quot;</value>
+            <value>&quot;Avery 493&quot;</value>
+            <value>&quot;Avery 494&quot;</value>
+            <value>&quot;Avery 496&quot;</value>
+            <value>&quot;Avery 497&quot;</value>
+            <value>&quot;Avery 498&quot;</value>
+            <value>&quot;Avery 501&quot;</value>
+            <value>&quot;Avery 503&quot;</value>
+            <value>&quot;Avery 504&quot;</value>
+            <value>&quot;Avery 506&quot;</value>
+            <value>&quot;Avery 507&quot;</value>
+            <value>&quot;Avery 508&quot;</value>
+            <value>&quot;Avery 51&quot;</value>
+            <value>&quot;Avery 510&quot;</value>
+            <value>&quot;Avery 511&quot;</value>
+            <value>&quot;Avery 514&quot;</value>
+            <value>&quot;Avery 516&quot;</value>
+            <value>&quot;Avery 52&quot;</value>
+            <value>&quot;Avery 520&quot;</value>
+            <value>&quot;Avery Arch Ring Binders&quot;</value>
+            <value>&quot;Avery Binder Labels&quot;</value>
+            <value>&quot;Avery Binding System Hidden Tab™ Executive Style Index Sets&quot;</value>
+            <value>&quot;Avery Durable Binders&quot;</value>
+            <value>&quot;Avery Durable Poly Binders&quot;</value>
+            <value>&quot;Avery File Folder Labels&quot;</value>
+            <value>&quot;Avery Flip-Chart Easel Binder, Black&quot;</value>
+            <value>&quot;Avery Hanging File Binders&quot;</value>
+            <value>&quot;Avery Heavy-Duty EZD ™ Binder With Locking Rings&quot;</value>
+            <value>&quot;Avery Hi-Liter Comfort Grip Fluorescent Highlighter, Yellow Ink&quot;</value>
+            <value>&quot;Avery Hi-Liter GlideStik Fluorescent Highlighter, Yellow Ink&quot;</value>
+            <value>&quot;Avery Hi-Liter Pen Style Six-Color Fluorescent Set&quot;</value>
+            <value>&quot;Avery Hi-Liter® EverBold™ Pen Style Fluorescent Highlighters, 4/Pack&quot;</value>
+            <value>&quot;Avery Hi-Liter® Fluorescent Desk Style Markers&quot;</value>
+            <value>&quot;Avery Hi-Liter® Smear-Safe Highlighters&quot;</value>
+            <value>&quot;Avery Hole Reinforcements&quot;</value>
+            <value>&quot;Avery Legal 4-Ring Binder&quot;</value>
+            <value>&quot;Avery Non-Stick Binders&quot;</value>
+            <value>&quot;Avery Poly Binder Pockets&quot;</value>
+            <value>&quot;Avery Premier Heavy-Duty Binder with Round Locking Rings&quot;</value>
+            <value>&quot;Avery Printable Repositionable Plastic Tabs&quot;</value>
+            <value>&quot;Avery Reinforcements for Hole-Punch Pages&quot;</value>
+            <value>&quot;Avery Round Ring Poly Binders&quot;</value>
+            <value>&quot;Avery Self-Adhesive Photo Pockets for Polaroid Photos&quot;</value>
+            <value>&quot;Avery Trapezoid Extra Heavy Duty 4\&quot; Binders&quot;</value>
+            <value>&quot;Avery Trapezoid Ring Binder, 3\&quot; Capacity, Black, 1040 sheets&quot;</value>
+            <value>&quot;Avery White Multi-Purpose Labels&quot;</value>
+            <value>&quot;Avery® 3 1/2\&quot; Diskette Storage Pages, 10/Pack&quot;</value>
+            <value>&quot;Avery® Durable Plastic 1\&quot; Binders&quot;</value>
+            <value>&quot;Avery® Durable Slant Ring Binders With Label Holder&quot;</value>
+          </bin>
+          <bin value='&quot;Belkin 105-Key Black Keyboard&quot;'>
+            <value>&quot;Belkin 105-Key Black Keyboard&quot;</value>
+            <value>&quot;Belkin 107-key enhanced keyboard, USB/PS/2 interface&quot;</value>
+            <value>&quot;Belkin 325VA UPS Surge Protector, 6&apos;&quot;</value>
+            <value>&quot;Belkin 5 Outlet SurgeMaster™ Power Centers&quot;</value>
+            <value>&quot;Belkin 6 Outlet Metallic Surge Strip&quot;</value>
+            <value>&quot;Belkin 7 Outlet SurgeMaster Surge Protector with Phone Protection&quot;</value>
+            <value>&quot;Belkin 8 Outlet Surge Protector&quot;</value>
+            <value>&quot;Belkin 8 Outlet SurgeMaster II Gold Surge Protector&quot;</value>
+            <value>&quot;Belkin 8 Outlet SurgeMaster II Gold Surge Protector with Phone Protection&quot;</value>
+            <value>&quot;Belkin ErgoBoard™ Keyboard&quot;</value>
+            <value>&quot;Belkin F5C206VTEL 6 Outlet Surge&quot;</value>
+            <value>&quot;Belkin F9M820V08 8 Outlet Surge&quot;</value>
+            <value>&quot;Belkin MediaBoard 104- Keyboard&quot;</value>
+            <value>&quot;Belkin OmniView SE Rackmount Kit&quot;</value>
+            <value>&quot;Belkin Premiere Surge Master II 8-outlet surge protector&quot;</value>
+          </bin>
+          <bin value='&quot;Boston 1645 Deluxe Heavier-Duty Electric Pencil Sharpener&quot;'>
+            <value>&quot;Boston 1645 Deluxe Heavier-Duty Electric Pencil Sharpener&quot;</value>
+            <value>&quot;Boston 16701 Slimline Battery Pencil Sharpener&quot;</value>
+            <value>&quot;Boston 16765 Mini Stand Up Battery Pencil Sharpener&quot;</value>
+            <value>&quot;Boston 16801 Nautilus™ Battery Pencil Sharpener&quot;</value>
+            <value>&quot;Boston 1730 StandUp Electric Pencil Sharpener&quot;</value>
+            <value>&quot;Boston 1799 Powerhouse™ Electric Pencil Sharpener&quot;</value>
+            <value>&quot;Boston 19500 Mighty Mite Electric Pencil Sharpener&quot;</value>
+            <value>&quot;Boston Electric Pencil Sharpener, Model 1818, Charcoal Black&quot;</value>
+            <value>&quot;Boston KS Multi-Size Manual Pencil Sharpener&quot;</value>
+            <value>&quot;Boston Model 1800 Electric Pencil Sharpener, Gray&quot;</value>
+            <value>&quot;Boston School Pro Electric Pencil Sharpener, 1670&quot;</value>
+            <value>&quot;BOSTON® Ranger® \#55 Pencil Sharpener, Black&quot;</value>
+          </bin>
+          <bin value='&quot;Canon BP1200DH 12-Digit Bubble Jet Printing Calculator&quot;'>
+            <value>&quot;Canon BP1200DH 12-Digit Bubble Jet Printing Calculator&quot;</value>
+            <value>&quot;Canon F603 Scientific Calculator&quot;</value>
+            <value>&quot;Canon Image Class D660 Copier&quot;</value>
+            <value>&quot;Canon imageCLASS 2200 Advanced Copier&quot;</value>
+            <value>&quot;Canon Imageclass D680 Copier / Fax&quot;</value>
+            <value>&quot;Canon MP100DHII Printing Calculator&quot;</value>
+            <value>&quot;Canon MP25DIII Desktop Whisper-Quiet Printing Calculator&quot;</value>
+            <value>&quot;Canon MP41DH Printing Calculator&quot;</value>
+            <value>&quot;Canon P1-DHIII Palm Printing Calculator&quot;</value>
+            <value>&quot;Canon PC1060 Personal Laser Copier&quot;</value>
+            <value>&quot;Canon PC1080F Personal Copier&quot;</value>
+            <value>&quot;Canon PC940 Copier&quot;</value>
+            <value>&quot;Canon PC-428 Personal Copier&quot;</value>
+            <value>&quot;Canon S750 Color Inkjet Printer&quot;</value>
+          </bin>
+          <bin value='&quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;'>
+            <value>&quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;</value>
+            <value>&quot;Eldon Advantage® Foldable Chair Mats for Low Pile Carpets&quot;</value>
+            <value>&quot;Eldon Antistatic Chair Mats for Low to Medium Pile Carpets&quot;</value>
+            <value>&quot;Eldon Base for stackable storage shelf, platinum&quot;</value>
+            <value>&quot;Eldon Cleatmat Plus™ Chair Mats for High Pile Carpets&quot;</value>
+            <value>&quot;Eldon Cleatmat® Chair Mats for Medium Pile Carpets&quot;</value>
+            <value>&quot;Eldon ClusterMat Chair Mat with Cordless Antistatic Protection&quot;</value>
+            <value>&quot;Eldon Delta Triangular Chair Mat, 52\&quot; x 58\&quot;, Clear&quot;</value>
+            <value>&quot;Eldon Econocleat® Chair Mats for Low Pile Carpets&quot;</value>
+            <value>&quot;Eldon Executive Woodline II Cherry Finish Desk Accessories&quot;</value>
+            <value>&quot;Eldon Expressions Mahogany Wood Desk Collection&quot;</value>
+            <value>&quot;Eldon Expressions Punched Metal &amp; Wood Desk Accessories, Black &amp; Cherry&quot;</value>
+            <value>&quot;Eldon Expressions Punched Metal &amp; Wood Desk Accessories, Pewter &amp; Cherry&quot;</value>
+            <value>&quot;Eldon Expressions™ Desk Accessory, Wood Pencil Holder, Oak&quot;</value>
+            <value>&quot;Eldon Expressions™ Desk Accessory, Wood Photo Frame, Mahogany&quot;</value>
+            <value>&quot;Eldon Image Series Black Desk Accessories&quot;</value>
+            <value>&quot;Eldon Imàge® Series Desk Accessories, Clear&quot;</value>
+            <value>&quot;Eldon Jumbo ProFile™ Portable File Boxes Graphite/Black&quot;</value>
+            <value>&quot;Eldon Pizzaz™ Desk Accessories&quot;</value>
+            <value>&quot;Eldon Portable Mobile Manager&quot;</value>
+            <value>&quot;Eldon Radial Chair Mat for Low to Medium Pile Carpets&quot;</value>
+            <value>&quot;Eldon Regeneration Recycled Desk Accessories, Smoke&quot;</value>
+            <value>&quot;Eldon Shelf Savers™ Cubes and Bins&quot;</value>
+            <value>&quot;Eldon Simplefile® Box Office®&quot;</value>
+            <value>&quot;Eldon Spacemaker® Box, Quick-Snap Lid, Clear&quot;</value>
+            <value>&quot;Eldon Wave Desk Accessories&quot;</value>
+            <value>&quot;Eldon® 200 Class™ Desk Accessories&quot;</value>
+            <value>&quot;Eldon® 200 Class™ Desk Accessories, Burgundy&quot;</value>
+            <value>&quot;Eldon® 300 Class™ Desk Accessories, Black&quot;</value>
+            <value>&quot;Eldon® 400 Class™ Desk Accessories, Black Carbon&quot;</value>
+            <value>&quot;Eldon® 500 Class™ Desk Accessories&quot;</value>
+            <value>&quot;Eldon® Executive Woodline II Desk Accessories, Mahogany&quot;</value>
+            <value>&quot;Eldon® Expressions™ Wood and Plastic Desk Accessories, Oak&quot;</value>
+            <value>&quot;Eldon® Expressions™ Wood Desk Accessories, Oak&quot;</value>
+            <value>&quot;Eldon® Gobal File Keepers&quot;</value>
+            <value>&quot;Eldon® Image Series Desk Accessories, Burgundy&quot;</value>
+            <value>&quot;Eldon® Wave Desk Accessories&quot;</value>
+          </bin>
+          <bin value='&quot;Epson C62 Color Inkjet Printer&quot;'>
+            <value>&quot;Epson C62 Color Inkjet Printer&quot;</value>
+            <value>&quot;Epson C82 Color Inkjet Printer&quot;</value>
+            <value>&quot;Epson DFX5000+ Dot Matrix Printer&quot;</value>
+            <value>&quot;Epson DFX-8500 Dot Matrix Printer&quot;</value>
+            <value>&quot;Epson FX-2180 Wide Format Dot Matrix Printer&quot;</value>
+            <value>&quot;Epson FX-980 Dot Matrix Printer&quot;</value>
+            <value>&quot;Epson LQ-570e Dot Matrix Printer&quot;</value>
+            <value>&quot;Epson LQ-870 Dot Matrix Printer&quot;</value>
+            <value>&quot;Epson Stylus 1520 Color Inkjet Printer&quot;</value>
+          </bin>
+          <bin value='&quot;Fellowes 17-key keypad for PS/2 interface&quot;'>
+            <value>&quot;Fellowes 17-key keypad for PS/2 interface&quot;</value>
+            <value>&quot;Fellowes 8 Outlet Superior Workstation Surge Protector&quot;</value>
+            <value>&quot;Fellowes 8 Outlet Superior Workstation Surge Protector w/o Phone/Fax/Modem Protection&quot;</value>
+            <value>&quot;Fellowes Bankers Box™ Staxonsteel® Drawer File/Stacking System&quot;</value>
+            <value>&quot;Fellowes Bankers Box™ Stor/Drawer® Steel Plus™&quot;</value>
+            <value>&quot;Fellowes Bases and Tops For Staxonsteel®/High-Stak® Systems&quot;</value>
+            <value>&quot;Fellowes Basic 104-Key Keyboard, Platinum&quot;</value>
+            <value>&quot;Fellowes Binding Cases&quot;</value>
+            <value>&quot;Fellowes Black Plastic Comb Bindings&quot;</value>
+            <value>&quot;Fellowes Command Center 5-outlet power strip&quot;</value>
+            <value>&quot;Fellowes EZ Multi-Media Keyboard&quot;</value>
+            <value>&quot;Fellowes High-Stak® Drawer Files&quot;</value>
+            <value>&quot;Fellowes Internet Keyboard, Platinum&quot;</value>
+            <value>&quot;Fellowes Mighty 8 Compact Surge Protector&quot;</value>
+            <value>&quot;Fellowes Mobile File Cart, Black&quot;</value>
+            <value>&quot;Fellowes Mobile Numeric Keypad, Graphite&quot;</value>
+            <value>&quot;Fellowes Neat Ideas® Storage Cubes&quot;</value>
+            <value>&quot;Fellowes Officeware™ Wire Shelving&quot;</value>
+            <value>&quot;Fellowes PB300 Plastic Comb Binding Machine&quot;</value>
+            <value>&quot;Fellowes PB500 Electric Punch Plastic Comb Binding Machine with Manual Bind&quot;</value>
+            <value>&quot;Fellowes Personal Hanging Folder Files, Navy&quot;</value>
+            <value>&quot;Fellowes Premier Superior Surge Suppressor, 10-Outlet, With Phone and Remote&quot;</value>
+            <value>&quot;Fellowes Recycled Storage Drawers&quot;</value>
+            <value>&quot;Fellowes Smart Design 104-Key Enhanced Keyboard, PS/2 Adapter, Platinum&quot;</value>
+            <value>&quot;Fellowes Smart Surge Ten-Outlet Protector, Platinum&quot;</value>
+            <value>&quot;Fellowes Staxonsteel® Drawer Files&quot;</value>
+            <value>&quot;Fellowes Stor/Drawer® Steel Plus™ Storage Drawers&quot;</value>
+            <value>&quot;Fellowes Strictly Business® Drawer File, Letter/Legal Size&quot;</value>
+            <value>&quot;Fellowes Super Stor/Drawer®&quot;</value>
+            <value>&quot;Fellowes Super Stor/Drawer® Files&quot;</value>
+            <value>&quot;Fellowes Superior 10 Outlet Split Surge Protector&quot;</value>
+            <value>&quot;Fellowes Twister Kit, Gray/Clear, 3/pkg&quot;</value>
+          </bin>
+          <bin value='&quot;Hon 2090 “Pillow Soft” Series Mid Back Swivel/Tilt Chairs&quot;'>
+            <value>&quot;Hon 2090 “Pillow Soft” Series Mid Back Swivel/Tilt Chairs&quot;</value>
+            <value>&quot;Hon 2111 Invitation™ Series Corner Table&quot;</value>
+            <value>&quot;Hon 4060 Series Tables&quot;</value>
+            <value>&quot;Hon 4070 Series Pagoda™ Armless Upholstered Stacking Chairs&quot;</value>
+            <value>&quot;Hon 4070 Series Pagoda™ Round Back Stacking Chairs&quot;</value>
+            <value>&quot;Hon 4700 Series Mobuis™ Mid-Back Task Chairs with Adjustable Arms&quot;</value>
+            <value>&quot;Hon 4-Shelf Metal Bookcases&quot;</value>
+            <value>&quot;Hon 5100 Series Wood Tables&quot;</value>
+            <value>&quot;Hon 61000 Series Interactive Training Tables&quot;</value>
+            <value>&quot;Hon 94000 Series Round Tables&quot;</value>
+            <value>&quot;Hon Comfortask® Task/Swivel Chairs&quot;</value>
+            <value>&quot;Hon Deluxe Fabric Upholstered Stacking Chairs&quot;</value>
+            <value>&quot;Hon Deluxe Fabric Upholstered Stacking Chairs, Rounded Back&quot;</value>
+            <value>&quot;Hon Every-Day® Chair Series Swivel Task Chairs&quot;</value>
+            <value>&quot;Hon GuestStacker Chair&quot;</value>
+            <value>&quot;Hon iLevel™ Computer Training Table&quot;</value>
+            <value>&quot;Hon Metal Bookcases, Black&quot;</value>
+            <value>&quot;Hon Metal Bookcases, Putty&quot;</value>
+            <value>&quot;Hon Multipurpose Stacking Arm Chairs&quot;</value>
+            <value>&quot;Hon Non-Folding Utility Tables&quot;</value>
+            <value>&quot;Hon Olson Stacker Stools&quot;</value>
+            <value>&quot;Hon Pagoda™ Stacking Chairs&quot;</value>
+            <value>&quot;Hon Rectangular Conference Tables&quot;</value>
+            <value>&quot;Hon Valutask™ Swivel Chairs&quot;</value>
+          </bin>
+          <bin value='&quot;Newell 307&quot;'>
+            <value>&quot;Newell 307&quot;</value>
+            <value>&quot;Newell 308&quot;</value>
+            <value>&quot;Newell 309&quot;</value>
+            <value>&quot;Newell 31&quot;</value>
+            <value>&quot;Newell 310&quot;</value>
+            <value>&quot;Newell 312&quot;</value>
+            <value>&quot;Newell 314&quot;</value>
+            <value>&quot;Newell 315&quot;</value>
+            <value>&quot;Newell 318&quot;</value>
+            <value>&quot;Newell 320&quot;</value>
+            <value>&quot;Newell 321&quot;</value>
+            <value>&quot;Newell 323&quot;</value>
+            <value>&quot;Newell 325&quot;</value>
+            <value>&quot;Newell 326&quot;</value>
+            <value>&quot;Newell 327&quot;</value>
+            <value>&quot;Newell 329&quot;</value>
+            <value>&quot;Newell 332&quot;</value>
+            <value>&quot;Newell 333&quot;</value>
+            <value>&quot;Newell 335&quot;</value>
+            <value>&quot;Newell 336&quot;</value>
+            <value>&quot;Newell 337&quot;</value>
+            <value>&quot;Newell 338&quot;</value>
+            <value>&quot;Newell 339&quot;</value>
+            <value>&quot;Newell 340&quot;</value>
+            <value>&quot;Newell 342&quot;</value>
+            <value>&quot;Newell 343&quot;</value>
+            <value>&quot;Newell 346&quot;</value>
+            <value>&quot;Newell 35&quot;</value>
+            <value>&quot;Newell 351&quot;</value>
+            <value>&quot;Newell® 3-Hole Punched Plastic Slotted Magazine Holders for Binders&quot;</value>
+          </bin>
+          <bin value='&quot;Sony IBM Color Diskettes, 25/Pack&quot;'>
+            <value>&quot;Sony IBM Color Diskettes, 25/Pack&quot;</value>
+            <value>&quot;Sony MFD2HD Formatted Diskettes, 10/Pack&quot;</value>
+          </bin>
+          <bin value='&quot;Wilson Jones “Snap” Scratch Pad Binder Tool for Ring Binders&quot;'>
+            <value>&quot;Wilson Jones “Snap” Scratch Pad Binder Tool for Ring Binders&quot;</value>
+            <value>&quot;Wilson Jones 1\&quot; Hanging DublLock® Ring Binders&quot;</value>
+            <value>&quot;Wilson Jones 14 Line Acrylic Coated Pressboard Data Binders&quot;</value>
+            <value>&quot;Wilson Jones Custom Binder Spines &amp; Labels&quot;</value>
+            <value>&quot;Wilson Jones DublLock® D-Ring Binders&quot;</value>
+            <value>&quot;Wilson Jones Easy Flow II™ Sheet Lifters&quot;</value>
+            <value>&quot;Wilson Jones Elliptical Ring 3 1/2\&quot; Capacity Binders, 800 sheets&quot;</value>
+            <value>&quot;Wilson Jones Hanging View Binder, White, 1\&quot;&quot;</value>
+            <value>&quot;Wilson Jones Impact Binders&quot;</value>
+            <value>&quot;Wilson Jones Ledger-Size, Piano-Hinge Binder, 2\&quot;, Blue&quot;</value>
+            <value>&quot;Wilson Jones Standard D-Ring Binders&quot;</value>
+            <value>&quot;Wilson Jones Suede Grain Vinyl Binders&quot;</value>
+            <value>&quot;Wilson Jones Turn Tabs Binder Tool for Ring Binders&quot;</value>
+            <value>&quot;Wilson Jones® Four-Pocket Poly Binders&quot;</value>
+          </bin>
+          <bin value='&quot;Xerox 188&quot;'>
+            <value>&quot;Xerox 188&quot;</value>
+            <value>&quot;Xerox 1880&quot;</value>
+            <value>&quot;Xerox 1881&quot;</value>
+            <value>&quot;Xerox 1882&quot;</value>
+            <value>&quot;Xerox 1883&quot;</value>
+            <value>&quot;Xerox 1885&quot;</value>
+            <value>&quot;Xerox 1887&quot;</value>
+            <value>&quot;Xerox 1888&quot;</value>
+            <value>&quot;Xerox 1891&quot;</value>
+            <value>&quot;Xerox 1892&quot;</value>
+            <value>&quot;Xerox 1893&quot;</value>
+            <value>&quot;Xerox 1894&quot;</value>
+            <value>&quot;Xerox 1895&quot;</value>
+            <value>&quot;Xerox 1896&quot;</value>
+            <value>&quot;Xerox 1897&quot;</value>
+            <value>&quot;Xerox 1898&quot;</value>
+            <value>&quot;Xerox 1899&quot;</value>
+            <value>&quot;Xerox 19&quot;</value>
+            <value>&quot;Xerox 190&quot;</value>
+            <value>&quot;Xerox 1903&quot;</value>
+            <value>&quot;Xerox 1904&quot;</value>
+            <value>&quot;Xerox 1905&quot;</value>
+            <value>&quot;Xerox 1906&quot;</value>
+            <value>&quot;Xerox 1907&quot;</value>
+            <value>&quot;Xerox 1908&quot;</value>
+            <value>&quot;Xerox 191&quot;</value>
+            <value>&quot;Xerox 1910&quot;</value>
+            <value>&quot;Xerox 1916&quot;</value>
+            <value>&quot;Xerox 1917&quot;</value>
+            <value>&quot;Xerox 1919&quot;</value>
+            <value>&quot;Xerox 1920&quot;</value>
+            <value>&quot;Xerox 1922&quot;</value>
+            <value>&quot;Xerox 1923&quot;</value>
+            <value>&quot;Xerox 1924&quot;</value>
+            <value>&quot;Xerox 1926&quot;</value>
+            <value>&quot;Xerox 1927&quot;</value>
+            <value>&quot;Xerox 1928&quot;</value>
+            <value>&quot;Xerox 1929&quot;</value>
+            <value>&quot;Xerox 193&quot;</value>
+            <value>&quot;Xerox 1930&quot;</value>
+            <value>&quot;Xerox 1932&quot;</value>
+            <value>&quot;Xerox 1933&quot;</value>
+            <value>&quot;Xerox 1934&quot;</value>
+            <value>&quot;Xerox 1935&quot;</value>
+            <value>&quot;Xerox 1936&quot;</value>
+            <value>&quot;Xerox 1937&quot;</value>
+            <value>&quot;Xerox 1938&quot;</value>
+            <value>&quot;Xerox 1939&quot;</value>
+            <value>&quot;Xerox 194&quot;</value>
+            <value>&quot;Xerox 1940&quot;</value>
+            <value>&quot;Xerox 1941&quot;</value>
+            <value>&quot;Xerox 1947&quot;</value>
+            <value>&quot;Xerox 1948&quot;</value>
+            <value>&quot;Xerox 1949&quot;</value>
+            <value>&quot;Xerox 195&quot;</value>
+            <value>&quot;Xerox 1950&quot;</value>
+            <value>&quot;Xerox 1951&quot;</value>
+            <value>&quot;Xerox 1952&quot;</value>
+            <value>&quot;Xerox 1953&quot;</value>
+            <value>&quot;Xerox 1954&quot;</value>
+            <value>&quot;Xerox 1959&quot;</value>
+            <value>&quot;Xerox 196&quot;</value>
+            <value>&quot;Xerox 1961&quot;</value>
+            <value>&quot;Xerox 1962&quot;</value>
+            <value>&quot;Xerox 1963&quot;</value>
+            <value>&quot;Xerox 1964&quot;</value>
+            <value>&quot;Xerox 1966&quot;</value>
+            <value>&quot;Xerox 1968&quot;</value>
+            <value>&quot;Xerox 197&quot;</value>
+            <value>&quot;Xerox 1971&quot;</value>
+            <value>&quot;Xerox 1972&quot;</value>
+            <value>&quot;Xerox 1973&quot;</value>
+            <value>&quot;Xerox 1974&quot;</value>
+            <value>&quot;Xerox 1976&quot;</value>
+            <value>&quot;Xerox 1977&quot;</value>
+            <value>&quot;Xerox 1978&quot;</value>
+            <value>&quot;Xerox 1979&quot;</value>
+            <value>&quot;Xerox 198&quot;</value>
+            <value>&quot;Xerox 1980&quot;</value>
+            <value>&quot;Xerox 1981&quot;</value>
+            <value>&quot;Xerox 1982&quot;</value>
+            <value>&quot;Xerox 1983&quot;</value>
+            <value>&quot;Xerox 1984&quot;</value>
+            <value>&quot;Xerox 1985&quot;</value>
+            <value>&quot;Xerox 1986&quot;</value>
+            <value>&quot;Xerox 1988&quot;</value>
+            <value>&quot;Xerox 1989&quot;</value>
+            <value>&quot;Xerox 199&quot;</value>
+            <value>&quot;Xerox 1991&quot;</value>
+            <value>&quot;Xerox 1992&quot;</value>
+            <value>&quot;Xerox 1993&quot;</value>
+            <value>&quot;Xerox 1994&quot;</value>
+            <value>&quot;Xerox 1995&quot;</value>
+            <value>&quot;Xerox 1996&quot;</value>
+            <value>&quot;Xerox 1997&quot;</value>
+            <value>&quot;Xerox 1998&quot;</value>
+            <value>&quot;Xerox 2&quot;</value>
+            <value>&quot;Xerox 20&quot;</value>
+            <value>&quot;Xerox 200&quot;</value>
+            <value>&quot;Xerox 204&quot;</value>
+            <value>&quot;Xerox 207&quot;</value>
+            <value>&quot;Xerox 209&quot;</value>
+            <value>&quot;Xerox 21&quot;</value>
+            <value>&quot;Xerox 210&quot;</value>
+            <value>&quot;Xerox 212&quot;</value>
+            <value>&quot;Xerox 213&quot;</value>
+            <value>&quot;Xerox 214&quot;</value>
+            <value>&quot;Xerox 215&quot;</value>
+            <value>&quot;Xerox 216&quot;</value>
+            <value>&quot;Xerox 217&quot;</value>
+            <value>&quot;Xerox 220&quot;</value>
+            <value>&quot;Xerox 221&quot;</value>
+            <value>&quot;Xerox 223&quot;</value>
+            <value>&quot;Xerox 224&quot;</value>
+            <value>&quot;Xerox 226&quot;</value>
+            <value>&quot;Xerox 227&quot;</value>
+            <value>&quot;Xerox 229&quot;</value>
+            <value>&quot;Xerox 23&quot;</value>
+            <value>&quot;Xerox 231&quot;</value>
+            <value>&quot;Xerox 4200 Series MultiUse Premium Copy Paper (20Lb. and 84 Bright)&quot;</value>
+            <value>&quot;Xerox Blank Computer Paper&quot;</value>
+          </bin>
+        </calculation>
+        <aliases>
+          <alias key='&quot;*Staples* Highlighting Markers&quot;' value='Staples' />
+          <alias key='&quot;3M Hangers With Command Adhesive&quot;' value='3M' />
+          <alias key='&quot;Acco 3-Hole Punch&quot;' value='Acco' />
+          <alias key='&quot;Acme Design Line 8\&quot; Stainless Steel Bent Scissors w/Champagne Handles, 3-1/8\&quot; Cut&quot;' value='Acme' />
+          <alias key='&quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;' value='Avery' />
+          <alias key='&quot;Belkin 105-Key Black Keyboard&quot;' value='Belkin' />
+          <alias key='&quot;Boston 1645 Deluxe Heavier-Duty Electric Pencil Sharpener&quot;' value='Boston' />
+          <alias key='&quot;Canon BP1200DH 12-Digit Bubble Jet Printing Calculator&quot;' value='Canon' />
+          <alias key='&quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;' value='Eldon' />
+          <alias key='&quot;Epson C62 Color Inkjet Printer&quot;' value='Epson' />
+          <alias key='&quot;Fellowes 17-key keypad for PS/2 interface&quot;' value='Fellowes' />
+          <alias key='&quot;Hon 2090 “Pillow Soft” Series Mid Back Swivel/Tilt Chairs&quot;' value='Hon' />
+          <alias key='&quot;Newell 307&quot;' value='Newell' />
+          <alias key='&quot;Sony IBM Color Diskettes, 25/Pack&quot;' value='Sony' />
+          <alias key='&quot;Wilson Jones “Snap” Scratch Pad Binder Tool for Ring Binders&quot;' value='Wilson Jones' />
+          <alias key='&quot;Xerox 188&quot;' value='Xerox' />
+          <alias key='&quot;Zoom V.92 V.44 PCI Internal Controllerless FaxModem&quot;' value='Other' />
+        </aliases>
+      </column>
+      <column datatype='real' default-format='c&quot;$&quot;#,##0;(&quot;$&quot;#,##0)' name='[Unit Price]' role='measure' type='quantitative'>
+      </column>
+      <column caption='Customer Zip Code' datatype='string' name='[Zip Code]' role='dimension' semantic-role='[ZipCode].[Name]' type='nominal'>
+      </column>
+      <column-instance column='[Order Priority]' derivation='None' name='[none:Order Priority:nk]' pivot='key' type='nominal' />
+      <group caption='Top Customers by Profit' name='[Set 1]' name-style='unqualified' user:ui-builder='filter-group'>
+        <groupfilter count='[Parameters].[Parameter 2]' end='top' function='end' units='records' user:ui-marker='end' user:ui-top-by-field='true'>
+          <groupfilter direction='DESC' expression='SUM([Profit])' function='order' user:ui-marker='order'>
+            <groupfilter function='level-members' level='[Customer Name]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </groupfilter>
+        </groupfilter>
+      </group>
+      <drill-paths>
+        <drill-path name='Customer City'>
+          <field>[State]</field>
+          <field>[City]</field>
+        </drill-path>
+        <drill-path name='Products'>
+          <field>[Product Category]</field>
+          <field>[Product Sub-Category]</field>
+          <field>[Product Name]</field>
+        </drill-path>
+      </drill-paths>
+      <layout dim-ordering='alphabetic' dim-percentage='0.500694' group-percentage='0.0596394' measure-ordering='alphabetic' measure-percentage='0.348128' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <default-sorts>
+        <sort class='manual' column='[none:Order Priority:nk]' direction='ASC'>
+          <dictionary>
+            <bucket>&quot;Critical&quot;</bucket>
+            <bucket>&quot;High&quot;</bucket>
+            <bucket>&quot;Medium&quot;</bucket>
+            <bucket>&quot;Low&quot;</bucket>
+            <bucket>&quot;Not Specified&quot;</bucket>
+          </dictionary>
+        </sort>
+      </default-sorts>
+      <datasource-dependencies datasource='Parameters'>
+        <column caption='Profit Bin Size' datatype='real' default-format='c&quot;$&quot;#,##0;(&quot;$&quot;#,##0)' name='[Parameter 1]' param-domain-type='range' role='measure' type='quantitative' value='1000.0000000000000'>
+          <calculation class='tableau' formula='1000.0' />
+          <range granularity='500.00000000000000' max='2500.0000000000000' min='500.00000000000000' />
+        </column>
+        <column caption='Top Customers' datatype='integer' name='[Parameter 2]' param-domain-type='range' role='measure' type='quantitative' value='25'>
+          <calculation class='tableau' formula='25' />
+          <range granularity='5' max='40' min='5' />
+        </column>
+      </datasource-dependencies>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Sheet 1'>
+      <table>
+        <view>
+          <datasources>
+            <datasource name='Sample - Superstore Sales (Excel)' />
+          </datasources>
+          <datasource-dependencies datasource='Sample - Superstore Sales (Excel)'>
+            <column caption='Profit Ratio' datatype='real' default-format='p0.00%' name='[Calculation2]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='// this calculates the weighted average profit ratio&#13;&#10;&#13;&#10;sum([Profit])/sum([Sales])' />
+              <desc>
+                <formatted-text>
+                  <run>The weighted average profit ratio.</run>
+                </formatted-text>
+              </desc>
+            </column>
+            <column datatype='string' name='[Customer Segment]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='real' default-format='c&quot;$&quot;#,##0;(&quot;$&quot;#,##0)' name='[Sales]' role='measure' type='quantitative'>
+            </column>
+            <column-instance column='[Customer Segment]' derivation='None' name='[none:Customer Segment:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Sales]' derivation='Sum' name='[sum:Sales:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation2]' derivation='User' name='[usr:Calculation2:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[Sample - Superstore Sales (Excel)].[usr:Calculation2:qk]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>[Sample - Superstore Sales (Excel)].[none:Customer Segment:nk]</rows>
+        <cols>[Sample - Superstore Sales (Excel)].[sum:Sales:qk]</cols>
+      </table>
+    </worksheet>
+  </worksheets>
+  <windows>
+    <window class='schema' source-height='-1' />
+    <window auto-hidden='0' class='worksheet' maximized='1' name='Sheet 1'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card pane-specification-id='0' param='[Sample - Superstore Sales (Excel)].[usr:Calculation2:qk]' type='color' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[Sample - Superstore Sales (Excel)].[none:Customer Segment:nk]</field>
+          <field>[Sample - Superstore Sales (Excel)].[usr:Calculation2:qk]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='141' name='Sheet 1' width='192'>
+      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
+    </thumbnail>
+  </thumbnails>
+</workbook>

@@ -1,0 +1,36 @@
+CREATE OR REPLACE TYPE items_va AS VARRAY(5) OF VARCHAR2(60);
+/
+DROP TYPE items_nt FORCE;
+/
+CREATE OR REPLACE TYPE items_nt AS TABLE OF VARCHAR2(60);
+/
+CREATE TYPE order_info_ot AS OBJECT (order_id NUMBER, item_name VARCHAR2(60));
+/
+CREATE OR REPLACE TYPE  order_info_nt IS TABLE OF order_info_ot;
+/
+CREATE TABLE items_ordered (
+   act_id NUMBER,
+   act_month VARCHAR2(8),
+   itemslist      items_va    DEFAULT items_va());
+
+INSERT INTO items_ordered( act_id,act_month,itemslist)
+                  VALUES (1,'JANUARY',items_va('Bike', 'Treadmill'));
+INSERT INTO items_ordered( act_id,act_month,itemslist)
+                  VALUES (2,'JANUARY',items_va('Weights', 'Elliptical','Bike'));
+COMMIT;
+SELECT CAST( itemslist AS items_nt) 
+       FROM  items_ordered;
+SELECT CAST(
+            MULTISET(SELECT order_id, item_name 
+                       FROM orders, items
+                      WHERE order_item_id = item_id
+                        AND order_act_id = 1
+                    )   AS order_info_nt
+            )
+        FROM  dual;
+SELECT CAST( COLLECT(item_name) AS items_nt) 
+   FROM  items;
+SELECT CAST( MULTISET(SELECT item_name FROM   items) AS items_nt
+           ) 
+   FROM  dual;
+   

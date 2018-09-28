@@ -1,0 +1,13 @@
+﻿--demo session
+  CREATE OR REPLACE FUNCTION get_emp_count(p_dept_id NUMBER) RETURN NUMBER 
+  AUTHID CURRENT_USER IS
+    l_count NUMBER;
+   BEGIN
+    DBMS_OUTPUT.PUT_LINE('Inside get_emp_count  in demo schema');
+     SELECT COUNT(*) 
+       INTO l_count
+       FROM employee
+      WHERE emp_dept_id = p_dept_id;
+    RETURN l_count;
+  END get_emp_count;
+  /

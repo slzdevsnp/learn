@@ -1,0 +1,12 @@
+﻿--demo session
+grant execute on update_emp to test;
+
+
+
+
+
+
+--test session
+
+
+exec demo.update_emp;

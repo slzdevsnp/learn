@@ -1,0 +1,4 @@
+DROP TABLE employee;
+DROP TABLE departments;
+DROP TABLE log;
+DROP FUNCTION get_dept_id;

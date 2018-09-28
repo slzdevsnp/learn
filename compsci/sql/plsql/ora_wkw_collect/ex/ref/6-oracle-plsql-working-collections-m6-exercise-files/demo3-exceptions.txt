@@ -1,0 +1,74 @@
+DECLARE
+  TYPE items_va IS VARRAY(2) of VARCHAR2(4);
+  l_items_va      items_va ;
+ 
+BEGIN
+  l_items_va.EXTEND(3);
+END;
+/
+DECLARE
+  TYPE items_va IS VARRAY(2) of VARCHAR2(4);
+  l_items_va      items_va  := items_va();
+ 
+BEGIN
+  l_items_va.EXTEND(3);
+   
+EXCEPTION
+  WHEN SUBSCRIPT_OUTSIDE_LIMIT THEN
+    DBMS_OUTPUT.PUT_LINE(DBMS_UTILITY.FORMAT_ERROR_STACK);
+    RAISE;
+END;
+/
+DECLARE
+  TYPE items_va IS TABLE of VARCHAR2(4);
+  l_items_va      items_va  := items_va();
+ 
+BEGIN
+  l_items_va.EXTEND;
+  l_items_va(0) := 'Treadmill'; 
+EXCEPTION
+  WHEN SUBSCRIPT_OUTSIDE_LIMIT THEN
+    DBMS_OUTPUT.PUT_LINE(DBMS_UTILITY.FORMAT_ERROR_STACK);
+    RAISE;
+END;
+/
+
+DECLARE
+  TYPE items_va IS VARRAY(5) of VARCHAR2(4);
+  l_items_va      items_va  := items_va();
+ 
+BEGIN
+  l_items_va.EXTEND;
+  l_items_va(1) := 'Treadmill';
+EXCEPTION
+  WHEN VALUE_ERROR THEN
+    DBMS_OUTPUT.PUT_LINE(DBMS_UTILITY.FORMAT_ERROR_STACK);
+    RAISE;
+END;
+/
+DECLARE
+  TYPE items_va IS VARRAY(5) of VARCHAR2(4);
+  l_items_va      items_va  := items_va();
+ 
+BEGIN
+  l_items_va.EXTEND;
+  l_items_va(1) := 'Bike';
+EXCEPTION
+  WHEN VALUE_ERROR THEN
+    DBMS_OUTPUT.PUT_LINE(DBMS_UTILITY.FORMAT_ERROR_STACK);
+    RAISE;
+END;
+/
+DECLARE
+  TYPE items_va IS VARRAY(5) of VARCHAR2(4);
+  l_items_va      items_va  := items_va();
+ 
+BEGIN
+  l_items_va.EXTEND;
+  l_items_va(1) := 'Bike';
+  l_items_va.TRIM(2);
+EXCEPTION
+  WHEN VALUE_ERROR THEN
+    DBMS_OUTPUT.PUT_LINE(DBMS_UTILITY.FORMAT_ERROR_STACK);
+    RAISE;
+END;

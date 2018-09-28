@@ -1,0 +1,22 @@
+DECLARE
+  TYPE items_aa IS TABLE of VARCHAR2(4) NOT NULL INDEX BY BINARY_INTEGER;
+  l_items_aa       items_aa;
+BEGIN
+  l_Items_aa(1) := NULL;
+END;
+/
+DECLARE
+  TYPE items_aa IS TABLE of VARCHAR2(4) NOT NULL INDEX BY BINARY_INTEGER;
+  l_items_aa       items_aa;
+BEGIN
+  l_Items_aa(1) := 'Treadmill';
+END;
+/
+DECLARE
+  TYPE items_aa IS TABLE of VARCHAR2(10) NOT NULL INDEX BY BINARY_INTEGER;
+  l_items_aa       items_aa;
+BEGIN
+  l_Items_aa(1) := 'Treadmill';
+ dbms_output.put_line(l_items_aa(2));
+END;
+/

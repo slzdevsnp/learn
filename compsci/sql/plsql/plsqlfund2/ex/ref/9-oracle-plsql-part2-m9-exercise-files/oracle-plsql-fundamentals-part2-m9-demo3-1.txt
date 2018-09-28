@@ -1,0 +1,11 @@
+﻿--DBA User
+CREATE ROLE HR_ROLE;
+
+
+GRANT select, update, insert, delete on demo.employee to hr_role;
+
+
+GRANT execute on demo.get_emp_count to hr_role;
+
+
+GRANT hr_role to test;

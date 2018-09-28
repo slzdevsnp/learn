@@ -1,0 +1,88 @@
+﻿DECLARE
+  TYPE items_nt IS TABLE of VARCHAR2(60) NOT NULL;
+  l_items_nt      items_nt;
+ 
+BEGIN
+   l_items_nt(1) := 'Bike';
+END;
+/
+DECLARE
+  TYPE items_nt IS TABLE of VARCHAR2(60) NOT NULL;
+  l_items_nt      items_nt := items_nt();
+ 
+BEGIN
+  
+   l_items_nt(1) := 'Bike';
+END;
+/
+DECLARE
+  TYPE items_nt IS TABLE of VARCHAR2(60) NOT NULL;
+  l_items_nt      items_nt := items_nt();
+ 
+BEGIN
+   l_items_nt.EXTEND; 
+   l_items_nt(1) := NULL;
+END;
+/
+DECLARE
+  TYPE items_nt IS TABLE of VARCHAR2(60) NOT NULL;
+  l_items_nt      items_nt := items_nt();
+ 
+BEGIN
+   l_items_nt.EXTEND; 
+   l_items_nt(1) := 'Bike';
+   l_items_nt.delete(1);
+   dbms_output.put_line(l_items_nt(1));
+END;
+/
+DECLARE
+  TYPE items_nt IS TABLE of VARCHAR2(2) NOT NULL;
+  l_items_nt      items_nt := items_nt();
+ 
+BEGIN
+   l_items_nt.EXTEND; 
+   l_items_nt(1) := 'Bike';
+   dbms_output.put_line(l_items_nt(1));
+END;
+/
+
+
+DECLARE
+  TYPE items_nt IS TABLE of VARCHAR2(20) NOT NULL;
+  l_items_nt      items_nt := items_nt();
+ 
+BEGIN
+   l_items_nt.EXTEND; 
+   l_items_nt('a') := 'Bike';
+   dbms_output.put_line(l_items_nt(1));
+END;
+/
+DECLARE
+  TYPE items_nt IS TABLE of VARCHAR2(20) NOT NULL;
+  l_items_nt      items_nt := items_nt();
+ 
+BEGIN
+   l_items_nt.EXTEND; 
+   l_items_nt(0) := 'Bike';
+   dbms_output.put_line(l_items_nt(1));
+END;
+/
+
+
+DECLARE
+  TYPE items_nt IS TABLE of VARCHAR2(20) NOT NULL;
+  l_items_nt      items_nt := items_nt();
+ 
+BEGIN
+   l_items_nt.EXTEND(3); 
+   l_items_nt(1) := 'Bike';
+   l_items_nt(2) := 'Treadmill';
+   l_items_nt(2) := 'Weights';
+   dbms_output.put_line('Item at index 1 '||l_items_nt(1));
+   dbms_output.put_line('Count before trim '||l_items_nt.count);
+   l_items_nt.trim;
+   dbms_output.put_line('Count after trim '||l_items_nt.count);
+   l_items_nt.trim(2);
+   dbms_output.put_line('Count after trim with an argument of 2 is  '||l_items_nt.count);
+END;
+/

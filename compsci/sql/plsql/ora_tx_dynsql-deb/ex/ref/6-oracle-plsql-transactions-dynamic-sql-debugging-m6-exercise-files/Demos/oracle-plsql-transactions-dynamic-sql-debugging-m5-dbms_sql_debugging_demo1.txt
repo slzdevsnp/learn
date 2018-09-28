@@ -1,0 +1,49 @@
+CREATE OR REPLACE FUNCTION get_item_value(p_item_id items.item_id%TYPE) RETURN NUMBER IS
+  l_item_value items.item_value%TYPE;
+BEGIN
+  DBMS_OUTPUT.PUT_LINE('Entering get_item_value function with item_id '||p_item_id);
+  SELECT item_value INTO l_item_value 
+    FROM items
+  WHERE  item_id = p_item_id;
+  DBMS_OUTPUT.PUT_LINE('Exiting get_item_value function');
+  RETURN l_item_value;
+END get_item_value;
+/
+CREATE OR REPLACE PACKAGE order_mgmt IS
+  FUNCTION get_discount(p_item_id items.item_id%TYPE) RETURN NUMBER;
+END;
+/
+CREATE OR REPLACE PACKAGE BODY order_mgmt IS
+  FUNCTION get_discount(p_item_id items.item_id%TYPE) RETURN NUMBER IS
+    l_item_value items.item_value%TYPE;
+    l_discount NUMBER := 0;
+    l_discount_ratio NUMBER;
+  BEGIN
+    DBMS_OUTPUT.PUT_LINE('Entering order_mgmt.get_discount function with input item id '||p_item_id);
+    l_item_value := get_item_value(p_item_id);
+    l_discount:= l_item_value *.05;
+    DBMS_OUTPUT.PUT_LINE('Exiting order_mgmt.get_discount funtion with a discount '||l_discount);
+    RETURN l_discount;
+    EXCEPTION
+    WHEN OTHERS THEN
+      DBMS_OUTPUT.PUT_LINE('Inside Exception Block ');
+      DBMS_OUTPUT.PUT_LINE('dbms_utility.format_error_stack output ---');
+      DBMS_OUTPUT.PUT_LINE(dbms_utility.format_error_stack);
+      DBMS_OUTPUT.PUT_LINE('dbms_utility.format_error_backtrace output ---');
+      DBMS_OUTPUT.PUT_LINE(dbms_utility.format_error_backtrace);
+      RETURN -1;
+  END get_discount;
+END order_mgmt;
+/
+DECLARE
+  l_discount NUMBER;
+BEGIN
+  l_discount := order_mgmt.get_discount(1);
+END;
+/
+DECLARE
+  l_discount NUMBER;
+BEGIN
+  l_discount := order_mgmt.get_discount(3);
+END;
+/

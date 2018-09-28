@@ -1,0 +1,9 @@
+[user]
+	name = Slava Zimin
+	email = slzdev@gmail.com
+[credential]
+	helper = osxkeychain
+[core]
+	excludesfile = /Users/zimine/Dropbox/.gitignore_global
+[github]
+	user = slzdevsnp

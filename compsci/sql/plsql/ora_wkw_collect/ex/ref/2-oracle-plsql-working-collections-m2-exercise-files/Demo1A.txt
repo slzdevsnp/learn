@@ -1,0 +1,22 @@
+SELECT *
+  FROM items
+ ORDER BY item_id;
+DECLARE
+  TYPE items_aa is table of items%ROWTYPE INDEX BY BINARY_INTEGER;
+  l_items_aa  items_aa;
+  counter NUMBER:=0;
+
+  CURSOR get_items_cur IS
+    SELECT *
+      FROM items
+      ORDER BY item_id;
+BEGIN
+    FOR get_items_var IN get_items_cur LOOP
+      counter := counter + 1;
+      l_items_aa(counter).item_id := get_items_var.item_id;
+      l_items_aa(counter).item_name := get_items_var.item_name;
+      l_items_aa(counter).item_value := get_items_var.item_value;
+    END LOOP;
+    DBMS_OUTPUT.PUT_LINE('At Counter 1: Item id is '||l_items_aa(1).item_id||' Item Name is '||l_items_aa(1).item_name);
+    DBMS_OUTPUT.PUT_LINE('At Counter 2: Item id is '||l_items_aa(2).item_id||' Item Name is '||l_items_aa(2).item_name);
+END;

@@ -1,0 +1,2 @@
+﻿drop package body hr_mgmt;
+drop package hr_mgmt;

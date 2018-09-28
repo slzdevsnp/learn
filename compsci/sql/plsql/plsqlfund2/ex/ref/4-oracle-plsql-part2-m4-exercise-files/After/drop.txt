@@ -1,0 +1,6 @@
+DROP TABLE employee;
+DROP TABLE departments;
+
+DROP PROCEDURE update_emp;
+
+DROP PROCEDURE update_info;

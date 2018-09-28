@@ -1,0 +1,66 @@
+DECLARE
+ TYPE items_aa IS TABLE of VARCHAR2(60) INDEX BY BINARY_INTEGER;
+  l_items_aa                     items_aa;
+BEGIN
+  l_Items_aa(4) := 'Treadmill';
+  l_items_aa(6) := 'Bike';
+  l_items_aa(8) := 'Elliptical';
+  FOR i IN  reverse l_Items_aa.FIRST .. l_Items_aa.LAST LOOP
+    DBMS_OUTPUT.PUT_LINE('Index counter is '||i);
+    IF l_items_aa.EXISTS(i) THEN
+      DBMS_OUTPUT.put_line ('Counter '||i||' exists.Value is  '||l_Items_aa (i));
+    END IF;
+  END LOOP;
+END;
+/
+DECLARE
+ TYPE items_aa IS TABLE of VARCHAR2(60) INDEX BY BINARY_INTEGER;
+  l_items_aa                     items_aa;
+BEGIN
+  l_Items_aa(4) := 'Treadmill';
+  l_items_aa(6) := 'Bike';
+  l_items_aa(8) := 'Elliptical';
+  FOR i IN  REVERSE l_Items_aa.FIRST .. l_Items_aa.LAST LOOP
+    DBMS_OUTPUT.PUT_LINE('Index counter is '||i);
+    IF l_items_aa.EXISTS(i) THEN
+      DBMS_OUTPUT.put_line ('Counter '||i||' exists.Value is  '||l_Items_aa (i));
+    END IF;
+  END LOOP;
+END;
+/
+DECLARE
+   TYPE items_aa IS TABLE OF VARCHAR2(60) INDEX BY BINARY_INTEGER;
+   l_items_aa      items_aa;
+   l_index         BINARY_INTEGER;
+   l_value         VARCHAR2(60);
+BEGIN
+   l_Items_aa(4) := 'Treadmill';
+   l_items_aa(6) := 'Bike';
+   l_items_aa(8) := 'Elliptical';
+   l_index := l_items_aa.FIRST;
+   WHILE  l_index IS NOT NULL LOOP
+      l_value := l_items_aa(l_index);
+      DBMS_OUTPUT.PUT('Current Index is '||l_index||' Value is '||l_value);
+      l_index := l_items_aa.NEXT(l_index);
+      DBMS_OUTPUT.PUT_LINE(' Next Index is '||l_index);
+   END LOOP;
+END;
+/
+DECLARE
+   TYPE items_aa IS TABLE OF VARCHAR2(60) INDEX BY BINARY_INTEGER;
+   l_items_aa      items_aa;
+   l_index         BINARY_INTEGER;
+   l_value         VARCHAR2(60);
+BEGIN
+   l_Items_aa(4) := 'Treadmill';
+   l_items_aa(6) := 'Bike';
+   l_items_aa(8) := 'Elliptical';
+   l_index := l_items_aa.LAST;
+   WHILE  l_index IS NOT NULL LOOP
+      l_value := l_items_aa(l_index);
+      DBMS_OUTPUT.PUT('Current Index is '||l_index||' Value is '||l_value);
+      l_index := l_items_aa.PRIOR(l_index);
+      DBMS_OUTPUT.PUT_LINE(' Next Index is '||l_index);
+   END LOOP;
+END;
+/

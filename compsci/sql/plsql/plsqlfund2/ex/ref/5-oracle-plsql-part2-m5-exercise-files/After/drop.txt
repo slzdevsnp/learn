@@ -1,0 +1,5 @@
+DROP TABLE employee;
+DROP TABLE departments;
+
+DROP PROCEDURE determine_tiers;
+DROP PROCEDURE update_dept;

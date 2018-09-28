@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="50e8705ed4b04c698c2d204f0df22ee3" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.APPLICATION" Width="1.5" PointX="5.25" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CLASS_STANDINGS" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.COURSE_ENROLLMENTS" Width="1.5" PointX="10.5" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.COURSE_OFFERINGS" Width="1.5" PointX="8.25" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.COURS" Width="1.5" PointX="0.75" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DEGREE_LEVELS" Width="1.5" PointX="1.5" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DEGREE_REQUIREMENTS" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DEGREE_TYPES" Width="1.5" PointX="1.5" PointY="25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DEGREE" Width="1.5" PointX="0.75" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DEPARTMENT" Width="1.5" PointX="1.5" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.GRADE" Width="1.5" PointX="8.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SESSION" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.STUDENT" Width="1.5" PointX="8.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TERM" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_APPLICATIONS_TERM_CODE" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_CLASS_STDGS_DEGREE_LEVEL_CD" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_DEGREE_REQ_CLASS_STNDG_CD" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_STUDENTS_CLASS_STANING" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_ENROLLMENTS_GRADES" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_ENROLLMENTS_OFFERINGS" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_ENROLLMENTS_STUDENT" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_COURSE_OFFERINGS_COURSES" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_COURSE_OFFERINGS_TERM" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_COURSES_DEPARTMENT_CODE" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_DEGREE_REQ_COURSES" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_DEGREE_TYPES_DEGREE_TYPE_CD" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_DEGREE_REQ_DEGREE_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_DEGREE_REQ_SESSION_CD" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_DEGREES_DEGREE_TYPE_CODE" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_DEGREES_DEPARTMENT_CODE" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_STUDENTS_DEGREE_PURSUED" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_SESSION_CODE" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_STUDENTS_ENROLLMENT_TERM" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

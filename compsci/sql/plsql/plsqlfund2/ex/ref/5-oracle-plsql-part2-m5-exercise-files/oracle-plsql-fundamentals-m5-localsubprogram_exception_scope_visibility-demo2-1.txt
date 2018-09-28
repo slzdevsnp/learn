@@ -1,0 +1,31 @@
+﻿CREATE OR REPLACE PROCEDURE determine_tiers  AS
+    l_salary NUMBER := 50000;
+    l_tier       NUMBER;
+    FUNCTION get_tier  RETURN NUMBER IS
+       l_salary NUMBER := 30000;  --1
+       l_return NUMBER;
+    BEGIN
+         IF l_salary < 40000 THEN
+           l_return := 1;
+           l_return :='A';
+         ELSIF l_salary < 60000 THEN
+           l_return := 2;
+        ELSE
+           l_return := 3;
+         END IF; 
+         RETURN l_return;
+    EXCEPTION
+        WHEN OTHERS THEN
+         DBMS_OUTPUT.PUT_LINE('Inner Block '||SQLERRM);
+         DBMS_OUTPUT.PUT_LINE('Inner Block '||DBMS_UTILITY.FORMAT_ERROR_BACKTRACE);
+         RAISE;
+    END get_tier;
+ BEGIN
+     l_tier := get_tier;               
+     l_salary := 120000;
+     l_tier := get_tier; 
+ EXCEPTION
+      WHEN OTHERS THEN
+       DBMS_OUTPUT.PUT_LINE('Outer Block '||DBMS_UTILITY.FORMAT_ERROR_BACKTRACE);
+       RAISE;
+  END determine_tiers;

@@ -1,0 +1,6 @@
+﻿--dev session
+DECLARE
+    l_count NUMBER;
+BEGIN
+   l_count :=  demo.get_emp_count(1);
+END;

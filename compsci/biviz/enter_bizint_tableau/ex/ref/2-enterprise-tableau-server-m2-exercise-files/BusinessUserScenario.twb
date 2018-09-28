@@ -1,0 +1,804 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<workbook version='8.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <!-- build 8000.13.1001.1930                -->
+  <preferences>
+  </preferences>
+  <datasources>
+    <datasource hasconnection='false' inline='true' name='Parameters' version='8.1'>
+      <aliases enabled='yes' />
+      <column caption='Profit Bin Size' datatype='real' default-format='c&quot;$&quot;#,##0;(&quot;$&quot;#,##0)' name='[Parameter 1]' param-domain-type='range' role='measure' type='quantitative' value='1000.0000000000000'>
+        <calculation class='tableau' formula='1000.0' />
+        <range granularity='500.00000000000000' max='2500.0000000000000' min='500.00000000000000' />
+      </column>
+      <column caption='Top Customers' datatype='integer' name='[Parameter 2]' param-domain-type='range' role='measure' type='quantitative' value='25'>
+        <calculation class='tableau' formula='25' />
+        <range granularity='5' max='40' min='5' />
+      </column>
+    </datasource>
+    <datasource inline='true' name='Sales Orders' version='8.1'>
+      <repository-location id='SalesOrders' path='/datasources' revision='1.0' />
+      <connection channel='http' class='sqlproxy' dbname='SalesOrders' directory='dataserver' port='80' server='localhost' username=''>
+        <relation name='sqlproxy' table='[sqlproxy]' type='table' />
+        <calculations>
+          <calculation column='[Calculation1]' formula='// this calculates the number of days that have elapsed since the order was placed&#13;&#10;datediff(&apos;day&apos;,[Order Date],now())' />
+          <calculation column='[Calculation2]' formula='// this calculates the weighted average profit ratio&#13;&#10;&#13;&#10;sum([Profit])/sum([Sales])' />
+          <calculation column='[Calculation3]' formula='// this is the number of days between the order and shipment&#13;&#10;&#13;&#10;datediff(&apos;day&apos;,[Order Date],[Ship Date])' />
+          <calculation column='[New Region]' formula='CASE [Region]&#10;  WHEN &quot;South&quot; THEN &quot;South&quot;&#10;  WHEN &quot;West&quot; THEN &quot;South&quot;&#10;  ELSE [Region]&#10;END' />
+          <calculation column='[Number of Records]' formula='1' />
+          <calculation column='[Profit (bin)]' formula='SYS_NUMBIN([Profit],[Parameters].[Parameter 1])' />
+          <calculation column='[Supplier]' formula='CASE [Product Name]&#10;  WHEN &quot;*Staples* Highlighting Markers&quot; THEN &quot;*Staples* Highlighting Markers&quot;&#10;  WHEN &quot;*Staples* Letter Opener&quot; THEN &quot;*Staples* Highlighting Markers&quot;&#10;  WHEN &quot;*Staples* Packaging Labels&quot; THEN &quot;*Staples* Highlighting Markers&quot;&#10;  WHEN &quot;*Staples* vLetter Openers, 2/Pack&quot; THEN &quot;*Staples* Highlighting Markers&quot;&#10;  WHEN &quot;3M Hangers With Command Adhesive&quot; THEN &quot;3M Hangers With Command Adhesive&quot;&#10;  WHEN &quot;3M Office Air Cleaner&quot; THEN &quot;3M Hangers With Command Adhesive&quot;&#10;  WHEN &quot;3M Organizer Strips&quot; THEN &quot;3M Hangers With Command Adhesive&quot;&#10;  WHEN &quot;3M Polarizing Light Filter Sleeves&quot; THEN &quot;3M Hangers With Command Adhesive&quot;&#10;  WHEN &quot;3M Polarizing Task Lamp with Clamp Arm, Light Gray&quot; THEN &quot;3M Hangers With Command Adhesive&quot;&#10;  WHEN &quot;Acco 3-Hole Punch&quot; THEN &quot;Acco 3-Hole Punch&quot;&#10;  WHEN &quot;Acco 6 Outlet Guardian Premium Surge Suppressor&quot; THEN &quot;Acco 3-Hole Punch&quot;&#10;  WHEN &quot;Acco Clips to Go™ Binder Clips, 24 Clips in Two Sizes&quot; THEN &quot;Acco 3-Hole Punch&quot;&#10;  WHEN &quot;Acco D-Ring Binder w/DublLock®&quot; THEN &quot;Acco 3-Hole Punch&quot;&#10;  WHEN &quot;Acco Four Pocket Poly Ring Binder with Label Holder, Smoke, 1&quot;&quot;&quot; THEN &quot;Acco 3-Hole Punch&quot;&#10;  WHEN &quot;Acco Keyboard-In-A-Box®&quot; THEN &quot;Acco 3-Hole Punch&quot;&#10;  WHEN &quot;Acco Perma® 2700 Stacking Storage Drawers&quot; THEN &quot;Acco 3-Hole Punch&quot;&#10;  WHEN &quot;Acco Perma® 3000 Stacking Storage Drawers&quot; THEN &quot;Acco 3-Hole Punch&quot;&#10;  WHEN &quot;Acco Pressboard Covers with Storage Hooks, 14 7/8&quot;&quot; x 11&quot;&quot;, Dark Blue&quot; THEN &quot;Acco 3-Hole Punch&quot;&#10;  WHEN &quot;Acco Pressboard Covers with Storage Hooks, 14 7/8&quot;&quot; x 11&quot;&quot;, Executive Red&quot; THEN &quot;Acco 3-Hole Punch&quot;&#10;  WHEN &quot;Acco Pressboard Covers with Storage Hooks, 14 7/8&quot;&quot; x 11&quot;&quot;, Light Blue&quot; THEN &quot;Acco 3-Hole Punch&quot;&#10;  WHEN &quot;Acco PRESSTEX® Data Binder with Storage Hooks, Dark Blue, 14 7/8&quot;&quot; X 11&quot;&quot;&quot; THEN &quot;Acco 3-Hole Punch&quot;&#10;  WHEN &quot;Acco PRESSTEX® Data Binder with Storage Hooks, Dark Blue, 9 1/2&quot;&quot; X 11&quot;&quot;&quot; THEN &quot;Acco 3-Hole Punch&quot;&#10;  WHEN &quot;Acco Recycled 2&quot;&quot; Capacity Laser Printer Hanging Data Binders&quot; THEN &quot;Acco 3-Hole Punch&quot;&#10;  WHEN &quot;Acco Six-Outlet Power Strip, 4&apos; Cord Length&quot; THEN &quot;Acco 3-Hole Punch&quot;&#10;  WHEN &quot;Acco Smartsocket® Color-Coded Six-Outlet AC Adapter Model Surge Protectors&quot; THEN &quot;Acco 3-Hole Punch&quot;&#10;  WHEN &quot;Acco Smartsocket™ Table Surge Protector, 6 Color-Coded Adapter Outlets&quot; THEN &quot;Acco 3-Hole Punch&quot;&#10;  WHEN &quot;Acco Suede Grain Vinyl Round Ring Binder&quot; THEN &quot;Acco 3-Hole Punch&quot;&#10;  WHEN &quot;Acco® Hot Clips™ Clips to Go&quot; THEN &quot;Acco 3-Hole Punch&quot;&#10;  WHEN &quot;Accohide Poly Flexible Ring Binders&quot; THEN &quot;Acco 3-Hole Punch&quot;&#10;  WHEN &quot;ACCOHIDE® 3-Ring Binder, Blue, 1&quot;&quot;&quot; THEN &quot;Acco 3-Hole Punch&quot;&#10;  WHEN &quot;ACCOHIDE® Binder by Acco&quot; THEN &quot;Acco 3-Hole Punch&quot;&#10;  WHEN &quot;Acme Design Line 8&quot;&quot; Stainless Steel Bent Scissors w/Champagne Handles, 3-1/8&quot;&quot; Cut&quot; THEN &quot;Acme Design Line 8&quot;&quot; Stainless Steel Bent Scissors w/Champagne Handles, 3-1/8&quot;&quot; Cut&quot;&#10;  WHEN &quot;Acme Galleria® Hot Forged Steel Scissors with Colored Handles&quot; THEN &quot;Acme Design Line 8&quot;&quot; Stainless Steel Bent Scissors w/Champagne Handles, 3-1/8&quot;&quot; Cut&quot;&#10;  WHEN &quot;Acme Hot Forged Carbon Steel Scissors with Nickel-Plated Handles, 3 7/8&quot;&quot; Cut, 8&quot;&quot;L&quot; THEN &quot;Acme Design Line 8&quot;&quot; Stainless Steel Bent Scissors w/Champagne Handles, 3-1/8&quot;&quot; Cut&quot;&#10;  WHEN &quot;Acme Kleencut® Forged Steel Scissors&quot; THEN &quot;Acme Design Line 8&quot;&quot; Stainless Steel Bent Scissors w/Champagne Handles, 3-1/8&quot;&quot; Cut&quot;&#10;  WHEN &quot;Acme® 8&quot;&quot; Straight Scissors&quot; THEN &quot;Acme Design Line 8&quot;&quot; Stainless Steel Bent Scissors w/Champagne Handles, 3-1/8&quot;&quot; Cut&quot;&#10;  WHEN &quot;Acme® Box Cutter Scissors&quot; THEN &quot;Acme Design Line 8&quot;&quot; Stainless Steel Bent Scissors w/Champagne Handles, 3-1/8&quot;&quot; Cut&quot;&#10;  WHEN &quot;Acme® Design Stainless Steel Bent Scissors&quot; THEN &quot;Acme Design Line 8&quot;&quot; Stainless Steel Bent Scissors w/Champagne Handles, 3-1/8&quot;&quot; Cut&quot;&#10;  WHEN &quot;Acme® Elite Stainless Steel Scissors&quot; THEN &quot;Acme Design Line 8&quot;&quot; Stainless Steel Bent Scissors w/Champagne Handles, 3-1/8&quot;&quot; Cut&quot;&#10;  WHEN &quot;Acme® Forged Steel Scissors with Black Enamel Handles&quot; THEN &quot;Acme Design Line 8&quot;&quot; Stainless Steel Bent Scissors w/Champagne Handles, 3-1/8&quot;&quot; Cut&quot;&#10;  WHEN &quot;Acme® Office Executive Series Stainless Steel Trimmers&quot; THEN &quot;Acme Design Line 8&quot;&quot; Stainless Steel Bent Scissors w/Champagne Handles, 3-1/8&quot;&quot; Cut&quot;&#10;  WHEN &quot;Acme® Preferred Stainless Steel Scissors&quot; THEN &quot;Acme Design Line 8&quot;&quot; Stainless Steel Bent Scissors w/Champagne Handles, 3-1/8&quot;&quot; Cut&quot;&#10;  WHEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery 4027 File Folder Labels for Dot Matrix Printers, 5000 Labels per Box, White&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery 474&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery 478&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery 479&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery 48&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery 481&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery 482&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery 484&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery 485&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery 487&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery 49&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery 491&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery 492&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery 493&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery 494&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery 496&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery 497&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery 498&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery 501&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery 503&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery 504&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery 506&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery 507&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery 508&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery 51&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery 510&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery 511&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery 514&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery 516&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery 52&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery 520&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery Arch Ring Binders&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery Binder Labels&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery Binding System Hidden Tab™ Executive Style Index Sets&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery Durable Binders&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery Durable Poly Binders&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery File Folder Labels&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery Flip-Chart Easel Binder, Black&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery Hanging File Binders&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery Heavy-Duty EZD ™ Binder With Locking Rings&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery Hi-Liter Comfort Grip Fluorescent Highlighter, Yellow Ink&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery Hi-Liter GlideStik Fluorescent Highlighter, Yellow Ink&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery Hi-Liter Pen Style Six-Color Fluorescent Set&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery Hi-Liter® EverBold™ Pen Style Fluorescent Highlighters, 4/Pack&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery Hi-Liter® Fluorescent Desk Style Markers&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery Hi-Liter® Smear-Safe Highlighters&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery Hole Reinforcements&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery Legal 4-Ring Binder&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery Non-Stick Binders&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery Poly Binder Pockets&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery Premier Heavy-Duty Binder with Round Locking Rings&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery Printable Repositionable Plastic Tabs&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery Reinforcements for Hole-Punch Pages&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery Round Ring Poly Binders&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery Self-Adhesive Photo Pockets for Polaroid Photos&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery Trapezoid Extra Heavy Duty 4&quot;&quot; Binders&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery Trapezoid Ring Binder, 3&quot;&quot; Capacity, Black, 1040 sheets&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery White Multi-Purpose Labels&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery® 3 1/2&quot;&quot; Diskette Storage Pages, 10/Pack&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery® Durable Plastic 1&quot;&quot; Binders&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Avery® Durable Slant Ring Binders With Label Holder&quot; THEN &quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;&#10;  WHEN &quot;Belkin 105-Key Black Keyboard&quot; THEN &quot;Belkin 105-Key Black Keyboard&quot;&#10;  WHEN &quot;Belkin 107-key enhanced keyboard, USB/PS/2 interface&quot; THEN &quot;Belkin 105-Key Black Keyboard&quot;&#10;  WHEN &quot;Belkin 325VA UPS Surge Protector, 6&apos;&quot; THEN &quot;Belkin 105-Key Black Keyboard&quot;&#10;  WHEN &quot;Belkin 5 Outlet SurgeMaster™ Power Centers&quot; THEN &quot;Belkin 105-Key Black Keyboard&quot;&#10;  WHEN &quot;Belkin 6 Outlet Metallic Surge Strip&quot; THEN &quot;Belkin 105-Key Black Keyboard&quot;&#10;  WHEN &quot;Belkin 7 Outlet SurgeMaster Surge Protector with Phone Protection&quot; THEN &quot;Belkin 105-Key Black Keyboard&quot;&#10;  WHEN &quot;Belkin 8 Outlet Surge Protector&quot; THEN &quot;Belkin 105-Key Black Keyboard&quot;&#10;  WHEN &quot;Belkin 8 Outlet SurgeMaster II Gold Surge Protector&quot; THEN &quot;Belkin 105-Key Black Keyboard&quot;&#10;  WHEN &quot;Belkin 8 Outlet SurgeMaster II Gold Surge Protector with Phone Protection&quot; THEN &quot;Belkin 105-Key Black Keyboard&quot;&#10;  WHEN &quot;Belkin ErgoBoard™ Keyboard&quot; THEN &quot;Belkin 105-Key Black Keyboard&quot;&#10;  WHEN &quot;Belkin F5C206VTEL 6 Outlet Surge&quot; THEN &quot;Belkin 105-Key Black Keyboard&quot;&#10;  WHEN &quot;Belkin F9M820V08 8 Outlet Surge&quot; THEN &quot;Belkin 105-Key Black Keyboard&quot;&#10;  WHEN &quot;Belkin MediaBoard 104- Keyboard&quot; THEN &quot;Belkin 105-Key Black Keyboard&quot;&#10;  WHEN &quot;Belkin OmniView SE Rackmount Kit&quot; THEN &quot;Belkin 105-Key Black Keyboard&quot;&#10;  WHEN &quot;Belkin Premiere Surge Master II 8-outlet surge protector&quot; THEN &quot;Belkin 105-Key Black Keyboard&quot;&#10;  WHEN &quot;Boston 1645 Deluxe Heavier-Duty Electric Pencil Sharpener&quot; THEN &quot;Boston 1645 Deluxe Heavier-Duty Electric Pencil Sharpener&quot;&#10;  WHEN &quot;Boston 16701 Slimline Battery Pencil Sharpener&quot; THEN &quot;Boston 1645 Deluxe Heavier-Duty Electric Pencil Sharpener&quot;&#10;  WHEN &quot;Boston 16765 Mini Stand Up Battery Pencil Sharpener&quot; THEN &quot;Boston 1645 Deluxe Heavier-Duty Electric Pencil Sharpener&quot;&#10;  WHEN &quot;Boston 16801 Nautilus™ Battery Pencil Sharpener&quot; THEN &quot;Boston 1645 Deluxe Heavier-Duty Electric Pencil Sharpener&quot;&#10;  WHEN &quot;Boston 1730 StandUp Electric Pencil Sharpener&quot; THEN &quot;Boston 1645 Deluxe Heavier-Duty Electric Pencil Sharpener&quot;&#10;  WHEN &quot;Boston 1799 Powerhouse™ Electric Pencil Sharpener&quot; THEN &quot;Boston 1645 Deluxe Heavier-Duty Electric Pencil Sharpener&quot;&#10;  WHEN &quot;Boston 19500 Mighty Mite Electric Pencil Sharpener&quot; THEN &quot;Boston 1645 Deluxe Heavier-Duty Electric Pencil Sharpener&quot;&#10;  WHEN &quot;Boston Electric Pencil Sharpener, Model 1818, Charcoal Black&quot; THEN &quot;Boston 1645 Deluxe Heavier-Duty Electric Pencil Sharpener&quot;&#10;  WHEN &quot;Boston KS Multi-Size Manual Pencil Sharpener&quot; THEN &quot;Boston 1645 Deluxe Heavier-Duty Electric Pencil Sharpener&quot;&#10;  WHEN &quot;Boston Model 1800 Electric Pencil Sharpener, Gray&quot; THEN &quot;Boston 1645 Deluxe Heavier-Duty Electric Pencil Sharpener&quot;&#10;  WHEN &quot;Boston School Pro Electric Pencil Sharpener, 1670&quot; THEN &quot;Boston 1645 Deluxe Heavier-Duty Electric Pencil Sharpener&quot;&#10;  WHEN &quot;BOSTON® Ranger® #55 Pencil Sharpener, Black&quot; THEN &quot;Boston 1645 Deluxe Heavier-Duty Electric Pencil Sharpener&quot;&#10;  WHEN &quot;Canon BP1200DH 12-Digit Bubble Jet Printing Calculator&quot; THEN &quot;Canon BP1200DH 12-Digit Bubble Jet Printing Calculator&quot;&#10;  WHEN &quot;Canon F603 Scientific Calculator&quot; THEN &quot;Canon BP1200DH 12-Digit Bubble Jet Printing Calculator&quot;&#10;  WHEN &quot;Canon Image Class D660 Copier&quot; THEN &quot;Canon BP1200DH 12-Digit Bubble Jet Printing Calculator&quot;&#10;  WHEN &quot;Canon imageCLASS 2200 Advanced Copier&quot; THEN &quot;Canon BP1200DH 12-Digit Bubble Jet Printing Calculator&quot;&#10;  WHEN &quot;Canon Imageclass D680 Copier / Fax&quot; THEN &quot;Canon BP1200DH 12-Digit Bubble Jet Printing Calculator&quot;&#10;  WHEN &quot;Canon MP100DHII Printing Calculator&quot; THEN &quot;Canon BP1200DH 12-Digit Bubble Jet Printing Calculator&quot;&#10;  WHEN &quot;Canon MP25DIII Desktop Whisper-Quiet Printing Calculator&quot; THEN &quot;Canon BP1200DH 12-Digit Bubble Jet Printing Calculator&quot;&#10;  WHEN &quot;Canon MP41DH Printing Calculator&quot; THEN &quot;Canon BP1200DH 12-Digit Bubble Jet Printing Calculator&quot;&#10;  WHEN &quot;Canon P1-DHIII Palm Printing Calculator&quot; THEN &quot;Canon BP1200DH 12-Digit Bubble Jet Printing Calculator&quot;&#10;  WHEN &quot;Canon PC1060 Personal Laser Copier&quot; THEN &quot;Canon BP1200DH 12-Digit Bubble Jet Printing Calculator&quot;&#10;  WHEN &quot;Canon PC1080F Personal Copier&quot; THEN &quot;Canon BP1200DH 12-Digit Bubble Jet Printing Calculator&quot;&#10;  WHEN &quot;Canon PC940 Copier&quot; THEN &quot;Canon BP1200DH 12-Digit Bubble Jet Printing Calculator&quot;&#10;  WHEN &quot;Canon PC-428 Personal Copier&quot; THEN &quot;Canon BP1200DH 12-Digit Bubble Jet Printing Calculator&quot;&#10;  WHEN &quot;Canon S750 Color Inkjet Printer&quot; THEN &quot;Canon BP1200DH 12-Digit Bubble Jet Printing Calculator&quot;&#10;  WHEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Eldon Advantage® Foldable Chair Mats for Low Pile Carpets&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Eldon Antistatic Chair Mats for Low to Medium Pile Carpets&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Eldon Base for stackable storage shelf, platinum&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Eldon Cleatmat Plus™ Chair Mats for High Pile Carpets&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Eldon Cleatmat® Chair Mats for Medium Pile Carpets&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Eldon ClusterMat Chair Mat with Cordless Antistatic Protection&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Eldon Delta Triangular Chair Mat, 52&quot;&quot; x 58&quot;&quot;, Clear&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Eldon Econocleat® Chair Mats for Low Pile Carpets&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Eldon Executive Woodline II Cherry Finish Desk Accessories&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Eldon Expressions Mahogany Wood Desk Collection&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Eldon Expressions Punched Metal &amp; Wood Desk Accessories, Black &amp; Cherry&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Eldon Expressions Punched Metal &amp; Wood Desk Accessories, Pewter &amp; Cherry&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Eldon Expressions™ Desk Accessory, Wood Pencil Holder, Oak&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Eldon Expressions™ Desk Accessory, Wood Photo Frame, Mahogany&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Eldon Image Series Black Desk Accessories&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Eldon Imàge® Series Desk Accessories, Clear&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Eldon Jumbo ProFile™ Portable File Boxes Graphite/Black&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Eldon Pizzaz™ Desk Accessories&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Eldon Portable Mobile Manager&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Eldon Radial Chair Mat for Low to Medium Pile Carpets&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Eldon Regeneration Recycled Desk Accessories, Smoke&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Eldon Shelf Savers™ Cubes and Bins&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Eldon Simplefile® Box Office®&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Eldon Spacemaker® Box, Quick-Snap Lid, Clear&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Eldon Wave Desk Accessories&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Eldon® 200 Class™ Desk Accessories&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Eldon® 200 Class™ Desk Accessories, Burgundy&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Eldon® 300 Class™ Desk Accessories, Black&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Eldon® 400 Class™ Desk Accessories, Black Carbon&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Eldon® 500 Class™ Desk Accessories&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Eldon® Executive Woodline II Desk Accessories, Mahogany&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Eldon® Expressions™ Wood and Plastic Desk Accessories, Oak&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Eldon® Expressions™ Wood Desk Accessories, Oak&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Eldon® Gobal File Keepers&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Eldon® Image Series Desk Accessories, Burgundy&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Eldon® Wave Desk Accessories&quot; THEN &quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;&#10;  WHEN &quot;Epson C62 Color Inkjet Printer&quot; THEN &quot;Epson C62 Color Inkjet Printer&quot;&#10;  WHEN &quot;Epson C82 Color Inkjet Printer&quot; THEN &quot;Epson C62 Color Inkjet Printer&quot;&#10;  WHEN &quot;Epson DFX5000+ Dot Matrix Printer&quot; THEN &quot;Epson C62 Color Inkjet Printer&quot;&#10;  WHEN &quot;Epson DFX-8500 Dot Matrix Printer&quot; THEN &quot;Epson C62 Color Inkjet Printer&quot;&#10;  WHEN &quot;Epson FX-2180 Wide Format Dot Matrix Printer&quot; THEN &quot;Epson C62 Color Inkjet Printer&quot;&#10;  WHEN &quot;Epson FX-980 Dot Matrix Printer&quot; THEN &quot;Epson C62 Color Inkjet Printer&quot;&#10;  WHEN &quot;Epson LQ-570e Dot Matrix Printer&quot; THEN &quot;Epson C62 Color Inkjet Printer&quot;&#10;  WHEN &quot;Epson LQ-870 Dot Matrix Printer&quot; THEN &quot;Epson C62 Color Inkjet Printer&quot;&#10;  WHEN &quot;Epson Stylus 1520 Color Inkjet Printer&quot; THEN &quot;Epson C62 Color Inkjet Printer&quot;&#10;  WHEN &quot;Fellowes 17-key keypad for PS/2 interface&quot; THEN &quot;Fellowes 17-key keypad for PS/2 interface&quot;&#10;  WHEN &quot;Fellowes 8 Outlet Superior Workstation Surge Protector&quot; THEN &quot;Fellowes 17-key keypad for PS/2 interface&quot;&#10;  WHEN &quot;Fellowes 8 Outlet Superior Workstation Surge Protector w/o Phone/Fax/Modem Protection&quot; THEN &quot;Fellowes 17-key keypad for PS/2 interface&quot;&#10;  WHEN &quot;Fellowes Bankers Box™ Staxonsteel® Drawer File/Stacking System&quot; THEN &quot;Fellowes 17-key keypad for PS/2 interface&quot;&#10;  WHEN &quot;Fellowes Bankers Box™ Stor/Drawer® Steel Plus™&quot; THEN &quot;Fellowes 17-key keypad for PS/2 interface&quot;&#10;  WHEN &quot;Fellowes Bases and Tops For Staxonsteel®/High-Stak® Systems&quot; THEN &quot;Fellowes 17-key keypad for PS/2 interface&quot;&#10;  WHEN &quot;Fellowes Basic 104-Key Keyboard, Platinum&quot; THEN &quot;Fellowes 17-key keypad for PS/2 interface&quot;&#10;  WHEN &quot;Fellowes Binding Cases&quot; THEN &quot;Fellowes 17-key keypad for PS/2 interface&quot;&#10;  WHEN &quot;Fellowes Black Plastic Comb Bindings&quot; THEN &quot;Fellowes 17-key keypad for PS/2 interface&quot;&#10;  WHEN &quot;Fellowes Command Center 5-outlet power strip&quot; THEN &quot;Fellowes 17-key keypad for PS/2 interface&quot;&#10;  WHEN &quot;Fellowes EZ Multi-Media Keyboard&quot; THEN &quot;Fellowes 17-key keypad for PS/2 interface&quot;&#10;  WHEN &quot;Fellowes High-Stak® Drawer Files&quot; THEN &quot;Fellowes 17-key keypad for PS/2 interface&quot;&#10;  WHEN &quot;Fellowes Internet Keyboard, Platinum&quot; THEN &quot;Fellowes 17-key keypad for PS/2 interface&quot;&#10;  WHEN &quot;Fellowes Mighty 8 Compact Surge Protector&quot; THEN &quot;Fellowes 17-key keypad for PS/2 interface&quot;&#10;  WHEN &quot;Fellowes Mobile File Cart, Black&quot; THEN &quot;Fellowes 17-key keypad for PS/2 interface&quot;&#10;  WHEN &quot;Fellowes Mobile Numeric Keypad, Graphite&quot; THEN &quot;Fellowes 17-key keypad for PS/2 interface&quot;&#10;  WHEN &quot;Fellowes Neat Ideas® Storage Cubes&quot; THEN &quot;Fellowes 17-key keypad for PS/2 interface&quot;&#10;  WHEN &quot;Fellowes Officeware™ Wire Shelving&quot; THEN &quot;Fellowes 17-key keypad for PS/2 interface&quot;&#10;  WHEN &quot;Fellowes PB300 Plastic Comb Binding Machine&quot; THEN &quot;Fellowes 17-key keypad for PS/2 interface&quot;&#10;  WHEN &quot;Fellowes PB500 Electric Punch Plastic Comb Binding Machine with Manual Bind&quot; THEN &quot;Fellowes 17-key keypad for PS/2 interface&quot;&#10;  WHEN &quot;Fellowes Personal Hanging Folder Files, Navy&quot; THEN &quot;Fellowes 17-key keypad for PS/2 interface&quot;&#10;  WHEN &quot;Fellowes Premier Superior Surge Suppressor, 10-Outlet, With Phone and Remote&quot; THEN &quot;Fellowes 17-key keypad for PS/2 interface&quot;&#10;  WHEN &quot;Fellowes Recycled Storage Drawers&quot; THEN &quot;Fellowes 17-key keypad for PS/2 interface&quot;&#10;  WHEN &quot;Fellowes Smart Design 104-Key Enhanced Keyboard, PS/2 Adapter, Platinum&quot; THEN &quot;Fellowes 17-key keypad for PS/2 interface&quot;&#10;  WHEN &quot;Fellowes Smart Surge Ten-Outlet Protector, Platinum&quot; THEN &quot;Fellowes 17-key keypad for PS/2 interface&quot;&#10;  WHEN &quot;Fellowes Staxonsteel® Drawer Files&quot; THEN &quot;Fellowes 17-key keypad for PS/2 interface&quot;&#10;  WHEN &quot;Fellowes Stor/Drawer® Steel Plus™ Storage Drawers&quot; THEN &quot;Fellowes 17-key keypad for PS/2 interface&quot;&#10;  WHEN &quot;Fellowes Strictly Business® Drawer File, Letter/Legal Size&quot; THEN &quot;Fellowes 17-key keypad for PS/2 interface&quot;&#10;  WHEN &quot;Fellowes Super Stor/Drawer®&quot; THEN &quot;Fellowes 17-key keypad for PS/2 interface&quot;&#10;  WHEN &quot;Fellowes Super Stor/Drawer® Files&quot; THEN &quot;Fellowes 17-key keypad for PS/2 interface&quot;&#10;  WHEN &quot;Fellowes Superior 10 Outlet Split Surge Protector&quot; THEN &quot;Fellowes 17-key keypad for PS/2 interface&quot;&#10;  WHEN &quot;Fellowes Twister Kit, Gray/Clear, 3/pkg&quot; THEN &quot;Fellowes 17-key keypad for PS/2 interface&quot;&#10;  WHEN &quot;Hon 2090 “Pillow Soft” Series Mid Back Swivel/Tilt Chairs&quot; THEN &quot;Hon 2090 “Pillow Soft” Series Mid Back Swivel/Tilt Chairs&quot;&#10;  WHEN &quot;Hon 2111 Invitation™ Series Corner Table&quot; THEN &quot;Hon 2090 “Pillow Soft” Series Mid Back Swivel/Tilt Chairs&quot;&#10;  WHEN &quot;Hon 4060 Series Tables&quot; THEN &quot;Hon 2090 “Pillow Soft” Series Mid Back Swivel/Tilt Chairs&quot;&#10;  WHEN &quot;Hon 4070 Series Pagoda™ Armless Upholstered Stacking Chairs&quot; THEN &quot;Hon 2090 “Pillow Soft” Series Mid Back Swivel/Tilt Chairs&quot;&#10;  WHEN &quot;Hon 4070 Series Pagoda™ Round Back Stacking Chairs&quot; THEN &quot;Hon 2090 “Pillow Soft” Series Mid Back Swivel/Tilt Chairs&quot;&#10;  WHEN &quot;Hon 4700 Series Mobuis™ Mid-Back Task Chairs with Adjustable Arms&quot; THEN &quot;Hon 2090 “Pillow Soft” Series Mid Back Swivel/Tilt Chairs&quot;&#10;  WHEN &quot;Hon 4-Shelf Metal Bookcases&quot; THEN &quot;Hon 2090 “Pillow Soft” Series Mid Back Swivel/Tilt Chairs&quot;&#10;  WHEN &quot;Hon 5100 Series Wood Tables&quot; THEN &quot;Hon 2090 “Pillow Soft” Series Mid Back Swivel/Tilt Chairs&quot;&#10;  WHEN &quot;Hon 61000 Series Interactive Training Tables&quot; THEN &quot;Hon 2090 “Pillow Soft” Series Mid Back Swivel/Tilt Chairs&quot;&#10;  WHEN &quot;Hon 94000 Series Round Tables&quot; THEN &quot;Hon 2090 “Pillow Soft” Series Mid Back Swivel/Tilt Chairs&quot;&#10;  WHEN &quot;Hon Comfortask® Task/Swivel Chairs&quot; THEN &quot;Hon 2090 “Pillow Soft” Series Mid Back Swivel/Tilt Chairs&quot;&#10;  WHEN &quot;Hon Deluxe Fabric Upholstered Stacking Chairs&quot; THEN &quot;Hon 2090 “Pillow Soft” Series Mid Back Swivel/Tilt Chairs&quot;&#10;  WHEN &quot;Hon Deluxe Fabric Upholstered Stacking Chairs, Rounded Back&quot; THEN &quot;Hon 2090 “Pillow Soft” Series Mid Back Swivel/Tilt Chairs&quot;&#10;  WHEN &quot;Hon Every-Day® Chair Series Swivel Task Chairs&quot; THEN &quot;Hon 2090 “Pillow Soft” Series Mid Back Swivel/Tilt Chairs&quot;&#10;  WHEN &quot;Hon GuestStacker Chair&quot; THEN &quot;Hon 2090 “Pillow Soft” Series Mid Back Swivel/Tilt Chairs&quot;&#10;  WHEN &quot;Hon iLevel™ Computer Training Table&quot; THEN &quot;Hon 2090 “Pillow Soft” Series Mid Back Swivel/Tilt Chairs&quot;&#10;  WHEN &quot;Hon Metal Bookcases, Black&quot; THEN &quot;Hon 2090 “Pillow Soft” Series Mid Back Swivel/Tilt Chairs&quot;&#10;  WHEN &quot;Hon Metal Bookcases, Putty&quot; THEN &quot;Hon 2090 “Pillow Soft” Series Mid Back Swivel/Tilt Chairs&quot;&#10;  WHEN &quot;Hon Multipurpose Stacking Arm Chairs&quot; THEN &quot;Hon 2090 “Pillow Soft” Series Mid Back Swivel/Tilt Chairs&quot;&#10;  WHEN &quot;Hon Non-Folding Utility Tables&quot; THEN &quot;Hon 2090 “Pillow Soft” Series Mid Back Swivel/Tilt Chairs&quot;&#10;  WHEN &quot;Hon Olson Stacker Stools&quot; THEN &quot;Hon 2090 “Pillow Soft” Series Mid Back Swivel/Tilt Chairs&quot;&#10;  WHEN &quot;Hon Pagoda™ Stacking Chairs&quot; THEN &quot;Hon 2090 “Pillow Soft” Series Mid Back Swivel/Tilt Chairs&quot;&#10;  WHEN &quot;Hon Rectangular Conference Tables&quot; THEN &quot;Hon 2090 “Pillow Soft” Series Mid Back Swivel/Tilt Chairs&quot;&#10;  WHEN &quot;Hon Valutask™ Swivel Chairs&quot; THEN &quot;Hon 2090 “Pillow Soft” Series Mid Back Swivel/Tilt Chairs&quot;&#10;  WHEN &quot;Newell 307&quot; THEN &quot;Newell 307&quot;&#10;  WHEN &quot;Newell 308&quot; THEN &quot;Newell 307&quot;&#10;  WHEN &quot;Newell 309&quot; THEN &quot;Newell 307&quot;&#10;  WHEN &quot;Newell 31&quot; THEN &quot;Newell 307&quot;&#10;  WHEN &quot;Newell 310&quot; THEN &quot;Newell 307&quot;&#10;  WHEN &quot;Newell 312&quot; THEN &quot;Newell 307&quot;&#10;  WHEN &quot;Newell 314&quot; THEN &quot;Newell 307&quot;&#10;  WHEN &quot;Newell 315&quot; THEN &quot;Newell 307&quot;&#10;  WHEN &quot;Newell 318&quot; THEN &quot;Newell 307&quot;&#10;  WHEN &quot;Newell 320&quot; THEN &quot;Newell 307&quot;&#10;  WHEN &quot;Newell 321&quot; THEN &quot;Newell 307&quot;&#10;  WHEN &quot;Newell 323&quot; THEN &quot;Newell 307&quot;&#10;  WHEN &quot;Newell 325&quot; THEN &quot;Newell 307&quot;&#10;  WHEN &quot;Newell 326&quot; THEN &quot;Newell 307&quot;&#10;  WHEN &quot;Newell 327&quot; THEN &quot;Newell 307&quot;&#10;  WHEN &quot;Newell 329&quot; THEN &quot;Newell 307&quot;&#10;  WHEN &quot;Newell 332&quot; THEN &quot;Newell 307&quot;&#10;  WHEN &quot;Newell 333&quot; THEN &quot;Newell 307&quot;&#10;  WHEN &quot;Newell 335&quot; THEN &quot;Newell 307&quot;&#10;  WHEN &quot;Newell 336&quot; THEN &quot;Newell 307&quot;&#10;  WHEN &quot;Newell 337&quot; THEN &quot;Newell 307&quot;&#10;  WHEN &quot;Newell 338&quot; THEN &quot;Newell 307&quot;&#10;  WHEN &quot;Newell 339&quot; THEN &quot;Newell 307&quot;&#10;  WHEN &quot;Newell 340&quot; THEN &quot;Newell 307&quot;&#10;  WHEN &quot;Newell 342&quot; THEN &quot;Newell 307&quot;&#10;  WHEN &quot;Newell 343&quot; THEN &quot;Newell 307&quot;&#10;  WHEN &quot;Newell 346&quot; THEN &quot;Newell 307&quot;&#10;  WHEN &quot;Newell 35&quot; THEN &quot;Newell 307&quot;&#10;  WHEN &quot;Newell 351&quot; THEN &quot;Newell 307&quot;&#10;  WHEN &quot;Newell® 3-Hole Punched Plastic Slotted Magazine Holders for Binders&quot; THEN &quot;Newell 307&quot;&#10;  WHEN &quot;Sony IBM Color Diskettes, 25/Pack&quot; THEN &quot;Sony IBM Color Diskettes, 25/Pack&quot;&#10;  WHEN &quot;Sony MFD2HD Formatted Diskettes, 10/Pack&quot; THEN &quot;Sony IBM Color Diskettes, 25/Pack&quot;&#10;  WHEN &quot;Wilson Jones “Snap” Scratch Pad Binder Tool for Ring Binders&quot; THEN &quot;Wilson Jones “Snap” Scratch Pad Binder Tool for Ring Binders&quot;&#10;  WHEN &quot;Wilson Jones 1&quot;&quot; Hanging DublLock® Ring Binders&quot; THEN &quot;Wilson Jones “Snap” Scratch Pad Binder Tool for Ring Binders&quot;&#10;  WHEN &quot;Wilson Jones 14 Line Acrylic Coated Pressboard Data Binders&quot; THEN &quot;Wilson Jones “Snap” Scratch Pad Binder Tool for Ring Binders&quot;&#10;  WHEN &quot;Wilson Jones Custom Binder Spines &amp; Labels&quot; THEN &quot;Wilson Jones “Snap” Scratch Pad Binder Tool for Ring Binders&quot;&#10;  WHEN &quot;Wilson Jones DublLock® D-Ring Binders&quot; THEN &quot;Wilson Jones “Snap” Scratch Pad Binder Tool for Ring Binders&quot;&#10;  WHEN &quot;Wilson Jones Easy Flow II™ Sheet Lifters&quot; THEN &quot;Wilson Jones “Snap” Scratch Pad Binder Tool for Ring Binders&quot;&#10;  WHEN &quot;Wilson Jones Elliptical Ring 3 1/2&quot;&quot; Capacity Binders, 800 sheets&quot; THEN &quot;Wilson Jones “Snap” Scratch Pad Binder Tool for Ring Binders&quot;&#10;  WHEN &quot;Wilson Jones Hanging View Binder, White, 1&quot;&quot;&quot; THEN &quot;Wilson Jones “Snap” Scratch Pad Binder Tool for Ring Binders&quot;&#10;  WHEN &quot;Wilson Jones Impact Binders&quot; THEN &quot;Wilson Jones “Snap” Scratch Pad Binder Tool for Ring Binders&quot;&#10;  WHEN &quot;Wilson Jones Ledger-Size, Piano-Hinge Binder, 2&quot;&quot;, Blue&quot; THEN &quot;Wilson Jones “Snap” Scratch Pad Binder Tool for Ring Binders&quot;&#10;  WHEN &quot;Wilson Jones Standard D-Ring Binders&quot; THEN &quot;Wilson Jones “Snap” Scratch Pad Binder Tool for Ring Binders&quot;&#10;  WHEN &quot;Wilson Jones Suede Grain Vinyl Binders&quot; THEN &quot;Wilson Jones “Snap” Scratch Pad Binder Tool for Ring Binders&quot;&#10;  WHEN &quot;Wilson Jones Turn Tabs Binder Tool for Ring Binders&quot; THEN &quot;Wilson Jones “Snap” Scratch Pad Binder Tool for Ring Binders&quot;&#10;  WHEN &quot;Wilson Jones® Four-Pocket Poly Binders&quot; THEN &quot;Wilson Jones “Snap” Scratch Pad Binder Tool for Ring Binders&quot;&#10;  WHEN &quot;Xerox 188&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1880&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1881&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1882&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1883&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1885&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1887&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1888&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1891&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1892&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1893&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1894&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1895&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1896&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1897&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1898&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1899&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 19&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 190&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1903&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1904&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1905&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1906&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1907&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1908&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 191&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1910&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1916&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1917&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1919&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1920&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1922&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1923&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1924&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1926&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1927&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1928&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1929&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 193&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1930&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1932&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1933&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1934&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1935&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1936&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1937&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1938&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1939&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 194&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1940&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1941&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1947&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1948&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1949&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 195&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1950&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1951&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1952&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1953&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1954&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1959&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 196&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1961&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1962&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1963&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1964&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1966&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1968&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 197&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1971&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1972&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1973&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1974&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1976&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1977&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1978&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1979&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 198&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1980&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1981&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1982&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1983&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1984&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1985&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1986&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1988&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1989&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 199&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1991&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1992&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1993&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1994&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1995&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1996&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1997&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 1998&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 2&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 20&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 200&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 204&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 207&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 209&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 21&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 210&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 212&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 213&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 214&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 215&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 216&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 217&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 220&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 221&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 223&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 224&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 226&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 227&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 229&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 23&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 231&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox 4200 Series MultiUse Premium Copy Paper (20Lb. and 84 Bright)&quot; THEN &quot;Xerox 188&quot;&#10;  WHEN &quot;Xerox Blank Computer Paper&quot; THEN &quot;Xerox 188&quot;&#10;  ELSE &quot;Zoom V.92 V.44 PCI Internal Controllerless FaxModem&quot;&#10;END' />
+        </calculations>
+      </connection>
+      <aliases enabled='yes' />
+      <column aggregation='Sum' caption='Last N days' datatype='integer' default-type='ordinal' layered='true' name='[Calculation1]' pivot='key' role='dimension' type='ordinal' user-datatype='integer' visual-totals='Default'>
+        <calculation class='tableau' formula='// this calculates the number of days that have elapsed since the order was placed&#13;&#10;datediff(&apos;day&apos;,[Order Date],now())' />
+        <desc>
+          <formatted-text>
+            <run>The number of days that have elapsed since the order was placed.</run>
+          </formatted-text>
+        </desc>
+      </column>
+      <column aggregation='User' caption='Profit Ratio' datatype='real' default-format='p0.00%' default-type='quantitative' layered='true' name='[Calculation2]' pivot='key' role='measure' type='quantitative' user-datatype='real' visual-totals='Default'>
+        <calculation class='tableau' formula='// this calculates the weighted average profit ratio&#13;&#10;&#13;&#10;sum([Profit])/sum([Sales])' />
+        <desc>
+          <formatted-text>
+            <run>The weighted average profit ratio.</run>
+          </formatted-text>
+        </desc>
+      </column>
+      <column aggregation='Max' caption='Time to Ship' datatype='integer' default-type='quantitative' layered='true' name='[Calculation3]' pivot='key' role='measure' type='quantitative' user-datatype='integer' visual-totals='Default'>
+        <calculation class='tableau' formula='// this is the number of days between the order and shipment&#13;&#10;&#13;&#10;datediff(&apos;day&apos;,[Order Date],[Ship Date])' />
+        <desc>
+          <formatted-text>
+            <run>The number of days between the order and shipment.</run>
+          </formatted-text>
+        </desc>
+      </column>
+      <column aggregation='Count' datatype='string' default-type='nominal' layered='true' name='[City]' pivot='key' role='dimension' semantic-role='[City].[Name]' type='nominal' user-datatype='string' visual-totals='Default'>
+      </column>
+      <column aggregation='Count' caption='Customer' datatype='string' default-type='nominal' layered='true' name='[Customer Name]' pivot='key' role='dimension' type='nominal' user-datatype='string' visual-totals='Default'>
+      </column>
+      <column aggregation='Count' datatype='string' default-type='nominal' layered='true' name='[Customer Segment]' pivot='key' role='dimension' type='nominal' user-datatype='string' visual-totals='Default'>
+      </column>
+      <column aggregation='Avg' datatype='real' default-format='p0.0%' default-type='quantitative' layered='true' name='[Discount]' pivot='key' role='measure' type='quantitative' user-datatype='real' visual-totals='Default'>
+      </column>
+      <column aggregation='Count' datatype='string' default-type='nominal' layered='true' name='[New Region]' pivot='key' role='dimension' type='nominal' user-datatype='string' visual-totals='Default'>
+        <calculation class='categorical-bin' column='[Region]'>
+          <bin value='&quot;South&quot;'>
+            <value>&quot;South&quot;</value>
+            <value>&quot;West&quot;</value>
+          </bin>
+        </calculation>
+        <aliases>
+          <alias key='&quot;South&quot;' value='Southwest' />
+        </aliases>
+      </column>
+      <column aggregation='Sum' datatype='integer' default-type='quantitative' layered='true' name='[Number of Records]' pivot='key' role='measure' type='quantitative' user-datatype='integer' user:auto-column='numrec' visual-totals='Default'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column aggregation='Year' datatype='datetime' default-type='ordinal' layered='true' name='[Order Date]' pivot='key' role='dimension' type='ordinal' user-datatype='datetime' visual-totals='Default'>
+      </column>
+      <column aggregation='Sum' datatype='real' default-type='ordinal' layered='true' name='[Order ID]' pivot='key' role='dimension' type='ordinal' user-datatype='real' visual-totals='Default'>
+      </column>
+      <column aggregation='Count' datatype='string' default-type='nominal' layered='true' name='[Order Priority]' pivot='key' role='dimension' type='nominal' user-datatype='string' visual-totals='Default'>
+      </column>
+      <column aggregation='Sum' datatype='real' default-format='n#,##0;-#,##0' default-type='quantitative' layered='true' name='[Order Quantity]' pivot='key' role='measure' type='quantitative' user-datatype='real' visual-totals='Default'>
+      </column>
+      <column aggregation='Sum' datatype='real' default-type='quantitative' layered='true' name='[Product Base Margin]' pivot='key' role='measure' type='quantitative' user-datatype='real' visual-totals='Default'>
+      </column>
+      <column aggregation='Count' caption='Category' datatype='string' default-type='nominal' layered='true' name='[Product Category]' pivot='key' role='dimension' type='nominal' user-datatype='string' visual-totals='Default'>
+      </column>
+      <column aggregation='Count' caption='Container' datatype='string' default-type='nominal' layered='true' name='[Product Container]' pivot='key' role='dimension' type='nominal' user-datatype='string' visual-totals='Default'>
+      </column>
+      <column aggregation='Count' datatype='string' default-type='nominal' layered='true' name='[Product Name]' pivot='key' role='dimension' type='nominal' user-datatype='string' visual-totals='Default'>
+      </column>
+      <column aggregation='Count' caption='Sub-Category' datatype='string' default-type='nominal' layered='true' name='[Product Sub-Category]' pivot='key' role='dimension' type='nominal' user-datatype='string' visual-totals='Default'>
+      </column>
+      <column aggregation='Count' datatype='integer' default-type='ordinal' layered='true' name='[Profit (bin)]' pivot='key' role='dimension' type='ordinal' user-datatype='integer' visual-totals='Default'>
+        <calculation class='bin' decimals='0' formula='[Profit]' peg='0' size-parameter='[Parameters].[Parameter 1]' />
+        <desc>
+          <formatted-text>
+            <run>Profit divided into $1,000 bins.</run>
+          </formatted-text>
+        </desc>
+      </column>
+      <column aggregation='Sum' datatype='real' default-format='c&quot;$&quot;#,##0;(&quot;$&quot;#,##0)' default-type='quantitative' layered='true' name='[Profit]' pivot='key' role='measure' type='quantitative' user-datatype='real' visual-totals='Default'>
+      </column>
+      <column aggregation='Count' datatype='string' default-type='nominal' layered='true' name='[Region]' pivot='key' role='dimension' type='nominal' user-datatype='string' visual-totals='Default'>
+      </column>
+      <column aggregation='Sum' datatype='real' default-type='quantitative' layered='true' name='[Row ID]' pivot='key' role='measure' type='quantitative' user-datatype='real' visual-totals='Default'>
+      </column>
+      <column aggregation='Sum' datatype='real' default-format='c&quot;$&quot;#,##0;(&quot;$&quot;#,##0)' default-type='quantitative' layered='true' name='[Sales]' pivot='key' role='measure' type='quantitative' user-datatype='real' visual-totals='Default'>
+      </column>
+      <column aggregation='Year' datatype='datetime' default-type='ordinal' layered='true' name='[Ship Date]' pivot='key' role='dimension' type='ordinal' user-datatype='datetime' visual-totals='Default'>
+      </column>
+      <column aggregation='Count' datatype='string' default-type='nominal' layered='true' name='[Ship Mode]' pivot='key' role='dimension' type='nominal' user-datatype='string' visual-totals='Default'>
+      </column>
+      <column aggregation='Sum' datatype='real' default-format='c&quot;$&quot;#,##0;(&quot;$&quot;#,##0)' default-type='quantitative' layered='true' name='[Shipping Cost]' pivot='key' role='measure' type='quantitative' user-datatype='real' visual-totals='Default'>
+      </column>
+      <column aggregation='Count' datatype='string' default-type='nominal' layered='true' name='[State]' pivot='key' role='dimension' semantic-role='[State].[Name]' type='nominal' user-datatype='string' visual-totals='Default'>
+      </column>
+      <column aggregation='Count' datatype='string' default-type='nominal' layered='true' name='[Supplier]' pivot='key' role='dimension' type='nominal' user-datatype='string' visual-totals='Default'>
+        <calculation class='categorical-bin' column='[Product Name]' default='&quot;Zoom V.92 V.44 PCI Internal Controllerless FaxModem&quot;'>
+          <bin value='&quot;*Staples* Highlighting Markers&quot;'>
+            <value>&quot;*Staples* Highlighting Markers&quot;</value>
+            <value>&quot;*Staples* Letter Opener&quot;</value>
+            <value>&quot;*Staples* Packaging Labels&quot;</value>
+            <value>&quot;*Staples* vLetter Openers, 2/Pack&quot;</value>
+          </bin>
+          <bin value='&quot;3M Hangers With Command Adhesive&quot;'>
+            <value>&quot;3M Hangers With Command Adhesive&quot;</value>
+            <value>&quot;3M Office Air Cleaner&quot;</value>
+            <value>&quot;3M Organizer Strips&quot;</value>
+            <value>&quot;3M Polarizing Light Filter Sleeves&quot;</value>
+            <value>&quot;3M Polarizing Task Lamp with Clamp Arm, Light Gray&quot;</value>
+          </bin>
+          <bin value='&quot;Acco 3-Hole Punch&quot;'>
+            <value>&quot;Acco 3-Hole Punch&quot;</value>
+            <value>&quot;Acco 6 Outlet Guardian Premium Surge Suppressor&quot;</value>
+            <value>&quot;Acco Clips to Go™ Binder Clips, 24 Clips in Two Sizes&quot;</value>
+            <value>&quot;Acco D-Ring Binder w/DublLock®&quot;</value>
+            <value>&quot;Acco Four Pocket Poly Ring Binder with Label Holder, Smoke, 1\&quot;&quot;</value>
+            <value>&quot;Acco Keyboard-In-A-Box®&quot;</value>
+            <value>&quot;Acco Perma® 2700 Stacking Storage Drawers&quot;</value>
+            <value>&quot;Acco Perma® 3000 Stacking Storage Drawers&quot;</value>
+            <value>&quot;Acco Pressboard Covers with Storage Hooks, 14 7/8\&quot; x 11\&quot;, Dark Blue&quot;</value>
+            <value>&quot;Acco Pressboard Covers with Storage Hooks, 14 7/8\&quot; x 11\&quot;, Executive Red&quot;</value>
+            <value>&quot;Acco Pressboard Covers with Storage Hooks, 14 7/8\&quot; x 11\&quot;, Light Blue&quot;</value>
+            <value>&quot;Acco PRESSTEX® Data Binder with Storage Hooks, Dark Blue, 14 7/8\&quot; X 11\&quot;&quot;</value>
+            <value>&quot;Acco PRESSTEX® Data Binder with Storage Hooks, Dark Blue, 9 1/2\&quot; X 11\&quot;&quot;</value>
+            <value>&quot;Acco Recycled 2\&quot; Capacity Laser Printer Hanging Data Binders&quot;</value>
+            <value>&quot;Acco Six-Outlet Power Strip, 4&apos; Cord Length&quot;</value>
+            <value>&quot;Acco Smartsocket® Color-Coded Six-Outlet AC Adapter Model Surge Protectors&quot;</value>
+            <value>&quot;Acco Smartsocket™ Table Surge Protector, 6 Color-Coded Adapter Outlets&quot;</value>
+            <value>&quot;Acco Suede Grain Vinyl Round Ring Binder&quot;</value>
+            <value>&quot;Acco® Hot Clips™ Clips to Go&quot;</value>
+            <value>&quot;Accohide Poly Flexible Ring Binders&quot;</value>
+            <value>&quot;ACCOHIDE® 3-Ring Binder, Blue, 1\&quot;&quot;</value>
+            <value>&quot;ACCOHIDE® Binder by Acco&quot;</value>
+          </bin>
+          <bin value='&quot;Acme Design Line 8\&quot; Stainless Steel Bent Scissors w/Champagne Handles, 3-1/8\&quot; Cut&quot;'>
+            <value>&quot;Acme Design Line 8\&quot; Stainless Steel Bent Scissors w/Champagne Handles, 3-1/8\&quot; Cut&quot;</value>
+            <value>&quot;Acme Galleria® Hot Forged Steel Scissors with Colored Handles&quot;</value>
+            <value>&quot;Acme Hot Forged Carbon Steel Scissors with Nickel-Plated Handles, 3 7/8\&quot; Cut, 8\&quot;L&quot;</value>
+            <value>&quot;Acme Kleencut® Forged Steel Scissors&quot;</value>
+            <value>&quot;Acme® 8\&quot; Straight Scissors&quot;</value>
+            <value>&quot;Acme® Box Cutter Scissors&quot;</value>
+            <value>&quot;Acme® Design Stainless Steel Bent Scissors&quot;</value>
+            <value>&quot;Acme® Elite Stainless Steel Scissors&quot;</value>
+            <value>&quot;Acme® Forged Steel Scissors with Black Enamel Handles&quot;</value>
+            <value>&quot;Acme® Office Executive Series Stainless Steel Trimmers&quot;</value>
+            <value>&quot;Acme® Preferred Stainless Steel Scissors&quot;</value>
+          </bin>
+          <bin value='&quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;'>
+            <value>&quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;</value>
+            <value>&quot;Avery 4027 File Folder Labels for Dot Matrix Printers, 5000 Labels per Box, White&quot;</value>
+            <value>&quot;Avery 474&quot;</value>
+            <value>&quot;Avery 478&quot;</value>
+            <value>&quot;Avery 479&quot;</value>
+            <value>&quot;Avery 48&quot;</value>
+            <value>&quot;Avery 481&quot;</value>
+            <value>&quot;Avery 482&quot;</value>
+            <value>&quot;Avery 484&quot;</value>
+            <value>&quot;Avery 485&quot;</value>
+            <value>&quot;Avery 487&quot;</value>
+            <value>&quot;Avery 49&quot;</value>
+            <value>&quot;Avery 491&quot;</value>
+            <value>&quot;Avery 492&quot;</value>
+            <value>&quot;Avery 493&quot;</value>
+            <value>&quot;Avery 494&quot;</value>
+            <value>&quot;Avery 496&quot;</value>
+            <value>&quot;Avery 497&quot;</value>
+            <value>&quot;Avery 498&quot;</value>
+            <value>&quot;Avery 501&quot;</value>
+            <value>&quot;Avery 503&quot;</value>
+            <value>&quot;Avery 504&quot;</value>
+            <value>&quot;Avery 506&quot;</value>
+            <value>&quot;Avery 507&quot;</value>
+            <value>&quot;Avery 508&quot;</value>
+            <value>&quot;Avery 51&quot;</value>
+            <value>&quot;Avery 510&quot;</value>
+            <value>&quot;Avery 511&quot;</value>
+            <value>&quot;Avery 514&quot;</value>
+            <value>&quot;Avery 516&quot;</value>
+            <value>&quot;Avery 52&quot;</value>
+            <value>&quot;Avery 520&quot;</value>
+            <value>&quot;Avery Arch Ring Binders&quot;</value>
+            <value>&quot;Avery Binder Labels&quot;</value>
+            <value>&quot;Avery Binding System Hidden Tab™ Executive Style Index Sets&quot;</value>
+            <value>&quot;Avery Durable Binders&quot;</value>
+            <value>&quot;Avery Durable Poly Binders&quot;</value>
+            <value>&quot;Avery File Folder Labels&quot;</value>
+            <value>&quot;Avery Flip-Chart Easel Binder, Black&quot;</value>
+            <value>&quot;Avery Hanging File Binders&quot;</value>
+            <value>&quot;Avery Heavy-Duty EZD ™ Binder With Locking Rings&quot;</value>
+            <value>&quot;Avery Hi-Liter Comfort Grip Fluorescent Highlighter, Yellow Ink&quot;</value>
+            <value>&quot;Avery Hi-Liter GlideStik Fluorescent Highlighter, Yellow Ink&quot;</value>
+            <value>&quot;Avery Hi-Liter Pen Style Six-Color Fluorescent Set&quot;</value>
+            <value>&quot;Avery Hi-Liter® EverBold™ Pen Style Fluorescent Highlighters, 4/Pack&quot;</value>
+            <value>&quot;Avery Hi-Liter® Fluorescent Desk Style Markers&quot;</value>
+            <value>&quot;Avery Hi-Liter® Smear-Safe Highlighters&quot;</value>
+            <value>&quot;Avery Hole Reinforcements&quot;</value>
+            <value>&quot;Avery Legal 4-Ring Binder&quot;</value>
+            <value>&quot;Avery Non-Stick Binders&quot;</value>
+            <value>&quot;Avery Poly Binder Pockets&quot;</value>
+            <value>&quot;Avery Premier Heavy-Duty Binder with Round Locking Rings&quot;</value>
+            <value>&quot;Avery Printable Repositionable Plastic Tabs&quot;</value>
+            <value>&quot;Avery Reinforcements for Hole-Punch Pages&quot;</value>
+            <value>&quot;Avery Round Ring Poly Binders&quot;</value>
+            <value>&quot;Avery Self-Adhesive Photo Pockets for Polaroid Photos&quot;</value>
+            <value>&quot;Avery Trapezoid Extra Heavy Duty 4\&quot; Binders&quot;</value>
+            <value>&quot;Avery Trapezoid Ring Binder, 3\&quot; Capacity, Black, 1040 sheets&quot;</value>
+            <value>&quot;Avery White Multi-Purpose Labels&quot;</value>
+            <value>&quot;Avery® 3 1/2\&quot; Diskette Storage Pages, 10/Pack&quot;</value>
+            <value>&quot;Avery® Durable Plastic 1\&quot; Binders&quot;</value>
+            <value>&quot;Avery® Durable Slant Ring Binders With Label Holder&quot;</value>
+          </bin>
+          <bin value='&quot;Belkin 105-Key Black Keyboard&quot;'>
+            <value>&quot;Belkin 105-Key Black Keyboard&quot;</value>
+            <value>&quot;Belkin 107-key enhanced keyboard, USB/PS/2 interface&quot;</value>
+            <value>&quot;Belkin 325VA UPS Surge Protector, 6&apos;&quot;</value>
+            <value>&quot;Belkin 5 Outlet SurgeMaster™ Power Centers&quot;</value>
+            <value>&quot;Belkin 6 Outlet Metallic Surge Strip&quot;</value>
+            <value>&quot;Belkin 7 Outlet SurgeMaster Surge Protector with Phone Protection&quot;</value>
+            <value>&quot;Belkin 8 Outlet Surge Protector&quot;</value>
+            <value>&quot;Belkin 8 Outlet SurgeMaster II Gold Surge Protector&quot;</value>
+            <value>&quot;Belkin 8 Outlet SurgeMaster II Gold Surge Protector with Phone Protection&quot;</value>
+            <value>&quot;Belkin ErgoBoard™ Keyboard&quot;</value>
+            <value>&quot;Belkin F5C206VTEL 6 Outlet Surge&quot;</value>
+            <value>&quot;Belkin F9M820V08 8 Outlet Surge&quot;</value>
+            <value>&quot;Belkin MediaBoard 104- Keyboard&quot;</value>
+            <value>&quot;Belkin OmniView SE Rackmount Kit&quot;</value>
+            <value>&quot;Belkin Premiere Surge Master II 8-outlet surge protector&quot;</value>
+          </bin>
+          <bin value='&quot;Boston 1645 Deluxe Heavier-Duty Electric Pencil Sharpener&quot;'>
+            <value>&quot;Boston 1645 Deluxe Heavier-Duty Electric Pencil Sharpener&quot;</value>
+            <value>&quot;Boston 16701 Slimline Battery Pencil Sharpener&quot;</value>
+            <value>&quot;Boston 16765 Mini Stand Up Battery Pencil Sharpener&quot;</value>
+            <value>&quot;Boston 16801 Nautilus™ Battery Pencil Sharpener&quot;</value>
+            <value>&quot;Boston 1730 StandUp Electric Pencil Sharpener&quot;</value>
+            <value>&quot;Boston 1799 Powerhouse™ Electric Pencil Sharpener&quot;</value>
+            <value>&quot;Boston 19500 Mighty Mite Electric Pencil Sharpener&quot;</value>
+            <value>&quot;Boston Electric Pencil Sharpener, Model 1818, Charcoal Black&quot;</value>
+            <value>&quot;Boston KS Multi-Size Manual Pencil Sharpener&quot;</value>
+            <value>&quot;Boston Model 1800 Electric Pencil Sharpener, Gray&quot;</value>
+            <value>&quot;Boston School Pro Electric Pencil Sharpener, 1670&quot;</value>
+            <value>&quot;BOSTON® Ranger® \#55 Pencil Sharpener, Black&quot;</value>
+          </bin>
+          <bin value='&quot;Canon BP1200DH 12-Digit Bubble Jet Printing Calculator&quot;'>
+            <value>&quot;Canon BP1200DH 12-Digit Bubble Jet Printing Calculator&quot;</value>
+            <value>&quot;Canon F603 Scientific Calculator&quot;</value>
+            <value>&quot;Canon Image Class D660 Copier&quot;</value>
+            <value>&quot;Canon imageCLASS 2200 Advanced Copier&quot;</value>
+            <value>&quot;Canon Imageclass D680 Copier / Fax&quot;</value>
+            <value>&quot;Canon MP100DHII Printing Calculator&quot;</value>
+            <value>&quot;Canon MP25DIII Desktop Whisper-Quiet Printing Calculator&quot;</value>
+            <value>&quot;Canon MP41DH Printing Calculator&quot;</value>
+            <value>&quot;Canon P1-DHIII Palm Printing Calculator&quot;</value>
+            <value>&quot;Canon PC1060 Personal Laser Copier&quot;</value>
+            <value>&quot;Canon PC1080F Personal Copier&quot;</value>
+            <value>&quot;Canon PC940 Copier&quot;</value>
+            <value>&quot;Canon PC-428 Personal Copier&quot;</value>
+            <value>&quot;Canon S750 Color Inkjet Printer&quot;</value>
+          </bin>
+          <bin value='&quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;'>
+            <value>&quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;</value>
+            <value>&quot;Eldon Advantage® Foldable Chair Mats for Low Pile Carpets&quot;</value>
+            <value>&quot;Eldon Antistatic Chair Mats for Low to Medium Pile Carpets&quot;</value>
+            <value>&quot;Eldon Base for stackable storage shelf, platinum&quot;</value>
+            <value>&quot;Eldon Cleatmat Plus™ Chair Mats for High Pile Carpets&quot;</value>
+            <value>&quot;Eldon Cleatmat® Chair Mats for Medium Pile Carpets&quot;</value>
+            <value>&quot;Eldon ClusterMat Chair Mat with Cordless Antistatic Protection&quot;</value>
+            <value>&quot;Eldon Delta Triangular Chair Mat, 52\&quot; x 58\&quot;, Clear&quot;</value>
+            <value>&quot;Eldon Econocleat® Chair Mats for Low Pile Carpets&quot;</value>
+            <value>&quot;Eldon Executive Woodline II Cherry Finish Desk Accessories&quot;</value>
+            <value>&quot;Eldon Expressions Mahogany Wood Desk Collection&quot;</value>
+            <value>&quot;Eldon Expressions Punched Metal &amp; Wood Desk Accessories, Black &amp; Cherry&quot;</value>
+            <value>&quot;Eldon Expressions Punched Metal &amp; Wood Desk Accessories, Pewter &amp; Cherry&quot;</value>
+            <value>&quot;Eldon Expressions™ Desk Accessory, Wood Pencil Holder, Oak&quot;</value>
+            <value>&quot;Eldon Expressions™ Desk Accessory, Wood Photo Frame, Mahogany&quot;</value>
+            <value>&quot;Eldon Image Series Black Desk Accessories&quot;</value>
+            <value>&quot;Eldon Imàge® Series Desk Accessories, Clear&quot;</value>
+            <value>&quot;Eldon Jumbo ProFile™ Portable File Boxes Graphite/Black&quot;</value>
+            <value>&quot;Eldon Pizzaz™ Desk Accessories&quot;</value>
+            <value>&quot;Eldon Portable Mobile Manager&quot;</value>
+            <value>&quot;Eldon Radial Chair Mat for Low to Medium Pile Carpets&quot;</value>
+            <value>&quot;Eldon Regeneration Recycled Desk Accessories, Smoke&quot;</value>
+            <value>&quot;Eldon Shelf Savers™ Cubes and Bins&quot;</value>
+            <value>&quot;Eldon Simplefile® Box Office®&quot;</value>
+            <value>&quot;Eldon Spacemaker® Box, Quick-Snap Lid, Clear&quot;</value>
+            <value>&quot;Eldon Wave Desk Accessories&quot;</value>
+            <value>&quot;Eldon® 200 Class™ Desk Accessories&quot;</value>
+            <value>&quot;Eldon® 200 Class™ Desk Accessories, Burgundy&quot;</value>
+            <value>&quot;Eldon® 300 Class™ Desk Accessories, Black&quot;</value>
+            <value>&quot;Eldon® 400 Class™ Desk Accessories, Black Carbon&quot;</value>
+            <value>&quot;Eldon® 500 Class™ Desk Accessories&quot;</value>
+            <value>&quot;Eldon® Executive Woodline II Desk Accessories, Mahogany&quot;</value>
+            <value>&quot;Eldon® Expressions™ Wood and Plastic Desk Accessories, Oak&quot;</value>
+            <value>&quot;Eldon® Expressions™ Wood Desk Accessories, Oak&quot;</value>
+            <value>&quot;Eldon® Gobal File Keepers&quot;</value>
+            <value>&quot;Eldon® Image Series Desk Accessories, Burgundy&quot;</value>
+            <value>&quot;Eldon® Wave Desk Accessories&quot;</value>
+          </bin>
+          <bin value='&quot;Epson C62 Color Inkjet Printer&quot;'>
+            <value>&quot;Epson C62 Color Inkjet Printer&quot;</value>
+            <value>&quot;Epson C82 Color Inkjet Printer&quot;</value>
+            <value>&quot;Epson DFX5000+ Dot Matrix Printer&quot;</value>
+            <value>&quot;Epson DFX-8500 Dot Matrix Printer&quot;</value>
+            <value>&quot;Epson FX-2180 Wide Format Dot Matrix Printer&quot;</value>
+            <value>&quot;Epson FX-980 Dot Matrix Printer&quot;</value>
+            <value>&quot;Epson LQ-570e Dot Matrix Printer&quot;</value>
+            <value>&quot;Epson LQ-870 Dot Matrix Printer&quot;</value>
+            <value>&quot;Epson Stylus 1520 Color Inkjet Printer&quot;</value>
+          </bin>
+          <bin value='&quot;Fellowes 17-key keypad for PS/2 interface&quot;'>
+            <value>&quot;Fellowes 17-key keypad for PS/2 interface&quot;</value>
+            <value>&quot;Fellowes 8 Outlet Superior Workstation Surge Protector&quot;</value>
+            <value>&quot;Fellowes 8 Outlet Superior Workstation Surge Protector w/o Phone/Fax/Modem Protection&quot;</value>
+            <value>&quot;Fellowes Bankers Box™ Staxonsteel® Drawer File/Stacking System&quot;</value>
+            <value>&quot;Fellowes Bankers Box™ Stor/Drawer® Steel Plus™&quot;</value>
+            <value>&quot;Fellowes Bases and Tops For Staxonsteel®/High-Stak® Systems&quot;</value>
+            <value>&quot;Fellowes Basic 104-Key Keyboard, Platinum&quot;</value>
+            <value>&quot;Fellowes Binding Cases&quot;</value>
+            <value>&quot;Fellowes Black Plastic Comb Bindings&quot;</value>
+            <value>&quot;Fellowes Command Center 5-outlet power strip&quot;</value>
+            <value>&quot;Fellowes EZ Multi-Media Keyboard&quot;</value>
+            <value>&quot;Fellowes High-Stak® Drawer Files&quot;</value>
+            <value>&quot;Fellowes Internet Keyboard, Platinum&quot;</value>
+            <value>&quot;Fellowes Mighty 8 Compact Surge Protector&quot;</value>
+            <value>&quot;Fellowes Mobile File Cart, Black&quot;</value>
+            <value>&quot;Fellowes Mobile Numeric Keypad, Graphite&quot;</value>
+            <value>&quot;Fellowes Neat Ideas® Storage Cubes&quot;</value>
+            <value>&quot;Fellowes Officeware™ Wire Shelving&quot;</value>
+            <value>&quot;Fellowes PB300 Plastic Comb Binding Machine&quot;</value>
+            <value>&quot;Fellowes PB500 Electric Punch Plastic Comb Binding Machine with Manual Bind&quot;</value>
+            <value>&quot;Fellowes Personal Hanging Folder Files, Navy&quot;</value>
+            <value>&quot;Fellowes Premier Superior Surge Suppressor, 10-Outlet, With Phone and Remote&quot;</value>
+            <value>&quot;Fellowes Recycled Storage Drawers&quot;</value>
+            <value>&quot;Fellowes Smart Design 104-Key Enhanced Keyboard, PS/2 Adapter, Platinum&quot;</value>
+            <value>&quot;Fellowes Smart Surge Ten-Outlet Protector, Platinum&quot;</value>
+            <value>&quot;Fellowes Staxonsteel® Drawer Files&quot;</value>
+            <value>&quot;Fellowes Stor/Drawer® Steel Plus™ Storage Drawers&quot;</value>
+            <value>&quot;Fellowes Strictly Business® Drawer File, Letter/Legal Size&quot;</value>
+            <value>&quot;Fellowes Super Stor/Drawer®&quot;</value>
+            <value>&quot;Fellowes Super Stor/Drawer® Files&quot;</value>
+            <value>&quot;Fellowes Superior 10 Outlet Split Surge Protector&quot;</value>
+            <value>&quot;Fellowes Twister Kit, Gray/Clear, 3/pkg&quot;</value>
+          </bin>
+          <bin value='&quot;Hon 2090 “Pillow Soft” Series Mid Back Swivel/Tilt Chairs&quot;'>
+            <value>&quot;Hon 2090 “Pillow Soft” Series Mid Back Swivel/Tilt Chairs&quot;</value>
+            <value>&quot;Hon 2111 Invitation™ Series Corner Table&quot;</value>
+            <value>&quot;Hon 4060 Series Tables&quot;</value>
+            <value>&quot;Hon 4070 Series Pagoda™ Armless Upholstered Stacking Chairs&quot;</value>
+            <value>&quot;Hon 4070 Series Pagoda™ Round Back Stacking Chairs&quot;</value>
+            <value>&quot;Hon 4700 Series Mobuis™ Mid-Back Task Chairs with Adjustable Arms&quot;</value>
+            <value>&quot;Hon 4-Shelf Metal Bookcases&quot;</value>
+            <value>&quot;Hon 5100 Series Wood Tables&quot;</value>
+            <value>&quot;Hon 61000 Series Interactive Training Tables&quot;</value>
+            <value>&quot;Hon 94000 Series Round Tables&quot;</value>
+            <value>&quot;Hon Comfortask® Task/Swivel Chairs&quot;</value>
+            <value>&quot;Hon Deluxe Fabric Upholstered Stacking Chairs&quot;</value>
+            <value>&quot;Hon Deluxe Fabric Upholstered Stacking Chairs, Rounded Back&quot;</value>
+            <value>&quot;Hon Every-Day® Chair Series Swivel Task Chairs&quot;</value>
+            <value>&quot;Hon GuestStacker Chair&quot;</value>
+            <value>&quot;Hon iLevel™ Computer Training Table&quot;</value>
+            <value>&quot;Hon Metal Bookcases, Black&quot;</value>
+            <value>&quot;Hon Metal Bookcases, Putty&quot;</value>
+            <value>&quot;Hon Multipurpose Stacking Arm Chairs&quot;</value>
+            <value>&quot;Hon Non-Folding Utility Tables&quot;</value>
+            <value>&quot;Hon Olson Stacker Stools&quot;</value>
+            <value>&quot;Hon Pagoda™ Stacking Chairs&quot;</value>
+            <value>&quot;Hon Rectangular Conference Tables&quot;</value>
+            <value>&quot;Hon Valutask™ Swivel Chairs&quot;</value>
+          </bin>
+          <bin value='&quot;Newell 307&quot;'>
+            <value>&quot;Newell 307&quot;</value>
+            <value>&quot;Newell 308&quot;</value>
+            <value>&quot;Newell 309&quot;</value>
+            <value>&quot;Newell 31&quot;</value>
+            <value>&quot;Newell 310&quot;</value>
+            <value>&quot;Newell 312&quot;</value>
+            <value>&quot;Newell 314&quot;</value>
+            <value>&quot;Newell 315&quot;</value>
+            <value>&quot;Newell 318&quot;</value>
+            <value>&quot;Newell 320&quot;</value>
+            <value>&quot;Newell 321&quot;</value>
+            <value>&quot;Newell 323&quot;</value>
+            <value>&quot;Newell 325&quot;</value>
+            <value>&quot;Newell 326&quot;</value>
+            <value>&quot;Newell 327&quot;</value>
+            <value>&quot;Newell 329&quot;</value>
+            <value>&quot;Newell 332&quot;</value>
+            <value>&quot;Newell 333&quot;</value>
+            <value>&quot;Newell 335&quot;</value>
+            <value>&quot;Newell 336&quot;</value>
+            <value>&quot;Newell 337&quot;</value>
+            <value>&quot;Newell 338&quot;</value>
+            <value>&quot;Newell 339&quot;</value>
+            <value>&quot;Newell 340&quot;</value>
+            <value>&quot;Newell 342&quot;</value>
+            <value>&quot;Newell 343&quot;</value>
+            <value>&quot;Newell 346&quot;</value>
+            <value>&quot;Newell 35&quot;</value>
+            <value>&quot;Newell 351&quot;</value>
+            <value>&quot;Newell® 3-Hole Punched Plastic Slotted Magazine Holders for Binders&quot;</value>
+          </bin>
+          <bin value='&quot;Sony IBM Color Diskettes, 25/Pack&quot;'>
+            <value>&quot;Sony IBM Color Diskettes, 25/Pack&quot;</value>
+            <value>&quot;Sony MFD2HD Formatted Diskettes, 10/Pack&quot;</value>
+          </bin>
+          <bin value='&quot;Wilson Jones “Snap” Scratch Pad Binder Tool for Ring Binders&quot;'>
+            <value>&quot;Wilson Jones “Snap” Scratch Pad Binder Tool for Ring Binders&quot;</value>
+            <value>&quot;Wilson Jones 1\&quot; Hanging DublLock® Ring Binders&quot;</value>
+            <value>&quot;Wilson Jones 14 Line Acrylic Coated Pressboard Data Binders&quot;</value>
+            <value>&quot;Wilson Jones Custom Binder Spines &amp; Labels&quot;</value>
+            <value>&quot;Wilson Jones DublLock® D-Ring Binders&quot;</value>
+            <value>&quot;Wilson Jones Easy Flow II™ Sheet Lifters&quot;</value>
+            <value>&quot;Wilson Jones Elliptical Ring 3 1/2\&quot; Capacity Binders, 800 sheets&quot;</value>
+            <value>&quot;Wilson Jones Hanging View Binder, White, 1\&quot;&quot;</value>
+            <value>&quot;Wilson Jones Impact Binders&quot;</value>
+            <value>&quot;Wilson Jones Ledger-Size, Piano-Hinge Binder, 2\&quot;, Blue&quot;</value>
+            <value>&quot;Wilson Jones Standard D-Ring Binders&quot;</value>
+            <value>&quot;Wilson Jones Suede Grain Vinyl Binders&quot;</value>
+            <value>&quot;Wilson Jones Turn Tabs Binder Tool for Ring Binders&quot;</value>
+            <value>&quot;Wilson Jones® Four-Pocket Poly Binders&quot;</value>
+          </bin>
+          <bin value='&quot;Xerox 188&quot;'>
+            <value>&quot;Xerox 188&quot;</value>
+            <value>&quot;Xerox 1880&quot;</value>
+            <value>&quot;Xerox 1881&quot;</value>
+            <value>&quot;Xerox 1882&quot;</value>
+            <value>&quot;Xerox 1883&quot;</value>
+            <value>&quot;Xerox 1885&quot;</value>
+            <value>&quot;Xerox 1887&quot;</value>
+            <value>&quot;Xerox 1888&quot;</value>
+            <value>&quot;Xerox 1891&quot;</value>
+            <value>&quot;Xerox 1892&quot;</value>
+            <value>&quot;Xerox 1893&quot;</value>
+            <value>&quot;Xerox 1894&quot;</value>
+            <value>&quot;Xerox 1895&quot;</value>
+            <value>&quot;Xerox 1896&quot;</value>
+            <value>&quot;Xerox 1897&quot;</value>
+            <value>&quot;Xerox 1898&quot;</value>
+            <value>&quot;Xerox 1899&quot;</value>
+            <value>&quot;Xerox 19&quot;</value>
+            <value>&quot;Xerox 190&quot;</value>
+            <value>&quot;Xerox 1903&quot;</value>
+            <value>&quot;Xerox 1904&quot;</value>
+            <value>&quot;Xerox 1905&quot;</value>
+            <value>&quot;Xerox 1906&quot;</value>
+            <value>&quot;Xerox 1907&quot;</value>
+            <value>&quot;Xerox 1908&quot;</value>
+            <value>&quot;Xerox 191&quot;</value>
+            <value>&quot;Xerox 1910&quot;</value>
+            <value>&quot;Xerox 1916&quot;</value>
+            <value>&quot;Xerox 1917&quot;</value>
+            <value>&quot;Xerox 1919&quot;</value>
+            <value>&quot;Xerox 1920&quot;</value>
+            <value>&quot;Xerox 1922&quot;</value>
+            <value>&quot;Xerox 1923&quot;</value>
+            <value>&quot;Xerox 1924&quot;</value>
+            <value>&quot;Xerox 1926&quot;</value>
+            <value>&quot;Xerox 1927&quot;</value>
+            <value>&quot;Xerox 1928&quot;</value>
+            <value>&quot;Xerox 1929&quot;</value>
+            <value>&quot;Xerox 193&quot;</value>
+            <value>&quot;Xerox 1930&quot;</value>
+            <value>&quot;Xerox 1932&quot;</value>
+            <value>&quot;Xerox 1933&quot;</value>
+            <value>&quot;Xerox 1934&quot;</value>
+            <value>&quot;Xerox 1935&quot;</value>
+            <value>&quot;Xerox 1936&quot;</value>
+            <value>&quot;Xerox 1937&quot;</value>
+            <value>&quot;Xerox 1938&quot;</value>
+            <value>&quot;Xerox 1939&quot;</value>
+            <value>&quot;Xerox 194&quot;</value>
+            <value>&quot;Xerox 1940&quot;</value>
+            <value>&quot;Xerox 1941&quot;</value>
+            <value>&quot;Xerox 1947&quot;</value>
+            <value>&quot;Xerox 1948&quot;</value>
+            <value>&quot;Xerox 1949&quot;</value>
+            <value>&quot;Xerox 195&quot;</value>
+            <value>&quot;Xerox 1950&quot;</value>
+            <value>&quot;Xerox 1951&quot;</value>
+            <value>&quot;Xerox 1952&quot;</value>
+            <value>&quot;Xerox 1953&quot;</value>
+            <value>&quot;Xerox 1954&quot;</value>
+            <value>&quot;Xerox 1959&quot;</value>
+            <value>&quot;Xerox 196&quot;</value>
+            <value>&quot;Xerox 1961&quot;</value>
+            <value>&quot;Xerox 1962&quot;</value>
+            <value>&quot;Xerox 1963&quot;</value>
+            <value>&quot;Xerox 1964&quot;</value>
+            <value>&quot;Xerox 1966&quot;</value>
+            <value>&quot;Xerox 1968&quot;</value>
+            <value>&quot;Xerox 197&quot;</value>
+            <value>&quot;Xerox 1971&quot;</value>
+            <value>&quot;Xerox 1972&quot;</value>
+            <value>&quot;Xerox 1973&quot;</value>
+            <value>&quot;Xerox 1974&quot;</value>
+            <value>&quot;Xerox 1976&quot;</value>
+            <value>&quot;Xerox 1977&quot;</value>
+            <value>&quot;Xerox 1978&quot;</value>
+            <value>&quot;Xerox 1979&quot;</value>
+            <value>&quot;Xerox 198&quot;</value>
+            <value>&quot;Xerox 1980&quot;</value>
+            <value>&quot;Xerox 1981&quot;</value>
+            <value>&quot;Xerox 1982&quot;</value>
+            <value>&quot;Xerox 1983&quot;</value>
+            <value>&quot;Xerox 1984&quot;</value>
+            <value>&quot;Xerox 1985&quot;</value>
+            <value>&quot;Xerox 1986&quot;</value>
+            <value>&quot;Xerox 1988&quot;</value>
+            <value>&quot;Xerox 1989&quot;</value>
+            <value>&quot;Xerox 199&quot;</value>
+            <value>&quot;Xerox 1991&quot;</value>
+            <value>&quot;Xerox 1992&quot;</value>
+            <value>&quot;Xerox 1993&quot;</value>
+            <value>&quot;Xerox 1994&quot;</value>
+            <value>&quot;Xerox 1995&quot;</value>
+            <value>&quot;Xerox 1996&quot;</value>
+            <value>&quot;Xerox 1997&quot;</value>
+            <value>&quot;Xerox 1998&quot;</value>
+            <value>&quot;Xerox 2&quot;</value>
+            <value>&quot;Xerox 20&quot;</value>
+            <value>&quot;Xerox 200&quot;</value>
+            <value>&quot;Xerox 204&quot;</value>
+            <value>&quot;Xerox 207&quot;</value>
+            <value>&quot;Xerox 209&quot;</value>
+            <value>&quot;Xerox 21&quot;</value>
+            <value>&quot;Xerox 210&quot;</value>
+            <value>&quot;Xerox 212&quot;</value>
+            <value>&quot;Xerox 213&quot;</value>
+            <value>&quot;Xerox 214&quot;</value>
+            <value>&quot;Xerox 215&quot;</value>
+            <value>&quot;Xerox 216&quot;</value>
+            <value>&quot;Xerox 217&quot;</value>
+            <value>&quot;Xerox 220&quot;</value>
+            <value>&quot;Xerox 221&quot;</value>
+            <value>&quot;Xerox 223&quot;</value>
+            <value>&quot;Xerox 224&quot;</value>
+            <value>&quot;Xerox 226&quot;</value>
+            <value>&quot;Xerox 227&quot;</value>
+            <value>&quot;Xerox 229&quot;</value>
+            <value>&quot;Xerox 23&quot;</value>
+            <value>&quot;Xerox 231&quot;</value>
+            <value>&quot;Xerox 4200 Series MultiUse Premium Copy Paper (20Lb. and 84 Bright)&quot;</value>
+            <value>&quot;Xerox Blank Computer Paper&quot;</value>
+          </bin>
+        </calculation>
+        <aliases>
+          <alias key='&quot;*Staples* Highlighting Markers&quot;' value='Staples' />
+          <alias key='&quot;3M Hangers With Command Adhesive&quot;' value='3M' />
+          <alias key='&quot;Acco 3-Hole Punch&quot;' value='Acco' />
+          <alias key='&quot;Acme Design Line 8\&quot; Stainless Steel Bent Scissors w/Champagne Handles, 3-1/8\&quot; Cut&quot;' value='Acme' />
+          <alias key='&quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;' value='Avery' />
+          <alias key='&quot;Belkin 105-Key Black Keyboard&quot;' value='Belkin' />
+          <alias key='&quot;Boston 1645 Deluxe Heavier-Duty Electric Pencil Sharpener&quot;' value='Boston' />
+          <alias key='&quot;Canon BP1200DH 12-Digit Bubble Jet Printing Calculator&quot;' value='Canon' />
+          <alias key='&quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;' value='Eldon' />
+          <alias key='&quot;Epson C62 Color Inkjet Printer&quot;' value='Epson' />
+          <alias key='&quot;Fellowes 17-key keypad for PS/2 interface&quot;' value='Fellowes' />
+          <alias key='&quot;Hon 2090 “Pillow Soft” Series Mid Back Swivel/Tilt Chairs&quot;' value='Hon' />
+          <alias key='&quot;Newell 307&quot;' value='Newell' />
+          <alias key='&quot;Sony IBM Color Diskettes, 25/Pack&quot;' value='Sony' />
+          <alias key='&quot;Wilson Jones “Snap” Scratch Pad Binder Tool for Ring Binders&quot;' value='Wilson Jones' />
+          <alias key='&quot;Xerox 188&quot;' value='Xerox' />
+          <alias key='&quot;Zoom V.92 V.44 PCI Internal Controllerless FaxModem&quot;' value='Other' />
+        </aliases>
+      </column>
+      <column aggregation='Sum' datatype='real' default-format='c&quot;$&quot;#,##0;(&quot;$&quot;#,##0)' default-type='quantitative' layered='true' name='[Unit Price]' pivot='key' role='measure' type='quantitative' user-datatype='real' visual-totals='Default'>
+      </column>
+      <column aggregation='Count' caption='Customer Zip Code' datatype='string' default-type='nominal' layered='true' name='[Zip Code]' pivot='key' role='dimension' semantic-role='[ZipCode].[Name]' type='nominal' user-datatype='string' visual-totals='Default'>
+      </column>
+      <column-instance column='[Order Priority]' derivation='None' name='[none:Order Priority:nk]' pivot='key' type='nominal' />
+      <group caption='Top Customers by Profit' layered='true' name='[Set 1]' name-style='unqualified' user:ui-builder='filter-group'>
+        <groupfilter count='[Parameters].[Parameter 2]' end='top' function='end' units='records' user:ui-marker='end' user:ui-top-by-field='true'>
+          <groupfilter direction='DESC' expression='SUM([Profit])' function='order' user:ui-marker='order'>
+            <groupfilter function='level-members' level='[Customer Name]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </groupfilter>
+        </groupfilter>
+      </group>
+      <drill-paths>
+        <drill-path layered='true' name='Customer City'>
+          <field>[State]</field>
+          <field>[City]</field>
+        </drill-path>
+        <drill-path layered='true' name='Products'>
+          <field>[Product Category]</field>
+          <field>[Product Sub-Category]</field>
+          <field>[Product Name]</field>
+        </drill-path>
+      </drill-paths>
+      <layout dim-ordering='alphabetic' dim-percentage='0.438291' group-percentage='0.068038' measure-ordering='alphabetic' measure-percentage='0.40981' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <default-sorts>
+        <sort class='manual' column='[none:Order Priority:nk]' direction='ASC'>
+          <dictionary>
+            <bucket>&quot;Critical&quot;</bucket>
+            <bucket>&quot;High&quot;</bucket>
+            <bucket>&quot;Medium&quot;</bucket>
+            <bucket>&quot;Low&quot;</bucket>
+            <bucket>&quot;Not Specified&quot;</bucket>
+          </dictionary>
+        </sort>
+      </default-sorts>
+      <datasource-dependencies datasource='Parameters'>
+        <column caption='Profit Bin Size' datatype='real' default-format='c&quot;$&quot;#,##0;(&quot;$&quot;#,##0)' name='[Parameter 1]' param-domain-type='range' role='measure' type='quantitative' value='1000.0000000000000'>
+          <calculation class='tableau' formula='1000.0' />
+          <range granularity='500.00000000000000' max='2500.0000000000000' min='500.00000000000000' />
+        </column>
+        <column caption='Top Customers' datatype='integer' name='[Parameter 2]' param-domain-type='range' role='measure' type='quantitative' value='25'>
+          <calculation class='tableau' formula='25' />
+          <range granularity='5' max='40' min='5' />
+        </column>
+      </datasource-dependencies>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Sheet 1'>
+      <table>
+        <view>
+          <datasources>
+            <datasource name='Sales Orders' />
+          </datasources>
+          <datasource-dependencies datasource='Sales Orders'>
+            <column aggregation='User' caption='Profit Ratio' datatype='real' default-format='p0.00%' default-type='quantitative' layered='true' name='[Calculation2]' pivot='key' role='measure' type='quantitative' user-datatype='real' visual-totals='Default'>
+              <calculation class='tableau' formula='// this calculates the weighted average profit ratio&#13;&#10;&#13;&#10;sum([Profit])/sum([Sales])' />
+              <desc>
+                <formatted-text>
+                  <run>The weighted average profit ratio.</run>
+                </formatted-text>
+              </desc>
+            </column>
+            <column aggregation='Count' datatype='string' default-type='nominal' layered='true' name='[New Region]' pivot='key' role='dimension' type='nominal' user-datatype='string' visual-totals='Default'>
+              <calculation class='categorical-bin' column='[Region]'>
+                <bin value='&quot;South&quot;'>
+                  <value>&quot;South&quot;</value>
+                  <value>&quot;West&quot;</value>
+                </bin>
+              </calculation>
+              <aliases>
+                <alias key='&quot;South&quot;' value='Southwest' />
+              </aliases>
+            </column>
+            <column aggregation='Count' datatype='string' default-type='nominal' layered='true' name='[Region]' pivot='key' role='dimension' type='nominal' user-datatype='string' visual-totals='Default'>
+            </column>
+            <column aggregation='Sum' datatype='real' default-format='c&quot;$&quot;#,##0;(&quot;$&quot;#,##0)' default-type='quantitative' layered='true' name='[Sales]' pivot='key' role='measure' type='quantitative' user-datatype='real' visual-totals='Default'>
+            </column>
+            <column-instance column='[Region]' derivation='None' name='[none:Region:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Sales]' derivation='Sum' name='[sum:Sales:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation2]' derivation='User' name='[usr:Calculation2:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[Sales Orders].[usr:Calculation2:qk]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>([Sales Orders].[New Region] / [Sales Orders].[none:Region:nk])</rows>
+        <cols>[Sales Orders].[sum:Sales:qk]</cols>
+      </table>
+    </worksheet>
+  </worksheets>
+  <windows>
+    <window class='schema' source-height='-1' />
+    <window auto-hidden='0' class='worksheet' maximized='1' name='Sheet 1'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card pane-specification-id='0' param='[Sales Orders].[usr:Calculation2:qk]' type='color' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[Sales Orders].[New Region]</field>
+          <field>[Sales Orders].[none:Region:nk]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='141' name='Sheet 1' width='192'>
+      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
+      HwAAAABJRU5ErkJggg==
+    </thumbnail>
+  </thumbnails>
+</workbook>

@@ -1,0 +1,186 @@
+DECLARE
+  TYPE items_nt IS TABLE of VARCHAR2(60);
+  l_first_nt       items_nt  := items_nt('Bike','Bike', 'Treadmill','Treadmill', 'Elliptical', 'Elliptical');
+  l_second_nt      items_nt  := items_nt('Elliptical', 'Elliptical');
+  l_final_nt       items_nt;
+BEGIN
+   l_final_nt := l_first_nt MULTISET UNION l_second_nt;
+   FOR i IN l_final_nt.FIRST..l_final_nt.LAST LOOP
+     DBMS_OUTPUT.PUT_LINE(l_final_nt(i));
+   END LOOP;
+   DBMS_OUTPUT.PUT_LINE('After applying the set operator');
+   l_final_nt := SET(l_first_nt);
+   FOR i IN l_final_nt.FIRST..l_final_nt.LAST LOOP
+     DBMS_OUTPUT.PUT_LINE(l_final_nt(i));
+   END LOOP;
+END;
+/
+DECLARE
+  TYPE items_nt IS TABLE of VARCHAR2(60);
+  l_first_nt       items_nt  := items_nt('Bike','Bike', 'Treadmill','Treadmill', 'Elliptical', 'Elliptical');
+  l_second_nt      items_nt  := items_nt('Elliptical', 'Elliptical');
+  l_final_nt       items_nt;
+BEGIN
+   l_final_nt := l_first_nt MULTISET UNION DISTINCT l_second_nt;
+   FOR i IN l_final_nt.FIRST..l_final_nt.LAST LOOP
+     DBMS_OUTPUT.PUT_LINE(l_final_nt(i));
+   END LOOP;
+END;
+/
+DECLARE
+  TYPE items_nt IS TABLE of VARCHAR2(60);
+  l_first_nt       items_nt  := items_nt('Bike','Bike', 'Treadmill','Treadmill', 'Elliptical', 'Elliptical');
+  l_second_nt      items_nt  := items_nt('Elliptical', 'Elliptical');
+  l_final_nt       items_nt;
+BEGIN
+   l_final_nt := l_first_nt MULTISET INTERSECT l_second_nt;
+   FOR i IN l_final_nt.FIRST..l_final_nt.LAST LOOP
+     DBMS_OUTPUT.PUT_LINE(l_final_nt(i));
+   END LOOP;
+END;
+/
+DECLARE
+  TYPE items_nt IS TABLE of VARCHAR2(60);
+  l_first_nt       items_nt  := items_nt('Bike','Bike', 'Treadmill','Treadmill', 'Elliptical', 'Elliptical');
+  l_second_nt      items_nt  := items_nt('Elliptical', 'Elliptical');
+  l_final_nt       items_nt;
+BEGIN
+   l_final_nt := l_first_nt MULTISET INTERSECT DISTINCT l_second_nt;
+   FOR i IN l_final_nt.FIRST..l_final_nt.LAST LOOP
+     DBMS_OUTPUT.PUT_LINE(l_final_nt(i));
+   END LOOP;
+END;
+/
+DECLARE
+  TYPE items_nt IS TABLE of VARCHAR2(60);
+  l_first_nt       items_nt  := items_nt('Bike','Bike', 'Treadmill','Treadmill', 'Elliptical', 'Elliptical');
+  l_second_nt      items_nt  := items_nt('Elliptical', 'Elliptical');
+  l_final_nt       items_nt;
+BEGIN
+   l_final_nt := l_first_nt MULTISET EXCEPT l_second_nt;
+   FOR i IN l_final_nt.FIRST..l_final_nt.LAST LOOP
+     DBMS_OUTPUT.PUT_LINE(l_final_nt(i));
+   END LOOP;
+END;
+/
+DECLARE
+  TYPE items_nt IS TABLE of VARCHAR2(60);
+  l_first_nt       items_nt  := items_nt('Bike','Bike', 'Treadmill','Treadmill', 'Elliptical', 'Elliptical');
+  l_second_nt      items_nt  := items_nt('Elliptical', 'Elliptical');
+  l_final_nt       items_nt;
+BEGIN
+   l_final_nt := l_first_nt MULTISET EXCEPT DISTINCT l_second_nt;
+   FOR i IN l_final_nt.FIRST..l_final_nt.LAST LOOP
+     DBMS_OUTPUT.PUT_LINE(l_final_nt(i));
+   END LOOP;
+END;
+/
+CREATE TABLE item_orders (
+   act_month VARCHAR2(8),
+   store1_items      items_nt    DEFAULT items_nt(),
+   store2_items      items_nt    DEFAULT items_nt())
+   NESTED TABLE  store1_items   STORE AS store1
+   NESTED TABLE  store2_items   STORE AS store2;
+DELETE FROM item_orders;
+INSERT INTO item_orders(act_month,
+                        store1_items,
+                        store2_items)
+                 VALUES('JANUARY',
+                        items_nt('Bike','Bike','Treadmill','Treadmill','Elliptical', 'Elliptical'),
+                        items_nt('Elliptical', 'Elliptical'));
+commit;
+SELECT * FROM item_orders;
+DECLARE
+  l_final_nt            items_nt;
+  CURSOR cur_get_items IS
+   SELECT store1_items MULTISET UNION store2_items
+   FROM item_orders
+    WHERE act_month = 'JANUARY';
+BEGIN
+   OPEN cur_get_items;
+    FETCH cur_get_items INTO l_final_nt;
+   CLOSE cur_get_items;
+   FOR i IN l_final_nt.FIRST..l_final_nt.LAST LOOP
+     DBMS_OUTPUT.PUT_LINE(l_final_nt(i));
+   END LOOP;
+END;
+/
+DECLARE
+  l_final_nt            items_nt;
+  CURSOR cur_get_items IS
+   SELECT store1_items MULTISET UNION DISTINCT store2_items
+   FROM item_orders
+    WHERE act_month = 'JANUARY';
+BEGIN
+   OPEN cur_get_items;
+    FETCH cur_get_items INTO l_final_nt;
+   CLOSE cur_get_items;
+   FOR i IN l_final_nt.FIRST..l_final_nt.LAST LOOP
+     DBMS_OUTPUT.PUT_LINE(l_final_nt(i));
+   END LOOP;
+END;
+/
+DECLARE
+  l_final_nt            items_nt;
+  CURSOR cur_get_items IS
+   SELECT store1_items MULTISET INTERSECT store2_items
+   FROM item_orders
+    WHERE act_month = 'JANUARY';
+BEGIN
+   OPEN cur_get_items;
+    FETCH cur_get_items INTO l_final_nt;
+   CLOSE cur_get_items;
+   FOR i IN l_final_nt.FIRST..l_final_nt.LAST LOOP
+     DBMS_OUTPUT.PUT_LINE(l_final_nt(i));
+   END LOOP;
+END;
+/
+
+DECLARE
+  l_final_nt            items_nt;
+  CURSOR cur_get_items IS
+   SELECT store1_items MULTISET INTERSECT DISTINCT store2_items
+   FROM item_orders
+    WHERE act_month = 'JANUARY';
+BEGIN
+   OPEN cur_get_items;
+    FETCH cur_get_items INTO l_final_nt;
+   CLOSE cur_get_items;
+   FOR i IN l_final_nt.FIRST..l_final_nt.LAST LOOP
+     DBMS_OUTPUT.PUT_LINE(l_final_nt(i));
+   END LOOP;
+END;
+/
+DECLARE
+  l_final_nt            items_nt;
+  CURSOR cur_get_items IS
+   SELECT store1_items MULTISET EXCEPT store2_items
+   FROM item_orders
+    WHERE act_month = 'JANUARY';
+BEGIN
+   OPEN cur_get_items;
+    FETCH cur_get_items INTO l_final_nt;
+   CLOSE cur_get_items;
+   FOR i IN l_final_nt.FIRST..l_final_nt.LAST LOOP
+     DBMS_OUTPUT.PUT_LINE(l_final_nt(i));
+   END LOOP;
+END;
+/
+DECLARE
+  l_final_nt            items_nt;
+  CURSOR cur_get_items IS
+   SELECT store1_items MULTISET EXCEPT DISTINCT store2_items
+   FROM item_orders
+    WHERE act_month = 'JANUARY';
+BEGIN
+   OPEN cur_get_items;
+    FETCH cur_get_items INTO l_final_nt;
+   CLOSE cur_get_items;
+   FOR i IN l_final_nt.FIRST..l_final_nt.LAST LOOP
+     DBMS_OUTPUT.PUT_LINE(l_final_nt(i));
+   END LOOP;
+END;
+/
+
+
+

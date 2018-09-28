@@ -1,0 +1,18 @@
+﻿--demo session
+GRANT EXECUTE ON hr_mgmt TO test;
+--test session
+DECLARE
+    l_emp_id         NUMBER(10) := 50;
+    l_dept_name VARCHAR2(60):= 'IT';
+BEGIN    
+   demo.hr_mgmt.update_emp(l_emp_id,l_dept_name);
+END;
+--demo session
+ALTER PACKAGE hr_mgmt COMPILE;
+--test session
+DECLARE
+    l_emp_id         NUMBER(10) := 50;
+    l_dept_name VARCHAR2(60):= 'IT';
+BEGIN    
+   demo.hr_mgmt.update_emp(l_emp_id,l_dept_name);
+END;

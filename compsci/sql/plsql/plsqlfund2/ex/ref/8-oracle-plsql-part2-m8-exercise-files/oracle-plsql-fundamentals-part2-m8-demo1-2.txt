@@ -1,0 +1,1 @@
+﻿select get_dept_id('IT') FROM DUAL;

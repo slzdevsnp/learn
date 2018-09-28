@@ -1,0 +1,13 @@
+﻿/* If you get an error 
+ORA-00955: name is already used by an existing object
+this means that there is a procedure or function with the same name already in the schema
+You will need to drop that first. For instance you can drop a function 
+  with the following command
+  DROP function update_emp;
+*/
+--demo session
+CREATE OR REPLACE PROCEDURE update_emp IS
+BEGIN
+  DBMS_OUTPUT.PUT_LINE('Inside Standalone Procedure update_emp in demo schema');
+END update_emp;
+/

@@ -1,0 +1,70 @@
+CREATE TABLE CUSTOMERS (cust_id  NUMBER  NOT NULL PRIMARY KEY,
+                        cust_name  VARCHAR2(100) NOT NULL,
+                        cust_location VARCHAR2(2) NOT NULL  );
+                        
+CREATE TABLE ACCOUNTS (act_id NUMBER NOT NULL PRIMARY KEY,
+                       act_cust_id NUMBER NOT NULL,
+                       act_bal NUMBER(10,2),
+                       CONSTRAINT act_cust_fk FOREIGN KEY (act_cust_id) REFERENCES  
+                       customers(cust_id));
+
+CREATE TABLE ITEMS    (item_id  NUMBER  NOT NULL PRIMARY KEY,
+                       item_name  VARCHAR2(100) NOT NULL,
+                       item_value number(5,2) NOT NULL  );
+                       
+CREATE TABLE ORDERS  ( order_id  NUMBER  NOT NULL PRIMARY KEY,
+                       order_item_id   NUMBER NOT NULL,
+                       order_act_id    NUMBER NOT NULL ,
+                       CONSTRAINT order_item_fk FOREIGN KEY (order_item_id) REFERENCES  
+                       items(item_id),
+                       CONSTRAINT  order_act_fk FOREIGN KEY (order_act_id) REFERENCES  
+                       accounts(act_id) );
+
+CREATE TABLE TEMP_TABLE(dummy number);
+
+CREATE SEQUENCE orders_seq START WITH 1 INCREMENT BY 1;
+
+
+-- Insert into customers table
+INSERT INTO customers(cust_id,cust_name,cust_location) VALUES (1,'John','WA');
+INSERT INTO customers(cust_id,cust_name,cust_location) VALUES (2,'Jack','CA');
+INSERT INTO customers(cust_id,cust_name,cust_location) VALUES (3,'Jill','CA');
+
+-- Insert into accounts table
+INSERT INTO accounts(act_id,act_cust_id,act_bal) VALUES (1,1,1000);
+INSERT INTO accounts(act_id,act_cust_id,act_bal) VALUES (2,2,1000);
+INSERT INTO accounts(act_id,act_cust_id,act_bal) VALUES (3,3,1000);
+
+-- Insert into items table
+INSERT INTO items(item_id,item_name,item_value) VALUES (1,'Treadmill', 600);
+INSERT INTO items(item_id,item_name,item_value) VALUES (2,'Elliptical',600);
+INSERT INTO items(item_id,item_name,item_value) VALUES (3,'Bike',600);
+COMMIT;
+CREATE OR REPLACE FUNCTION 
+     get_tier  (p_act_id    IN           accounts.act_id%TYPE,
+                p_act_bal  IN OUT accounts.act_bal%TYPE,
+                p_tier                OUT NUMBER)  RETURN NUMBER IS
+   CURSOR get_act_bal IS
+     SELECT act_bal 
+      FROM  accounts
+      WHERE act_id = p_act_id;
+   
+ BEGIN
+    SELECT act_bal INTO p_act_bal
+      FROM  accounts
+      WHERE act_id = p_act_id;
+    IF p_act_bal < 500 THEN
+       p_tier := 1;
+    ELSIF p_act_bal >= 500 AND p_act_bal < 1000 THEN
+       p_tier := 1;
+    ELSE
+      p_tier := 3;
+    END IF;
+    RETURN 1;
+ EXCEPTION
+   WHEN NO_DATA_FOUND THEN
+     DBMS_OUTPUT.PUT_LINE(SQLERRM);
+     RETURN 0;
+ END get_tier;
+ /
+

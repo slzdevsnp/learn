@@ -1,0 +1,13 @@
+﻿-- DBA Session
+
+
+CREATE ROLE dev_role;
+
+
+GRANT select,insert,update,delete on demo.employee to dev_role;
+
+
+GRANT dev_role to dev;
+
+
+GRANT execute on test.update_emp to dev;

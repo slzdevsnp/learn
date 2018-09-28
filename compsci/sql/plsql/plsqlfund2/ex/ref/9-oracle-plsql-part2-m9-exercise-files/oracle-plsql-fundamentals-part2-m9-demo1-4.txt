@@ -1,0 +1,9 @@
+﻿--DBA session
+-- Or Demo user if it has CREATE PUBLIC SYNONYM PRIVILEGE ASSIGNED TO IT
+CREATE PUBLIC SYNONYM update_emp FOR demo.update_emp;
+
+
+--test session
+
+
+exec update_emp;

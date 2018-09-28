@@ -1,0 +1,10 @@
+﻿UPDATE employee
+  SET  emp_dept_id = get_dept_id('IT')
+WHERE EMP_ID = 50; 
+
+
+
+
+SELECT * 
+   FROM employee
+  WHERE emp_dept_id = get_dept_id('IT');

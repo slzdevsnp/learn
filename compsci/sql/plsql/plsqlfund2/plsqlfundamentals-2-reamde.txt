@@ -1,0 +1,107 @@
+plsqlfundamentals-2-reamde.txt
+
+course code:  Dropbox/cs/gcs/plural/plsql/plsqlfund2/ex
+
+
+########################
+chap 2 procedures
+########################
+
+
+    db roles to  work with procedures
+
+
+    create proc
+    create any proc
+    alter any proc
+    exec
+
+
+    ex.
+    grant execute on <schema_name>.<procedure_name> to slava;
+
+
+
+    !! native compilation vs pl/sql optimized
+
+    ! native compilation -> compiled in C
+
+
+    ALTER SESSION set PlSQL_CODE_TYPE = NATIVE;
+                                    = INTERPRETED;
+    ALTER PROCEDURE update_dept COMPILE PLSQL_TYPE=NATIVE;
+
+    PLSQL_OPTIMIZE_LEVEL
+        0 pre 10g optimization
+        1 removed unnecessary computations
+        2 code refactoring
+        3 code inlining
+
+    ALTER SESSION SET PLSQL_OPTIMIZE_LEVEL=2;
+
+
+    !! compile the procedure for debug
+    compiled the proc in debug mode put breaks
+
+    ALTER PROCEDURE update_dept COMPILE DEBUG;    
+
+    --session wide
+    ALTER SESSION SET PLSQL_DUBUG = FALSE:
+
+
+    !! ERRORS
+
+       Warnings (from ora 11g)
+    ALTER SESSION SET PLSQL_WARNINGS='ENABLE:ALL';
+    ALTER SESSION SET PLSQL_WARNINGS='DISABLE:ALL';
+
+    DBMS_WARNING is a package for earing settings
+
+
+   !!proc execution
+        exec update_dept;
+        BEGIN 
+            update_dept;  -- in the block
+        END;
+
+
+########################
+chap 3 functions
+########################
+
+a function always returns a value
+oracle provids many functions
+    numeric
+      eg round(), ceil, floor, abs
+    character funcs
+        lpad, ltrim, upper,
+    datetime functions
+        sysdate,
+        systimestamp
+
+
+grant procedures from procedures work for functions
+grant create procedure,  grant execute            
+
+
+########################
+chap 4 parameters
+########################
+
+   parameter modes
+    IN   -- default pass by value
+    OUT   -- default pass by reference
+    INOUT  --pass by reference
+
+    IN - default mode
+
+
+   NOCOPY
+    tell to pass a pram by reference, not by value 
+
+
+
+########################
+chap 6 packages
+########################
+    stateless , statefull packages

@@ -1,0 +1,68 @@
+﻿CREATE OR REPLACE PACKAGE BODY hr_mgmt AS
+   PROCEDURE  set_bonus(p_profit NUMBER) IS
+     BEGIN
+       DBMS_OUTPUT.PUT_LINE('Inside set_bonus ');
+       global_state.g_bonus_pct := 0;
+       IF p_profit < 100000 THEN
+         global_state.g_bonus_pct := 1;
+       ELSE
+         global_state.g_bonus_pct := 2;
+       END IF;
+   END set_bonus;
+   FUNCTION   get_bonus(p_dept_id NUMBER) RETURN NUMBER IS
+     l_sal NUMBER;
+     BEGIN
+       DBMS_OUTPUT.PUT_LINE('Inside get_bonus ');
+       OPEN global_state.cur_get_sal(p_dept_id);
+       FETCH global_state.cur_get_sal INTO l_sal;
+       CLOSE global_state.cur_get_sal;
+       RETURN l_sal * global_state.g_bonus_pct;
+   END get_bonus;
+  FUNCTION  calc_bonus(p_profit NUMBER, p_dept_id NUMBER) RETURN NUMBER IS
+   BEGIN
+     set_bonus(p_profit);
+     return get_bonus(p_dept_id);
+   EXCEPTION
+    WHEN OTHERS THEN
+      DBMS_OUTPUT.PUT_LINE(SQLERRM ||' '||DBMS_UTILITY.FORMAT_ERROR_BACKTRACE);
+      RAISE;
+   END calc_bonus;
+  FUNCTION  calc_bonus(p_profit NUMBER, p_dept_name VARCHAR2) RETURN NUMBER IS
+     l_dept_id departments.dept_id%TYPE;   
+  BEGIN
+     OPEN global_state.gcur_get_deptid(p_dept_name ) ;
+     FETCH global_state.gcur_get_deptid INTO l_dept_id;
+     CLOSE global_state.gcur_get_deptid;
+     RETURN calc_bonus(p_profit,l_dept_id);
+  END calc_bonus;
+  FUNCTION  calc_bonus(p_rec g_rec) RETURN NUMBER IS
+   BEGIN
+     return calc_bonus(p_rec.p_profit,  p_rec.p_dept_name);
+   END calc_bonus;
+  PROCEDURE update_emp(p_emp_id NUMBER, p_dept_name VARCHAR2) IS
+     l_dept_id departments.dept_id%TYPE;
+   BEGIN
+     DBMS_OUTPUT.PUT_LINE('Inside update_emp ');
+     OPEN global_state.gcur_get_deptid(p_dept_name);
+     FETCH global_state.gcur_get_deptid INTO l_dept_id;
+     CLOSE global_state.gcur_get_deptid;
+     IF l_dept_id IS NULL THEN
+       RAISE dept_not_found_ex;
+     END IF;
+     UPDATE employee
+        SET emp_dept_id = l_dept_id  WHERE emp_id = p_emp_id;
+     DBMS_OUTPUT.PUT_LINE('Updated  Rows: '||SQL%ROWCOUNT);
+     COMMIT;
+   EXCEPTION
+    WHEN dept_not_found_ex THEN
+      DBMS_OUTPUT.PUT_LINE('Invalid dept name '||p_dept_name);
+      RAISE;    
+   END update_emp; 
+  BEGIN
+    global_state.g_bonus_pct:= 0;
+EXCEPTION
+    WHEN OTHERS THEN
+      DBMS_OUTPUT.PUT_LINE(DBMS_UTILITY.FORMAT_ERROR_STACK);
+      DBMS_OUTPUT.PUT_LINE(DBMS_UTILITY.FORMAT_ERROR_BACKTRACE);
+       RAISE; 
+END hr_mgmt;

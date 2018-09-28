@@ -1,0 +1,11 @@
+— Log in as demo user
+DROP TABLE employee;
+DROP TABLE departments;
+DROP FUNCTION update_emp;
+—Log in as test user
+DROP TABLE employee;
+DROP TABLE departments;
+DROP FUNCTION update_emp; 
+—Log in as dba user
+DROP ROLE hr_role;
+DROP ROLE dev_role;

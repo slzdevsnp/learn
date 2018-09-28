@@ -1,0 +1,29 @@
+﻿BEGIN
+  DBMS_OUTPUT.PUT_LINE('hr_mgmt.g_active_status IS '||hr_mgmt.g_active_status);
+  hr_mgmt.g_bonus_pct := 10;
+END;
+/
+
+
+BEGIN
+  DBMS_OUTPUT.PUT_LINE('hr_mgmt.g_bonus_pct IS '||hr_mgmt.g_bonus_pct);
+END;
+/
+
+
+GRANT EXECUTE ON hr_mgmt TO test;
+
+
+--Test Session
+BEGIN
+  DBMS_OUTPUT.PUT_LINE('demo.hr_mgmt.g_active_status IS '||demo.hr_mgmt.g_active_status);
+  DBMS_OUTPUT.PUT_LINE('demo.hr_mgmt.g_bonus_pct IS '||demo.hr_mgmt.g_bonus_pct);
+  demo.hr_mgmt.g_bonus_pct := 20;
+END;
+/
+
+
+BEGIN
+  DBMS_OUTPUT.PUT_LINE('demo.hr_mgmt.g_bonus_pct IS '||demo.hr_mgmt.g_bonus_pct);
+END;
+/
