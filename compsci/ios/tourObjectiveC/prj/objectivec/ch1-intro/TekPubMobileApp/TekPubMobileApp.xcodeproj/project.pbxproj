@@ -1,0 +1,426 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F49D5C5C1FA18014004DD8EE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F49D5C5B1FA18014004DD8EE /* AppDelegate.m */; };
+		F49D5C5F1FA18014004DD8EE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F49D5C5E1FA18014004DD8EE /* ViewController.m */; };
+		F49D5C641FA18014004DD8EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F49D5C631FA18014004DD8EE /* Assets.xcassets */; };
+		F49D5C6A1FA18014004DD8EE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F49D5C691FA18014004DD8EE /* main.m */; };
+		F49D5C741FA18014004DD8EE /* TekPubMobileAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F49D5C731FA18014004DD8EE /* TekPubMobileAppTests.m */; };
+		F49D5C7F1FA1804B004DD8EE /* FirstView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F49D5C7E1FA1804B004DD8EE /* FirstView.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F49D5C701FA18014004DD8EE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F49D5C4F1FA18014004DD8EE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F49D5C561FA18014004DD8EE;
+			remoteInfo = TekPubMobileApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F49D5C571FA18014004DD8EE /* TekPubMobileApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TekPubMobileApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F49D5C5A1FA18014004DD8EE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F49D5C5B1FA18014004DD8EE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F49D5C5D1FA18014004DD8EE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		F49D5C5E1FA18014004DD8EE /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		F49D5C631FA18014004DD8EE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F49D5C681FA18014004DD8EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F49D5C691FA18014004DD8EE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F49D5C6F1FA18014004DD8EE /* TekPubMobileAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TekPubMobileAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F49D5C731FA18014004DD8EE /* TekPubMobileAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TekPubMobileAppTests.m; sourceTree = "<group>"; };
+		F49D5C751FA18014004DD8EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F49D5C7E1FA1804B004DD8EE /* FirstView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstView.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F49D5C541FA18014004DD8EE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F49D5C6C1FA18014004DD8EE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F49D5C4E1FA18014004DD8EE = {
+			isa = PBXGroup;
+			children = (
+				F49D5C591FA18014004DD8EE /* TekPubMobileApp */,
+				F49D5C721FA18014004DD8EE /* TekPubMobileAppTests */,
+				F49D5C581FA18014004DD8EE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F49D5C581FA18014004DD8EE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F49D5C571FA18014004DD8EE /* TekPubMobileApp.app */,
+				F49D5C6F1FA18014004DD8EE /* TekPubMobileAppTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F49D5C591FA18014004DD8EE /* TekPubMobileApp */ = {
+			isa = PBXGroup;
+			children = (
+				F49D5C5A1FA18014004DD8EE /* AppDelegate.h */,
+				F49D5C5B1FA18014004DD8EE /* AppDelegate.m */,
+				F49D5C5D1FA18014004DD8EE /* ViewController.h */,
+				F49D5C5E1FA18014004DD8EE /* ViewController.m */,
+				F49D5C631FA18014004DD8EE /* Assets.xcassets */,
+				F49D5C681FA18014004DD8EE /* Info.plist */,
+				F49D5C691FA18014004DD8EE /* main.m */,
+				F49D5C7E1FA1804B004DD8EE /* FirstView.xib */,
+			);
+			path = TekPubMobileApp;
+			sourceTree = "<group>";
+		};
+		F49D5C721FA18014004DD8EE /* TekPubMobileAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				F49D5C731FA18014004DD8EE /* TekPubMobileAppTests.m */,
+				F49D5C751FA18014004DD8EE /* Info.plist */,
+			);
+			path = TekPubMobileAppTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F49D5C561FA18014004DD8EE /* TekPubMobileApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F49D5C781FA18014004DD8EE /* Build configuration list for PBXNativeTarget "TekPubMobileApp" */;
+			buildPhases = (
+				F49D5C531FA18014004DD8EE /* Sources */,
+				F49D5C541FA18014004DD8EE /* Frameworks */,
+				F49D5C551FA18014004DD8EE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TekPubMobileApp;
+			productName = TekPubMobileApp;
+			productReference = F49D5C571FA18014004DD8EE /* TekPubMobileApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F49D5C6E1FA18014004DD8EE /* TekPubMobileAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F49D5C7B1FA18014004DD8EE /* Build configuration list for PBXNativeTarget "TekPubMobileAppTests" */;
+			buildPhases = (
+				F49D5C6B1FA18014004DD8EE /* Sources */,
+				F49D5C6C1FA18014004DD8EE /* Frameworks */,
+				F49D5C6D1FA18014004DD8EE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F49D5C711FA18014004DD8EE /* PBXTargetDependency */,
+			);
+			name = TekPubMobileAppTests;
+			productName = TekPubMobileAppTests;
+			productReference = F49D5C6F1FA18014004DD8EE /* TekPubMobileAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F49D5C4F1FA18014004DD8EE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = "Sviatoslav Zimine";
+				TargetAttributes = {
+					F49D5C561FA18014004DD8EE = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+					};
+					F49D5C6E1FA18014004DD8EE = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = F49D5C561FA18014004DD8EE;
+					};
+				};
+			};
+			buildConfigurationList = F49D5C521FA18014004DD8EE /* Build configuration list for PBXProject "TekPubMobileApp" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F49D5C4E1FA18014004DD8EE;
+			productRefGroup = F49D5C581FA18014004DD8EE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F49D5C561FA18014004DD8EE /* TekPubMobileApp */,
+				F49D5C6E1FA18014004DD8EE /* TekPubMobileAppTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F49D5C551FA18014004DD8EE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F49D5C7F1FA1804B004DD8EE /* FirstView.xib in Resources */,
+				F49D5C641FA18014004DD8EE /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F49D5C6D1FA18014004DD8EE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F49D5C531FA18014004DD8EE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F49D5C5F1FA18014004DD8EE /* ViewController.m in Sources */,
+				F49D5C6A1FA18014004DD8EE /* main.m in Sources */,
+				F49D5C5C1FA18014004DD8EE /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F49D5C6B1FA18014004DD8EE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F49D5C741FA18014004DD8EE /* TekPubMobileAppTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F49D5C711FA18014004DD8EE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F49D5C561FA18014004DD8EE /* TekPubMobileApp */;
+			targetProxy = F49D5C701FA18014004DD8EE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		F49D5C761FA18014004DD8EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		F49D5C771FA18014004DD8EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F49D5C791FA18014004DD8EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G2264DLSAY;
+				INFOPLIST_FILE = TekPubMobileApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.szi.TekPubMobileApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		F49D5C7A1FA18014004DD8EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G2264DLSAY;
+				INFOPLIST_FILE = TekPubMobileApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.szi.TekPubMobileApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		F49D5C7C1FA18014004DD8EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G2264DLSAY;
+				INFOPLIST_FILE = TekPubMobileAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.szi.TekPubMobileAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TekPubMobileApp.app/TekPubMobileApp";
+			};
+			name = Debug;
+		};
+		F49D5C7D1FA18014004DD8EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G2264DLSAY;
+				INFOPLIST_FILE = TekPubMobileAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.szi.TekPubMobileAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TekPubMobileApp.app/TekPubMobileApp";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F49D5C521FA18014004DD8EE /* Build configuration list for PBXProject "TekPubMobileApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F49D5C761FA18014004DD8EE /* Debug */,
+				F49D5C771FA18014004DD8EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F49D5C781FA18014004DD8EE /* Build configuration list for PBXNativeTarget "TekPubMobileApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F49D5C791FA18014004DD8EE /* Debug */,
+				F49D5C7A1FA18014004DD8EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F49D5C7B1FA18014004DD8EE /* Build configuration list for PBXNativeTarget "TekPubMobileAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F49D5C7C1FA18014004DD8EE /* Debug */,
+				F49D5C7D1FA18014004DD8EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F49D5C4F1FA18014004DD8EE /* Project object */;
+}

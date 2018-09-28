@@ -1,0 +1,626 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		11E715BB5CE8B4267B40A5CE /* libPods-TekpubDataTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD1CDEACAD302B62CC7AAB5 /* libPods-TekpubDataTests.a */; };
+		F48C780F1FA4E4E1007D21C2 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = F48C78061FA4E4E0007D21C2 /* FMDatabase.m */; };
+		F48C78101FA4E4E1007D21C2 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = F48C78071FA4E4E0007D21C2 /* FMDatabasePool.m */; };
+		F48C78111FA4E4E1007D21C2 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = F48C78091FA4E4E0007D21C2 /* FMResultSet.m */; };
+		F48C78121FA4E4E1007D21C2 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F48C780B1FA4E4E0007D21C2 /* FMDatabaseQueue.m */; };
+		F48C78131FA4E4E1007D21C2 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F48C780C1FA4E4E0007D21C2 /* FMDatabaseAdditions.m */; };
+		F4A0FADE1FA2B14400B4BDCF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A0FADD1FA2B14400B4BDCF /* AppDelegate.m */; };
+		F4A0FAE11FA2B14400B4BDCF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A0FAE01FA2B14400B4BDCF /* ViewController.m */; };
+		F4A0FAE61FA2B14400B4BDCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4A0FAE51FA2B14400B4BDCF /* Assets.xcassets */; };
+		F4A0FAEC1FA2B14400B4BDCF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A0FAEB1FA2B14400B4BDCF /* main.m */; };
+		F4A0FAF61FA2B14400B4BDCF /* TekpubDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A0FAF51FA2B14400B4BDCF /* TekpubDataTests.m */; };
+		F4A0FB011FA2B1B700B4BDCF /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4A0FB001FA2B1B700B4BDCF /* MainView.xib */; };
+		F4A0FB041FA2B34900B4BDCF /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A0FB031FA2B33100B4BDCF /* libsqlite3.tbd */; };
+		F4ECFA0E1FA4CF7B0087321D /* northwind.db in Resources */ = {isa = PBXBuildFile; fileRef = F4ECFA0C1FA4CA440087321D /* northwind.db */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F4A0FAF21FA2B14400B4BDCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F4A0FAD11FA2B14400B4BDCF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F4A0FAD81FA2B14400B4BDCF;
+			remoteInfo = TekpubData;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		02F5D2047E0CDE4F4C033C17 /* libPods-TekpubData.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TekpubData.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C88DBF5D07086C251343406 /* Pods-TekpubData.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TekpubData.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TekpubData/Pods-TekpubData.debug.xcconfig"; sourceTree = "<group>"; };
+		24DB6F1470F40B3638555D5E /* Pods-TekpubDataTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TekpubDataTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TekpubDataTests/Pods-TekpubDataTests.release.xcconfig"; sourceTree = "<group>"; };
+		2A3621E5368627C3EF1EEC15 /* Pods-TekpubDataTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TekpubDataTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TekpubDataTests/Pods-TekpubDataTests.debug.xcconfig"; sourceTree = "<group>"; };
+		ABD1CDEACAD302B62CC7AAB5 /* libPods-TekpubDataTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TekpubDataTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F48C78041FA4E4E0007D21C2 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		F48C78051FA4E4E0007D21C2 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		F48C78061FA4E4E0007D21C2 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		F48C78071FA4E4E0007D21C2 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		F48C78081FA4E4E0007D21C2 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		F48C78091FA4E4E0007D21C2 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		F48C780A1FA4E4E0007D21C2 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		F48C780B1FA4E4E0007D21C2 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		F48C780C1FA4E4E0007D21C2 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		F48C780D1FA4E4E1007D21C2 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		F48C780E1FA4E4E1007D21C2 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		F49E031196847FDE8F350291 /* Pods-TekpubData.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TekpubData.release.xcconfig"; path = "Pods/Target Support Files/Pods-TekpubData/Pods-TekpubData.release.xcconfig"; sourceTree = "<group>"; };
+		F4A0FAD91FA2B14400B4BDCF /* TekpubData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TekpubData.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4A0FADC1FA2B14400B4BDCF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F4A0FADD1FA2B14400B4BDCF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F4A0FADF1FA2B14400B4BDCF /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		F4A0FAE01FA2B14400B4BDCF /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		F4A0FAE51FA2B14400B4BDCF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F4A0FAEA1FA2B14400B4BDCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F4A0FAEB1FA2B14400B4BDCF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F4A0FAF11FA2B14400B4BDCF /* TekpubDataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TekpubDataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4A0FAF51FA2B14400B4BDCF /* TekpubDataTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TekpubDataTests.m; sourceTree = "<group>"; };
+		F4A0FAF71FA2B14400B4BDCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F4A0FB001FA2B1B700B4BDCF /* MainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainView.xib; sourceTree = "<group>"; };
+		F4A0FB031FA2B33100B4BDCF /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		F4A2C3E01FA4E2ED009704B0 /* libFMDB.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFMDB.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4ECFA0C1FA4CA440087321D /* northwind.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = northwind.db; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F4A0FAD61FA2B14400B4BDCF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4A0FB041FA2B34900B4BDCF /* libsqlite3.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4A0FAEE1FA2B14400B4BDCF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11E715BB5CE8B4267B40A5CE /* libPods-TekpubDataTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D6053C44E40C99C23675EA74 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1C88DBF5D07086C251343406 /* Pods-TekpubData.debug.xcconfig */,
+				F49E031196847FDE8F350291 /* Pods-TekpubData.release.xcconfig */,
+				2A3621E5368627C3EF1EEC15 /* Pods-TekpubDataTests.debug.xcconfig */,
+				24DB6F1470F40B3638555D5E /* Pods-TekpubDataTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F48C78031FA4E491007D21C2 /* FMDB */ = {
+			isa = PBXGroup;
+			children = (
+				F48C780D1FA4E4E1007D21C2 /* FMDatabase.h */,
+				F48C78061FA4E4E0007D21C2 /* FMDatabase.m */,
+				F48C780A1FA4E4E0007D21C2 /* FMDatabaseAdditions.h */,
+				F48C780C1FA4E4E0007D21C2 /* FMDatabaseAdditions.m */,
+				F48C78041FA4E4E0007D21C2 /* FMDatabasePool.h */,
+				F48C78071FA4E4E0007D21C2 /* FMDatabasePool.m */,
+				F48C780E1FA4E4E1007D21C2 /* FMDatabaseQueue.h */,
+				F48C780B1FA4E4E0007D21C2 /* FMDatabaseQueue.m */,
+				F48C78051FA4E4E0007D21C2 /* FMDB.h */,
+				F48C78081FA4E4E0007D21C2 /* FMResultSet.h */,
+				F48C78091FA4E4E0007D21C2 /* FMResultSet.m */,
+			);
+			name = FMDB;
+			path = Pods/FMDB/src/fmdb;
+			sourceTree = "<group>";
+		};
+		F4A0FAD01FA2B14400B4BDCF = {
+			isa = PBXGroup;
+			children = (
+				F48C78031FA4E491007D21C2 /* FMDB */,
+				F4ECFA0B1FA4C9170087321D /* Resources */,
+				F4A0FADB1FA2B14400B4BDCF /* TekpubData */,
+				F4A0FAF41FA2B14400B4BDCF /* TekpubDataTests */,
+				F4A0FADA1FA2B14400B4BDCF /* Products */,
+				F4A0FB021FA2B33100B4BDCF /* Frameworks */,
+				D6053C44E40C99C23675EA74 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		F4A0FADA1FA2B14400B4BDCF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F4A0FAD91FA2B14400B4BDCF /* TekpubData.app */,
+				F4A0FAF11FA2B14400B4BDCF /* TekpubDataTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F4A0FADB1FA2B14400B4BDCF /* TekpubData */ = {
+			isa = PBXGroup;
+			children = (
+				F4A0FADC1FA2B14400B4BDCF /* AppDelegate.h */,
+				F4A0FADD1FA2B14400B4BDCF /* AppDelegate.m */,
+				F4A0FADF1FA2B14400B4BDCF /* ViewController.h */,
+				F4A0FAE01FA2B14400B4BDCF /* ViewController.m */,
+				F4A0FAE51FA2B14400B4BDCF /* Assets.xcassets */,
+				F4A0FAEA1FA2B14400B4BDCF /* Info.plist */,
+				F4A0FAEB1FA2B14400B4BDCF /* main.m */,
+				F4A0FB001FA2B1B700B4BDCF /* MainView.xib */,
+			);
+			path = TekpubData;
+			sourceTree = "<group>";
+		};
+		F4A0FAF41FA2B14400B4BDCF /* TekpubDataTests */ = {
+			isa = PBXGroup;
+			children = (
+				F4A0FAF51FA2B14400B4BDCF /* TekpubDataTests.m */,
+				F4A0FAF71FA2B14400B4BDCF /* Info.plist */,
+			);
+			path = TekpubDataTests;
+			sourceTree = "<group>";
+		};
+		F4A0FB021FA2B33100B4BDCF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F4A2C3E01FA4E2ED009704B0 /* libFMDB.a */,
+				F4A0FB031FA2B33100B4BDCF /* libsqlite3.tbd */,
+				02F5D2047E0CDE4F4C033C17 /* libPods-TekpubData.a */,
+				ABD1CDEACAD302B62CC7AAB5 /* libPods-TekpubDataTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F4ECFA0B1FA4C9170087321D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F4ECFA0C1FA4CA440087321D /* northwind.db */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F4A0FAD81FA2B14400B4BDCF /* TekpubData */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4A0FAFA1FA2B14400B4BDCF /* Build configuration list for PBXNativeTarget "TekpubData" */;
+			buildPhases = (
+				443FFA9DB30C28F32140BE22 /* [CP] Check Pods Manifest.lock */,
+				F4A0FAD51FA2B14400B4BDCF /* Sources */,
+				F4A0FAD61FA2B14400B4BDCF /* Frameworks */,
+				F4A0FAD71FA2B14400B4BDCF /* Resources */,
+				31C092320B17777B10EDC448 /* [CP] Embed Pods Frameworks */,
+				5AA32F98E7B8A7DEA786E36C /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TekpubData;
+			productName = TekpubData;
+			productReference = F4A0FAD91FA2B14400B4BDCF /* TekpubData.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F4A0FAF01FA2B14400B4BDCF /* TekpubDataTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4A0FAFD1FA2B14400B4BDCF /* Build configuration list for PBXNativeTarget "TekpubDataTests" */;
+			buildPhases = (
+				F5011470B27177EFFB0C6E8D /* [CP] Check Pods Manifest.lock */,
+				F4A0FAED1FA2B14400B4BDCF /* Sources */,
+				F4A0FAEE1FA2B14400B4BDCF /* Frameworks */,
+				F4A0FAEF1FA2B14400B4BDCF /* Resources */,
+				B741ECB16914B67E6C76AB41 /* [CP] Embed Pods Frameworks */,
+				8536FE12EFDCB5BBC8BF780A /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F4A0FAF31FA2B14400B4BDCF /* PBXTargetDependency */,
+			);
+			name = TekpubDataTests;
+			productName = TekpubDataTests;
+			productReference = F4A0FAF11FA2B14400B4BDCF /* TekpubDataTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F4A0FAD11FA2B14400B4BDCF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = "Sviatoslav Zimine";
+				TargetAttributes = {
+					F4A0FAD81FA2B14400B4BDCF = {
+						CreatedOnToolsVersion = 9.0.1;
+						ProvisioningStyle = Automatic;
+					};
+					F4A0FAF01FA2B14400B4BDCF = {
+						CreatedOnToolsVersion = 9.0.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = F4A0FAD81FA2B14400B4BDCF;
+					};
+				};
+			};
+			buildConfigurationList = F4A0FAD41FA2B14400B4BDCF /* Build configuration list for PBXProject "TekpubData" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F4A0FAD01FA2B14400B4BDCF;
+			productRefGroup = F4A0FADA1FA2B14400B4BDCF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F4A0FAD81FA2B14400B4BDCF /* TekpubData */,
+				F4A0FAF01FA2B14400B4BDCF /* TekpubDataTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F4A0FAD71FA2B14400B4BDCF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4ECFA0E1FA4CF7B0087321D /* northwind.db in Resources */,
+				F4A0FB011FA2B1B700B4BDCF /* MainView.xib in Resources */,
+				F4A0FAE61FA2B14400B4BDCF /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4A0FAEF1FA2B14400B4BDCF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		31C092320B17777B10EDC448 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TekpubData/Pods-TekpubData-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		443FFA9DB30C28F32140BE22 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TekpubData-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5AA32F98E7B8A7DEA786E36C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TekpubData/Pods-TekpubData-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8536FE12EFDCB5BBC8BF780A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TekpubDataTests/Pods-TekpubDataTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B741ECB16914B67E6C76AB41 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TekpubDataTests/Pods-TekpubDataTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F5011470B27177EFFB0C6E8D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TekpubDataTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F4A0FAD51FA2B14400B4BDCF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F48C78111FA4E4E1007D21C2 /* FMResultSet.m in Sources */,
+				F4A0FAE11FA2B14400B4BDCF /* ViewController.m in Sources */,
+				F4A0FAEC1FA2B14400B4BDCF /* main.m in Sources */,
+				F48C78121FA4E4E1007D21C2 /* FMDatabaseQueue.m in Sources */,
+				F48C78101FA4E4E1007D21C2 /* FMDatabasePool.m in Sources */,
+				F4A0FADE1FA2B14400B4BDCF /* AppDelegate.m in Sources */,
+				F48C780F1FA4E4E1007D21C2 /* FMDatabase.m in Sources */,
+				F48C78131FA4E4E1007D21C2 /* FMDatabaseAdditions.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4A0FAED1FA2B14400B4BDCF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4A0FAF61FA2B14400B4BDCF /* TekpubDataTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F4A0FAF31FA2B14400B4BDCF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F4A0FAD81FA2B14400B4BDCF /* TekpubData */;
+			targetProxy = F4A0FAF21FA2B14400B4BDCF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		F4A0FAF81FA2B14400B4BDCF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		F4A0FAF91FA2B14400B4BDCF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F4A0FAFB1FA2B14400B4BDCF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1C88DBF5D07086C251343406 /* Pods-TekpubData.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G2264DLSAY;
+				INFOPLIST_FILE = TekpubData/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.szi.TekpubData;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		F4A0FAFC1FA2B14400B4BDCF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F49E031196847FDE8F350291 /* Pods-TekpubData.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G2264DLSAY;
+				INFOPLIST_FILE = TekpubData/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.szi.TekpubData;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		F4A0FAFE1FA2B14400B4BDCF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2A3621E5368627C3EF1EEC15 /* Pods-TekpubDataTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G2264DLSAY;
+				INFOPLIST_FILE = TekpubDataTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.szi.TekpubDataTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TekpubData.app/TekpubData";
+			};
+			name = Debug;
+		};
+		F4A0FAFF1FA2B14400B4BDCF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 24DB6F1470F40B3638555D5E /* Pods-TekpubDataTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G2264DLSAY;
+				INFOPLIST_FILE = TekpubDataTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.szi.TekpubDataTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TekpubData.app/TekpubData";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F4A0FAD41FA2B14400B4BDCF /* Build configuration list for PBXProject "TekpubData" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4A0FAF81FA2B14400B4BDCF /* Debug */,
+				F4A0FAF91FA2B14400B4BDCF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F4A0FAFA1FA2B14400B4BDCF /* Build configuration list for PBXNativeTarget "TekpubData" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4A0FAFB1FA2B14400B4BDCF /* Debug */,
+				F4A0FAFC1FA2B14400B4BDCF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F4A0FAFD1FA2B14400B4BDCF /* Build configuration list for PBXNativeTarget "TekpubDataTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4A0FAFE1FA2B14400B4BDCF /* Debug */,
+				F4A0FAFF1FA2B14400B4BDCF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F4A0FAD11FA2B14400B4BDCF /* Project object */;
+}

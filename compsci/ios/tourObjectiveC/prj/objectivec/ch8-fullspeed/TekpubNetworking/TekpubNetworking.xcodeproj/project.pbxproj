@@ -1,0 +1,430 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F41B6F251FA6142F00C7D5CD /* TekProduction.m in Sources */ = {isa = PBXBuildFile; fileRef = F41B6F241FA6142F00C7D5CD /* TekProduction.m */; };
+		F4A283FE1FA5668B00A18A39 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A283FD1FA5668B00A18A39 /* AppDelegate.m */; };
+		F4A284011FA5668B00A18A39 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A284001FA5668B00A18A39 /* ViewController.m */; };
+		F4A284061FA5668B00A18A39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4A284051FA5668B00A18A39 /* Assets.xcassets */; };
+		F4A2840C1FA5668B00A18A39 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A2840B1FA5668B00A18A39 /* main.m */; };
+		F4A284161FA5668C00A18A39 /* TekpubNetworkingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A284151FA5668C00A18A39 /* TekpubNetworkingTests.m */; };
+		F4A284211FA566A700A18A39 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4A284201FA566A700A18A39 /* ViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F4A284121FA5668C00A18A39 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F4A283F11FA5668B00A18A39 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F4A283F81FA5668B00A18A39;
+			remoteInfo = TekpubNetworking;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F41B6F231FA6142F00C7D5CD /* TekProduction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TekProduction.h; sourceTree = "<group>"; };
+		F41B6F241FA6142F00C7D5CD /* TekProduction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TekProduction.m; sourceTree = "<group>"; };
+		F4A283F91FA5668B00A18A39 /* TekpubNetworking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TekpubNetworking.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4A283FC1FA5668B00A18A39 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F4A283FD1FA5668B00A18A39 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F4A283FF1FA5668B00A18A39 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		F4A284001FA5668B00A18A39 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		F4A284051FA5668B00A18A39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F4A2840A1FA5668B00A18A39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F4A2840B1FA5668B00A18A39 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F4A284111FA5668C00A18A39 /* TekpubNetworkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TekpubNetworkingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4A284151FA5668C00A18A39 /* TekpubNetworkingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TekpubNetworkingTests.m; sourceTree = "<group>"; };
+		F4A284171FA5668C00A18A39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F4A284201FA566A700A18A39 /* ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F4A283F61FA5668B00A18A39 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4A2840E1FA5668C00A18A39 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F4A283F01FA5668B00A18A39 = {
+			isa = PBXGroup;
+			children = (
+				F4A283FB1FA5668B00A18A39 /* TekpubNetworking */,
+				F4A284141FA5668C00A18A39 /* TekpubNetworkingTests */,
+				F4A283FA1FA5668B00A18A39 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F4A283FA1FA5668B00A18A39 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F4A283F91FA5668B00A18A39 /* TekpubNetworking.app */,
+				F4A284111FA5668C00A18A39 /* TekpubNetworkingTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F4A283FB1FA5668B00A18A39 /* TekpubNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				F4A283FC1FA5668B00A18A39 /* AppDelegate.h */,
+				F4A283FD1FA5668B00A18A39 /* AppDelegate.m */,
+				F4A283FF1FA5668B00A18A39 /* ViewController.h */,
+				F4A284001FA5668B00A18A39 /* ViewController.m */,
+				F4A284051FA5668B00A18A39 /* Assets.xcassets */,
+				F4A2840A1FA5668B00A18A39 /* Info.plist */,
+				F4A2840B1FA5668B00A18A39 /* main.m */,
+				F4A284201FA566A700A18A39 /* ViewController.xib */,
+				F41B6F231FA6142F00C7D5CD /* TekProduction.h */,
+				F41B6F241FA6142F00C7D5CD /* TekProduction.m */,
+			);
+			path = TekpubNetworking;
+			sourceTree = "<group>";
+		};
+		F4A284141FA5668C00A18A39 /* TekpubNetworkingTests */ = {
+			isa = PBXGroup;
+			children = (
+				F4A284151FA5668C00A18A39 /* TekpubNetworkingTests.m */,
+				F4A284171FA5668C00A18A39 /* Info.plist */,
+			);
+			path = TekpubNetworkingTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F4A283F81FA5668B00A18A39 /* TekpubNetworking */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4A2841A1FA5668C00A18A39 /* Build configuration list for PBXNativeTarget "TekpubNetworking" */;
+			buildPhases = (
+				F4A283F51FA5668B00A18A39 /* Sources */,
+				F4A283F61FA5668B00A18A39 /* Frameworks */,
+				F4A283F71FA5668B00A18A39 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TekpubNetworking;
+			productName = TekpubNetworking;
+			productReference = F4A283F91FA5668B00A18A39 /* TekpubNetworking.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F4A284101FA5668C00A18A39 /* TekpubNetworkingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4A2841D1FA5668C00A18A39 /* Build configuration list for PBXNativeTarget "TekpubNetworkingTests" */;
+			buildPhases = (
+				F4A2840D1FA5668C00A18A39 /* Sources */,
+				F4A2840E1FA5668C00A18A39 /* Frameworks */,
+				F4A2840F1FA5668C00A18A39 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F4A284131FA5668C00A18A39 /* PBXTargetDependency */,
+			);
+			name = TekpubNetworkingTests;
+			productName = TekpubNetworkingTests;
+			productReference = F4A284111FA5668C00A18A39 /* TekpubNetworkingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F4A283F11FA5668B00A18A39 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = "Sviatoslav Zimine";
+				TargetAttributes = {
+					F4A283F81FA5668B00A18A39 = {
+						CreatedOnToolsVersion = 9.0.1;
+						ProvisioningStyle = Automatic;
+					};
+					F4A284101FA5668C00A18A39 = {
+						CreatedOnToolsVersion = 9.0.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = F4A283F81FA5668B00A18A39;
+					};
+				};
+			};
+			buildConfigurationList = F4A283F41FA5668B00A18A39 /* Build configuration list for PBXProject "TekpubNetworking" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F4A283F01FA5668B00A18A39;
+			productRefGroup = F4A283FA1FA5668B00A18A39 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F4A283F81FA5668B00A18A39 /* TekpubNetworking */,
+				F4A284101FA5668C00A18A39 /* TekpubNetworkingTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F4A283F71FA5668B00A18A39 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4A284061FA5668B00A18A39 /* Assets.xcassets in Resources */,
+				F4A284211FA566A700A18A39 /* ViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4A2840F1FA5668C00A18A39 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F4A283F51FA5668B00A18A39 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4A284011FA5668B00A18A39 /* ViewController.m in Sources */,
+				F41B6F251FA6142F00C7D5CD /* TekProduction.m in Sources */,
+				F4A2840C1FA5668B00A18A39 /* main.m in Sources */,
+				F4A283FE1FA5668B00A18A39 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4A2840D1FA5668C00A18A39 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4A284161FA5668C00A18A39 /* TekpubNetworkingTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F4A284131FA5668C00A18A39 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F4A283F81FA5668B00A18A39 /* TekpubNetworking */;
+			targetProxy = F4A284121FA5668C00A18A39 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		F4A284181FA5668C00A18A39 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		F4A284191FA5668C00A18A39 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F4A2841B1FA5668C00A18A39 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G2264DLSAY;
+				INFOPLIST_FILE = TekpubNetworking/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.szi.TekpubNetworking;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F4A2841C1FA5668C00A18A39 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G2264DLSAY;
+				INFOPLIST_FILE = TekpubNetworking/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.szi.TekpubNetworking;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F4A2841E1FA5668C00A18A39 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G2264DLSAY;
+				INFOPLIST_FILE = TekpubNetworkingTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.szi.TekpubNetworkingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TekpubNetworking.app/TekpubNetworking";
+			};
+			name = Debug;
+		};
+		F4A2841F1FA5668C00A18A39 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G2264DLSAY;
+				INFOPLIST_FILE = TekpubNetworkingTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.szi.TekpubNetworkingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TekpubNetworking.app/TekpubNetworking";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F4A283F41FA5668B00A18A39 /* Build configuration list for PBXProject "TekpubNetworking" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4A284181FA5668C00A18A39 /* Debug */,
+				F4A284191FA5668C00A18A39 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F4A2841A1FA5668C00A18A39 /* Build configuration list for PBXNativeTarget "TekpubNetworking" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4A2841B1FA5668C00A18A39 /* Debug */,
+				F4A2841C1FA5668C00A18A39 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F4A2841D1FA5668C00A18A39 /* Build configuration list for PBXNativeTarget "TekpubNetworkingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4A2841E1FA5668C00A18A39 /* Debug */,
+				F4A2841F1FA5668C00A18A39 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F4A283F11FA5668B00A18A39 /* Project object */;
+}

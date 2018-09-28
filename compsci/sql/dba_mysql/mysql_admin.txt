@@ -1,0 +1,53 @@
+mysql_admin
+
+#
+brew install mysql
+
+#to configure service at boot
+brew services start msyql
+
+
+# to start stop on cmd
+mysql.server start
+
+mysql.server stop
+
+# to connect in cmd client
+mysql -uroot
+
+#to change a default root pwd
+mysqladmin -u root password 'newpwdval'
+#to update existing root pwd
+mysqladmin -u root -p'oldval' password 'newval'
+
+#to connect and specify pwd on cmd
+mysql -u root -p
+m> show databases;
+m> create user learn;
+
+mysql>show databases;
+
+mysql>use mysql;
+mysql>show tables;
+
+valentina studio as a gui formysql
+
+#######################################
+# create a database and schema
+#
+#######################################
+mysql -u root -p
+m> create database learn;
+m> show databases;
+m> create user learn;
+m>grant all on learn.* to 'learn'@'localhost' identified by 'pwd';
+
+--or more restrained privileges
+m> grant select, insert, delete, update on learn.* to learn@localhost' identified by 'pwd';
+
+--now this user can connect to the server, witch to his schema and create , drop objects
+
+-- execute sql script from within mysql
+m> source path_to_file.sql
+
+

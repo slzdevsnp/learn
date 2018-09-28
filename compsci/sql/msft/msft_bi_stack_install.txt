@@ -1,0 +1,31 @@
+microsoft BI stack install
+09.2018
+
+1. install SQL Server 2017 developer edition
+	
+	https://www.microsoft.com/en-us/sql-server/sql-server-downloads
+
+	use its installer to install further tools 
+
+2. install sql server reporting services (linked to sql server version)
+    (link in sql server installer)
+
+
+3. install sql server managemeent tools  (as of 09.18) SSMS 18.0 (preview)
+    (link in sql server installer)
+
+
+4. install VisualStudio commnunity 2017 (as of sept 2018)
+	https://visualstudio.microsoft.com/vs/
+
+    select installation components (lenghty download and installation)
+    (data integration services component is not enough)
+
+5. Install SQL Server Data Tools SSDT 
+    (link in sql server installer)
+	Install Analysis Services, Integration Services, and Reporting Services tools
+	download a standalone installer 
+
+	NB: you can install SSDT in the VS 2017 community or into a new VS instance
+
+	EOF

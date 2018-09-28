@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="WorldTrotter/Base.lproj/LaunchScreen.storyboard" source-language="en" datatype="plaintext" target-language="ru">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="8.2.1" build-num="8C1002"/>
+    </header>
+    <body/>
+  </file>
+  <file original="WorldTrotter/Base.lproj/Main.storyboard" source-language="en" datatype="plaintext" target-language="ru">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="8.2.1" build-num="8C1002"/>
+    </header>
+    <body>
+      <trans-unit id="8Fj-sQ-hcj.title">
+        <source>Map</source>
+        <target>Карта</target>
+        <note>Class = "UITabBarItem"; title = "Map"; ObjectID = "8Fj-sQ-hcj";</note>
+      </trans-unit>
+      <trans-unit id="GUR-Pq-ITk.title">
+        <source>Convert</source>
+        <target>Конвертировать</target>
+        <note>Class = "UITabBarItem"; title = "Convert"; ObjectID = "GUR-Pq-ITk";</note>
+      </trans-unit>
+      <trans-unit id="LfM-QG-Y72.text">
+        <source>degrees Celsius</source>
+        <target>градусам Цельсия</target>
+        <note>Class = "UILabel"; text = "degrees Celsius"; ObjectID = "LfM-QG-Y72";</note>
+      </trans-unit>
+      <trans-unit id="R0V-eJ-2iH.text">
+        <source>is really</source>
+        <target>равняется</target>
+        <note>Class = "UILabel"; text = "is really"; ObjectID = "R0V-eJ-2iH";</note>
+      </trans-unit>
+      <trans-unit id="T6h-bH-7r2.text">
+        <source>100</source>
+        <target>100</target>
+        <note>Class = "UILabel"; text = "100"; ObjectID = "T6h-bH-7r2";</note>
+      </trans-unit>
+      <trans-unit id="id6-SJ-KEn.text">
+        <source>value</source>
+        <target>значение</target>
+        <note>Class = "UITextField"; text = "value"; ObjectID = "id6-SJ-KEn";</note>
+      </trans-unit>
+      <trans-unit id="pSs-Or-rxC.title">
+        <source>Web</source>
+        <target>Веб</target>
+        <note>Class = "UITabBarItem"; title = "Web"; ObjectID = "pSs-Or-rxC";</note>
+      </trans-unit>
+      <trans-unit id="whC-uX-eMX.text">
+        <source>degrees Fahrenheit</source>
+        <target>градусов по Фаренгейту</target>
+        <note>Class = "UILabel"; text = "degrees Fahrenheit"; ObjectID = "whC-uX-eMX";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="WorldTrotter/Info.plist" source-language="en" datatype="plaintext" target-language="ru">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="8.2.1" build-num="8C1002"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+      </trans-unit>
+      <trans-unit id="CFBundleShortVersionString">
+        <source>1.0</source>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="WorldTrotterTests/Info.plist" source-language="en" datatype="plaintext" target-language="ru">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="8.2.1" build-num="8C1002"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+      </trans-unit>
+      <trans-unit id="CFBundleShortVersionString">
+        <source>1.0</source>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="WorldTrotterUITests/Info.plist" source-language="en" datatype="plaintext" target-language="ru">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="8.2.1" build-num="8C1002"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+      </trans-unit>
+      <trans-unit id="CFBundleShortVersionString">
+        <source>1.0</source>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="en.lproj/Localizable.strings" source-language="en" datatype="plaintext" target-language="ru">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="8.2.1" build-num="8C1002"/>
+    </header>
+    <body>
+      <trans-unit id="Hybrid">
+        <source>Hybrid</source>
+        <target>Гибридная</target>
+        <note>Hybrid map view</note>
+      </trans-unit>
+      <trans-unit id="Satellite">
+        <source>Satellite</source>
+        <target>Спутниковая</target>
+        <note>Satellite map view</note>
+      </trans-unit>
+      <trans-unit id="Standard">
+        <source>Standard</source>
+        <target>Стандартная</target>
+        <note>Standard map view</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
