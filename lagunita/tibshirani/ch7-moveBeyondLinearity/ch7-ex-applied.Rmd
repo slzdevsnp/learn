@@ -1,0 +1,475 @@
+---
+title: "ch7-ex-applied"
+author: "S Zimine"
+date: "12/5/2017"
+output: html_document
+---
+
+
+### Ex 6
+#### 6.a
+From Asad solution
+
+```{r}
+library(ISLR)
+library(boot)
+
+dfmax <- 10
+kcv <- 10
+all.deltas <- rep(NA, dfmax)
+for (i in 1:dfmax) {
+  glm.fit <- glm(wage~poly(age, i,raw=TRUE), data=Wage)
+  all.deltas[i] = cv.glm(Wage, glm.fit, K=kcv)$delta[2] #10-folkd CV
+}
+
+plot(1:dfmax, all.deltas, xlab="Degree", ylab="CV error", type="l", pch=20, lwd=2, main="dataset MSE as a function of polynomial degree in wage~poly(wage,i)")
+min.point = min(all.deltas)
+print(min.point)
+sd.points = sd(all.deltas)
+abline(h=min.point + 0.2 * sd.points, col="red", lty="dashed")
+abline(h=min.point - 0.2 * sd.points, col="red", lty="dashed")
+legend("topright", "0.2-standard deviation lines", lty="dashed", col="red")
+```
+
+The plot indicates that $df=3$ is a minimal degrees of freedom with a small enough test MSE.
+
+Lets compare it with `anova()` results.
+
+```{r}
+fit1 <- lm(wage~poly(age,1,raw=TRUE),data=Wage)
+fit2 <- lm(wage~poly(age,2,raw=TRUE),data=Wage)
+fit3 <- lm(wage~poly(age,3,raw=TRUE),data=Wage)
+fit4 <- lm(wage~poly(age,4,raw=TRUE),data=Wage)
+fit5 <- lm(wage~poly(age,5,raw=TRUE),data=Wage)
+fit6 <- lm(wage~poly(age,6,raw=TRUE),data=Wage)
+fit7 <- lm(wage~poly(age,7,raw=TRUE),data=Wage)
+fit8 <- lm(wage~poly(age,8,raw=TRUE),data=Wage)
+fit9 <- lm(wage~poly(age,9,raw=TRUE),data=Wage)
+
+anova(fit1,fit2,fit3,fit4,fit5,fit6,fit7,fit8,fit9)
+```
+`anova()` also shows that the minimul number of degree of freedom is 3.
+
+Plot the fit with the determined number of $df$.
+```{r}
+agelims=range(Wage$age)
+age.grid=seq(from=agelims[1],to=agelims[2])
+
+fit<- glm(wage~poly(age,3,raw=T),data=Wage)
+pred <- predict(fit, newdata=list(age=age.grid),se=TRUE)
+se.bands <- cbind(pred$fit+2*pred$se  , pred$fit-2*pred$se )
+
+plot(Wage$age,Wage$wage, main="Wage vs age with df=3", col="darkgray", pch=20, cex=0.7 )
+lines(age.grid, pred$fit, lwd=2, col="blue")
+matlines(age.grid, se.bands,col="blue", lty=2)    
+```
+
+### 6.b
+
+```{r}
+cutmax <- 10
+all.cvs = rep(NA, cutmax)
+for (i in 2:10) {
+  Wage$age.cut = cut(Wage$age, i)
+  lm.fit = glm(wage~age.cut, data=Wage)
+  all.cvs[i] = cv.glm(Wage, lm.fit, K=10)$delta[2]
+}
+plot(2:10, all.cvs[-1], xlab="Number of cuts", ylab="CV error", type="l", pch=20, lwd=2)
+```
+
+Number of cuts is 8
+
+```{r}
+fit <- glm(wage~cut(age,8), data=Wage)
+preds <- predict(fit, newdata=list(age=age.grid))
+plot(wage~age, data=Wage, col="darkgrey", cex=0.8)
+lines(age.grid, preds,  lwd=2,col="blue")
+```
+
+### Ex 7
+
+```{r}
+plot(wage~maritl, data=Wage)
+plot(wage~jobclass, data=Wage)
+```
+
+From plots it appears a married couple makes more money on average than other groups. It
+also appears that Informational jobs are higher-wage than Industrial jobs on
+average.
+
+
+
+#### gams
+```{r}
+require(gam)
+gam1<- gam(wage~maritl+jobclass+s(age,df=4), data=Wage)
+par( mfrow=c(1,3))
+plot(gam1,se=TRUE)
+```
+
+#### Polynomial and Step functions
+```{r 7.2}
+fit = lm(wage~maritl, data=Wage)
+deviance(fit)
+fit = lm(wage~jobclass, data=Wage)
+deviance(fit)
+fit = lm(wage~maritl+jobclass, data=Wage)
+deviance(fit)
+```
+
+### Ex 8
+
+The flollow variables were identified as having non-linear relationship
+```{r}
+data(Auto)
+par(mfrow=c(2,3))
+plot(mpg~displacement, data=Auto)
+plot(mpg~horsepower, data=Auto, cex=0.6)
+plot(mpg~weight, data=Auto, cex=0.6)
+plot(mpg~acceleration, data=Auto, cex=0.6)
+plot(mpg~cylinders, data=Auto, cex=0.6)
+```
+
+Lets examine `cylinders`
+```{r}
+# polynomial regression
+maxpd <-4
+all.deltas = rep(NA, maxpd)
+for (i in 1:maxpd) {
+  glm.fit = glm(mpg~poly(cylinders, i), data=Auto)
+  all.deltas[i] = cv.glm(Auto, glm.fit, K=10)$delta[2]
+}
+plot(1:maxpd, all.deltas, xlab="Degree", ylab="CV error", type="l", pch=20, lwd=2)
+
+cylr <- range(Auto$cylinders)
+cyl.grid <-seq(from=cylr[1], to=cylr[2])
+
+cy.fit = glm(mpg~poly(cylinders, 3), data=Auto) # 
+cy.preds <- predict(cy.fit, newdata=list(cylinders=cyl.grid),se=TRUE)
+cy.se.bands=cbind(cy.preds$fit+2*cy.preds$se.fit ,cy.preds$fit-2*cy.preds$se.fit )
+
+plot(mpg~cylinders,data=Auto)
+lines(cyl.grid,cy.preds$fit,lwd=2,col="blue")
+matlines(cyl.grid,cy.se.bands,lwd=1,col="blue",lty=3)
+```
+
+#### Les study the displacement variable with various approaches
+
+##### Polynomial
+```{r}
+rss <- rep(NA,10)
+fits <- list()
+for (d in 1:10){
+  fits[[d]] <- lm(mpg~poly(displacement,d), data=Auto)
+  rss[d] <- deviance(fits[[d]])
+}
+rss
+which.min(rss)
+```
+train RSS expectedly decreases with an increase of a polynomial degree
+
+```{r}
+anova(fits[[1]],fits[[2]],fits[[3]],fits[[4]])
+```
+Anova shows that the polynimial degree of 2 for displacment is enough.
+Les see how cross-validation selects a degree of polynomical
+```{r}
+require(glmnet)
+set.seed(1)
+cv.errs <- rep(NA,15)
+for (d in 1:15){
+  fit <- glm(mpg~poly(displacement,d), data=Auto)
+  cv.errs[d] <- cv.glm(Auto, fit, K=10)$delta[2]
+}
+which.min(cv.errs)
+```
+Suprisingly cross validation selects a 10th degree polynomial.
+
+#### Step functions
+
+```{r}
+cv.errs <- rep(NA,10)
+for (c in 2:10){
+  Auto$dis.cut <- cut(Auto$displacement,c)
+  fit <- glm(mpg~dis.cut, data=Auto)
+  cv.errs[c] <- cv.glm(Auto, fit, K=10)$delta[2]
+}
+which.min(cv.errs)
+```
+
+###### Splines 
+
+```{r}
+require(splines)
+cv.errs <- rep(NA,10)
+for (df in 3:10){
+  fit <- glm(mpg~ns(displacement,df=df), data=Auto)
+  cv.errs[df] <- cv.glm(Auto, fit, K=10)$delta[2]
+}
+which.min(cv.errs)
+```
+Train RSS decreases with increase of degrees of freedoms in splines for feature displacement.
+
+####GAMS 
+```{r}
+library(gam)
+fit <- gam(mpg ~s(displacement,4)  + s(horsepower,4) + weight, data=Auto)
+summary(fit)
+par(mfrow=c(1,3))
+plot(fit,se=T)
+```
+from Anova, weight appears to be a linear predictor
+
+
+### Ex 9
+
+#### a)
+```{r}
+require(MASS)
+attach(Boston)
+fit.1 <- lm(nox~poly(dis,3), data=Boston)
+dis.grid <- seq(range(dis)[1], range(dis)[2], by=0.05)
+preds <- predict(fit.1, newdata=data.frame(dis=dis.grid), se=T )
+plot(nox~dis,data=Boston,cex=0.6,col="gray")
+lines(dis.grid, preds$fit, lwd=2, col="red")
+```
+
+##### b)
+```{r}
+rss<-rep(NA,10)
+fits <- list()
+preds <- list()
+plot(nox~dis,data=Boston,cex=0.6,col="gray")
+for (d in 1:10){
+  fits[[d]] <- lm(nox~poly(dis,d), data=Boston)
+  rss[d] <- deviance(fits[[d]])
+  #rss[d] <- sum(fits[[d]]$residuals^2) #same result
+  preds[[d]] <- predict(fits[[d]], newdata=list(dis=dis.grid))
+  lines(dis.grid, preds[[d]], lwd=1, col=d)
+}
+print(rss)
+```
+As expected, train RSS decreases monotonically,  the df=3 is sufficient for the dis predictor. 
+
+####  c)
+
+```{r}
+set.seed(1)
+cv.errs <- rep(NA,10)
+for (d in 1:10){
+  fit <- glm(nox~poly(dis,d), data=Boston)
+  cv.errs[d] <- cv.glm(Boston, fit, K=10)$delta[2]
+}
+print( which.min(cv.errs) )
+plot(cv.errs, type="l", xlab="polynomial degrees")
+```
+
+10-fold X-validation chooses the `df=4`
+
+
+### d)
+
+```{r}
+require(splines)
+fit <- lm(nox~bs(dis,df=4, knots=c(3,6,8)), data=Boston)
+summary(fit)
+
+pred <- predict(fit, newdata=list(dis=dis.grid), se=T )
+plot(nox~dis,data=Boston,cex=0.6,col="gray")
+lines(dis.grid,pred$fit,lwd=2, col="blue")
+lines(dis.grid,pred$fit+2*pred$se ,lty="dashed")
+lines(dis.grid,pred$fit-2*pred$se ,lty="dashed")
+
+```
+
+Knots were chosen from the visual aspect of the data.
+
+##### e) 
+```{r}
+rss <- rep(NA,14)
+for (df in 3:14){
+  fit <- glm(nox~bs(dis,df=df), data=Boston)
+  rss[df] <- sum(fit$residuals^2)
+}
+print( rss[-c(1,2)] )
+```
+
+RSS decreases monotonically
+
+#### f)
+
+```{r}
+options(warn=-1)
+cv.errs <- rep(NA,14)
+for (df in 3:14){
+  fit <- glm(nox~bs(dis,df=df), data=Boston)
+  cv.errs[df] <- cv.glm(Boston, fit, K=10)$delta[2]
+}
+print( which.min(cv.errs) )
+
+plot(3:14, cv.errs[-c(1, 2)], lwd = 2, type = "l", xlab = "df", ylab = "CV error")
+```
+
+
+##EX 10 
+
+#### a)   split into training and test
+
+```{r}
+require(leaps)
+set.seed(1)
+nsam <- nrow(College)
+train <- sample(1:nsam, size=floor(2/3*nsam) )
+test <- (1:nsam)[-train]
+```
+Sample is split into training and test as 2/3  1/3
+
+```{r}
+p_feats <- dim(College)[2]-1
+regfit.fwd <- regsubsets(Outstate~., data=College[train,], nvmax=p_feats, method="forward")
+reg.summary <- summary(regfit.fwd)
+
+par(mfrow=c(2,2))
+##rss
+plot(reg.summary$rss ,xlab="Number of Variables ",ylab="RSS",
+type="l", main="Best subset select")
+
+#adj r2
+plot(reg.summary$adjr2 ,xlab="Number of Variables ",
+ylab="Adjusted RSq",type="l", main="Best subset select")
+
+idx_r2<- which.max(reg.summary$adjr2)
+points(idx_r2, reg.summary$adjr2[idx_r2], col="red", xex=2,pch=20)
+print( paste("R-squared is at max with  number of features:",idx_r2))
+max.adjr2 <- reg.summary$adjr2[idx_r2]
+std.ajr2 <- sd(reg.summary$adjr2)
+abline(h=max.adjr2 - 0.2*std.ajr2, col="red", lty=2)
+
+#cp
+plot(reg.summary$cp, xlab="Number of Variables", ylab="Cp",type="l", main="subset select")
+cp_idx <- which.min(reg.summary$cp)
+min.cp <- reg.summary$cp[cp_idx]
+std.cp <- sd(reg.summary$cp)
+points(cp_idx,reg.summary$cp[cp_idx],col="red", cex=2, pch=20)
+abline(h=min.cp + 0.2*std.cp, col="red", lty=2)
+
+#bic
+plot(reg.summary$bic, xlab="Number of Variables", ylab="BIC",type="l", main="subset select")
+b_idx <- which.min(reg.summary$bic)
+points(b_idx,reg.summary$bic[b_idx],col="red", cex=2, pch=20)
+std.bic <- sd(reg.summary$bic)
+abline(h=reg.summary$bic[b_idx] + 0.2*std.bic, col="red", lty=2)
+
+```
+
+The chart of adjusted-R squared Cp and BIC shows the optimal number of variables at 11. using  0.2 standard deviation from optimum  the best model is of size 6.  
+
+```{r}
+reg.fit <- regfit.fwd <- regsubsets(Outstate~., data=College, method="forward")
+coefi <- coef(reg.fit, id=6)
+names(coefi)
+```
+###b) GAM model
+
+```{r}
+library(gam)
+gam.fit <- gam(Outstate~Private+s(Room.Board,3)+s(PhD,3)+s(perc.alumni,3)
+                    +s(Expend,3)+s(Grad.Rate,3), data=College[train,])
+
+par(mfrow=c(2,3))
+plot(gam.fit,se=TRUE, col="blue")
+```
+We used splines of df=3 in the GAM.
+
+### c) evaluate gam model on Test dataset
+
+```{r}
+gam.pred <- predict(gam.fit, College[test,] )
+gam.rss <- mean((College[test,]$Outstate - gam.pred)^2)
+gam.tss <- mean( (College[test,]$Outstate - mean(College[test,]$Outstate))^2)
+gam.test_r2 <- 1 - gam.rss/gam.tss 
+print(gam.test_r2)
+
+```
+
+Lets compare the gam $R^2$ with multiple linear regression (OLS)
+```{r}
+ols.fit <- lm(Outstate~Private+Room.Board+PhD+perc.alumni
+                    +Expend+Grad.Rate, data=College[train,] )
+ols.pred <- predict(ols.fit, College[test,])
+ols.rss<- mean((College[test,]$Outstate - ols.pred)^2)
+tss <- mean( (College[test,]$Outstate - mean(College[test,]$Outstate))^2)
+ols.test_r2 <- 1 - ols.rss/gam.tss 
+print(ols.test_r2)
+
+```
+
+In case of GAM model we observe a slighly better $R^2$ compared to multiple linear regresssion. Hence Non linear modeling yields better results. 
+
+###d)
+```{r}
+print(summary(gam.fit))
+```
+
+from non-parametric anova we observe a strong non-linear relationship for Expend. and a moderate non-linear relationship for Room.board and PhD.
+
+### EX 11
+
+#### a) b)
+
+```{r}
+ns<-1000
+x1<-rnorm(ns)
+x2<-rnorm(ns)
+eps<-rnorm(ns)
+#generate response
+y<- -2.1 +1.3*x1 +0.54*x2 + eps
+```
+
+#### c) d) e)
+
+```{r}
+nsim <- 1000
+beta1_v <- rep(NA,nsim)
+beta2_v <- rep(NA,nsim)
+beta0_v <-rep(NA,nsim)
+beta1<-2.0 #initial value
+##perform nsim simulations
+for (i in 1:nsim){
+    a<- y-beta1*x1
+    cfit <- lm(a~x2)
+    beta2_v[i] <- cfit$coef[2]
+    beta0_v[i] <- cfit$coef[1]
+    a <- y - beta2_v[i] * x2
+    beta1_v[i] <- lm(a~x1)$coef[2]
+    beta1 <- beta1_v[i] #assign beta1 for next iteration
+}
+plot(beta0_v, type="l", ylim=c(-3,2), col=1)
+lines(beta1_v, type="l", col=2)
+lines(beta2_v, type="l", col=3)
+legend("topright", c("beta0", "beta1", "beta2"), lty=1, col=c(1,2,3) )
+```
+
+#### f)
+```{r}
+fit_m <- lm(y~x1+x2)
+print(fit_m$coef) #coefficients from multiple linear regression
+
+plot(beta0_v, type="l", ylim=c(-3,2), col=1, xlab="simulations", ylab="betas")
+lines(beta1_v, type="l", col=2)
+lines(beta2_v, type="l", col=3)
+abline(h=fit_m$coef[1], col=1, lty=2)
+abline(h=fit_m$coef[2], col=2, lty=2)
+abline(h=fit_m$coef[3], col=3, lty=2)
+legend("topright", c("beta0", "beta1", "beta2", "multiple regression"), lty=c(1,1,1,2), col=c(1,2,3,1) )
+
+```
+
+#### g)
+```{r}
+beta0_v[1:10]
+beta1_v[1:10]
+beta2_v[1:10]
+```
+
+From the 3rd simulation values do not change much.
