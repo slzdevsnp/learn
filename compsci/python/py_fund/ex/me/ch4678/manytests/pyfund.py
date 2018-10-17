@@ -648,7 +648,6 @@ def main():
     #test_ch6_collections_list()
     #test_ch6_collections_dict()
     #test_ch6_collections_set()
-
     #test_ch8_iterables_comprehensions()
     #test_ch8_iterables_iter()
     #est_ch8_iterables_generators()
