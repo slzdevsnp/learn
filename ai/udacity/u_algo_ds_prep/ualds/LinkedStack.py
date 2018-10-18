@@ -1,5 +1,5 @@
 import unittest
-import os
+
 import Empty
 import copy
 
@@ -91,4 +91,5 @@ class  LinkedStackTest(unittest.TestCase):
         self.assertEqual(len(lst),1)
 
 if __name__ == '__main__':
-    unittest.main()
+    #unittest.main()
+    main()
