@@ -1,11 +1,12 @@
 
-import unittest
-import os
 import Empty
+import unittest
 import copy
 
 class LinkedQueue:
-    """FIFO  queue iplementation using a sngly linked list for storage"""
+    """FIFO  queue iplementation using a sngly linked list for storage
+        GTGb
+    """
     #---------------nested class ----------------------------------------
     class _Node:
         def __init__(self,element, next=None):
@@ -56,6 +57,21 @@ class LinkedQueue:
         self._size += 1
 
 
+    def printQ(self):
+        if self.is_empty():
+            print("empty queue")
+        else:
+            buf = "["
+            current = self._head
+            while current._next:
+                buf += str(current._element) + ","
+                current = current._next
+            buf = ''.join(list(buf)[0:-1]) #strip off last ','
+            buf += "]"
+            print(buf)
+
+
+
 class LinkedQueueTest(unittest.TestCase):
     def setUp(self):
         self._queue_e0 = LinkedQueue()
@@ -89,5 +105,3 @@ class LinkedQueueTest(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-
-
