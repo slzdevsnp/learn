@@ -646,14 +646,14 @@ def main():
     #test_ch6_collections_str()
     #test_ch6_collections_range()
     #test_ch6_collections_list()
-    #test_ch6_collections_dict()
+    test_ch6_collections_dict()
     #test_ch6_collections_set()
     #test_ch8_iterables_comprehensions()
     #test_ch8_iterables_iter()
     #est_ch8_iterables_generators()
     #test_ch8_iterables_itertools()
 
-    test_ch10_files_basic_read_write()
+    #test_ch10_files_basic_read_write()
 
 if __name__ == '__main__':
     main()

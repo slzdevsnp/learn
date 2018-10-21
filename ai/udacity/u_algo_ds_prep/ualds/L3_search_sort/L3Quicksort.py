@@ -1,4 +1,4 @@
-from LinkedQueue import LinkedQueue
+from L2_list_collectons.LinkedQueue import LinkedQueue
 
 def quicksort(array):
     inplace_quick_sort(array, 0, len(array)-1)

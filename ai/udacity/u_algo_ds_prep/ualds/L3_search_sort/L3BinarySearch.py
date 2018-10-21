@@ -5,6 +5,7 @@
 def binary_search(input_array,value):
     """returns index of value or -1 if value not found
         works on sorted  lists
+        O(ln(n))
     """
 
     counter = 0
