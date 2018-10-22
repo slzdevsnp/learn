@@ -537,8 +537,8 @@ def test_ch8_iterables_generators():
 
     print('testing generator take() on list [11,12,13,14,15] ')
     print(list(take(3, [11,12,13,14,15])))
-    print('testing generator distinct() on list [11,12,13,14,15,11,12]')
-    print(list(distinct([11,12,13,14,15,11,12])))
+    print('testing generator distinct() on list [11,11,12,13,14,15,11,12]')
+    print(list(distinct([11,11,12,13,14,15,11,12])))
 
     def run_pipeline(count,iterable):
         for item in take(count, distinct(iterable)):  # ! combine take() and distinct()
@@ -554,7 +554,8 @@ def test_ch8_iterables_generators():
     #print(list(million_squares)) #only at this moment a 40 megs of ram are allocated
 
     print('not much memory is allocated when using operators on generators')
-    print('sum of squares of first 1 miillon numbers:',sum(x*x for x in range(1,1000001)))
+    print('sum of squares of first 1 miillon numbers:',sum(million_squares))
+
 
     def lucas():
         """a generator for a infinite serie"""
@@ -565,9 +566,9 @@ def test_ch8_iterables_generators():
             yield b
             a,b = b, a + b
 
-    print("testing lucas serie generator untill 1000")
+    print("testing lucas serie generator untill 10000")
     for x in lucas():
-            if x > 1000:
+            if x > 10000:
                 break
             print(x)
 
@@ -646,11 +647,11 @@ def main():
     #test_ch6_collections_str()
     #test_ch6_collections_range()
     #test_ch6_collections_list()
-    test_ch6_collections_dict()
+    #test_ch6_collections_dict()
     #test_ch6_collections_set()
     #test_ch8_iterables_comprehensions()
     #test_ch8_iterables_iter()
-    #est_ch8_iterables_generators()
+    test_ch8_iterables_generators()
     #test_ch8_iterables_itertools()
 
     #test_ch10_files_basic_read_write()
