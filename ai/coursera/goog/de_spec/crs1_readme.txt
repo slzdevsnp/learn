@@ -84,7 +84,7 @@ Modu: Foundations to GCP Compute and Storage
 
         idea: preemptive vm.   for a 80% discount  they agree to let it go if somebody came and took this machine  (useful for hadoop jobs, hadoop is fault tolerant)
 
-    clout storage:
+    cloud storage:
         blob storage
         cloud storage = persistant storage
         1st step  get your data into cloud storage 
@@ -100,6 +100,16 @@ Modu: Foundations to GCP Compute and Storage
 
         acl to anybody with google account
         acl to all users without authentication       
+
+
+Qwiklabs  intro 
+
+    startLab  button (provision temp instance) in chrome incognito window
+    button open google concole    (user generated google name and password)
+    see the screen google cloud platform
+
+    >  activate google cloud shell
+    button end lab  (stop provisioning ),  copy and paste your code somewhere else
 
 
 
