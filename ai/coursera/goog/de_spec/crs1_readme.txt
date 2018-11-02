@@ -7,12 +7,25 @@ resources:
 GCP                         https://cloud.google.com
 datacenters                 https://www.google.com/about/datacenters
 google it security      
-    https://cloud.google.com/files/Google-CommonSecurity-WhitePaper-v1.4.pdf
+                            https://cloud.google.com/files/Google-CommonSecurity-WhitePaper-v1.4.pdf
 Why Google Cloud Platform   https://cloud.google.com/why-google 
 Pricing Philosophy          https://cloud.google.com/pricing/philosophy
 
 
-Modu: Overview
+
+compute engine              https://cloud.google.com/compute
+Storage                     https://cloud.google.com/storage
+Pricing                     https://cloud.google.com/pricing
+Cloud Launcher              https://cloud.google.com/marketplace 
+Pricing Philosophy          https://cloud.google.com/pricing/philosophy 
+
+
+
+
+
+
+
+
 
 
     cpu units   and storage units
@@ -102,14 +115,74 @@ Modu: Foundations to GCP Compute and Storage
         acl to all users without authentication       
 
 
+
 Qwiklabs  intro 
 
     startLab  button (provision temp instance) in chrome incognito window
     button open google concole    (user generated google name and password)
     see the screen google cloud platform
 
+
     >  activate google cloud shell
     button end lab  (stop provisioning ),  copy and paste your code somewhere else
+
+
+    Demo 1.  open console in incognition mode
+    https://console.cloud.google.com
+
+
+    gcp console:  navigation menu -> compute engine
+        allow full access to cloud apoi
+        Create
+
+    >sudo apt-get -y -qq install git
+    >sudo su 
+
+    Demo 2.  google cloud storage
+    > git clone https://github.com/GoogleCloudPlatform/training-data-analyst
+    > cd ~/training-data-analyst/CPB100/lab2b
+    > cat ingest.sh 
+    >install_missing.sh
+    >python3 transform.py
+
+    console > Storage -> create bucket
+    bucket name  == project id = qwiklabs-gcp-607c08bc07f8ea45
+    >gsutil cp earthquakes.* gs://qwiklabs-gcp-607c08bc07f8ea45/earthquakes/
+    >gsutil acl ch -u ALLUsers:R gs://qwiklabs-gcp-607c08bc07f8ea45/earthquakes/*
+
+
+    pricing calculator
+    https://cloud.google.com/pricing/
+
+    left menu -> calulators
+
+
+chap: Data Analysis on the cloud 
+    Google provides managed services 
+
+    migrate to the cloud mysql db   or hadoop instance 
+
+    first developed: App Engine: to run webapps (serverless running of webapps from 2008)
+    google app engine
+        java
+        python Flask
+        ... others 
+
+    for non-web app.  put it in container  and run in in google container engine 
+
+    compute engine  use it as a vm to run your business application 
+
+    DataProc = Hadoop cluster on GCP
+    CloudSQL = managed mysql on GCP 
+
+    cloudSQL
+        reachable from anywhere
+        fast connects from gcp 
+        protected by google security
+        
+
+
+
 
 
 
