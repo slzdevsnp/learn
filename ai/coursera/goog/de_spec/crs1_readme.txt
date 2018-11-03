@@ -181,6 +181,87 @@ chap: Data Analysis on the cloud
         protected by google security
         
 
+    Demo 3  google CloudSQL (managed mysql)
+    in goolge console 
+    > gcloud auth list 
+    >gcloud config list project
+    > git clone https://github.com/GoogleCloudPlatform/training-data-analyst
+    >cd training-data-analyst/CPB100/lab3a
+    >ls cloudsql
+    >gsutil  cp ./cloudsql/* gs://qwiklabs-gcp-29bd7ee5dc1fbbb6/sql/
+
+    >GCP console -> SQL create mysql -> 2nd generation
+     instance ID : rentals
+     root password: 9la
+     Show configuration options : ticked public id,  + add network
+       from lab3a dir  ./find_my_ip.sh (this gives an ip of cloud shell client)
+       wget -qO - http://ipecho.net/plain; echo
+
+    new network name : cloudshell 
+    netowrk:  (paste cloud shell ip)
+
+    !NB for convenience
+    >gcloud sql instances patch rentals --authorized-networks `wget -qO - http://ipecho.net/plain`/32
+    cliick Create button to create a mysql instance button
+
+    click on intanceId: Rentals
+    click Import  and from a bucket  import the table_creation.sql
+
+    click import  accomodation.csv into   table recommendation_spark.Accomodation  (select type csv)
+    click import  rating.csv into   table recommendation_spark.Rating   (select type csv)
+
+    connect to the mysql instance using its public ip 
+    mysql --host=35.193.76.255 --user=root --password
+
+    import
+
+
+chap Managed Hadoop in the cloud
+
+    pig == scripting language for map reeduced programs like etl 
+    Google DataProc == Hadoop
+        cluster size can be changed 
+        data proc
+             provides integration with GCP.
+             supports preemptive vms 
+        better store the data not on hadoop cluste rbut on GCS
+    Demo 4 Dataproc
+    start cloud shell 
+    > git clone https://github.com/GoogleCloudPlatform/training-data-analyst
+    > cd training-data-analyst/CPB100/lab3a
+    > gsutil cp cloudsql/* gs://qwiklabs-gcp-f2cc5c41445c1270/sql/
+    create mysql intance rentals and populate with csv as in Demo 3
+
+    GCP Root menu: Dataproc  Create Cluster
+    ensure that region/zone is the same as with sql instance 
+
+    master node: 2 vCPUs, work Nodes 2 VCPUs
+    nodes minimum 2
+    cd ~/training-data-analyst/CPB100/lab3b
+    > ./authorize_dataproc.sh cluster-ae9b us-central1-a 2
+    > vi nano sparkml/train_and_apply.py
+    > gsutil cp sparkml/tr*.py gs://qwiklabs-gcp-f2cc5c41445c1270/
+    DataProc  jobs -> submit job
+        cluster: choose your cluster
+        job type: pyspark
+        main python file: gs://qwiklabs-gcp-f2cc5c41445c1270/train_and_apply.py
+        submit job (running takes up to 5 mins)
+
+    in the sql instance, check the inserted rows into Recommendation table
+    select r.userid, r.accoid, r.prediction, a.title, a.location,
+    a.price, a.rooms, a.rating, a.type
+    from Recommendation as r, Accommodation as a
+     where r.accoid = a.id and r.userid = 10;
+
+
+
+
+
+
+
+
+
+
 
 
 
