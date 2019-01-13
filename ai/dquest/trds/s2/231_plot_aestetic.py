@@ -7,7 +7,6 @@ from pprint import pprint as pp
 women_degrees = pd.read_csv('percent-bachelors-degrees-women-usa.csv')
 
 pp(women_degrees.info() )
-
 pp(women_degrees.head())
 pp(women_degrees.describe())
 

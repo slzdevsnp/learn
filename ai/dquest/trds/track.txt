@@ -4,11 +4,36 @@ step 1 Python Introduction
     python intermediate
 
 step 2 Data Analysis and Visualization
-    Pandas and NumPy Fundamentals
-    Exploratory Data Visualization
-    Storytelling Through Data Visualization
-    Data Cleaning
 
+    1 Pandas and NumPy Fundamentals
+        1 intro to numpy
+        2 bool indexing with numpy
+        3 intro to pandas
+        4 explore data with pandas
+        5 data cleaning basics
+        6 guided project: exploring ebay car sales data
+
+    2 Exploratory Data Visualization
+        1 line charts
+        2 multi plots
+        3 bar plots and scatter plots
+        4 histogram and box plots
+        5 guided proj visualize earnings based on college majors
+
+    3 Storytelling Through Data Visualization
+        1 improving pot aestetics
+        2 color, layout, annotations
+        3 guided proj: visualize the gender gap in college degrees
+        4 conditional plots
+        5 visualizeing geographic data
+
+    4 Data Cleaning
+        1 data cleaning walkthrough
+        2 data clenaing walkthrough: combine data
+        3 data clieaning walkthrough: analyze , visualize data
+        4 guided projec: analyzing NYC high schoold data
+        5 challenge: cleaning data
+        6 guided project: star wars survey
 
 step 3 The Command Line
     Command Line: Beginner

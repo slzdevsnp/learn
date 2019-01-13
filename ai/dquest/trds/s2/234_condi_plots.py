@@ -33,23 +33,23 @@ num_cols = ["Survived", "Pclass", "Sex", "Age", "SibSp", "Parch", "Fare", "Embar
 
 titanic = tfolks[num_cols]
 
-titanic.dropna(inplace=True)
+titanic.dropna(inplace=True) #drop rows with NaS  ?
 
-#sns.distplot(titanic["Fare"])
-#plt.show()
+sns.distplot(titanic["Fare"])   #by default frequncy distrib + pdf
+plt.show()
 
-sns.distplot(titanic["Age"])
+sns.distplot(titanic["Age"])  #plot 1
 plt.show()
 
 #4
-sns.kdeplot(titanic["Age"],shade=True)
+sns.kdeplot(titanic["Age"],shade=True) #jsut a p density func
 plt.xlabel("Age")
 plt.show()
 
 #5
 sns.set_style("white")
 sns.kdeplot(titanic["Age"],shade=True)
-sns.despine(top=True, right=True, left=True,bottom=True)
+sns.despine(top=True, right=True, left=True,bottom=True)  #no axe frame
 plt.xlabel("Age")
 plt.show()
 
@@ -64,7 +64,7 @@ g.map(sns.kdeplot, "Age", shade=True)
 plt.show()
 
 
-#7  2 params makes a 2 x 2 grid
+#7  2 params makes a 2 x 3 grid
 g = sns.FacetGrid(titanic, row="Pclass", col="Survived", size=6)
 g.map(sns.kdeplot, "Age", shade=True)
 plt.show()

@@ -1,8 +1,12 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from pprint import pprint as pp
 
 unrate = pd.read_csv('unrate.csv')
 unrate['DATE'] = pd.to_datetime(unrate['DATE'])
+
+pp(unrate.head(5))
+
 
 
 fig = plt.figure(figsize=(12, 5))

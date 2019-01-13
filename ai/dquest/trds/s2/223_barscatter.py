@@ -19,7 +19,7 @@ Fandango_Stars - the rating displayed on the Fandango website (rounded to neares
 fn='fandango_scores.csv'
 dat=pd.read_csv(fn)
 pp(dat.info())
-
+pp(dat.head(3))
 cols = [
 'FILM',
 'RT_user_norm',
