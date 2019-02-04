@@ -4,7 +4,108 @@ pyalgo ch01  OK
 
 
 
+============== yve's live sessions  ===========
+==========================================
+===intro  28.01
+==========================================
 
+python for algorithmic trading (additional yves book, the core of the program)
+- cover platforms oanda, fxm, IB, gemini
+
+aimachine.io    website (work in progress, no access still)
+
+program blocks:
+1. python tools (jupyter, docker, cloud instances)
+2. financial data science historic financial data, ML (classification), deep learning (DNN), prediction, backtesting
+3. streaming data & viz, real-time, algos real-time deployment, online platforms & APIs
+4.  DIY module. own strategies & backtesting programs, own trading code, own full week experience (inl P&L, research project)  <-- DIY <-- is the goal of the project
+
+
+eikon no yet subscription
+
+finance with python: 
+	basis of connection to classic finance, theory part
+	2-state, 3-state, multi-state economies, dynamic economies 
+    finance with python has jup notebook demos
+
+tools (python, docker usage, cloud usage, linux cmd, python package)
+
+clouds:  digital ocean, docker containers,  conda,  jupyter notebooks
+
+python for financial data science.
+	historic data == fixed datasets
+
+
+python for excel is a new addition excelWings
+
+python for databases
+pyTables (store results in binary table), bcolz - increase io read/writes, sqlalchemy ORM layer
+
+
+NLP  intro of using NLP in finance + gathered list of ressources 
+
+
+Artificial intelligence in Finance 
+deep models can work as compared to simple, elegant brain theories. 
+
+
+eikon  demo
+
+plotly and cufflinks provides nice financial data viz
+
+
+==========================================
+===AI in finance  30.01
+==========================================
+
+games:
+playing Atari with deep reinforcement learning
+https://arxiv.org/pdf/1312.5602v1.pdf
+
+book: nick bostrom
+superintelligence
+paths, dangers, strategies
+
+The story of AlphaGo so far
+
+demo carPole-v0: 
+pip install --upgrade gym  #! ai package
+
+in finance: financial singularity  is a point at which all investment decisions are done by algorithms. 
+e.g. in GS 600 traders trading stocks now reduced to 2 
+
+book: the technological singularity murray shanahan
+
+a machine learning algorith for pattern recognition is much better than I am 
+
+
+- the machine must learn from data what patterns in price series have predictive powers
+
+The Beauty Myth
+
+book:  microeconomic analysis: Hal R. Varian (student edition)
+
+data driven finance : part of 2nd edition of Python for finance Yve's book
+
+ai : can read financial news NLP
+
+book:   the master algorithm  pedro domingos
+
+== book : advances in financial machine learning   marcos lopez de prado
+== journal of machine learning in finance
+
+tools:  scie-learn  tensorFlow  nvidia 
+
+theaimachine.io    deployment gap, last mile problem  (proud of author)
+
+the race to AI utilization in finance is a marathon, not a sprint. 
+
+
+
+
+
+
+=============================================
 =========
 #pyalgo
 =========
