@@ -101,9 +101,25 @@ theaimachine.io    deployment gap, last mile problem  (proud of author)
 the race to AI utilization in finance is a marathon, not a sprint. 
 
 
+=======
+week 2 qa session
+
+use ipython
+
+compute option payoff replication'
+by 1-layer NN
+
+M matrix
+C vector [0,5]
+
+for _ in range(25):
+	d = ll- C
+	u = d * lr
+	w -= u
+	ll = np.dot(M,w)
 
 
-
+strategies on movign averages
 
 =============================================
 =========
