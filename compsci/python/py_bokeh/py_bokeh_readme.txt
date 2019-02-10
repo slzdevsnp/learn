@@ -60,3 +60,42 @@ ch2
 
 
    ch2_iris.styling.py    styles, axes, ticks, colors,  color of data, alpha, legend
+
+
+ch3
+    columnDataSource (needed for hoover and used to draw glyphs)
+    hovertools customized with data  (iris)
+    layout multiple plots
+    span annotation (lines)
+    box_annotations (rectangles)
+    labels for specific glyphs  ch3_categorical_labels.py
+
+ch4
+    bokeh server
+    >python -m bokeh serve widgets.py  #basic example
+    >bokeh server widgets.py
+    >bokeh server --port 5007 dyn_chart_labels_select.py
+    selecgt_span_ex8Sol how to dynamically compute values of Select UI
+
+ch5 
+    streaming in bokeh server
+    random_generator_chart.py
+    bitcoin_stream-webscrap.py
+    bitcoint_stream_widgets.py
+
+ch6
+    venv/bokeh/bin/pip3 install Flask
+    ch6_inflask    flaskapp0    python flaskapp0/app.py how to embed a basic line chart
+
+    embedding dynamic bokeh charts  (2 separate processes) 
+    ## bokeh tornado runs on 5006
+    #  flask runs on 5000
+    bokeh serve  --allow-websocket-origin=localhost:5000   random_generator.py
+    python app.py  # runs on port 5000
+
+    djangoapp0   (better for big apps), flask more flexible
+    django-admin startproject mysite
+    cd djangoapp0/mysite
+    python manage.py startapp bokehapp
+    #to run the server
+    python manage.py runserver 
