@@ -44,7 +44,10 @@ https://${DROPLET_PUBLIC_IP}:8888
 
 install_gcp.sh  is the installation script on the gcp vm instance
 
-
-
+#### initial git setup
+git config --global user.email johndoe@example.com
+git config credential.helper store
+git push https://github.com/slzdevsnp/learn.git
+git config --global credential.helper "cache --timeout 864000"
 
 
