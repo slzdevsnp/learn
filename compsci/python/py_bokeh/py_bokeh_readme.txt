@@ -169,18 +169,3 @@ is accessing th bokeh directly without flask
 
 Failed to install bokeh 0.13.0  in the droplet 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
