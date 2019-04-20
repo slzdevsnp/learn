@@ -1,0 +1,4 @@
+/Applications/CLion2.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Library/Developer/CommandLineTools/usr/bin/make -DCMAKE_C_COMPILER=/Library/Developer/CommandLineTools/usr/bin/cc -DCMAKE_CXX_COMPILER=/Library/Developer/CommandLineTools/usr/bin/c++ -G "CodeBlocks - Unix Makefiles" /Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/c/clang-inaction/c_in_action_ex
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/c/clang-inaction/c_in_action_ex/cmake-build-debug-system

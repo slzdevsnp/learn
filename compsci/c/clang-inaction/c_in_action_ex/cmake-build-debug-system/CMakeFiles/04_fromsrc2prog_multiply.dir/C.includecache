@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/c/clang-inaction/c_in_action_ex/src/04_from_src2prog/main.c
+multiply.h
+/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/c/clang-inaction/c_in_action_ex/src/04_from_src2prog/multiply.h
+stdio.h
+-
+
+/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/c/clang-inaction/c_in_action_ex/src/04_from_src2prog/multiply.c
+
+/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/c/clang-inaction/c_in_action_ex/src/04_from_src2prog/multiply.h
+

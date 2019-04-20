@@ -31,7 +31,18 @@ public class ArrayTypeError {
          * compiler error! Instead it throws a RUNTIME exception,
          * ArrayStoreException.
          */
-        things[0] = new Cat();
+        //things[0] = new Cat(); //produces a runtime exeption
+    }
+
+    static void testParentType(){
+        List<Animal> animals = new ArrayList<>();
+        animals.add(new Dog());
+        animals.add(new Cat());
+        animals.add(new Mouse());
+        System.out.println("in testParentType()");
+        for (Animal a: animals){
+            a.speak();
+        }
     }
 
     static void testGenericsTypeError(){
@@ -44,7 +55,9 @@ public class ArrayTypeError {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         testnArrayType();
+        testParentType();
     }
 }

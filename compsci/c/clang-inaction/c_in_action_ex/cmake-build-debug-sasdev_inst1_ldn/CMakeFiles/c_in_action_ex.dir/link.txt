@@ -1,0 +1,1 @@
+/usr/bin/cc -g   CMakeFiles/c_in_action_ex.dir/src/main.c.o  -o c_in_action_ex 

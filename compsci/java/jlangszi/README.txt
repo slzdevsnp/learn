@@ -52,7 +52,7 @@
 2019
     test org.szi.lng.file.filesWriteManualTest
     org.szi.lng.file.FastCsvWriterRunner
-
+    org.szi.lng.java8.lambdas.FunctionalInterfaceExample
 
 
 
