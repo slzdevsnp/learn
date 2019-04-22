@@ -1,1 +1,0 @@
-/usr/bin/cc -g   CMakeFiles/02_strat_w_gcc_sample.dir/src/02_getting_started_w_gcc/sample.c.o  -o 02_strat_w_gcc_sample 

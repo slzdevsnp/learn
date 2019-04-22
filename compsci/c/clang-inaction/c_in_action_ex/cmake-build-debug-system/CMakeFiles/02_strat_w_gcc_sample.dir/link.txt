@@ -1,1 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/cc -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/02_strat_w_gcc_sample.dir/src/02_getting_started_w_gcc/sample.c.o  -o 02_strat_w_gcc_sample 

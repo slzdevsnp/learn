@@ -1,5 +1,0 @@
-/home/sz_metafused_com/cpp/c_in_action_ex/cmake-build-debug-sasdev_inst1_ldn/CMakeFiles/02_strat_w_gcc_sample.dir
-/home/sz_metafused_com/cpp/c_in_action_ex/cmake-build-debug-sasdev_inst1_ldn/CMakeFiles/03_tour_temp_w_func.dir
-/home/sz_metafused_com/cpp/c_in_action_ex/cmake-build-debug-sasdev_inst1_ldn/CMakeFiles/rebuild_cache.dir
-/home/sz_metafused_com/cpp/c_in_action_ex/cmake-build-debug-sasdev_inst1_ldn/CMakeFiles/04_fromsrc2prog_multiply.dir
-/home/sz_metafused_com/cpp/c_in_action_ex/cmake-build-debug-sasdev_inst1_ldn/CMakeFiles/edit_cache.dir

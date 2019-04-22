@@ -1,5 +1,0 @@
-/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/c/clang-inaction/c_in_action_ex/cmake-build-debug-system/CMakeFiles/rebuild_cache.dir
-/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/c/clang-inaction/c_in_action_ex/cmake-build-debug-system/CMakeFiles/edit_cache.dir
-/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/c/clang-inaction/c_in_action_ex/cmake-build-debug-system/CMakeFiles/04_fromsrc2prog_multiply.dir
-/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/c/clang-inaction/c_in_action_ex/cmake-build-debug-system/CMakeFiles/03_tour_temp_w_func.dir
-/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/c/clang-inaction/c_in_action_ex/cmake-build-debug-system/CMakeFiles/02_strat_w_gcc_sample.dir

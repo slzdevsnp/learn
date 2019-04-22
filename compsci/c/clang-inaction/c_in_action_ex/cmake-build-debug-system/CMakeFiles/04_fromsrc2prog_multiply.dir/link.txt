@@ -1,1 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/cc -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/04_fromsrc2prog_multiply.dir/src/04_from_src2prog/main.c.o CMakeFiles/04_fromsrc2prog_multiply.dir/src/04_from_src2prog/multiply.c.o  -o 04_fromsrc2prog_multiply 

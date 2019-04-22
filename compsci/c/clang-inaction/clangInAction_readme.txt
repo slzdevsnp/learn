@@ -3,7 +3,7 @@ title: The C programming Language in action
 
 
 
-chap 02-gettingStartedWithVcc
+chap 01-gettingStartedWithVcc
 
 in VSS open developer command prompt 
 
@@ -13,7 +13,7 @@ in VSS open developer command prompt
 	> cl sample.c   # produces and obj file and and executable
 
 
-chap 03-gettingStartedWithGcc
+chap 02-gettingStartedWithGcc
 
 	cd c:\Mingw
 	#to set paths
@@ -28,23 +28,26 @@ chap 03-gettingStartedWithGcc
 	NB! no unique and standard distribution of the gcc
 
 
-chap 04-tourOfClang
+chap 03-tourOfClang
 
      temperature.c
      temperature_functions.c
 
-chap 05-fromSourceToPrograms
-	complink/build.sh  shows an explicit build of object files and their linking
+chap 04-fromSourceToPrograms
+	build.sh  shows an explicit build of object files and their linking
 	complink/build.bat  does the same on windows
 
 
-chap 06-TypesAndDeclarations
-	scope.c  //shows  difference between local intance variable and a static variable
+chap 05-TypesAndDeclarations  OK
+	scope.c  //shows  difference between local instance variable and a static variable
 
 	basic_types.c  //shows basic data types, first use of typedef  and also print the size of different variables
 
 
-chap 07-StructsUnionsEnum
+chap 06-StructsUnionsEnum
+
+    new:
+    struct_union.c
 
    structs.c  //shows a definition of structs and how to modified their members
    structs_memory.c //shows  structs layering in memory and affecting the struct's size
@@ -52,26 +55,29 @@ chap 07-StructsUnionsEnum
    enum.c  //defines  the  first enum  and makes a switch statement
 
 
-chap 08-statemetns
+chap 07-statemetns
+    new: loop_switch.c
 	switch.c  // how to use switch  on a basic type. do not forget break;
 	for_loop;  //anonymous for loop
 
-chap 09-expressions
+chap 08-expressions
+  new: conversion_incrementator.c 
 
   before-after-incrementors.c //shows  ++var and var++
   basic-converions.c //how the automatic conversion between numeric types happens
 
-chap 10-pointersAndArrays
+chap 09-pointersAndArrays
     pointer-on-int  basic refrencing dereferencing a pointer
     array_no_ptr shows array without using pointer
     array_with_ptr shows array with pointers
     swap_with_ptr  swap func implementation with pointer parameters so the changes are persisted outside the func
-chap 11-memoryManagement
+chap 10-memoryManagement
 
-chap 12-inputOutput
+chap 11-inputOutput
 
-chap 13-workingWithStrings
 
-chap 14-fromCtoCpp
+chap 12-workingWithStrings
+
+chap 13-fromCtoCpp
 
 	

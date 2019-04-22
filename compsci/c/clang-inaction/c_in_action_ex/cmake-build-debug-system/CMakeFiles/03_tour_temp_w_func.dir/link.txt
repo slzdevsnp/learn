@@ -1,1 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/cc -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/03_tour_temp_w_func.dir/src/03_tour_of_clang/temperature_w_func.c.o  -o 03_tour_temp_w_func 
