@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/cc -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/05_typedeclare_scope.dir/src/05_types_and_declare/scope.c.o CMakeFiles/05_typedeclare_scope.dir/src/util/ufuncs.c.o  -o 05_typedeclare_scope 

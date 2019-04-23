@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/cc -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/06_struct_union_test.dir/src/06-structs-unions/struct_union.c.o CMakeFiles/06_struct_union_test.dir/src/util/ufuncs.c.o  -o 06_struct_union_test 

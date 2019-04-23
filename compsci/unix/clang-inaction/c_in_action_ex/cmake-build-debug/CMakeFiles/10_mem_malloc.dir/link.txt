@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/cc -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/10_mem_malloc.dir/src/10_memorymgmt/mem_malloc.c.o CMakeFiles/10_mem_malloc.dir/src/util/ufuncs.c.o  -o 10_mem_malloc 

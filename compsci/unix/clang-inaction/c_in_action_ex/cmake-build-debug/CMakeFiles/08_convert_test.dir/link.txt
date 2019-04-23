@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/cc -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/08_convert_test.dir/src/08_expressions/conversion_incrementator.c.o CMakeFiles/08_convert_test.dir/src/util/ufuncs.c.o  -o 08_convert_test 

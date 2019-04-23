@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/cc -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/05_basic_types.dir/src/05_types_and_declare/basic_types.c.o  -o 05_basic_types 

@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/cc -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/09_pointer_arrays.dir/src/09_pointerarrays/pointer_arrays.c.o CMakeFiles/09_pointer_arrays.dir/src/util/ufuncs.c.o  -o 09_pointer_arrays 

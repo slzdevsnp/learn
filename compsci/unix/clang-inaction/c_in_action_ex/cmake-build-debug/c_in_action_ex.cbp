@@ -1,0 +1,611 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="c_in_action_ex"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="12_strings">
+				<Option output="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/12_strings" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 12_strings"/>
+					<CompileFile command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="12_strings/fast">
+				<Option output="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/12_strings" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 12_strings/fast"/>
+					<CompileFile command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="11_io">
+				<Option output="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/11_io" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 11_io"/>
+					<CompileFile command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="11_io/fast">
+				<Option output="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/11_io" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 11_io/fast"/>
+					<CompileFile command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="09_pointer_arrays">
+				<Option output="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/09_pointer_arrays" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 09_pointer_arrays"/>
+					<CompileFile command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="09_pointer_arrays/fast">
+				<Option output="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/09_pointer_arrays" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 09_pointer_arrays/fast"/>
+					<CompileFile command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="08_convert_test">
+				<Option output="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/08_convert_test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 08_convert_test"/>
+					<CompileFile command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="08_convert_test/fast">
+				<Option output="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/08_convert_test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 08_convert_test/fast"/>
+					<CompileFile command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="07_loop_switch_test">
+				<Option output="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/07_loop_switch_test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 07_loop_switch_test"/>
+					<CompileFile command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="07_loop_switch_test/fast">
+				<Option output="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/07_loop_switch_test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 07_loop_switch_test/fast"/>
+					<CompileFile command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="06_struct_union_test">
+				<Option output="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/06_struct_union_test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 06_struct_union_test"/>
+					<CompileFile command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="06_struct_union_test/fast">
+				<Option output="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/06_struct_union_test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 06_struct_union_test/fast"/>
+					<CompileFile command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="10_mem_malloc">
+				<Option output="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/10_mem_malloc" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 10_mem_malloc"/>
+					<CompileFile command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="10_mem_malloc/fast">
+				<Option output="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/10_mem_malloc" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 10_mem_malloc/fast"/>
+					<CompileFile command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="03_tour_temp">
+				<Option output="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/03_tour_temp" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 03_tour_temp"/>
+					<CompileFile command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="03_tour_temp/fast">
+				<Option output="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/03_tour_temp" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 03_tour_temp/fast"/>
+					<CompileFile command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="04_fromsrc2prog_multiply">
+				<Option output="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/04_fromsrc2prog_multiply" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 04_fromsrc2prog_multiply"/>
+					<CompileFile command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="04_fromsrc2prog_multiply/fast">
+				<Option output="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/04_fromsrc2prog_multiply" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 04_fromsrc2prog_multiply/fast"/>
+					<CompileFile command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="05_typedeclare_scope">
+				<Option output="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/05_typedeclare_scope" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 05_typedeclare_scope"/>
+					<CompileFile command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="05_typedeclare_scope/fast">
+				<Option output="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/05_typedeclare_scope" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 05_typedeclare_scope/fast"/>
+					<CompileFile command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="05_basic_types">
+				<Option output="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/05_basic_types" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 05_basic_types"/>
+					<CompileFile command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="05_basic_types/fast">
+				<Option output="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/05_basic_types" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 05_basic_types/fast"/>
+					<CompileFile command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="02_sample">
+				<Option output="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/02_sample" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 02_sample"/>
+					<CompileFile command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="02_sample/fast">
+				<Option output="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/02_sample" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 02_sample/fast"/>
+					<CompileFile command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/Library/Developer/CommandLineTools/usr/bin/make -j4 -f &quot;/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/src/02_getting_started_w_gcc/sample.c">
+			<Option target="02_sample"/>
+		</Unit>
+		<Unit filename="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/src/03_tour_of_clang/temperature_w_func.c">
+			<Option target="03_tour_temp"/>
+		</Unit>
+		<Unit filename="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/src/04_from_src2prog/main.c">
+			<Option target="04_fromsrc2prog_multiply"/>
+		</Unit>
+		<Unit filename="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/src/04_from_src2prog/multiply.c">
+			<Option target="04_fromsrc2prog_multiply"/>
+		</Unit>
+		<Unit filename="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/src/04_from_src2prog/multiply.h">
+			<Option target="04_fromsrc2prog_multiply"/>
+		</Unit>
+		<Unit filename="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/src/05_types_and_declare/basic_types.c">
+			<Option target="05_basic_types"/>
+		</Unit>
+		<Unit filename="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/src/05_types_and_declare/scope.c">
+			<Option target="05_typedeclare_scope"/>
+		</Unit>
+		<Unit filename="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/src/06-structs-unions/struct_union.c">
+			<Option target="06_struct_union_test"/>
+		</Unit>
+		<Unit filename="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/src/07_statements/loop_switch.c">
+			<Option target="07_loop_switch_test"/>
+		</Unit>
+		<Unit filename="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/src/08_expressions/conversion_incrementator.c">
+			<Option target="08_convert_test"/>
+		</Unit>
+		<Unit filename="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/src/09_pointerarrays/pointer_arrays.c">
+			<Option target="09_pointer_arrays"/>
+		</Unit>
+		<Unit filename="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/src/10_memorymgmt/mem_malloc.c">
+			<Option target="10_mem_malloc"/>
+		</Unit>
+		<Unit filename="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/src/11_input_output/io_examples.c">
+			<Option target="11_io"/>
+		</Unit>
+		<Unit filename="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/src/12_strings/string_ops.c">
+			<Option target="12_strings"/>
+		</Unit>
+		<Unit filename="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/src/util/ufuncs.c">
+			<Option target="12_strings"/>
+			<Option target="11_io"/>
+			<Option target="09_pointer_arrays"/>
+			<Option target="08_convert_test"/>
+			<Option target="07_loop_switch_test"/>
+			<Option target="06_struct_union_test"/>
+			<Option target="10_mem_malloc"/>
+			<Option target="05_typedeclare_scope"/>
+		</Unit>
+		<Unit filename="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/src/util/ufuncs.h">
+			<Option target="12_strings"/>
+			<Option target="11_io"/>
+			<Option target="09_pointer_arrays"/>
+			<Option target="08_convert_test"/>
+			<Option target="07_loop_switch_test"/>
+			<Option target="06_struct_union_test"/>
+			<Option target="10_mem_malloc"/>
+			<Option target="05_typedeclare_scope"/>
+		</Unit>
+		<Unit filename="/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

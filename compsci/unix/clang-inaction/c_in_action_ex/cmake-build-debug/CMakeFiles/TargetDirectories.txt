@@ -1,0 +1,14 @@
+/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/CMakeFiles/12_strings.dir
+/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/CMakeFiles/11_io.dir
+/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/CMakeFiles/09_pointer_arrays.dir
+/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/CMakeFiles/08_convert_test.dir
+/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/CMakeFiles/07_loop_switch_test.dir
+/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/CMakeFiles/06_struct_union_test.dir
+/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/CMakeFiles/10_mem_malloc.dir
+/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/CMakeFiles/03_tour_temp.dir
+/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/CMakeFiles/04_fromsrc2prog_multiply.dir
+/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/CMakeFiles/05_typedeclare_scope.dir
+/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/CMakeFiles/05_basic_types.dir
+/Users/zimine/GoogleDriveSlzdev/zrepos/slzdevsnp/learn/compsci/unix/clang-inaction/c_in_action_ex/cmake-build-debug/CMakeFiles/02_sample.dir
