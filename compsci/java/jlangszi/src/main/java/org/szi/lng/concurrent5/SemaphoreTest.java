@@ -32,6 +32,7 @@ public class SemaphoreTest {
      }
 
      public static void main(String args[]) {
+
        for (int i=0; i<LOOP_COUNT; i++) {
          final int count = i;
          new Thread() {

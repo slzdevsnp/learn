@@ -20,7 +20,7 @@ public class TestSynchronizedTreads implements Runnable
     public void operateOnObject()  // this method is executed in every thread
     {
        for (int i = 0; i< 10; i++){
-           shrdl.add(new Integer(i));
+           shrdl.add(i);
            System.out.println("thrd_id="+Thread.currentThread().getId()); 
        }
         Thread.yield(); //temp stop
@@ -30,9 +30,7 @@ public class TestSynchronizedTreads implements Runnable
        printList(shrdl, Thread.currentThread().getName());
 
     }
-    public
-    //helpper method
-    void printList(List l, String message)
+    public void printList(List l, String message)
     {
         System.out.print(message+" ");
         System.out.print("List {");
