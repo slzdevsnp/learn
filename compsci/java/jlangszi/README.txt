@@ -55,4 +55,3 @@
     org.szi.lng.java8.lambdas.FunctionalInterfaceExample
     test org.szi.concurrent.java8.ThreadedTaskTest
 
-
