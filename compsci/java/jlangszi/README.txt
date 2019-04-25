@@ -53,6 +53,6 @@
     test org.szi.lng.file.filesWriteManualTest
     org.szi.lng.file.FastCsvWriterRunner
     org.szi.lng.java8.lambdas.FunctionalInterfaceExample
-
+    test org.szi.concurrent.java8.ThreadedTaskTest
 
 
