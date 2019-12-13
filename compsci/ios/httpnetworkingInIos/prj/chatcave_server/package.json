@@ -6,7 +6,7 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "express": "~4.1",
+    "express": "~4.17",
     "ejs": "*",
     "less-middleware": "*",
     "node-uuid": "~1.4.1",
