@@ -1,0 +1,478 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		02914252288227646A5A6EB4DDC26FB7 /* Pods-pchatapp-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9310B2D24AB7402EF939F463F1A3E6 /* Pods-pchatapp-dummy.m */; };
+		9E9A5C14FFBD7E07F7E674B3EF7DFCCC /* Pods-pchatapp-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A3F9500516F69C00819B9343535CB939 /* Pods-pchatapp-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A23E2B4482DF3209CF5C4D0D15F00B1B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		11EB66DA5A9CA906B47EE2DAB39D946A /* FirebaseCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCore.framework; path = Frameworks/frameworks/FirebaseCore.framework; sourceTree = "<group>"; };
+		232D27EF012E7831BC185940F0EDB710 /* GoogleSymbolUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleSymbolUtilities.framework; path = Frameworks/frameworks/GoogleSymbolUtilities.framework; sourceTree = "<group>"; };
+		27C2FA58695674E43079C502EA314197 /* FIRInstanceID.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRInstanceID.h; path = Sources/FIRInstanceID.h; sourceTree = "<group>"; };
+		2B4CCBFAA0F2D3702D0136E9496223A6 /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAnalytics.framework; path = Frameworks/frameworks/FirebaseAnalytics.framework; sourceTree = "<group>"; };
+		32F178256682AFB46438AFFF3C73DAD6 /* Pods-pchatapp-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-pchatapp-acknowledgements.markdown"; sourceTree = "<group>"; };
+		4C57A702042B21D0EC93B0CCE55EC077 /* Firebase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Firebase.h; path = Core/Sources/Firebase.h; sourceTree = "<group>"; };
+		517C8390C743E8138972F046A161122B /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleUtilities.framework; path = Frameworks/frameworks/GoogleUtilities.framework; sourceTree = "<group>"; };
+		5BBB62556320A3F17F4251F99845B8B7 /* Pods_pchatapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pchatapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C5EE653D995D25E438768E095EBA00D /* GoogleInterchangeUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleInterchangeUtilities.framework; path = Frameworks/frameworks/GoogleInterchangeUtilities.framework; sourceTree = "<group>"; };
+		7CE7CBC26E7856B18FAA8E0EC98CB65B /* Pods-pchatapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-pchatapp.debug.xcconfig"; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		954727C3F442916134E3F64B50BA8D71 /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseInstanceID.framework; path = Frameworks/frameworks/FirebaseInstanceID.framework; sourceTree = "<group>"; };
+		9B9310B2D24AB7402EF939F463F1A3E6 /* Pods-pchatapp-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-pchatapp-dummy.m"; sourceTree = "<group>"; };
+		A3F9500516F69C00819B9343535CB939 /* Pods-pchatapp-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-pchatapp-umbrella.h"; sourceTree = "<group>"; };
+		A6EF02C0175F0743D7B89DC2C175A9F2 /* Pods-pchatapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-pchatapp.release.xcconfig"; sourceTree = "<group>"; };
+		A962706955375610EF6D35D932E35181 /* Pods-pchatapp-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-pchatapp-acknowledgements.plist"; sourceTree = "<group>"; };
+		B14F58C92DA7ABF995EFD0CC98FC1516 /* Pods-pchatapp-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-pchatapp-frameworks.sh"; sourceTree = "<group>"; };
+		BD4F32B8C5E947B0490C087AF259D126 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		D143708DF78C1D9E4A0B8E03E277D2CB /* Pods-pchatapp-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-pchatapp-resources.sh"; sourceTree = "<group>"; };
+		E118F2475E3A23075CDD50FE52BE289E /* Pods-pchatapp.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-pchatapp.modulemap"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8CA0C4C428188171853D5D1231B4B5CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A23E2B4482DF3209CF5C4D0D15F00B1B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		06061969D52EED6CA804A6BCAD40DE71 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				954727C3F442916134E3F64B50BA8D71 /* FirebaseInstanceID.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		232A0C2965BD944705AFDCC292FAEA7F /* FirebaseAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				8633E9D4CF7BCB091B63C226147393FF /* Frameworks */,
+			);
+			path = FirebaseAnalytics;
+			sourceTree = "<group>";
+		};
+		36205C48C4EF365A03DD9EF28703A43E /* FirebaseCore */ = {
+			isa = PBXGroup;
+			children = (
+				ED32C4EBDB9A23E379FD2B1CC218B765 /* Frameworks */,
+			);
+			path = FirebaseCore;
+			sourceTree = "<group>";
+		};
+		3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		5BCC489817A1853AA3D334BC1B2FF7A8 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				5CE347E97B7D2DCD28FB193E6326B9B8 /* Core */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		5CE347E97B7D2DCD28FB193E6326B9B8 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				4C57A702042B21D0EC93B0CCE55EC077 /* Firebase.h */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		761391969BAF09951C5A54A63AAA4B6F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				517C8390C743E8138972F046A161122B /* GoogleUtilities.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				C6688EDDEF21F1062427B0B65BE9EFCC /* Pods */,
+				87E56F326E1CAC520B10DF2D1205DF7A /* Products */,
+				A0D616860E65A78FE35C5F7F9633E144 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		8633E9D4CF7BCB091B63C226147393FF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2B4CCBFAA0F2D3702D0136E9496223A6 /* FirebaseAnalytics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		87E56F326E1CAC520B10DF2D1205DF7A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5BBB62556320A3F17F4251F99845B8B7 /* Pods_pchatapp.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		97052C51F94E6047C061A44107973361 /* GoogleSymbolUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				FF37BE07D0632D31C67ABDF6F2A824AA /* Frameworks */,
+			);
+			path = GoogleSymbolUtilities;
+			sourceTree = "<group>";
+		};
+		A0D616860E65A78FE35C5F7F9633E144 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				BCF09386293BD1A98EABF21BE30867B3 /* Pods-pchatapp */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		B356D7C630FD917FF4A8A23CB20A7A7E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5C5EE653D995D25E438768E095EBA00D /* GoogleInterchangeUtilities.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B376289842D88B04AFA1E4E1F2D2D8EC /* GoogleInterchangeUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				B356D7C630FD917FF4A8A23CB20A7A7E /* Frameworks */,
+			);
+			path = GoogleInterchangeUtilities;
+			sourceTree = "<group>";
+		};
+		B7F32925195C2BF4F6650F6E3E291AFC /* FirebaseInstanceID */ = {
+			isa = PBXGroup;
+			children = (
+				27C2FA58695674E43079C502EA314197 /* FIRInstanceID.h */,
+				06061969D52EED6CA804A6BCAD40DE71 /* Frameworks */,
+			);
+			path = FirebaseInstanceID;
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BCF09386293BD1A98EABF21BE30867B3 /* Pods-pchatapp */ = {
+			isa = PBXGroup;
+			children = (
+				BD4F32B8C5E947B0490C087AF259D126 /* Info.plist */,
+				E118F2475E3A23075CDD50FE52BE289E /* Pods-pchatapp.modulemap */,
+				32F178256682AFB46438AFFF3C73DAD6 /* Pods-pchatapp-acknowledgements.markdown */,
+				A962706955375610EF6D35D932E35181 /* Pods-pchatapp-acknowledgements.plist */,
+				9B9310B2D24AB7402EF939F463F1A3E6 /* Pods-pchatapp-dummy.m */,
+				B14F58C92DA7ABF995EFD0CC98FC1516 /* Pods-pchatapp-frameworks.sh */,
+				D143708DF78C1D9E4A0B8E03E277D2CB /* Pods-pchatapp-resources.sh */,
+				A3F9500516F69C00819B9343535CB939 /* Pods-pchatapp-umbrella.h */,
+				7CE7CBC26E7856B18FAA8E0EC98CB65B /* Pods-pchatapp.debug.xcconfig */,
+				A6EF02C0175F0743D7B89DC2C175A9F2 /* Pods-pchatapp.release.xcconfig */,
+			);
+			name = "Pods-pchatapp";
+			path = "Target Support Files/Pods-pchatapp";
+			sourceTree = "<group>";
+		};
+		C6688EDDEF21F1062427B0B65BE9EFCC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5BCC489817A1853AA3D334BC1B2FF7A8 /* Firebase */,
+				232A0C2965BD944705AFDCC292FAEA7F /* FirebaseAnalytics */,
+				36205C48C4EF365A03DD9EF28703A43E /* FirebaseCore */,
+				B7F32925195C2BF4F6650F6E3E291AFC /* FirebaseInstanceID */,
+				B376289842D88B04AFA1E4E1F2D2D8EC /* GoogleInterchangeUtilities */,
+				97052C51F94E6047C061A44107973361 /* GoogleSymbolUtilities */,
+				E3367BDB30192BFA5367F46521B48544 /* GoogleUtilities */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E3367BDB30192BFA5367F46521B48544 /* GoogleUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				761391969BAF09951C5A54A63AAA4B6F /* Frameworks */,
+			);
+			path = GoogleUtilities;
+			sourceTree = "<group>";
+		};
+		ED32C4EBDB9A23E379FD2B1CC218B765 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				11EB66DA5A9CA906B47EE2DAB39D946A /* FirebaseCore.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FF37BE07D0632D31C67ABDF6F2A824AA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				232D27EF012E7831BC185940F0EDB710 /* GoogleSymbolUtilities.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		B88ADB7669B69806CF2CBC068D7F37FE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E9A5C14FFBD7E07F7E674B3EF7DFCCC /* Pods-pchatapp-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		5B2A0D97A6C4DDF6507F5C36756620E1 /* Pods-pchatapp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 17C0568A69EBB588959FB7A54B18AF36 /* Build configuration list for PBXNativeTarget "Pods-pchatapp" */;
+			buildPhases = (
+				8737305E43E9255410EAD48970A08429 /* Sources */,
+				8CA0C4C428188171853D5D1231B4B5CE /* Frameworks */,
+				B88ADB7669B69806CF2CBC068D7F37FE /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-pchatapp";
+			productName = "Pods-pchatapp";
+			productReference = 5BBB62556320A3F17F4251F99845B8B7 /* Pods_pchatapp.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = 87E56F326E1CAC520B10DF2D1205DF7A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5B2A0D97A6C4DDF6507F5C36756620E1 /* Pods-pchatapp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8737305E43E9255410EAD48970A08429 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02914252288227646A5A6EB4DDC26FB7 /* Pods-pchatapp-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		3E15476A0BC0C1CBF12831767801EDEE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A6EF02C0175F0743D7B89DC2C175A9F2 /* Pods-pchatapp.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-pchatapp/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-pchatapp/Pods-pchatapp.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_pchatapp;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		42287DDF97330524BA3EF220F0276DA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AE9439C22469D35336242DD983DB5C5F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				ONLY_ACTIVE_ARCH = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		CBD6E8D3C94FA9C0FFB95873EFB58448 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7CE7CBC26E7856B18FAA8E0EC98CB65B /* Pods-pchatapp.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-pchatapp/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-pchatapp/Pods-pchatapp.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_pchatapp;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		17C0568A69EBB588959FB7A54B18AF36 /* Build configuration list for PBXNativeTarget "Pods-pchatapp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CBD6E8D3C94FA9C0FFB95873EFB58448 /* Debug */,
+				3E15476A0BC0C1CBF12831767801EDEE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AE9439C22469D35336242DD983DB5C5F /* Debug */,
+				42287DDF97330524BA3EF220F0276DA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}
